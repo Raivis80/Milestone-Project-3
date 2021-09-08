@@ -134,7 +134,7 @@ As an Administrator
 - [HTML5](https://en.wikipedia.org/wiki/HTML5) Hypertext Markup Language (HTML)
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) Cascading Style Sheets (CSS)
 - [JavaScript](https://www.javascript.com/) Interactive functionality.
-
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) Backend programming. 
 
 ### **Frameworks, Libraries & Programs Used**
 - [Google Fonts:](https://fonts.google.com/) Making the web more beautiful.
@@ -144,6 +144,9 @@ As an Administrator
 - [gitpod.io](https://gitpod.io/) gitpod Was used for codding.
 - [VS Code](https://code.visualstudio.com/) gitpod Was used for codding.
 - [Balsamiq:](https://balsamiq.com/) was used to create the wireframes.
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/patterns/jquery/) Framework for rendering pages.
+- [MongoDB](https://www.mongodb.com/) - NoSQL database back-end data storage.
+- [Heroku](https://heroku.com/) - Application hosting platform.
 
 # [&#8686;](#Introduction)
 ## ***Deployment***
