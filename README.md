@@ -1,4 +1,4 @@
-# TATTOO STORRY SHARING APP
+# STORY SHARING APP
 ## [View the live project here.](https://raivis80.github.io)
 
 # [&#8686;](#Introduction)
@@ -7,7 +7,7 @@
 ### **Backend Development**
 
 This is my third of four Milestone Projects that the developer must complete during Full Stack Web Development Program at The Code Institute. 
-In this project, I will build a full-stack site which allow users to create, read, update and delete (CRUD) review/data. The Web application I'm building for this project is: Tattoo story sharing app.
+In this project, I will build a full-stack site which allow users to create, read, update and delete (CRUD) data. The Web application I'm building for this project is: Story sharing app.
 
 ### **Main Technologies**
 
@@ -36,20 +36,21 @@ Deployment: Deploy the final version of your code to a Heroku.
 - I want to get in contact with the owner if any questions or bugs I may have.
 
 As Registered user
-- I want to create my own account.
-- I want to to be able to uploat and share my content.
+- I want to be able to create my own account.
+- I want to to be able to upload and share my content.
 - I want to be able to edit/delete my content if needed.
 - i Want to be able to edit/delete my account details.
 
 As an Administrator
-- I want to momitor and manage content.
-- I want to manage user access and profile data.
+- all the above and
+- As an Administrator, I want to monitor and manage content.
+- And as an Administrator, I want to manage user access and profile data.
 
 #### Site owner goals
 - As a Site owner, I want to Provide potential users with online content sharing platform.
 - As a Site owner, I want to Provide everyone who visits the site to have a good user experience.
 - As a Site owner, I want to Provide user with easy site navigation and search options.
-- As a Site owner, I want to to enable registered users to quickly and easely. share their content.
+- As a Site owner, I want to to enable registered users to quickly and easily. share their content.
 - As a Site owner, I want to Build trust with customers - providing with social media links.
 - As a Site owner, I want to provide user with customer Support to Improve customer satisfaction through better service.
 
@@ -57,16 +58,18 @@ As an Administrator
 ## ***Development Planes***
 ### **Strategy**
 #### The website needs to enable the User to:
-- Provide user with an easy navigation.
+- Effortlessly navigate site and find content.
 - Log-In and Create account.
-- Update edit/delete user account.
+- Update edit/delete their account.
 - Upload, delete, edit and share content.
-- Provide user with Social media links.
-- Provide user with contact informatiom/contact_form.
+- Find Website owner on their preferred social media platform.
+- Contact Administrator if any issue or bug.
 
 #### The website needs to enable the company to:
 - Provide user with simple user friendly interface.
-- Provide content sharing platform.
+- provide a good site navigation to easy and quickly find the relevant content.
+- Provide content sharing platform to share with other users.
+- Provide Interface For users to create, edit and delete content.
 - Stay connected with customers by providing social media links for any suggestions.
 
 # [&#8686;](#Introduction)
@@ -74,31 +77,73 @@ As an Administrator
 
 ![Importance](lineplot.jpg)
 #### Functionality Requirements
-- Website Navigation with links.
-- Registration/Log-In Form
-- Recent photo opload gallery feature.
-- User management system with CRUD
+- Template.
+   - Bootstrap starter template used to kick start the project
+- Website Navigation with internal site links.
+   - Responsive bootstrap website navigation used
+- Registration/Log-In Form.
+   - Database integration user management
+   - Form validation implementation
+   - Username between 5 and 15 characters
+   - Password between 5 and 10 characters
+   - Confirm to match the password field
+- Recent photo upload gallery feature.
+   - Pulled from User uploads, most recent display first
+- User upload Thumbnail grid.
+   - Database integration store description and image links
+   - Recent uploads showing first
+- User management system with CRUD.
+   - Enable user to create, read, update and delete content
+- User management system with database integration.
+   - Store user account information on MongoDB Atlas database
+   - Manage user accounts by manipulating MongoDB database with Python
+- Integrate Database for content management.
+   - Content description and image links stored and managed on MongoDB Atlas database
+   - Manage user content by manipulating MongoDB database with Python
+   - Images are stored locally, image links along with description are stored in the database
 - Customer Support contact form.
+   - Javascript API form control implemented for this project
 - Social Media links to external resources.
-
 #### Content Requirements
 - NavBar
-   - Links
-   - Login/Register
-- Landing Page:
-- Thumbnaily gallery.
+   - Internal site navigation Links
+   - Login/Register link
+- Sign In
+   - In the "Username" field, enter a username
+   - Enter and confirm your password
+   - Click "Sign In" button
+- Create account
+   - In the "Username" field, enter a username
+   - Enter and confirm your password
+   - Enter email address.
+   - Click "Create new account" button
+- Landing Page
+   - Central Hero image
+   - Carousel recent uploads feature
+- User upload Thumbnail grid
+   - Displays user content in a responsive grid
 - Contact Form
-   - Name input field
-   - Email input field
-   - Text area 
+   - First and Last Name input fields
+   - Email Address input field
+   - Text area input field
    - Submit button 
-- User Page
-   - Upload, delete, edit content
-- Admin Page
-   - Manage Users.
-   - Upload,delete,edit content
+- User Interface
+   - Edit/delete this profile
+   - Image upload functionality
+   - Title input field
+   - Text area field for content description
+   - Post content button
+   - Edit content button
+   - Delete	Post button with confirm function for to prevent accidental deletion
+- Admin management Interface
+   - Manage/delete self profile
+   - Manage other User profile information reset passwords.
+   - Image upload functionality, Title input field
+   - Text area field for content description
+   - Post content button, Edit content button
+   - Edit/Delete	self/other user Posts
 - footer
-   - Copyright infomation
+   - Copyright information
    - Social Links
 
 # [&#8686;](#Introduction)
