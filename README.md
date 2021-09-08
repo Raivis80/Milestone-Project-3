@@ -1,108 +1,190 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# TATTOO STORRY SHARING APP
+## [View the live project here.](https://raivis80.github.io)
 
-Welcome USER_NAME,
+# [&#8686;](#Introduction)
+## ***Introduction***
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+### **Backend Development**
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+This is my third of four Milestone Projects that the developer must complete during Full Stack Web Development Program at The Code Institute. 
+In this project, I will build a full-stack site which allow users to create, read, update and delete (CRUD) review/data. The Web application I'm building for this project is: Tattoo story sharing app.
 
-## Gitpod Reminders
+### **Main Technologies**
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+Required: HTML, CSS, JavaScript, Python+Flask, MongoDB. Additional libraries and external APIs
 
-`python3 -m http.server`
+### **Mandatory Requirements**
 
-A blue button should appear to click: _Make Public_,
+Data handling: Build a MongoDB-backed Flask project for a web application that allows users to store and manipulate data records. 
+Database structure: design a database structure well-suited for the domain.
+User functionality: Create functionality create, locate, display, edit and delete records (CRUD functionality).
+Use of technologies: Use HTML and custom CSS for the website's front-end.
+Structure: Incorporate a main navigation menu and structured layout.
+Documentation: Write a README file.
+Version control: Use Git & GitHub for version control.
+Deployment: Deploy the final version of your code to a Heroku.
 
-Another blue button should appear to click: _Open Browser_.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+# [&#8686;](#Introduction)
+## ***UX*** 
+### **User Stories**
+ User goals
+- As a user, I want to be able to access site on various devices such us mobile, tablet or pc.
+- As a user, I want to easily understand the main purpose of the site.
+- As a user, I want to be able to easily navigate throughout the site to find desired content.
+- I also want to locate their social media links.
+- I want to get in contact with the owner if any questions or bugs I may have.
 
-A blue button should appear to click: _Make Public_,
+As Registered user
+- I want to create my own account.
+- I want to to be able to uploat and share my content.
+- I want to be able to edit/delete my content if needed.
+- i Want to be able to edit/delete my account details.
 
-Another blue button should appear to click: _Open Browser_.
+As an Administrator
+- I want to momitor and manage content.
+- I want to manage user access and profile data.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+#### Site owner goals
+- As a Site owner, I want to Provide potential users with online content sharing platform.
+- As a Site owner, I want to Provide everyone who visits the site to have a good user experience.
+- As a Site owner, I want to Provide user with easy site navigation and search options.
+- As a Site owner, I want to to enable registered users to quickly and easely. share their content.
+- As a Site owner, I want to Build trust with customers - providing with social media links.
+- As a Site owner, I want to provide user with customer Support to Improve customer satisfaction through better service.
 
-To log into the Heroku toolbelt CLI:
+# [&#8686;](#Introduction)
+## ***Development Planes***
+### **Strategy**
+#### The website needs to enable the User to:
+- Provide user with an easy navigation.
+- Log-In and Create account.
+- Update edit/delete user account.
+- Upload, delete, edit and share content.
+- Provide user with Social media links.
+- Provide user with contact informatiom/contact_form.
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+#### The website needs to enable the company to:
+- Provide user with simple user friendly interface.
+- Provide content sharing platform.
+- Stay connected with customers by providing social media links for any suggestions.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+# [&#8686;](#Introduction)
+### **Scope**
 
-------
+![Importance](lineplot.jpg)
+#### Functionality Requirements
+- Website Navigation with links.
+- Registration/Log-In Form
+- Recent photo opload gallery feature.
+- User management system with CRUD
+- Customer Support contact form.
+- Social Media links to external resources.
 
-## Release History
+#### Content Requirements
+- NavBar
+   - Links
+   - Login/Register
+- Landing Page:
+- Thumbnaily gallery.
+- Contact Form
+   - Name input field
+   - Email input field
+   - Text area 
+   - Submit button 
+- User Page
+   - Upload, delete, edit content
+- Admin Page
+   - Manage Users.
+   - Upload,delete,edit content
+- footer
+   - Copyright infomation
+   - Social Links
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+# [&#8686;](#Introduction)
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+### **Structure**
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+   #### **Wireframes**
+![View](wireframe.png)
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+# [&#8686;](#Introduction)
+## ***Design***
+### **Colour Scheme**
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+### **Fonts**
+-  
+### **Media**
+-  
+# [&#8686;](#-)
+## ***Features***
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+#### - **Contact page**
+# [&#8686;](#Introduction)
+## [TESTING](TESTING.md)
+- Testing information can be found in a separate testing file [TESTING.md](TESTING.md)
+- Bugs and Issues moved to the TESTING file here [TESTING.md](TESTING.md)
+- W3C-Validation moved to the TESTING file here [TESTING.md](TESTING.md)  
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+# [&#8686;](#Introduction)
+## **Technologies and Frameworks**
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+### **Markup/Scripting/Programming languages**
+- [HTML5](https://en.wikipedia.org/wiki/HTML5) Hypertext Markup Language (HTML)
+- [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) Cascading Style Sheets (CSS)
+- [JavaScript](https://www.javascript.com/) Interactive functionality.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+### **Frameworks, Libraries & Programs Used**
+- [Google Fonts:](https://fonts.google.com/) Making the web more beautiful.
+- [Font Awesome:](https://fontawesome.com/) to add icons to the website..
+- [Git](https://git-scm.com/) Git was used for version control.
+- [GitHub:](https://github.com/) used to store the projects code.
+- [gitpod.io](https://gitpod.io/) gitpod Was used for codding.
+- [VS Code](https://code.visualstudio.com/) gitpod Was used for codding.
+- [Balsamiq:](https://balsamiq.com/) was used to create the wireframes.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+# [&#8686;](#Introduction)
+## ***Deployment***
+Source: https://docs.github.com/
+### **Deploying on GitHub Pages**
+- Log-Into [GitHub](https://github.com/login "Link to GitHub login page") or [create an account](https://github.com/join "Link to GitHub create account page").
+- Locate the [GitHub Repository](https://github.com/Raivis80/)"Link to GitHub Repo".
+- In the GitHub repository, navigate to the Settings tab.
+- From the source section drop-down menu, select the Master Branch.
+- Upon selection, the page will automatically refresh meaning that the website is now deployed.
+- Under "GitHub Pages", select the GitHub Pages visibility drop-down menu, then click a visibility.
+- Now deploy it to GitHub Pages.
+- To see your published site, under "GitHub Pages", click your site's URL.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+More Detailed information on GitHub Pages can be found here: [here](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#creating-your-site) "Link to GitHub docs"
+### **Fork A repository**
+A Fork is a coppy of repository allows you to freely experiment with changes without effecting the original project.
+<br>Forking a repository is a simple two-step process.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+- On GitHub, navigate to The [GitHub Repository](https://github.com/Raivis80/)" Link to my Repo".
+- In the --right corner of the page, click Fork.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+Detailed Steps for forkig a repository from GitHub can be found here: [here](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+### **Creating a Clone**
+You can clone reposetory. When you clone repository, you copy repository to your Machine.
+<br>Locate the [GitHub Repository](https://github.com/Raivis80/)"Link to GitHub Repo".
+<br>Steps for cloning a repository from GitHub can be found here: [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) "Link to GitHub docs"
+# [&#8686;](#tattoostudiokunst)
+## ***Credits***
+### **Helpfull sites**
+-  [google.com](https://google.com/): Search for anything if stuck.
+-  [stackoverflow.com](https://stackoverflow.com/): Useful website for code tips.
+-  [www.w3schools](https://www.w3schools.com/): Useful website for code tips.
+-  [coolors.co](https://coolors.co/): Colour palette generator.
 
-------
+### **Images** 
+  
+### **Content**
+- The [Font Awesome:](https://fontawesome.com/) icons where used throughout the project.
+### **Acknowledgements**
+- Thanks to My Mentor for continuous support and inspire me to push myself beyond where I think I can go.
+- Tutor support at Code Institute for their support.
 
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+# [&#8686;](#Introduction)
