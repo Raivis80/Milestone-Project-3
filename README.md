@@ -1,4 +1,4 @@
-# STORY SHARING APP
+# EmotiFy
 ## [View the live project here.](https://raivis80.github.io)
 
 # [&#8686;](#Introduction)
@@ -7,8 +7,7 @@
 ### **Backend Development**
 
 This is my third of four Milestone Projects that the developer must complete during Full Stack Web Development Program at The Code Institute. 
-In this project, I will build a full-stack site which allow users to create, read, update and delete (CRUD) data. The Web application I'm building for this project is: Story sharing app.
-
+In this project, I will build a full-stack site which allow users to create, read, update and delete (CRUD) data. The Web application I'm building for this project is: Digital art sharing app. Users will share their unique, interesting pictures, paintings or digital art. Describing a specific meaning or generates emotions.
 ### **Main Technologies**
 
 Required: HTML, CSS, JavaScript, Python+Flask, MongoDB. Additional libraries and external APIs
@@ -37,7 +36,8 @@ Deployment: Deploy the final version of your code to a Heroku.
 
 As Registered user
 - I want to be able to create my own account.
-- I want to to be able to upload and share my content.
+- I want to to be able to upload and share Interesting content with others.
+- I want Find people with similar interests and mindsets that you can connect with.
 - I want to be able to edit/delete my content if needed.
 - i Want to be able to edit/delete my account details.
 
@@ -47,7 +47,7 @@ As an Administrator
 - And as an Administrator, I want to manage user access and profile data.
 
 #### Site owner goals
-- As a Site owner, I want to Provide potential users with online content sharing platform.
+- As a Site owner, I want to Provide potential users with online Digital Art content sharing platform.
 - As a Site owner, I want to Provide everyone who visits the site to have a good user experience.
 - As a Site owner, I want to Provide user with easy site navigation and search options.
 - As a Site owner, I want to to enable registered users to quickly and easily. share their content.
@@ -92,6 +92,7 @@ As an Administrator
 - Recent photo upload gallery feature.
    - Pulled from User uploads, most recent display first
 - User upload Thumbnail grid.
+   - Cloudinary API integration for image content management and storage
    - Database integration store description and image links
    - Recent uploads showing first
 - User management system with CRUD.
@@ -154,6 +155,7 @@ As an Administrator
 # [&#8686;](#Introduction)
 
 ### **Structure**
+Below is the structure of the site 
 
 
    #### **Wireframes**
@@ -185,7 +187,7 @@ As an Administrator
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) Cascading Style Sheets (CSS)
 - [JavaScript](https://www.javascript.com/) Interactive functionality.
 - [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) Backend programming. 
-
+- [Jinja templating language](https://jinja.palletsprojects.com/en/3.0.x/) Special placeholders in the template similar to Python syntax
 ### **Frameworks, Libraries & Programs Used**
 - [Google Fonts:](https://fonts.google.com/) Making the web more beautiful.
 - [Font Awesome:](https://fontawesome.com/) to add icons to the website..
@@ -195,8 +197,9 @@ As an Administrator
 - [VS Code](https://code.visualstudio.com/) gitpod Was used for codding.
 - [Balsamiq:](https://balsamiq.com/) was used to create the wireframes.
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/patterns/jquery/) Framework for rendering pages.
-- [MongoDB](https://www.mongodb.com/) - NoSQL database back-end data storage.
-- [Heroku](https://heroku.com/) - Application hosting platform.
+- [MongoDB](https://www.mongodb.com/) NoSQL database back-end data storage.
+- [Heroku](https://heroku.com/) Application hosting platform.
+- [cloudinary](https://cloudinary.com/) Image cloud storage and management API 
 
 # [&#8686;](#Introduction)
 ## ***Deployment***
@@ -225,7 +228,7 @@ You can clone repository. When you clone repository, you copy repository to your
    Or clone repository in terminal copy and paste following GitHubCLI link
 
    ```
-   gh repo clone Raivis80/First-Milestone-Project
+   gh repo clone Raivis80/Milestone-Project-3
    ```
 - Run following command to install python packages are required to run this project requirements.txt 
 
@@ -293,16 +296,15 @@ Make sure to enter your own SECRET_KEY, MONGO_URI and CLOUDINARY_URL variables.
 More Detailed information on GitHub Pages can be found here: [here](https://devcenter.heroku.com/categories/deployment) "Link to Heroku deployment docs"
 # [&#8686;](#tattoostudiokunst)
 ## ***Credits***
-### **Helpfull sites**
+### **Code**
+Technical code instructions for some of the code sourced from following sources. The code snippets that was written inspired by the following sources, I have left comment with source above the code snippet.
 -  [google.com](https://google.com/): Search for anything if stuck.
 -  [stackoverflow.com](https://stackoverflow.com/): Useful website for code tips.
 -  [www.w3schools](https://www.w3schools.com/): Useful website for code tips.
--  [coolors.co](https://coolors.co/): Colour palette generator.
-
 ### **Images** 
   
 ### **Content**
-- The [Font Awesome:](https://fontawesome.com/) icons where used throughout the project.
+
 ### **Acknowledgements**
 - Thanks to My Mentor for continuous support and inspire me to push myself beyond where I think I can go.
 - Tutor support at Code Institute for their support.
