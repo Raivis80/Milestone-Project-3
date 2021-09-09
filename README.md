@@ -155,6 +155,72 @@ As an Administrator
 # [&#8686;](#Introduction)
 
 ### **Structure**
+- Landing Page
+   - NavBar
+      - Sign In
+         - Email field
+         - Password field
+         - Login button
+      - Create account
+         - Name field
+         - Surname field
+         - Email field
+         - Password field
+         - Create account button
+      - Branding name + reload function
+      - Links to external resources
+         - To Facebook
+         - To Instagram
+         - To LinkedIn
+   - Central Hero image
+   - Carousel recent uploads feature
+- User upload Thumbnail grid
+   - Grid based Bootstrap cards content container 
+      - Image upper Content
+      - Title
+      - Description
+- Contact Form
+   - Name field
+   - Email field
+   - Text area field
+   - Submit Button
+- User Interface
+   - Edit user profile
+      - Edit name
+      - Edit Email
+      - Edit Password
+      - Delete self
+   - Drag and drop image area
+   - Description text area
+   - Title input field
+   - Add post Button
+   - Edit post button
+      - Edit Title
+      - Edit Description
+      - Edit/Change/Delete image
+      - Delete Post
+- Admin management Interface
+   - Edit user profile
+      - Edit name
+      - Edit Email
+      - Edit Password
+      - Delete self
+   - Edit other user profile
+      - Delete account
+      - Reset password
+      - Delete/Edit/Update Other user posts
+   - Drag and drop image area
+   - Description text area
+   - Title input field
+   - Add post Button
+   - Edit post button
+      - Edit Title
+      - Edit Description
+      - Edit/Change/Delete image
+      - Delete Post
+- footer
+     - FaceBook, LinkedIn, Instagram
+
 Below is the structure of the site 
 
 
