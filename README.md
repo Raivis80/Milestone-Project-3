@@ -228,8 +228,9 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
 - footer
      - FaceBook, LinkedIn, Instagram
 ### DataBase structure below
-   #### **Wireframes**
-![View](wireframe.png)
+#### **Wireframes**
+### Landing Page wireframe
+![landing page](project_files/landing-wireframe.png)
 
 # [&#8686;](#Introduction)
 ## ***Design***
