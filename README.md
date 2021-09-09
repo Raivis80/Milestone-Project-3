@@ -67,15 +67,18 @@ As an Administrator
 
 #### The website needs to enable the company to:
 - Provide user with simple user friendly interface.
-- provide a good site navigation to easy and quickly find the relevant content.
+- Provide a good site navigation to easy and quickly find the relevant content.
+- Provide user and admin interfaces with ability to add content to the site
 - Provide content sharing platform to share with other users.
 - Provide Interface For users to create, edit and delete content.
+- Implement content CRUD a persistent storage application: create, read, update and delete.
 - Stay connected with customers by providing social media links for any suggestions.
+- Implement review section for users to be able to rate artwork and leave text response or likes.
 
 # [&#8686;](#Introduction)
 ### **Scope**
-
-![Importance](lineplot.jpg)
+Features to implement in terms of viability/feasibility. Below is a Dot Plot chart consisting of data points plotted on a scale of 1 represents least and 5 the most.
+![Line-plots](project_files\line-plots.png)
 #### Functionality Requirements
 - Template.
    - Bootstrap starter template used to kick start the project
@@ -94,7 +97,7 @@ As an Administrator
 - User upload Thumbnail grid.
    - Cloudinary API integration for image content management and storage
    - Database integration store description and image links
-   - Recent uploads showing first
+   - Recent uploads showing first based on last uploaded content
 - User management system with CRUD.
    - Enable user to create, read, update and delete content
 - User management system with database integration.
@@ -155,8 +158,10 @@ As an Administrator
 # [&#8686;](#Introduction)
 
 ### **Structure**
-#### Site layout structure
+### Site layout structure
 ![site-structure](project_files/site-structure.png)
+
+### Site structure broken into more detailed, structured view below
 - Landing Page
    - NavBar
       - Sign In
@@ -222,8 +227,7 @@ As an Administrator
       - Delete Post
 - footer
      - FaceBook, LinkedIn, Instagram
-
-DataBase structure below
+### DataBase structure below
    #### **Wireframes**
 ![View](wireframe.png)
 
