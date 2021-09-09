@@ -79,8 +79,10 @@ As an Administrator
 #### Functionality Requirements
 - Template.
    - Bootstrap starter template used to kick start the project
+   - Flask structure in each template, each template will extend a base template
 - Website Navigation with internal site links.
-   - Responsive bootstrap website navigation used
+   - Internal lins is Linked with Jinja Special placeholders in the template 
+   - Responsive bootstrap website navigation
 - Registration/Log-In Form.
    - Database integration user management
    - Form validation implementation
@@ -108,6 +110,7 @@ As an Administrator
 - NavBar
    - Internal site navigation Links
    - Login/Register link
+   - Site brand name 
 - Sign In
    - In the "Username" field, enter a username
    - Enter and confirm your password
@@ -144,7 +147,9 @@ As an Administrator
    - Edit/Delete	self/other user Posts
 - footer
    - Copyright information
+   - Terms and privacy policy
    - Social Links
+     - FaceBook, LinkedIn, Instagram
 
 # [&#8686;](#Introduction)
 
@@ -195,30 +200,97 @@ As an Administrator
 
 # [&#8686;](#Introduction)
 ## ***Deployment***
-Source: https://docs.github.com/
-### **Deploying on GitHub Pages**
-- Log-Into [GitHub](https://github.com/login "Link to GitHub login page") or [create an account](https://github.com/join "Link to GitHub create account page").
-- Locate the [GitHub Repository](https://github.com/Raivis80/)"Link to GitHub Repo".
-- In the GitHub repository, navigate to the Settings tab.
-- From the source section drop-down menu, select the Master Branch.
-- Upon selection, the page will automatically refresh meaning that the website is now deployed.
-- Under "GitHub Pages", select the GitHub Pages visibility drop-down menu, then click a visibility.
-- Now deploy it to GitHub Pages.
-- To see your published site, under "GitHub Pages", click your site's URL.
+Sources:
 
-More Detailed information on GitHub Pages can be found here: [here](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#creating-your-site) "Link to GitHub docs"
+https://docs.github.com/
+
+https://docs.mongodb.com/
+
+https://devcenter.heroku.com/categories/deployment
 ### **Fork A repository**
-A Fork is a coppy of repository allows you to freely experiment with changes without effecting the original project.
-<br>Forking a repository is a simple two-step process.
+A Fork is a copy of repository allows you to freely experiment with changes without effecting the original project.
 
-- On GitHub, navigate to The [GitHub Repository](https://github.com/Raivis80/)" Link to my Repo".
+- Log-Into [GitHub](https://github.com/login "Link to GitHub login page") or [create an account](https://github.com/join "Link to GitHub create account page").
+- Locate the [GitHub Repository](https://github.com/Raivis80/Milestone-Project-3)"Link to GitHub Repo".
+- On GitHub, navigate to The [GitHub Repository](https://github.com/Raivis80/Milestone-Project-3)" Link to my Repo".
 - In the --right corner of the page, click Fork.
 
-Detailed Steps for forkig a repository from GitHub can be found here: [here](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
-### **Creating a Clone**
-You can clone reposetory. When you clone repository, you copy repository to your Machine.
-<br>Locate the [GitHub Repository](https://github.com/Raivis80/)"Link to GitHub Repo".
-<br>Steps for cloning a repository from GitHub can be found here: [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) "Link to GitHub docs"
+Detailed Steps for forking a repository from GitHub can be found here: [here](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+### **Creating a Clone Deploy Locally**
+You can clone repository. When you clone repository, you copy repository to your Machine.
+- Log-Into [GitHub](https://github.com/login "Link to GitHub login page") or [create an account](https://github.com/join "Link to GitHub create account page").
+- Locate the [GitHub Repository](https://github.com/Raivis80/Milestone-Project-3)"Link to GitHub Repo".
+- In the GitHub repository, navigate to the Code dropdown tab.
+- Select the Download ZIP from dropdown and unzip in your working directory
+   Or clone repository in terminal copy and paste following GitHubCLI link
+
+   ```
+   gh repo clone Raivis80/First-Milestone-Project
+   ```
+- Run following command to install python packages are required to run this project requirements.txt 
+
+   ```
+   python -m pip -r requirements.txt
+   ```
+- SignIn/Create free MongoDB Atlas Database account
+   - Create Database for this project named "emotiFy-DB" with following collections
+
+   | Collection Name |
+   | ---------- |
+   | 1.  categories |
+   | 2.  Tags       |
+   | 3.  Users      |
+
+- Create env.py protect your passwords using environment variables while connecting to databases with Python. File should contain following.
+
+```python
+import os
+
+os.environ["HOSTNAME"] = "0.0.0.0"
+os.environ["PORT"] = "5000"
+os.environ["SECRET_KEY"] = "YOUR_SECRET_KEY"
+os.environ["MONGO_URI"] = "YOUR_MONGODB_URI"
+os.environ["CLOUDINARY_URL"]= "YOUR_CLOUDINARY_URL" 
+```
+- Replace The SECRET_KEY with your own and MONGO_URI and CLOUDINARY_URL provided by mongoDB.
+Ensure to add env.py to a .gitignore file before pushing your code to your repository.
+
+<br>Detailed Steps for cloning a repository from GitHub can be found here: [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
+ "Link to GitHub docs"
+<br>Detailed guides to get Started with MongoDB can be found [Here](https://docs.mongodb.com/)
+
+### **Deploying on Heroku Pages**
+- After Cloning the repository now you are able to deploy on Heroku pages
+- Before deployment Make sure to:
+    - Create requirements.txt file in the same project directory use the following command
+
+   ```
+   pip freeze > requirements.txt
+   ```
+    - Create a Procfile in same directory that is required for all Heroku applications. to start the app. Enter Following in procfile.
+
+   ```
+   web: python app.py
+   ```
+- Log-Into [Heroku](https://id.heroku.com/login) "Link to Heroku login page" or [create an account](https://signup.heroku.com/login) "Link to Heroku create account page".
+- Once logged in, Find and select "Deploy" tab 
+- After selecting "Deploy" tab find and Select Deployment method "GitHub"
+- Now find and Select Connect to GitHub repository and select repository to connect to
+- Now locate and select option and enable "Automattic Deploys"
+- You can now select "Deploy Branch"
+- After you have deployed, go on top of the page and locate settings tab and select it
+- Select within settings page "Reveal Config Vars and add following
+
+| HOSTNAME |	0.0.0.0 |
+| -- | -- |
+| PORT |	5000 |
+| SECRET_KEY |	YOUR_SECRET_KEY |
+| MONGO_URI |	YOUR_MONGO_URI |
+| CLOUDINARY_URL |	YOUR_CLOUDINARY_URL |
+
+Make sure to enter your own SECRET_KEY, MONGO_URI and CLOUDINARY_URL variables.
+
+More Detailed information on GitHub Pages can be found here: [here](https://devcenter.heroku.com/categories/deployment) "Link to Heroku deployment docs"
 # [&#8686;](#tattoostudiokunst)
 ## ***Credits***
 ### **Helpfull sites**
