@@ -156,7 +156,7 @@ As an Administrator
 
 ### **Structure**
 #### Site layout structure
-![site-structure](project_files\site-structure.png)
+![site-structure](project_files/site-structure.png)
 - Landing Page
    - NavBar
       - Sign In
