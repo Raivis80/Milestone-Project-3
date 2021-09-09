@@ -37,6 +37,7 @@ Deployment: Deploy the final version of your code to a Heroku.
 As Registered user
 - I want to be able to create my own account.
 - I want to to be able to upload and share Interesting content with others.
+- I want to express my own emotions and to share them with others.
 - I want Find people with similar interests and mindsets that you can connect with.
 - I want to be able to edit/delete my content if needed.
 - i Want to be able to edit/delete my account details.
@@ -53,7 +54,6 @@ As an Administrator
 - As a Site owner, I want to to enable registered users to quickly and easily. share their content.
 - As a Site owner, I want to Build trust with customers - providing with social media links.
 - As a Site owner, I want to provide user with customer Support to Improve customer satisfaction through better service.
-
 # [&#8686;](#Introduction)
 ## ***Development Planes***
 ### **Strategy**
