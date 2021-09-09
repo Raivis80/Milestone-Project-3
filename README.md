@@ -78,7 +78,7 @@ As an Administrator
 # [&#8686;](#Introduction)
 ### **Scope**
 Features to implement in terms of viability/feasibility. Below is a Dot Plot chart consisting of data points plotted on a scale of 1 represents least and 5 the most.
-![Line-plots](project_files\line-plots.png)
+![Line-plots](project_files/line-plots.png)
 #### Functionality Requirements
 - Template.
    - Bootstrap starter template used to kick start the project
