@@ -155,6 +155,7 @@ As an Administrator
 # [&#8686;](#Introduction)
 
 ### **Structure**
+#### Site layout structure
 - Landing Page
    - NavBar
       - Sign In
@@ -221,9 +222,7 @@ As an Administrator
 - footer
      - FaceBook, LinkedIn, Instagram
 
-Below is the structure of the site 
-
-
+DataBase structure below
    #### **Wireframes**
 ![View](wireframe.png)
 
