@@ -250,9 +250,14 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
 ### **Fonts**
 -  
 ### **Media**
-Bootstrap starter template used for site [here](https://startbootstrap.com/previews/clean-blog)
+Bootstrap ["Freelancer"](https://startbootstrap.com/theme/freelancer) starter template used for site modified to suit current project.
+
+Template source code can be found by clicking following link > [GitHib](https://github.com/startbootstrap/startbootstrap-freelancer)
 # [&#8686;](#-)
 ## ***Features***
+The Website is fully responsive fixed navigation bar that morphs when user scrolls.
+Display Gallery grid with simple hover effects responsive, mobile friendly contact form with form labels and form validation
+
 - NavBar
    - Internal site navigation Links
    - Login/Register link
@@ -433,7 +438,15 @@ Technical code instructions for some of the code sourced from following sources.
   
 ### **Content**
 ### **Starter Template**
-Bootstrap starter template used to kick start the project link found [here](https://startbootstrap.com/previews/clean-blog)
+Bootstrap ["Freelancer"](https://startbootstrap.com/theme/freelancer) starter template used for site modified to suit current project.
+
+Template source code can be found by clicking following link > [GitHib](https://github.com/startbootstrap/startbootstrap-freelancer)
+
+Start Bootstrap was created by and is maintained by **[David Miller](https://davidmiller.io/)**.
+
+- <https://davidmiller.io>
+- <https://twitter.com/davidmillerhere>
+- <https://github.com/davidtmiller>
 ### **Acknowledgements**
 - Thanks to My Mentor for continuous support and inspire me to push myself beyond where I think I can go.
 - Tutor support at Code Institute for their support.
