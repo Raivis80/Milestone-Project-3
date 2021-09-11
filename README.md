@@ -233,7 +233,12 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
 ![landing page](project_files/landing-wireframe.png)
 ### Gallery wireframe
 
-![here](project_files/gallery.png)
+![Gallery](project_files/gallery.png)
+
+### User Interface Wireframe
+
+![Gallery](project_files/interface.png)
+
 # [&#8686;](#Introduction)
 ## ***Design***
 ### **Colour Scheme**
