@@ -30,7 +30,7 @@ Deployment: Deploy the final version of your code to a Heroku.
  User goals
 - As a user, I want to be able to access site on various devices such us mobile, tablet or pc.
 - As a user, I want to easily understand the main purpose of the site.
-- As a user, I want to be able to easily navigate throughout the site to find desired content.
+- As a user, I wSant to be able to easily navigate throughout the site to find desired content.
 - I also want to locate their social media links.
 - I want to get in contact with the owner if any questions or bugs I may have.
 
@@ -227,7 +227,7 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
       - Delete Post
 - footer
      - FaceBook, LinkedIn, Instagram
-### DataBase structure below
+
 #### **Wireframes**
 ### Landing Page wireframe
 ![landing page](project_files/landing-wireframe.png)
@@ -238,6 +238,9 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
 ### User Interface Wireframe
 
 ![Gallery](project_files/interface.png)
+
+### DataBase structure below
+
 
 # [&#8686;](#Introduction)
 ## ***Design***
