@@ -250,9 +250,55 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
 ### **Fonts**
 -  
 ### **Media**
--  
+Bootstrap starter template used for site [here](https://startbootstrap.com/previews/clean-blog)
 # [&#8686;](#-)
 ## ***Features***
+- NavBar
+   - Internal site navigation Links
+   - Login/Register link
+   - Site brand name 
+- Sign In
+   - In the "Username" field, enter a username
+   - Enter and confirm your password
+   - Click "Sign In" button
+- Create account
+   - In the "Username" field, enter a username
+   - Enter and confirm your password
+   - Enter email address.
+   - Click "Create new account" button
+- Landing Page
+   - Central Hero image
+   - Carousel recent uploads feature
+- User upload Thumbnail grid
+   - Displays user content in a responsive grid
+- Contact Form
+   - First and Last Name input fields
+   - Email Address input field
+   - Text area input field
+   - Submit button 
+- User Interface
+   - Edit/delete this profile
+   - Image upload functionality
+   - Title input field
+   - Text area field for content description
+   - Post content button
+   - Edit content button
+   - Delete	Post button with confirm function for to prevent accidental deletion
+- Admin management Interface
+   - Manage/delete self profile
+   - Manage other User profile information reset passwords.
+   - Image upload functionality, Title input field
+   - Text area field for content description
+   - Post content button, Edit content button
+   - Edit/Delete	self/other user Posts
+- footer
+   - Copyright information
+   - Terms and privacy policy
+   - Social Links
+     - FaceBook, LinkedIn, Instagram
+
+
+
 
 #### - **Contact page**
 # [&#8686;](#Introduction)
