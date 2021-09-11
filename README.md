@@ -231,7 +231,9 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
 #### **Wireframes**
 ### Landing Page wireframe
 ![landing page](project_files/landing-wireframe.png)
+### Gallery wireframe
 
+![here](project_files/gallery.png)
 # [&#8686;](#Introduction)
 ## ***Design***
 ### **Colour Scheme**
@@ -375,7 +377,8 @@ Technical code instructions for some of the code sourced from following sources.
 ### **Images** 
   
 ### **Content**
-
+### **Starter Template**
+Bootstrap starter template used to kick start the project link found [here](https://startbootstrap.com/previews/clean-blog)
 ### **Acknowledgements**
 - Thanks to My Mentor for continuous support and inspire me to push myself beyond where I think I can go.
 - Tutor support at Code Institute for their support.
