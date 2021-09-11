@@ -78,7 +78,7 @@ As an Administrator
 # [&#8686;](#Introduction)
 ### **Scope**
 Features to implement in terms of viability/feasibility. Below is a Dot Plot chart consisting of data points plotted on a scale of 1 represents least and 5 the most.
-![Line-plots](project_files/line-plots.png)
+![Line-plots](project_files/wireframes/line-plots.png)
 #### Functionality Requirements
 - Template.
    - Bootstrap starter template used to kick start the project
@@ -159,7 +159,7 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
 
 ### **Structure**
 ### Site layout structure
-![site-structure](project_files/site-structure.png)
+![site-structure](project_files/wireframes/site-structure.png)
 
 ### Site structure broken into more detailed, structured view below
 - Landing Page
@@ -230,17 +230,18 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
 
 #### **Wireframes**
 ### Landing Page wireframe
-![landing page](project_files/landing-wireframe.png)
+![landing page](project_files/wireframes/landing-wireframe.png)
 ### Gallery wireframe
 
-![Gallery](project_files/gallery.png)
+![Gallery](project_files/wireframes/gallery.png)
 
 ### User Interface Wireframe
 
-![Gallery](project_files/interface.png)
+![Gallery](project_files/wireframes/interface.png)
 
 ### DataBase structure below
 
+![Gallery](project_files/wireframes/mongoDB-wireframe.png)
 
 # [&#8686;](#Introduction)
 ## ***Design***
