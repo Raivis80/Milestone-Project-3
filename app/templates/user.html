@@ -1,6 +1,67 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Uesr Logged in</h1>
+<!-- Contact Section-->
+<section class="page-section mt-5" id="contact">
+    <div class="container">
+        <!-- Contact Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Add Post</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Contact Section Form-->
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-xl-6">
+                <!-- to get an API token!-->
+                <form id="postForm">
 
-{% endblock%}
+                    <div class="w-100 select-wrap"> <select class="form-select mb-4" aria-label="example">
+                            <option selected>Select Category</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select></div>
+
+
+                    <!-- title input-->
+                    <div class="form-floating mb-2">
+                        <input class="form-control" id="title" type="text" placeholder="Enter your title..." required />
+                        <label for="title">Title</label>
+                    </div>
+                    <!-- Description input-->
+                    <div class="form-floating mb-2">
+                        <textarea class="form-control" id="Description" type="text"
+                            placeholder="Enter your Description here..." style="height: 8rem" required></textarea>
+                        <label for="Description">Description</label>
+                    </div>
+
+                    <!-- select File to upload -->
+                    <div class="mb-3">
+                        <label for="formFileLg" class="form-label">JPG Or PNG Aloved</label>
+                        <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                    </div>
+
+                    <!-- has successfully submitted-->
+                    <div class="d-none" id="submitSuccessDescription">
+                        <div class="text-center mb-2">
+                            <div class="fw-bolder">Form submission successful!</div>
+                        </div>
+                    </div>
+
+                    <!-- an error submitting the form-->
+
+                    <div class="d-none" id="submitErrorDescription">
+                        <div class="text-center text-danger mb-3">Error sending Description!</div>
+                    </div>
+                    <!-- Submit Button-->
+                    <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Footer-->
+{% endblock %}

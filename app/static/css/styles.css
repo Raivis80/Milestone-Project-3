@@ -2403,12 +2403,12 @@ textarea.form-control-lg {
 
 .form-select {
   display: block;
-  width: 100%;
-  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  width: 70%;
+  padding: .8rem 2.25rem .8rem 0.75rem;
   -moz-padding-start: calc(0.75rem - 3px);
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.8rem;
   color: #212529;
   background-color: #fff;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
@@ -2427,6 +2427,11 @@ textarea.form-control-lg {
     transition: none;
   }
 }
+option {
+  font-size: 1rem;
+  border-bottom: #066173 1px solid;
+}
+
 .form-select:focus {
   border-color: #8ddece;
   outline: 0;
@@ -11493,4 +11498,8 @@ html {
 
 .copyright {
   background-color: #1a252f;
+}
+
+select {
+  width:300px;
 }
