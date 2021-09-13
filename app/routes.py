@@ -4,3 +4,8 @@ from flask import Flask, render_template
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/gallery')
+def galery():
+    return render_template('gallery.html')
