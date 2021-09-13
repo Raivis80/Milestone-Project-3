@@ -9,3 +9,9 @@ def index():
 @app.route('/gallery')
 def galery():
     return render_template('gallery.html')
+
+
+@app.route('/user')
+def user():
+    return render_template('user.html')
+
