@@ -29,7 +29,8 @@
 
                     <!-- title input-->
                     <div class="custom form-floating mb-2">
-                        <input class=" form-control" id="title" type="text" placeholder="Enter your title..." required />
+                        <input class=" form-control post_form_title" style="height: 4rem" id="title" type="text" placeholder="Enter your title..."
+                            required />
                         <label for="title">Title</label>
                     </div>
                     <!-- Description input-->
@@ -58,7 +59,13 @@
                         <div class="text-center text-danger mb-3">Error sending Description!</div>
                     </div>
                     <!-- Submit Button-->
-                    <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Post</button>
+                    <div class="btn_goup_user custom-btn d-flex justify-content-between">
+                        <button class="btn btn-primary btn-md" id="submitButton" type="submit">Add Post</button>
+                        <button class="btn btn-info btn-md" id="submitButton" type="submit">Edit Post</button>
+                        <button class="btn btn-danger btn-md" id="submitButton" type="submit">Delete Post</button>
+                    </div>
+
+                </form>
                 </form>
             </div>
         </div>

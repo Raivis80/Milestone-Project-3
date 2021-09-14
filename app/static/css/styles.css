@@ -2531,7 +2531,7 @@ textarea.form-control-lg {
 
 .form-select {
   display: block;
-  width: 70%;
+  width: 100%;
   padding: .8rem 2.25rem .8rem 0.75rem;
   -moz-padding-start: calc(0.75rem - 3px);
   font-size: 1.5rem;
@@ -3403,13 +3403,13 @@ fieldset:disabled .btn {
 }
 
 .btn-info {
-  color: #000;
+  color: rgb(255, 255, 255);
   background-color: #0dcaf0;
   border-color: #0dcaf0;
 }
 
 .btn-info:hover {
-  color: #000;
+  color: rgb(252, 252, 252);
   background-color: #31d2f2;
   border-color: #25cff2;
 }
@@ -12507,4 +12507,24 @@ html {
 
 .copyright {
   background-color: #1a252f;
+}
+
+
+/*======= My Customized styles========= */
+
+/* btn size breakpoint */
+@media only screen and (min-width: 600px) {
+  .custom-btn .btn {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    border-radius: 0.75rem;
+  }
+}
+
+/* Upload form label position */
+.custom>label {
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: .8rem ;
 }
