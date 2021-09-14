@@ -12528,3 +12528,6 @@ html {
   height: 100%;
   padding: .8rem ;
 }
+.max-width {
+  max-width: 500px;
+}
