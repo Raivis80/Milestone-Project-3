@@ -11,8 +11,7 @@ from bson.objectid import ObjectId
 @app.route('/')
 @app.route('/index')
 def index():
-    users = mongo.db.users.find()
-    return render_template('index.html', users=users)
+    return render_template('index.html')
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -72,11 +71,13 @@ def profile(username):
     # Get session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-
+    # Get categories from DB
+    categories = mongo.db.categories.find()
     # IsButton=True show account button if in profile page
     if session["user"]:
         return render_template(
-            "profile.html", username=username, isButton=True)
+            "profile.html", username=username, 
+            isButton=True, categories=categories)
 
     return redirect(url_for("login"))
 
@@ -86,3 +87,27 @@ def logout():
     # remove the username from the session if it's there
     session.pop('user')
     return redirect(url_for('index'))
+
+
+@app.route("/add_post", methods=("POST", "GET"))
+def add_post():
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    # Check existing post title
+    existing_title = mongo.db.posts.find_one(
+            {"title": request.form.get("title").lower()})
+            
+    # Add posts to db
+    if request.method == "POST":
+        submit = {
+            "category_name": request.form.get("category"),
+            "title": request.form.get("title"),
+            "description": request.form.get("description"),
+            "created_by": session["user"]          
+            }
+        mongo.db.posts.insert_one(submit)
+        flash("Task Successfully Updated")
+
+    else:
+        flash("failed")
+    return redirect(url_for("profile", username=username))

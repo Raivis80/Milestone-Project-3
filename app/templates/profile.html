@@ -32,25 +32,29 @@
                     <div class="row justify-content-center">
                         <div class="w-100 max-width">
                             <!-- to get an API token!-->
-                            <form id="postForm">
+                            <form id="postForm" method="POST" action="{{ url_for('add_post') }}">
+                                <div class="w-100 select-wrap"> 
+                                    <select class="form-select mb-2" name="category" id="category" aria-label="example" required>
+                                        <option value="">Select Category</option>
 
-                                <div class="w-100 select-wrap"> <select class="form-select mb-2" aria-label="example">
-                                        <option selected>Select Category</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        {% for category in categories %}
+
+                                        <option value="{{ category.category_name }}">{{ category.category_name }}
+                                        </option>
+
+                                        {% endfor %}
+
                                     </select>
                                 </div>
-
                                 <!-- title input-->
                                 <div class="custom form-floating mb-2">
-                                    <input class=" form-control post_form_title" style="height: 4rem" id="title"
+                                    <input class="form-control post_form_title" name="title" style="height: 4rem" id="title"
                                         type="text" placeholder="Enter your title..." required />
                                     <label for="title">Title</label>
                                 </div>
                                 <!-- Description input-->
                                 <div class="custom form-floating mb-2">
-                                    <textarea class=" form-control" id="Description" type="text"
+                                    <textarea class=" form-control" id="description" name="description" type="text"
                                         placeholder="Enter your Description here..." style="height: 8rem"
                                         required></textarea>
                                     <label for="Description">Description</label>
@@ -93,7 +97,8 @@
 </section>
 
 <!-- Manage Account Modal-->
-<div class="portfolio-modal modal fade " id="userProfile" tabindex="-1" aria-labelledby="userProfile" aria-hidden="true">
+<div class="portfolio-modal modal fade " id="userProfile" tabindex="-1" aria-labelledby="userProfile"
+    aria-hidden="true">
     <div class="modal-dialog modal-xl pb-5">
         <div class="modal-content profile_modal">
             <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
