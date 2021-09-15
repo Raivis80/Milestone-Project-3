@@ -37,15 +37,23 @@
                             href="{{ url_for('index') }}">Home</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="{{ url_for('galery') }}">Gallery</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="{{ url_for('login') }}">Log
-                            In | Sign Up</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="{{ url_for('index') }}">Log Out</a></li>
+
+                    {% if session.user %}
 
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            data-bs-toggle="modal" data-bs-target="#userProfile" href="#about">My
+                            href="{{ url_for('logout') }}">Log Out</a></li>
+
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            data-bs-toggle="modal" data-bs-target="#userProfile"
+                            href="{{ url_for('profile', username=session['user']) }}">My
                             Account</a></li>
+                            
+                    {% else %}
+
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="{{ url_for('login') }}">Log In | Sign Up</a></li>
+
+                    {% endif %}
                 </ul>
             </div>
         </div>
