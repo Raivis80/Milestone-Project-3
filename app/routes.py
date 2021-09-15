@@ -91,14 +91,14 @@ def logout():
 
 @app.route("/add_post", methods=("POST", "GET"))
 def add_post():
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    # Check existing post title
-    existing_title = mongo.db.posts.find_one(
-            {"title": request.form.get("title").lower()})
-            
     # Add posts to db
     if request.method == "POST":
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+    # Check existing post title
+        existing_title = mongo.db.posts.find_one(
+            {"title": request.form.get("title").lower()})
+
         submit = {
             "category_name": request.form.get("category"),
             "title": request.form.get("title"),
@@ -109,5 +109,9 @@ def add_post():
         flash("Task Successfully Updated")
 
     else:
-        flash("failed")
-    return redirect(url_for("profile", username=username))
+        return render_template("add_post.html")
+
+
+@app.route('/edit_profile')
+def edit_profile():
+    return render_template('edit_profile.html')
