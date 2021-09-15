@@ -15,11 +15,6 @@ def index():
     return render_template('index.html', users=users)
 
 
-@app.route('/gallery')
-def galery():
-    return render_template('gallery.html')
-
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -29,7 +24,7 @@ def register():
 
         if existing_user:
             flash("Username already exists")
-            return redirect(url_for("register"))
+            # return redirect(url_for("register"))
 
         else:
             register = {
@@ -38,7 +33,6 @@ def register():
             }
             mongo.db.users.insert_one(register)
             flash("User registered successfuly")
-
 
     return render_template("register.html")
 
@@ -51,9 +45,13 @@ def login():
             {"username": request.form.get("username").lower()})
 
         if existing_user:
-            return redirect(url_for(
-                "profile", username=session["user"]))
-
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                flash("Welcome, {}".format(
+                    request.form.get("username")))
+                # return render_template('profile.html')
+                return redirect(url_for("profile"))
+           
         else:
             # username doesn't exist
             flash("Incorrect Username and/or Password")
@@ -61,3 +59,14 @@ def login():
 
     return render_template("login.html")
 
+
+@app.route('/gallery')
+def galery():
+    return render_template('gallery.html')
+
+
+@app.route('/profile', methods=["GET", "post"])
+def profile():
+
+
+    return render_template('profile.html')
