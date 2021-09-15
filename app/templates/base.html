@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
         type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="static/css/styles.css" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -38,17 +38,32 @@
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="{{ url_for('galery') }}">Gallery</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            data-bs-toggle="modal" data-bs-target="#signin" href="#about">Sign
+                            href="{{ url_for('login') }}">Log
                             In | Sign Up</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="{{ url_for('index') }}">Log Out</a></li>
 
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" data-bs-toggle="modal" data-bs-target="#userProfile" href="#about">My
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            data-bs-toggle="modal" data-bs-target="#userProfile" href="#about">My
                             Account</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <section>
+        <!-- Flashed messages -->
+        {%  with messages = get_flashed_messages() %}
+        {% if messages%}
+        {% for message in messages %}
+        <div class="row flashes">
+            <h4 class="col-12 center-align">{{ message }}</h4>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </section>
+
     <!-- Main Content -->
 
     {% block content %}
@@ -77,108 +92,15 @@
                 </div>
 
             </div>
-
         </div>
 
 
     </footer>
 
-    <!-- Sign In Modal-->
-    <div class="portfolio-modal modal fade" id="signin" tabindex="-1" aria-labelledby="signin" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
-                        aria-label="Close"></button></div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center" id="contact">
-                            <div class="col-lg-8">
-                                <!-- Contact Section-->
-                                <!-- Contact Section Heading-->
-                                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
-                                    Sign Up</h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
-                                <!-- Contact Section Form-->
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-12 col-xl-8">
-                                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-
-
-                                            <!-- Name input-->
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="name" type="text"
-                                                    placeholder="Enter your name..." data-sb-validations="required" />
-                                                <label for="name">Full name</label>
-                                                <div class="invalid-feedback" data-sb-feedback="name:required">A
-                                                    name is required.
-                                                </div>
-                                            </div>
-                                            <!-- Email address input-->
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="email" type="email"
-                                                    placeholder="name@example.com"
-                                                    data-sb-validations="required,email" />
-                                                <label for="email">Email address</label>
-                                                <div class="invalid-feedback" data-sb-feedback="email:required">An
-                                                    email is required.
-                                                </div>
-                                                <div class="invalid-feedback" data-sb-feedback="email:email">Email
-                                                    is not valid.</div>
-                                            </div>
-
-                                            <!-- Pasword input-->
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="message" type="password"
-                                                    placeholder="Enter your Password..."
-                                                    data-sb-validations="required"></input>
-                                                <label for="message">Enter Your Password</label>
-                                                <div class="invalid-feedback" data-sb-feedback="message:required">A
-                                                    Pasword is required.
-                                                </div>
-                                            </div>
-
-                                            <!-- has successfully submitted-->
-                                            <div class="d-none" id="submitSuccessMessage">
-                                                <div class="text-center mb-3">
-                                                    <div class="fw-bolder">Form submission successful!</div>
-                                                    To activate this form, sign up at
-                                                    <br />
-                                                    <a
-                                                        href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                                </div>
-                                            </div>
-                                            <!-- Submit error message-->
-                                            <!---->
-                                            <!-- This is what your users will see when there is-->
-                                            <!-- an error submitting the form-->
-                                            <div class="d-none" id="submitErrorMessage">
-                                                <div class="text-center text-danger mb-3">Error sending
-                                                    message!</div>
-                                            </div>
-                                            <!-- Submit Button-->
-                                            <a href="{{ url_for('user') }}">click</a>
-                                            <a href="{{ url_for('user') }}" class="btn btn-primary btn-xl"
-                                                id="submitButton" type="submit">Send</a>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="static/js/scripts.js"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>

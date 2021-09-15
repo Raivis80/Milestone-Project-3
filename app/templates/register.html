@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Register -->
+<section class="page-section mt-5" id="User">
+    <div class="row justify-content-center" id="contact">
+        <div class="col-12 max-width">
+            <!-- Contact Section-->
+            <!-- Contact Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
+                Register</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Contact Section Form-->
+            <div class="row justify-content-center">
+                <div class="col">
+
+                    <!-- Flashed messages -->
+                    {%  with messages = get_flashed_messages() %}
+                    {% if messages%}
+                    {% for message in messages %}
+                    <div class="row flashes">
+                        <div class="col-12 text-center">
+                            <h4 class="col-12 center-align">{{ message }}</h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    <div class="row">
+                        <form class="col-12" method="POST" action="{{ url_for('register') }}">
+
+                            <!-- Username -->
+                            <div class="col-12 form-floating mb-2">
+                                <input class="form-control" id="username" name="username" type="text" minlength="5"
+                                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                                <label for="username"><i class="fas fa-user-plus"></i> Username</label>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="col-12 form-floating mb-2">
+                                <input class="form-control" id="password" name="password" type="password" minlength="5"
+                                    maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required>
+                                <label for="password"><i class="fas fa-user-lock"></i> Password</label>
+                            </div>
+
+                            <!-- Submit -->
+                            <div class="col-12 mb-3 mt-3"></div>
+                            <button type="submit" class="btn col-12 btn-md btn-primary">
+                                <i class="fas fa-user-plus"></i></i> Register
+                            </button>
+
+                            <div class="col-12 mt-2">
+                                <p>
+                                    Already Registered??
+                                    <a href="{{ url_for('login') }}">Log In </a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -6,7 +6,14 @@
         <!-- Masthead Avatar Image-->
         <img class="masthead-avatar mb-5" src="static/img/avataaars.svg" alt="..." />
         <!-- Masthead Heading-->
-        <h1 class="masthead-heading text-uppercase mb-0">Start Bootstrap</h1>
+        <h1 class="masthead-heading text-uppercase mb-0">Start Bootstrap 
+            {% for user in users %}
+
+                {{ user.username }} <br>
+                {{ user.password }} <br>
+
+            {% endfor %}
+        </h1>
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
