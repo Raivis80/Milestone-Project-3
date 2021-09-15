@@ -11499,3 +11499,8 @@ html {
 .max-width {
   max-width: 	500px;
 }
+
+
+.profile_modal {
+  min-height: 90vh;
+}

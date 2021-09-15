@@ -93,12 +93,12 @@
 </section>
 
 <!-- Manage Account Modal-->
-<div class="portfolio-modal modal fade" id="userProfile" tabindex="-1" aria-labelledby="userProfile" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
+<div class="portfolio-modal modal fade " id="userProfile" tabindex="-1" aria-labelledby="userProfile" aria-hidden="true">
+    <div class="modal-dialog modal-xl pb-5">
+        <div class="modal-content profile_modal">
             <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
                     aria-label="Close"></button></div>
-            <div class="modal-body text-center pb-5">
+            <div class="modal-body text-center d-flex align-items-center">
                 <div class="container">
                     <div class="row justify-content-center" id="User">
                         <div class="col-lg-8">
@@ -108,7 +108,7 @@
                                 <div class="col-lg-12 col-xl-8">
                                     <!-- Contact Section Heading-->
                                     <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
-                                        Manage your Account</h2>
+                                        Manage Account</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -121,53 +121,26 @@
                                             <!-- to get an API token!-->
                                             <form id="postForm">
                                                 <!-- title input-->
-                                                <div class="custom form-floating mb-2">
+                                                <div class="custom form-floating mb-3">
                                                     <input class=" form-control" style="height: 4rem" id="name"
                                                         type="text" placeholder="Enter your Name..." required />
                                                     <label for="name">Name</label>
                                                 </div>
                                                 <!-- Description input-->
 
-                                                <!-- title input-->
-                                                <div class="custom form-floating mb-2">
-                                                    <input class="form-control" style="height: 4rem" id="email"
-                                                        type="email" placeholder="Enter your email..." required />
-                                                    <label for="email">Email</label>
-                                                </div>
-
-                                                <div class="custom form-floating mb-2">
+                                                <div class="custom form-floating mb-3">
                                                     <input class="form-control" style="height: 4rem" id="password"
                                                         type="password" placeholder="Enter your password..." required />
                                                     <label for="password">Password</label>
                                                 </div>
 
-                                                <!-- select File to upload -->
-                                                <div class="mb-3">
-                                                    <label for="formFileLg" class="form-label">JPG Or PNG Aloved</label>
-                                                    <input class="form-control form-control-lg" id="formFileLg"
-                                                        type="file" />
-                                                </div>
-
-                                                <!-- has successfully submitted-->
-                                                <div class="d-none" id="submitSuccessDescription">
-                                                    <div class="text-center mb-2">
-                                                        <div class="fw-bolder">Form submission successful!</div>
-                                                    </div>
-                                                </div>
-
-                                                <!-- an error submitting the form-->
-
-                                                <div class="d-none" id="submitErrorDescription">
-                                                    <div class="text-center text-danger mb-3">Error sending Description!
-                                                    </div>
-                                                </div>
                                                 <!-- Submit Button-->
                                                 <div class="btn_goup_user custom-btn d-flex justify-content-between">
                                                     <button class="btn btn-info btn-md" id="submitButton"
                                                         type="submit">Submit Edit
                                                     </button>
                                                     <button class="btn btn-danger btn-md" id="submitButton"
-                                                        type="submit">Delete
+                                                        type="submit">Delete Account
                                                     </button>
                                                 </div>
                                             </form>

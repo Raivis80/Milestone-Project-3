@@ -26,6 +26,7 @@ def register():
             flash("Username already exists")
             return redirect(url_for("register"))
 
+        # Add user to DB
         else:
             register = {
                 "username": request.form.get("username").lower(),
@@ -72,8 +73,10 @@ def profile(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
+    # IsButton=True show account button if in profile page
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template(
+            "profile.html", username=username, isButton=True)
 
     return redirect(url_for("login"))
 
