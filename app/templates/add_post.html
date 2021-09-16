@@ -1,161 +1,61 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- User Section-->
-<section class="page-section mt-5" id="User">
-    <div class="container">
-        <div class="row justify-content-center" id="User">
-            <div class="col-lg-8">
-                <div class="row justify-content-center">
-                    <!-- Flashed messages -->
-                    {%  with messages = get_flashed_messages() %}
-                    {% if messages%}
-                    {% for message in messages %}
-                    <div class="row flashes">
-                        <div class="col-12 text-center">
-                            <h4 class="col-12 center-align">{{ message }}</h4>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    {% endif %}
-                    {% endwith %}
-                    <h2 class="mt-5 page-section-heading text-center text-uppercase text-secondary mb-0">
-                        Add New Post
-                    </h2>
-                    <!-- Icon Divider-->
-                    <div class="divider-custom">
-                        <div class="divider-custom-line"></div>
-                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                        <div class="divider-custom-line"></div>
-                    </div>
-                    <!-- User Section Form-->
-                    <div class="row justify-content-center">
-                        <div class="w-100 max-width">
-                            <!-- to get an API token!-->
-                            <form id="postForm" method="POST" action="{{ url_for('add_post') }}">
-                                <div class="w-100 select-wrap">
-                                    <select class="form-select mb-2" name="category" id="category" aria-label="example"
-                                        required>
-                                        <option value="">Select Category</option>
+    <!-- Add post form Form-->
+    <div class="row justify-content-center">
+        <div class="w-100 max-width">
+            <form id="postForm" method="POST" action="{{ url_for('add_post') }}">
+                <div class="w-100 select-wrap">
+                    <select class="form-select mb-2" name="category" id="category" aria-label="example" required>
+                        <option value="">Select Category</option>
 
-                                        {% for category in categories %}
+                        {% for category in categories %}
 
-                                        <option value="{{ category.category_name }}">{{ category.category_name }}
-                                        </option>
+                        <option value="{{ category.category_name }}">{{ category.category_name }}
+                        </option>
 
-                                        {% endfor %}
+                        {% endfor %}
 
-                                    </select>
-                                </div>
-                                <!-- title input-->
-                                <div class="custom  mb-2">
-                                    <input class="form-control post_form_title" name="title" style="height: 4rem"
-                                        id="title" type="text" placeholder="Enter your title..." required />
+                    </select>
+                </div>
+                <!-- title input-->
+                <div class="custom  mb-2">
+                    <input class="form-control post_form_title" name="title" style="height: 4rem" id="title" type="text"
+                        placeholder="Enter your title..." required />
 
-                                </div>
-                                <!-- Description input-->
-                                <div class="custom  mb-2">
-                                    <textarea class=" form-control" id="description" name="description" type="text"
-                                        placeholder="Enter your Description here..." style="height: 8rem"
-                                        required></textarea>
-                                </div>
+                </div>
+                <!-- Description input-->
+                <div class="custom  mb-2">
+                    <textarea class=" form-control" id="description" name="description" type="text"
+                        placeholder="Enter your Description here..." style="height: 8rem" required></textarea>
+                </div>
 
-                                <!-- select File to upload -->
-                                <div class="mb-3">
-                                    <label for="formFileLg" class="form-label">JPG Or PNG Aloved</label>
-                                    <input class="form-control form-control-lg" id="formFileLg" type="file" />
-                                </div>
+                <!-- select File to upload -->
+                <div class="mb-3">
+                    <label for="formFileLg" class="form-label">JPG Or PNG Aloved</label>
+                    <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                </div>
 
-                                <!-- has successfully submitted-->
-                                <div class="d-none" id="submitSuccessDescription">
-                                    <div class="text-center mb-2">
-                                        <div class="fw-bolder">Form submission successful!</div>
-                                    </div>
-                                </div>
-
-                                <!-- an error submitting the form-->
-
-                                <div class="d-none" id="submitErrorDescription">
-                                    <div class="text-center text-danger mb-3">Error sending Description!</div>
-                                </div>
-                                <!-- Submit Button-->
-                                <div class="btn_goup_user custom-btn  d-flex justify-content-between">
-                                    <button class="btn btn-primary col-12 btn-lg" id="submitButton" type="submit">Add
-                                        Post</button>
-
-                                </div>
-                            </form>
-                        </div>
+                <!-- has successfully submitted-->
+                <div class="d-none" id="submitSuccessDescription">
+                    <div class="text-center mb-2">
+                        <div class="fw-bolder">Form submission successful!</div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- Manage Account Modal-->
-<div class="portfolio-modal modal fade " id="userProfile" tabindex="-1" aria-labelledby="userProfile"
-    aria-hidden="true">
-    <div class="modal-dialog modal-xl pb-5">
-        <div class="modal-content profile_modal">
-            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
-                    aria-label="Close"></button></div>
-            <div class="modal-body text-center d-flex align-items-center">
-                <div class="container">
-                    <div class="row justify-content-center" id="User">
-                        <div class="col-lg-8">
-                            <!-- User Section-->
-                            <!-- User Section Form-->
-                            <div class="row justify-content-center">
-                                <div class="col-lg-12 col-xl-8">
-                                    <!-- Contact Section Heading-->
-                                    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
-                                        Manage Account</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Contact Section Form-->
-                                    <div class="row justify-content-center">
-                                        <div class="col-12">
-                                            <!-- to get an API token!-->
-                                            <form id="postForm">
-                                                <!-- title input-->
-                                                <div class="custom form-floating mb-3">
-                                                    <input class=" form-control" style="height: 4rem" id="name"
-                                                        type="text" placeholder="Enter your Name..." required />
-                                                    <label for="name">Name</label>
-                                                </div>
-                                                <!-- Description input-->
+                <!-- an error submitting the form-->
 
-                                                <div class="custom form-floating mb-3">
-                                                    <input class="form-control" style="height: 4rem" id="password"
-                                                        type="password" placeholder="Enter your password..." required />
-                                                    <label for="password">Password</label>
-                                                </div>
-
-                                                <!-- Submit Button-->
-                                                <div class="btn_goup_user custom-btn d-flex justify-content-between">
-                                                    <button class="btn btn-info btn-md" id="submitButton"
-                                                        type="submit">Submit Edit
-                                                    </button>
-                                                    <button class="btn btn-danger btn-md" id="submitButton"
-                                                        type="submit">Delete Account
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="d-none" id="submitErrorDescription">
+                    <div class="text-center text-danger mb-3">Error sending Description!</div>
                 </div>
-            </div>
+                <!-- Submit Button-->
+                <div class="btn_goup_user custom-btn  d-flex justify-content-between">
+                    <button class="btn btn-primary col-12 btn-lg" id="submitButton" type="submit">Add
+                        Post</button>
+
+                </div>
+            </form>
         </div>
     </div>
-</div>
 
 {% endblock %}

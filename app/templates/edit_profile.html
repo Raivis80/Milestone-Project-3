@@ -3,58 +3,36 @@
 
 <!-- Manage  profile-->
 
-<section class="page-section mt-5" id="User">
-    <div class="container">
-        <div class="row justify-content-center" id="User">
-            <div class="col-lg-8">
-                <!-- User Section-->
-                <!-- User Section Form-->
-                <div class="row justify-content-center">
-                    <div class="col-lg-12 col-xl-8">
-                        <!-- Contact Section Heading-->
-                        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
-                            Manage Account</h2>
-                        <!-- Icon Divider-->
-                        <div class="divider-custom">
-                            <div class="divider-custom-line"></div>
-                            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                            <div class="divider-custom-line"></div>
-                        </div>
-                        <!-- Contact Section Form-->
-                        <div class="row justify-content-center">
-                            <div class="col-12">
-                                <!-- to get an API token!-->
-                                <form id="postForm">
-                                    <!-- title input-->
-                                    <div class="custom form-floating mb-3">
-                                        <input class=" form-control" style="height: 4rem" id="name" type="text"
-                                            placeholder="Enter your Name..." required />
-                                        <label for="name">Name</label>
-                                    </div>
-                                    <!-- Description input-->
-
-                                    <div class="custom form-floating mb-3">
-                                        <input class="form-control" style="height: 4rem" id="password" type="password"
-                                            placeholder="Enter your password..." required />
-                                        <label for="password">Password</label>
-                                    </div>
-
-                                    <!-- Submit Button-->
-                                    <div class="btn_goup_user custom-btn d-flex justify-content-between">
-                                        <button class="btn btn-info btn-md" id="submitButton" type="submit">Submit Edit
-                                        </button>
-                                        <button class="btn btn-danger btn-md" id="submitButton" type="submit">Delete
-                                            Account
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+<div class="row justify-content-center">
+    <div class="max-width">
+        <div class="col-12">
+            <!-- to get an API token!-->
+            <form id="postForm">
+                <!-- title input-->
+                <div class="custom form-floating mb-3">
+                    <input class=" form-control" style="height: 4rem" id="name" type="text"
+                        placeholder="Enter your Name..." required />
+                    <label for="name">Name</label>
                 </div>
-            </div>
+                <!-- Description input-->
+
+                <div class="custom form-floating mb-3">
+                    <input class="form-control" style="height: 4rem" id="password" type="password"
+                        placeholder="Enter your password..." required />
+                    <label for="password">Password</label>
+                </div>
+
+                <!-- Submit Button-->
+                <div class="btn_goup_user custom-btn d-flex justify-content-between">
+                    <button class="btn btn-info btn-md" id="submitButton" type="submit">Submit Edit
+                    </button>
+                    <button class="btn btn-danger btn-md" id="submitButton" type="submit">Delete
+                        Account
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
-</section>
+</div>
 
 {% endblock %}

@@ -1,54 +1,61 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- User Section-->
-<section class="page-section mt-5" id="User">
-    <div class="container">
-        <div class="row justify-content-center" id="User">
-            <div class="col-lg-8">
-                <div class="row justify-content-center">
-                    <!-- Flashed messages -->
-                    {%  with messages = get_flashed_messages() %}
-                    {% if messages%}
-                    {% for message in messages %}
-                    <div class="row flashes">
-                        <div class="col-12 text-center">
-                            <h4 class="col-12 center-align">{{ message }}</h4>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    {% endif %}
-                    {% endwith %}
-                    <h2 class="mt-5 page-section-heading text-center text-uppercase text-secondary mb-0">
-                        Manage Posts
-                    </h2>
-                    <!-- Icon Divider-->
-                    <div class="divider-custom">
-                        <div class="divider-custom-line"></div>
-                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                        <div class="divider-custom-line"></div>
-                    </div>
-                    <!-- User Section Form-->
-                    <div class="row justify-content-center">
-                        <div class="w-100 max-width">
-                            <!-- to get an API token!-->
-
-                            <!-- Submit Button-->
-                            <div class="btn_goup_user custom-btn d-flex justify-content-between">
-                                <a href="{{ url_for('add_post') }}" class="btn btn-primary btn-md">Add
-                                    Post</a>
-                                <button class="btn btn-info btn-md" id="submitButton" type="submit">Edit
-                                    Post</button>
-                                <button class="btn btn-danger btn-md" id="submitButton" type="submit">Delete
-                                    Post</button>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+    <!-- User Profile Section-->
+    <div class="row justify-content-center">
+        <div class="card col-md-6 col-lg-4 m-3" style="width: 18rem;">
+            <img src="https://source.unsplash.com/random/300x200" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's
+                    content.</p>
+                <button class="btn btn-info btn-md" id="submitButton" type="submit">Edit
+                    Post</button>
+                <button class="btn btn-danger btn-md" id="submitButton" type="submit">Delete
+                    Post</button>
+            </div>
+        </div>
+        <div class="card col-md-6 col-lg-4 m-3" style="width: 18rem;">
+            <img src="https://source.unsplash.com/random/300x200" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's
+                    content.</p>
+                <button class="btn btn-info btn-md" id="submitButton" type="submit">Edit
+                    Post</button>
+                <button class="btn btn-danger btn-md" id="submitButton" type="submit">Delete
+                    Post</button>
+            </div>
+        </div>
+        <div class="card col-md-6 col-lg-4 m-3" style="width: 18rem;">
+            <img src="https://source.unsplash.com/random/300x200" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's
+                    content.</p>
+                <button class="btn btn-info btn-md" id="submitButton" type="submit">Edit
+                    Post</button>
+                <button class="btn btn-danger btn-md" id="submitButton" type="submit">Delete
+                    Post</button>
+            </div>
+        </div>
+        <div class="card col-md-6 col-lg-4 m-3" style="width: 18rem;">
+            <img src="https://source.unsplash.com/random/300x200" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's
+                    content.</p>
+                <button class="btn btn-info btn-md" id="submitButton" type="submit">Edit
+                    Post</button>
+                <button class="btn btn-danger btn-md" id="submitButton" type="submit">Delete
+                    Post</button>
             </div>
         </div>
     </div>
-</section>
+
 
 {% endblock %}
