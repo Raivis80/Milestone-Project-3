@@ -44,26 +44,21 @@ def login():
         # check username exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-
-        if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-            session["user"] = request.form.get("username").lower()
-            flash("Welcome, {}".format(
-                request.form.get("username").capitalize()))
-            return redirect(url_for(
-                "profile", username=session["user"]))
-           
+        if existing_user: 
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(
+                    request.form.get("username").capitalize()))
+                return redirect(url_for(
+                    "profile", username=session["user"]))
+            
         else:
             # username doesn't exist
             flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
 
     return render_template("login.html")
-
-
-@app.route('/gallery')
-def galery():
-    return render_template('gallery.html')
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
@@ -82,7 +77,30 @@ def profile(username):
     return redirect(url_for("login"))
 
 
-@app.route('/logout')
+@app.route("/edit_profile", methods=["POST", "GET"])
+def edit_profile():
+    # Edit or delete user profile
+    return render_template("edit_profile.html")
+
+
+@app.route("/delete_user", methods=["GET", "POST"])
+def delete_user():
+    # check username exists in db
+    existing_user = mongo.db.users.find_one(
+        {"username": request.form.get("username").lower()})
+    if existing_user:
+        if check_password_hash(
+                existing_user["password"], request.form.get("password")):
+            mongo.db.users.remove(existing_user)
+            flash("Good Buy")
+            return redirect(url_for("logout"))
+        else:
+            # password/username did not match
+            flash("Blanc/Incorrect Username and/or Password")
+            return redirect(url_for("edit_profile"))
+
+
+@app.route("/logout")
 def logout():
     # remove the username from the session if it's there
     session.pop('user')
@@ -108,10 +126,10 @@ def add_post():
         mongo.db.posts.insert_one(submit)
         flash("Task Successfully Updated")
 
-    else:
-        return render_template("add_post.html")
+    categories = mongo.db.categories.find()
+    return render_template("add_post.html", categories=categories)
 
 
-@app.route('/edit_profile')
-def edit_profile():
-    return render_template('edit_profile.html')
+@app.route('/gallery')
+def galery():
+    return render_template('gallery.html')

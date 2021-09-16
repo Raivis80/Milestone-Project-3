@@ -2,6 +2,8 @@
 
 <!-- Page title -->
 {% block title %}Account{% endblock %}
+<!-- Subheading -->
+{% block sub %}Edit Your Profile{% endblock %}
 
 {% block content %}
 
@@ -10,24 +12,24 @@
     <div class="max-width">
         <div class="col-12">
             <!-- to get an API token!-->
-            <form id="postForm">
+            <form method="POST" action="{{ url_for('delete_user') }}">
                 <!-- title input-->
                 <div class="custom form-floating mb-3">
-                    <input class=" form-control" style="height: 4rem" id="name" type="text"
-                        placeholder="Enter your Name..." required />
-                    <label for="name">Name</label>
+                    <input class=" form-control" style="height: 4rem" name="username" id="username" type="text"
+                        placeholder="Enter your username..." required />
+                    <label for="username">username</label>
                 </div>
                 <!-- Description input-->
 
                 <div class="custom form-floating mb-3">
-                    <input class="form-control" style="height: 4rem" id="password" type="password"
+                    <input class="form-control" style="height: 4rem" name="password" id="password" type="password"
                         placeholder="Enter your password..." required />
                     <label for="password">Password</label>
                 </div>
 
                 <!-- Submit Button-->
                 <div class="btn_goup_user custom-btn d-flex justify-content-between">
-                    <button class="btn btn-info btn-md" id="submitButton" type="submit">Submit Edit
+                    <button class="btn btn-info btn-md" id="submitButton" type="submit">Submit Changes
                     </button>
                     <button class="btn btn-danger btn-md" id="submitButton" type="submit">Delete
                         Account

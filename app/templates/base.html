@@ -40,24 +40,24 @@
 
                     {% if session.user %}
 
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                                href="{{ url_for('logout') }}">Log Out</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="{{ url_for('logout') }}">Log Out</a></li>
 
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
 
-                        {% if isButton %}
+                    {% if isButton %}
 
-                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                                href="{{ url_for('add_post') }}">Add Post</a></li>
-                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                                href="{{ url_for('edit_profile') }}">Account</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="{{ url_for('add_post') }}">Add Post</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="{{ url_for('edit_profile') }}">Account</a></li>
 
-                        {% endif %}
+                    {% endif %}
 
                     {% else %}
 
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="{{ url_for('login') }}">Log In | Sign Up</a></li>
 
                     {% endif %}
@@ -72,7 +72,7 @@
             <!-- Heading-->
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
                 {% block title %}
-                
+
                 {% endblock %}
             </h2>
             <!-- Icon Divider-->
@@ -85,15 +85,16 @@
             {%  with messages = get_flashed_messages() %}
             {% if messages%}
             {% for message in messages %}
-                <div class="row flashes">
-                    <h4 class="col-12 text-center">{{ message }}</h4>
-                </div>
+            <div class="row flashes">
+                <h4 class="col-12 text-center">{{ message }}</h4>
+            </div>
             {% endfor %}
             {% endif %}
             {% endwith %}
 
             <!-- Main Content -->
-
+            <!-- Subheading -->
+            <h4 class="masthead-subheading text-center font-weight-light mb-0">{% block sub %}{% endblock %}</h4>
             {% block content %}
 
             {% endblock %}
