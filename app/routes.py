@@ -87,7 +87,7 @@ def delete_profile():
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
+                    existing_user["password"], request.form.get("password")):
                 mongo.db.users.remove(existing_user)
                 flash("Good Buy")
                 return redirect(url_for("logout"))
@@ -127,6 +127,24 @@ def add_post():
     # Return all the categories form DB
     categories = mongo.db.categories.find()
     return render_template("add_post.html", categories=categories)
+
+
+@app.route("/edit_post/<post_id>", methods=["GET", "POST"])
+def edit_post(post_id):
+    if request.method == "POST":
+        # Submit post to DB
+        submit = {
+            "category_name": request.form.get("category"),
+            "title": request.form.get("title"),
+            "description": request.form.get("description"),         
+            }
+        mongo.db.posts.update({"_id": ObjectId(post_id)}, submit)
+        flash("Post Successfully added")
+
+    categories = mongo.db.categories.find()
+    postID = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+    return render_template(
+        "edit_post.html", categories=categories, postID=postID)
 
 
 @app.route('/gallery')

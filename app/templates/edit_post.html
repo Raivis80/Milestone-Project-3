@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+<!-- Page title -->
+{% block title %}Edit Post{% endblock %}
+
+{% block content %}
+    <!-- Add post form Form-->
+    <div class="row justify-content-center">
+        <div class="w-100 max-width">
+            <form id="postForm" method="POST" action="{{ url_for('add_post') }}">
+                <div class="w-100 select-wrap">
+                    <select class="form-select mb-2" name="category" id="category" aria-label="example" required>
+                        <option value="">Select Category</option>
+
+                        {% for category in categories %}
+
+                        <option value="{{ category.category_name }}">{{ category.category_name }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+                </div>
+                <!-- title input-->
+                <div class="custom  mb-2">
+                    <input class="form-control post_form_title" name="title" style="height: 4rem" id="title" type="text"
+                        placeholder="Enter your title..." required />
+
+                </div>
+                <!-- Description input-->
+                <div class="custom  mb-2">
+                    <textarea class=" form-control" id="description" name="description" type="text"
+                        placeholder="Enter your Description here..." style="height: 8rem" required></textarea>
+                </div>
+
+                <!-- select File to upload -->
+                <div class="mb-3">
+                    <label for="formFileLg" class="form-label">JPG Or PNG Aloved</label>
+                    <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                </div>
+
+                <!-- has successfully submitted-->
+                <div class="d-none" id="submitSuccessDescription">
+                    <div class="text-center mb-2">
+                        <div class="fw-bolder">Form submission successful!</div>
+                    </div>
+                </div>
+
+                <!-- an error submitting the form-->
+
+                <div class="d-none" id="submitErrorDescription">
+                    <div class="text-center text-danger mb-3">Error sending Description!</div>
+                </div>
+                <!-- Submit Button-->
+                <div class="btn_goup_user custom-btn  d-flex justify-content-between">
+                    <button class="btn btn-primary col-12 btn-lg" id="submitButton" type="submit">Submit Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
