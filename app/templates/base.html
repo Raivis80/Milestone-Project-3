@@ -51,7 +51,7 @@
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="{{ url_for('add_post') }}">Add Post</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="{{ url_for('edit_profile') }}">Account</a></li>
+                            href="{{ url_for('delete_profile') }}">Account</a></li>
 
                     {% endif %}
 
@@ -81,20 +81,22 @@
                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                 <div class="divider-custom-line"></div>
             </div>
+            
+            <!-- Subheading -->
+            <h4 class="masthead-subheading text-center font-weight-light mb-0">{% block sub %}{% endblock %}</h4>
+            
             <!-- Flashed messages -->
             {%  with messages = get_flashed_messages() %}
             {% if messages%}
             {% for message in messages %}
             <div class="row flashes">
-                <h4 class="col-12 text-center">{{ message }}</h4>
+                <h5 class="col-12 m-3 text-center">{{ message }}</h5>
             </div>
             {% endfor %}
             {% endif %}
             {% endwith %}
 
             <!-- Main Content -->
-            <!-- Subheading -->
-            <h4 class="masthead-subheading text-center font-weight-light mb-0">{% block sub %}{% endblock %}</h4>
             {% block content %}
 
             {% endblock %}

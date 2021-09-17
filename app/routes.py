@@ -20,11 +20,9 @@ def register():
         # check username exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
-
         # Add user to DB
         else:
             register = {
@@ -33,7 +31,9 @@ def register():
                     request.form.get("password"))
             }
             mongo.db.users.insert_one(register)
-            flash("User registered successfuly")
+            flash(f'Welcome, {request.form.get("username").capitalize()}')
+            flash("Registration successfuly")
+            return redirect(url_for("login"))
 
     return render_template("register.html")
 
@@ -44,15 +44,15 @@ def login():
         # check username exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-        if existing_user: 
+        if existing_user:
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
+                # Add user to session cookie
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(
                     request.form.get("username").capitalize()))
                 return redirect(url_for(
                     "profile", username=session["user"]))
-            
         else:
             # username doesn't exist
             flash("Incorrect Username and/or Password")
@@ -77,27 +77,30 @@ def profile(username):
     return redirect(url_for("login"))
 
 
-@app.route("/edit_profile", methods=["POST", "GET"])
-def edit_profile():
-    # Edit or delete user profile
-    return render_template("edit_profile.html")
-
-
-@app.route("/delete_user", methods=["GET", "POST"])
-def delete_user():
-    # check username exists in db
-    existing_user = mongo.db.users.find_one(
-        {"username": request.form.get("username").lower()})
-    if existing_user:
-        if check_password_hash(
+@app.route("/delete_profile", methods=["GET", "POST"])
+def delete_profile():
+    if request.method == "POST":
+        # check if username exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+        if existing_user:
+            # ensure hashed password matches user input
+            if check_password_hash(
                 existing_user["password"], request.form.get("password")):
-            mongo.db.users.remove(existing_user)
-            flash("Good Buy")
-            return redirect(url_for("logout"))
+                mongo.db.users.remove(existing_user)
+                flash("Good Buy")
+                return redirect(url_for("logout"))
+            else:
+                # invalid password match
+                flash("Incorrect Username and/or Password")
+                return redirect(url_for("delete_profile"))
+
         else:
-            # password/username did not match
-            flash("Blanc/Incorrect Username and/or Password")
-            return redirect(url_for("edit_profile"))
+            # username doesn't exist
+            flash("Incorrect Username and/or Password")
+            return redirect(url_for("delete_profile"))
+
+    return render_template("edit_profile.html")
 
 
 @app.route("/logout")
@@ -111,12 +114,7 @@ def logout():
 def add_post():
     # Add posts to db
     if request.method == "POST":
-        username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
-    # Check existing post title
-        existing_title = mongo.db.posts.find_one(
-            {"title": request.form.get("title").lower()})
-
+        # Submit post to DB
         submit = {
             "category_name": request.form.get("category"),
             "title": request.form.get("title"),
@@ -124,8 +122,8 @@ def add_post():
             "created_by": session["user"]          
             }
         mongo.db.posts.insert_one(submit)
-        flash("Task Successfully Updated")
-
+        flash("Post Successfully added")
+    # Return all the categories form DB
     categories = mongo.db.categories.find()
     return render_template("add_post.html", categories=categories)
 
