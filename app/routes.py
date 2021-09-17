@@ -68,11 +68,12 @@ def profile(username):
         {"username": session["user"]})["username"]
     # Get categories from DB
     categories = mongo.db.categories.find()
-    # IsButton=True show account button if in profile page
+    # IsButton=True show account button for profile page
     if session["user"]:
+        posts = mongo.db.posts.find()
         return render_template(
-            "profile.html", username=username, 
-            isButton=True, categories=categories)
+            "profile.html", username=username,
+            isButton=True, categories=categories, posts=posts)
 
     return redirect(url_for("login"))
 
@@ -130,4 +131,6 @@ def add_post():
 
 @app.route('/gallery')
 def galery():
-    return render_template('gallery.html')
+    # Get all posts form DB
+    posts = mongo.db.posts.find()
+    return render_template('gallery.html', posts=posts)
