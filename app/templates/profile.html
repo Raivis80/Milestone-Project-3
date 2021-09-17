@@ -7,22 +7,24 @@
     <!-- User Profile Section-->
     
     <div class="row justify-content-center">
-
+        <!-- uer posts -->
         {% for post in posts %}
             {% if session.user == post.created_by %}
                 <div class="card col-md-6 col-lg-4 m-3" style="width: 18rem;">
-                    <img src="https://source.unsplash.com/random/200x200sig=${Math.random()}" class="card-img-top" alt="...">
+                    <img src="{{ post.image }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{post.title}}</h5>
                         <p class="card-text">{{post.description}}.</p>
                         <div class="col-12"><em>{{post._id}}</em> </div>
-                        <a href="{{ url_for('edit_post', post_id=post._id)}}" class="btn btn-info btn-md" id="submitButton" type="submit">Edit
+                        <a href="{{ url_for('edit_post',  post_id=post._id) }}" class="btn btn-info btn-md">Edit
                             Post</a>
-                        <button class="btn btn-danger btn-md" id="submitButton" type="submit">Delete
-                            Post</button>
+                        <a href="{{ url_for('delete_post', post_id=post._id) }}" class="btn btn-danger btn-md">Delete
+                            Post</a>
                     </div>
                 </div>
             {% endif %}
         {% endfor %}
-        
+   
+    </div>   
+     
 {% endblock %}

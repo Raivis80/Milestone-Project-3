@@ -7,7 +7,7 @@
     <!-- Add post form Form-->
     <div class="row justify-content-center">
         <div class="w-100 max-width">
-            <form id="postForm" method="POST" action="{{ url_for('add_post') }}">
+            <form id="postForm" enctype="multipart/form-data" method="POST" action="{{ url_for('add_post') }}">
                 <div class="w-100 select-wrap">
                     <select class="form-select mb-2" name="category" id="category" aria-label="example" required>
                         <option value="">Select Category</option>
@@ -35,27 +35,13 @@
 
                 <!-- select File to upload -->
                 <div class="mb-3">
-                    <label for="formFileLg" class="form-label">JPG Or PNG Aloved</label>
-                    <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                    <label for="file" class="form-label">JPG Or PNG Aloved</label>
+                    <input name="file" class="form-control form-control-lg" id="file" type="file" />
                 </div>
 
-                <!-- has successfully submitted-->
-                <div class="d-none" id="submitSuccessDescription">
-                    <div class="text-center mb-2">
-                        <div class="fw-bolder">Form submission successful!</div>
-                    </div>
-                </div>
-
-                <!-- an error submitting the form-->
-
-                <div class="d-none" id="submitErrorDescription">
-                    <div class="text-center text-danger mb-3">Error sending Description!</div>
-                </div>
                 <!-- Submit Button-->
                 <div class="btn_goup_user custom-btn  d-flex justify-content-between">
-                    <button class="btn btn-primary col-12 btn-lg" id="submitButton" type="submit">Add
-                        Post</button>
-
+                    <button class="btn btn-primary col-12 btn-lg" id="submitButton" type="submit">Submit</button>
                 </div>
             </form>
         </div>

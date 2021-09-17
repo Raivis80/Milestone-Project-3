@@ -67,7 +67,7 @@
     </nav>
 
     <!-- Page section -->
-    <section class="page-section">
+    <section class="page-section main_section">
         <div class="container mt-5">
             <!-- Heading-->
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
@@ -81,10 +81,10 @@
                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                 <div class="divider-custom-line"></div>
             </div>
-            
+
             <!-- Subheading -->
             <h4 class="masthead-subheading text-center font-weight-light mb-0">{% block sub %}{% endblock %}</h4>
-            
+
             <!-- Flashed messages -->
             {%  with messages = get_flashed_messages() %}
             {% if messages%}
