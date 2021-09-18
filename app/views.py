@@ -16,6 +16,13 @@ def index():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+
+    """
+    Register new users
+    Hash the passwords and
+    add to the mongo DB user collection
+    """
+
     if request.method == "POST":
         # check username exists in db
         existing_user = mongo.db.users.find_one(
@@ -23,7 +30,7 @@ def register():
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
-        # Add user to DB
+        # Add user to the Mongo DB
         else:
             register = {
                 "username": request.form.get("username").lower(),
@@ -40,12 +47,21 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    # Login Page
+
+    """
+    Registered user login
+    Chsck if user is stored in the DB
+    Verifies that a password matches a hash
+    If user war verified The user is
+    redirected to a profile page
+    """
+
     if request.method == "POST":
         # check username exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
         if existing_user:
+            # Check password hash for match
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 # Add user to session cookie
@@ -55,7 +71,7 @@ def login():
                 return redirect(url_for(
                     "profile", username=session["user"]))
         else:
-            # username doesn't exist
+            # If username doesn't exist
             flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
 
@@ -64,7 +80,13 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    # Get session user's username from db
+
+    """
+    Find user's username from db
+    Check if user match session cookie
+    Render Profile page if verified
+    """
+
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     # Get categories from DB
