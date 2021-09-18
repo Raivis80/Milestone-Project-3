@@ -1,6 +1,9 @@
 import os
 from flask import Flask
 from flask_pymongo import PyMongo
+import cloudinary
+
+
 if os.path.exists("env.py"):
     import env
 
@@ -15,5 +18,11 @@ app.config['SECRET_KEY'] = 'SECRET_KEY'
 
 mongo = PyMongo(app)
 
+cloudinary.config(
+    cloud_name=os.environ.get('CLOUD_NAME'),
+    api_key=os.environ.get('API_KEY'),
+    api_secret=os.environ.get('API_SECRET')
+)
 
-from app import routes
+
+from app import views

@@ -1,22 +1,11 @@
-import os
 from app import app, mongo
-from flask import (
-    Flask, flash, render_template,
-    redirect, request, session, url_for)
+from flask import (Flask, flash, render_template,
+        redirect, request, session, url_for, jsonify)
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-from flask import jsonify
-
-
-cloudinary.config(
-    cloud_name=os.environ.get('CLOUD_NAME'),
-    api_key=os.environ.get('API_KEY'),
-    api_secret=os.environ.get('API_SECRET')
-)
+import requests
 
 
 @app.route('/')
@@ -51,6 +40,7 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    # Login Page
     if request.method == "POST":
         # check username exists in db
         existing_user = mongo.db.users.find_one(
@@ -122,34 +112,57 @@ def logout():
 
 
 @app.route("/add_post", methods=("POST", "GET"))
-def add_post():  
+def add_post():
+    """
+    Add new posts to the Mongo DB
+    Upload image to the Cloudinary API
+    """
     # Return all the categories form DB
     categories = mongo.db.categories.find()
-    # Add posts to db
-    if request.method == "POST":
-        if request.files:
-            file = request.files['file']
-            file_sent = cloudinary.uploader.upload(
-                file, folder=request.form.get('category'), width=580, height=580)
-            file_URL  = file_sent.get('secure_url')
-        # Submit post to DB
+    if request.method == "POST" and request.files:
+        # File upoad to cloudinary
+        file = request.files['file']
+        file_sent = cloudinary.uploader.upload(
+            file, folder=request.form.get(
+                'category'), width=300, height=300)
+        file_URL = file_sent.get('secure_url')
+        img_id = file_sent.get('public_id')
+        URL_status = requests.get(file_URL)
+        # Submit post to Mongo DB if file upload was success
+        if URL_status.status_code == 200:
             submit = {
                 "category_name": request.form.get("category"),
                 "title": request.form.get("title"),
                 "description": request.form.get("description"),
                 "image": file_URL,
+                "img_id": img_id,
                 "created_by": session["user"]          
                 }
             mongo.db.posts.insert_one(submit)
-            flash("Post Successfully added")
+            flash("Post was successfully added")
             return redirect(url_for("add_post", categories=categories))
+        else:
+            # failed cloudinary API
+            if URL_status.status_code != 200:
+                flash(f"Status code: {URL_status.status_code}")
+                flash("Post did not upload Try again")
+                return redirect(url_for("add_post", categories=categories))
+                # Failed to uplload to the mongo DB
+            else:
+                flash("Post failed upload")
+                flash("Please try again later")
+                return redirect(url_for("add_post", categories=categories))
 
-    return render_template("add_post.html", categories=categories)
+    else:
+        return render_template("add_post.html", categories=categories)
 
 
 @app.route("/edit_post/<post_id>", methods=["GET", "POST"])
 def edit_post(post_id):
-    # Update existing post
+    """
+    Update existing post
+    """
+    # Update mongo DB "post" collection 
     if request.method == "POST":
         submit = {
             "category_name": request.form.get("category_name"),
@@ -162,19 +175,42 @@ def edit_post(post_id):
     # Find existing post id
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
+
     return render_template("edit_post.html", categories=categories, post=post)
 
 
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
-    # Delete post from DB
-    mongo.db.posts.remove({"_id": ObjectId(post_id)})
-    flash("Your post was deleted")
-    return redirect(url_for("profile", username=session["user"]))
+    # Delete post from mongo DB
+    # Get image url trom DB
+    posts = mongo.db.posts.find_one({"_id": ObjectId(post_id)}, {"img_id": 1, "_id": 0})
+    for x, y in posts.items():
+        if x == "img_id":
+            image_id = y
+    try:
+        # Try destroy image file
+        cloudinary.api.delete_resources([image_id])
+        status = True
+        if status:
+            # If 404 delete collection ftom DB
+            mongo.db.posts.remove({"_id": ObjectId(post_id)})
+            flash("Post was successluly deleted")
+        else:
+            # Failed to destroy image from cloudinary
+            flash("Failed to delete Image file")
+            flash("Please try again later")
+            return redirect(url_for("profile", username=session["user"]))
+    # If try delete same again catch error
+    except AttributeError:
+        flash("file already wasdeleted")
+        return redirect(url_for("profile", username=session["user"]))
+    finally:
+        return redirect(url_for("profile", username=session["user"]))
 
 
 @app.route('/gallery')
 def galery():
+    # Gallery page
     # Get all posts form DB
     posts = mongo.db.posts.find()
     return render_template('gallery.html', posts=posts)
