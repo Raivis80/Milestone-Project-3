@@ -196,7 +196,7 @@ def add_post():
         file = request.files['file']
         file_sent = cloudinary.uploader.upload(
             file, folder=request.form.get(
-                'category'), width=300, height=300)
+                'category'))
         file_URL = file_sent.get('secure_url')
         img_id = file_sent.get('public_id')
         URL_status = requests.get(file_URL)

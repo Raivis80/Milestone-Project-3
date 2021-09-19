@@ -8,19 +8,20 @@
 <!-- Galley Grid Items-->
 <div class="portfolio d-flex flex-wrap align-items-center justify-content-center">
 
+
     {% for post in posts %}
 
     <!-- Gallery Item 1-->
- 
-        <div class="portfolio-item m-2" data-bs-toggle="modal" data-bs-target="#a{{post._id}}">
-            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+    <div class="h-25 m-1">
+        <div class="portfolio-item mr-auto" data-bs-toggle="modal"
+            data-bs-target="#a{{post._id}}">
+            <div class="portfolio-item-caption  d-flex align-items-center justify-content-center h-100 w-100">
                 <div class="portfolio-item-caption-content text-center text-white">{{post.title}}
                 </div>
             </div>
-
-            <img class="img-fluid" src="{{ post.image }}" alt="..." />
+            <img class="img-fluid" style="object-fit: contain;" src="{{ post.image }}" alt="..." />
         </div>
-  
+    </div>
 
     <div class="portfolio-modal modal fade" id="a{{post._id}}" tabindex="-1" aria-hidden="true">
         <!-- Gallery Modal 1-->
@@ -33,7 +34,8 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <!-- Gallery Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">{{ post.title }}
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">
+                                    {{ post.title }}
                                 </h2>
                                 <!-- Icon Divider-->
                                 <div class="divider-custom">
@@ -42,11 +44,11 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Gallery Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="{{ post.image }}"
-                                    alt="..." />
+                                <img class="img-fluid 50vh rounded mb-5" src="{{ post.image }}" alt="..." />
                                 <!-- Gallery Modal - Text-->
                                 <p class="mb-4">{{ post.description }}</p>
-                                <div class="col-12 text-left"><em>Created by: {{post.created_by}} Time: {{x}}</em> </div>
+                                <div class="col-12 text-left"><em>Created by: {{post.created_by}} Time: {{x}}</em>
+                                </div>
                                 <button class="btn btn-primary" data-bs-dismiss="modal">
                                     <i class="fas fa-times fa-fw"></i>
                                     Close Window
@@ -60,7 +62,6 @@
     </div>
 
     {% endfor %}
-
 </div>
 
 {% endblock %}

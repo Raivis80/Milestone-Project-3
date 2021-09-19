@@ -11452,7 +11452,16 @@ html {
   max-width: 25rem;
   border-radius: 0.5rem;
   overflow: hidden;
+  max-height: auto;
 }
+
+@media (min-width: 766px){
+  .portfolio .portfolio-item img,
+  .portfolio .portfolio-item {
+    max-height: 250px;
+  }
+}
+
 .portfolio .portfolio-item .portfolio-item-caption {
   position: absolute;
   top: 0;
