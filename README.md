@@ -133,18 +133,30 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
    - First and Last Name input fields
    - Email Address input field
    - Text area input field
-   - Submit button 
-- User Interface
-   - Edit/delete this profile
+   - Submit button
+- My Posts
+   - All users posts display card type grid
+   - Individual Card feature image at the top
+   - Title, and description bebow the image
+   - Next at the bottom Buttons to delete and edit post details
+   - Delete	Post button feature confirm function for to prevent accidental deletion
+- Add New post
    - Image upload functionality
    - Title input field
    - Text area field for content description
    - Post content button
-   - Edit content button
-   - Delete	Post button with confirm function for to prevent accidental deletion
+- Edit Post
+   - Edit Title input field
+   - Text area field to Edit content description
+   - Edit content confirm button
+- Account
+   - Enter username input Field
+   - Enter Password input Field
+   - Confirm Check box
+   - Finaly Sebmit to delete button
 - Admin management Interface
    - Manage/delete self profile
-   - Manage other User profile information reset passwords.
+   - Manage other User profile.
    - Image upload functionality, Title input field
    - Text area field for content description
    - Post content button, Edit content button
@@ -165,15 +177,20 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
 - Landing Page
    - NavBar
       - Sign In
-         - Email field
+         - Username
          - Password field
          - Login button
+         - Link ro register
+            - Loged in users
+               - My Posts
+               - Add New Post
+               - Account
+               - Log out
       - Create account
-         - Name field
-         - Surname field
-         - Email field
+         - Username field
          - Password field
          - Create account button
+         - Link to log in
       - Branding name + reload function
       - Links to external resources
          - To Facebook
@@ -181,86 +198,78 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
          - To LinkedIn
    - Central Hero image
    - Carousel recent uploads feature
-- User upload Thumbnail grid
+- Gallery
    - Grid based Bootstrap cards content container 
       - Image upper Content
       - Title
       - Description
-- Contact Form
-   - Name field
-   - Email field
-   - Text area field
-   - Submit Button
-- User Interface
-   - Edit user profile
-      - Edit name
-      - Edit Email
-      - Edit Password
-      - Delete self
-   - Drag and drop image area
-   - Description text area
-   - Title input field
-   - Add post Button
-   - Edit post button
-      - Edit Title
-      - Edit Description
-      - Edit/Change/Delete image
-      - Delete Post
+- My Posts
+   - Grid based Bootstrap cards content container 
+      - Image
+      - Title
+      - Description
+      - Edit post button
+         - Edit new post
+            - Edit Title input field
+            - Text area field to Edit content description
+            - Edit content confirm button
+      - Delete post button
+         - Delete Accoutt
+            - Username field
+            - Edit Password
+            - Confirm
+            - Delete Button
+      - Add new post
+         - Image upload field
+         - Title input field
+         - Text area field for content description
+         - Post content button
 - Admin management Interface
-   - Edit user profile
-      - Edit name
-      - Edit Email
-      - Edit Password
-      - Delete self
    - Edit other user profile
       - Delete account
       - Reset password
-      - Delete/Edit/Update Other user posts
-   - Drag and drop image area
-   - Description text area
-   - Title input field
-   - Add post Button
-   - Edit post button
-      - Edit Title
-      - Edit Description
-      - Edit/Change/Delete image
-      - Delete Post
+      - Delete/Edit/Update posts
 - footer
      - FaceBook, LinkedIn, Instagram
 
 #### **Wireframes**
-### Landing Page wireframe
+- ### Landing Page wireframe
 ![landing page](project_files/wireframes/landing-wireframe.png)
-### Gallery wireframe
+- ### Gallery wireframe
 
 ![Gallery](project_files/wireframes/gallery.png)
 
-### User Interface Wireframe
+- ### User Interface Wireframe
 
-*Design change for finale project "Profile" User interface.*
+   *Design change for finale project "Profile" User interface.*
 
-Added Individual post card grid arranged based on recent first
-Added Individual post grid, arranged based on recent first.
-Added Buttons for edit and delete options
-Original wireframe version for user interface can be found [Here](project_files/wireframes/interface.png)
+   Added Individual post card grid arranged based on recent first
+   Added Individual post grid, arranged based on recent first.
+   Added Buttons for edit and delete options
+   Original wireframe version for user interface can be found [Here](project_files/wireframes/interface.png)
 ![Profile](project_files/wireframes/profile.png)
 
-### Add new post wireframe
+- ### Add new post wireframe
 
-*Add new post Dedicated interface was added later in the project to better suit project purpose*
+   *Add new post Dedicated interface was added later in the project to better suit project purpose*
 
 ![Add New Post](project_files/wireframes/add-post.png)
 
-### User Account
-*One more redesign feature was added later in the project*
+- ### User Account
+   *One more redesign feature was added later in the project*
 
-Added user account page to enable users to be able to delete their account if they wish so.
+   Added user account page to enable users to be able to delete their account if they wish so.
 
 ![Account](project_files/wireframes/account.png)
 
-### DataBase structure below
+- ### DataBase structure below
 
-![MongoDB](project_files/wireframes/mongoDB-wireframe.png)
+   *significant changes was made for elements in DB structure to meet site purpouse and needs.*
+
+   Start project Original DB structure wireframe [db structure here](project_files/wireframes/mongoDB-wireframe1.png)
+
+New wireframe bellow
+![db structure](project_files/wireframes/db-structure.png)
 
 # [&#8686;](#Introduction)
 ## ***Design***
