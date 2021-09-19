@@ -237,11 +237,30 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
 
 ### User Interface Wireframe
 
-![Gallery](project_files/wireframes/interface.png)
+*Design change for finale project "Profile" User interface.*
+
+Added Individual post card grid arranged based on recent first
+Added Individual post grid, arranged based on recent first.
+Added Buttons for edit and delete options
+Original wireframe version for user interface can be found [Here](project_files/wireframes/interface.png)
+![Profile](project_files/wireframes/profile.png)
+
+### Add new post wireframe
+
+*Add new post Dedicated interface was added later in the project to better suit project purpose*
+
+![Add New Post](project_files/wireframes/add-post.png)
+
+### User Account
+*One more redesign feature was added later in the project*
+
+Added user account page to enable users to be able to delete their account if they wish so.
+
+![Account](project_files/wireframes/account.png)
 
 ### DataBase structure below
 
-![Gallery](project_files/wireframes/mongoDB-wireframe.png)
+![MongoDB](project_files/wireframes/mongoDB-wireframe.png)
 
 # [&#8686;](#Introduction)
 ## ***Design***
