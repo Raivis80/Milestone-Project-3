@@ -327,6 +327,5 @@ def delete_post(post_id):
 def galery():
     # Gallery page
     # Get all posts form DB
-    x = now
     posts = mongo.db.posts.find().sort('time', -1)
     return render_template('gallery.html', x=x, posts=posts)
