@@ -15,7 +15,9 @@ now = datetime.now().strftime("%d-%m-%y, %H:%M:%S")
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    # Find existing post by id and get category
+    posts = mongo.db.posts.find().sort('time_created', -1)
+    return render_template('index.html', posts=posts)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -97,7 +99,7 @@ def profile(username):
         categories = mongo.db.categories.find()
         # IsButton=True show account button for profile page
         if session["user"]:
-            posts = mongo.db.posts.find().sort('time', -1)
+            posts = mongo.db.posts.find().sort('time_created', -1)
             return render_template(
                 "profile.html", username=username,
                 isButton=True, categories=categories, posts=posts)
@@ -327,5 +329,5 @@ def delete_post(post_id):
 def galery():
     # Gallery page
     # Get all posts form DB
-    posts = mongo.db.posts.find().sort('time', -1)
+    posts = mongo.db.posts.find().sort('time_created', -1)
     return render_template('gallery.html', posts=posts)
