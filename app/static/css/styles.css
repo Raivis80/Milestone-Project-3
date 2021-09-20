@@ -692,32 +692,6 @@ progress {
   margin-left: auto;
 }
 
-@media (min-width: 576px) {
-
-  .container-sm,
-  .container {
-    max-width: 540px;
-  }
-}
-
-@media (min-width: 768px) {
-
-  .container-md,
-  .container-sm,
-  .container {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-
-  .container-lg,
-  .container-md,
-  .container-sm,
-  .container {
-    max-width: 960px;
-  }
-}
 
 @media (min-width: 1200px) {
 
@@ -12508,28 +12482,32 @@ html {
   min-height: 90vh;
 }
 
-/* Image carousel home---- */
-.carousel-item {
-  height: 300px;
-}
-
+/*Custom Image carousel home---- */
 .item_outer {
   width: 100%;
   height: 300px;
-
+  overflow: hidden;
   display: flex;
   justify-content: space-around;
 }
 
+
+.carousel_home img {
+  max-height: 100%;
+  height: auto;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .item {
-  width: 300px;
-  height: 300px;
+  height: auto;
   background-color: red;
   cursor: pointer;
-  position: relative;
   display: block;
   border-radius: 0.5rem;
   overflow: hidden;
+  margin: 1rem;
 }
 
 .item:hover {
@@ -12541,7 +12519,14 @@ html {
 }
 
 
-.carousel_home img {
-  max-height: 100%;
-  height: auto;
+@media screen and (max-width: 999px) {
+  .item_outer div:nth-child(3n+0){
+    display: none;
+  }
+}
+
+@media screen and (max-width: 666px) {
+  .item_outer div:nth-child(2n+0){
+    display: none;
+  }
 }
