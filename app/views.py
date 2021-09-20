@@ -328,4 +328,4 @@ def galery():
     # Gallery page
     # Get all posts form DB
     posts = mongo.db.posts.find().sort('time', -1)
-    return render_template('gallery.html', x=x, posts=posts)
+    return render_template('gallery.html', posts=posts)
