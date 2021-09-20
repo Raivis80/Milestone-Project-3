@@ -20,7 +20,7 @@
           {% if loop.index <= 3 %}
             <div class="item">
               <a href="{{ url_for('galery') }}">
-                <img class="" src="{{ image.image }}" alt="{{ image.category }} Title Text {{ image.title }}" />
+                <img class="" src="{{ image.image_sm }}" alt="{{ image.category }} Title Text {{ image.title }}" />
               </a>
             </div>
           {% endif %}
@@ -33,7 +33,7 @@
           {% if loop.index <= 3 %}
             <div class="item">
               <a href="{{ url_for('galery') }}">
-                <img class="" src="{{ art.image }}" alt="{{ art.category }} Title Text {{ art.title }}" />
+                <img class="" src="{{ art.image_sm }}" alt="{{ art.category }} Title Text {{ art.title }}" />
               </a>
             </div>
           {% endif %}
@@ -46,7 +46,7 @@
           {% if loop.index <= 3 %}
             <div class="item">
               <a href="{{ url_for('galery') }}">
-                <img class="" src="{{ post.image }}" alt="{{ post.category }} Title Text {{ post.title }}" />
+                <img class="" src="{{ post.image_sm }}" alt="{{ post.category }} Title Text {{ post.title }}" />
               </a>
             </div>
           {% endif %}

@@ -5,6 +5,7 @@
 
 {% block content %}
     <!-- Add post form Form-->
+    {{ url_check }}
     <div class="row justify-content-center">
         <div class="w-100 max-width">
             <form id="postForm" enctype="multipart/form-data" method="POST" action="{{ url_for('add_post') }}">

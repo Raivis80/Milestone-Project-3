@@ -18,7 +18,8 @@
                 <div class="portfolio-item-caption-content text-center text-white">{{post.title}}
                 </div>
             </div>
-            <img class="img-fluid" style="object-fit: contain;" src="{{ post.image }}" alt="..." />
+            
+            <img class="img-fluid" style="object-fit: contain;" src="{{ post.image_sm }}" alt="..." />
         </div>
     </div>
 
@@ -33,15 +34,9 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <!-- Gallery Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase m-3">
                                     {{ post.title }}
                                 </h2>
-                                <!-- Icon Divider-->
-                                <div class="divider-custom">
-                                    <div class="divider-custom-line"></div>
-                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                    <div class="divider-custom-line"></div>
-                                </div>
                                 <!-- Gallery Modal - Image-->
                                 <img class="img-fluid 50vh rounded mb-5" src="{{ post.image }}" alt="..." />
                                 <!-- Gallery Modal - Text-->

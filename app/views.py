@@ -1,10 +1,11 @@
-from app import app, mongo
 from flask import (Flask, flash, render_template,
         redirect, request, session, url_for, jsonify)
 from werkzeug.security import generate_password_hash, check_password_hash
+from cloudinary.utils import cloudinary_url
+from cloudinary.uploader import upload
 from bson.objectid import ObjectId
 from datetime import datetime
-import cloudinary.uploader
+from app import app, mongo
 import cloudinary.api
 import requests
 
@@ -196,41 +197,48 @@ def add_post():
     # Return all the categories form DB
     categories = mongo.db.categories.find()
 
-    if username and request.method == "POST" and request.files:
+    if username and request.method == "POST":
+        upload_result = None
+        image = None
+        image_small = None
         # File upoad to cloudinary
-        file = request.files['file']
-        file_sent = cloudinary.uploader.upload(
-            file, folder=request.form.get(
-                'category'))
-        file_URL = file_sent.get('secure_url')
-        img_id = file_sent.get('public_id')
-        URL_status = requests.get(file_URL)
-
-        # Submit post to Mongo DB if file upload was success
-        if URL_status.status_code == 200:
-            submit = {
-                "category_name": request.form.get("category"),
-                "title": request.form.get("title"),
-                "description": request.form.get("description"),
-                "image": file_URL,
-                "img_id": img_id,
-                "created_by": session["user"],
-                "time_created": now
-                }
-            mongo.db.posts.insert_one(submit)
-            flash("Post was successfully added")
-            return redirect(url_for("add_post", categories=categories))
-        else:
-            # failed cloudinary API
-            if URL_status.status_code != 200:
-                flash(f"Status code: {URL_status.status_code}")
-                flash("Post did not upload Try again")
+        if request.files:    
+            file_to_upload = request.files['file']
+            upload_result = upload(file_to_upload)
+            # Get full size image url
+            image, options = cloudinary_url(upload_result['public_id'], format="jpg")
+            # Get image thumblail
+            image_small, options = cloudinary_url(upload_result['public_id'], format="jpg", crop="fill", height=300)
+            # Get image public id
+            img_id = upload_result.get('public_id')
+            # requers url status
+            URL_status = requests.get(image)
+            # Submit post to Mongo DB if file upload was success
+            if URL_status.status_code == 200:
+                submit = {
+                    "category_name": request.form.get("category"),
+                    "title": request.form.get("title"),
+                    "description": request.form.get("description"),
+                    "image": image,
+                    "image_sm": image_small,
+                    "img_id": img_id,
+                    "created_by": session["user"],
+                    "time_created": now
+                    }
+                mongo.db.posts.insert_one(submit)
+                flash("Post was successfully added")
                 return redirect(url_for("add_post", categories=categories))
-                # Failed to uplload to the mongo DB
             else:
-                flash("Post failed upload")
-                flash("Please try again later")
-                return redirect(url_for("add_post", categories=categories))
+                # failed cloudinary API
+                if URL_status.status_code != 200:
+                    flash(f"Status code: {URL_status.status_code}")
+                    flash("Post did not upload Try again")
+                    return redirect(url_for("add_post", categories=categories))
+                    # Failed to uplload to the mongo DB
+                else:
+                    flash("Post failed upload")
+                    flash("Please try again later")
+                    return redirect(url_for("add_post", categories=categories))
 
     else:
         return render_template("add_post.html", categories=categories)
