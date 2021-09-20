@@ -12427,6 +12427,8 @@ html {
   }
 }
 
+
+/* Gallery--------------- */
 .portfolio .portfolio-item {
   cursor: pointer;
   position: relative;
@@ -12480,6 +12482,7 @@ html {
   }
 }
 
+/* Footer---------------- */
 .footer {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -12505,10 +12508,10 @@ html {
   min-height: 90vh;
 }
 
+/* Image carousel home---- */
 .carousel-item {
   height: 300px;
 }
-
 
 .item_outer {
   width: 100%;
@@ -12529,21 +12532,16 @@ html {
   overflow: hidden;
 }
 
-
-.item .item_overlay {
-  width: 300px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: all 0.2s ease-in-out;
-  opacity: 0;
-  background-color: rgba(96, 26, 188, 0.6);
-}
-
 .item:hover {
   opacity: 1;
 }
 
 .item .portfolio-item-caption-content {
   font-size: 1.5rem;
+}
+
+
+.carousel_home img {
+  max-height: 100%;
+  height: auto;
 }

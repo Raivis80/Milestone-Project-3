@@ -16,8 +16,11 @@ now = datetime.now().strftime("%d-%m-%y, %H:%M:%S")
 @app.route('/index')
 def index():
     # Find existing post by id and get category
-    posts = mongo.db.posts.find().sort('time_created', -1)
-    return render_template('index.html', posts=posts)
+    digital_art = mongo.db.posts.find({"category_name": "digital_art"}).limit(3)
+    painting = mongo.db.posts.find({"category_name": "paintings"}).limit(3)
+    images = mongo.db.posts.find({"category_name": "images"}).limit(3)
+    return render_template(
+        'index.html', digital_art=digital_art, painting=painting, images=images)
 
 
 @app.route("/register", methods=["GET", "POST"])
