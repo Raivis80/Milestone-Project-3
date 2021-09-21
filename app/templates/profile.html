@@ -10,7 +10,7 @@
     {% for post in posts %}
         {% if session.user == post.created_by %}
             <div class="card my-card text-center m-2" data-bs-toggle="modal" data-bs-target="#a{{post._id}}">
-                <div class="img_posts ">
+                <div class="img_post">
                     <img src="{{ post.image_sm }}" class="card-img-top img-fluid" alt="{{ post.categoty_name }}title {{ post.title }}">
                 </a>
                 </div>

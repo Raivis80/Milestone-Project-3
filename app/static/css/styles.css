@@ -650,10 +650,7 @@ progress {
   content: "— ";
 }
 
-.img-fluid {
-  max-width: 100%;
-  height: auto;
-}
+
 
 .img-thumbnail {
   padding: 0.25rem;
@@ -12411,13 +12408,13 @@ html {
   max-width: 25rem;
   border-radius: 0.5rem;
   overflow: hidden;
-  height: 100vh;
-  
+  max-height: auto;
   transition: all 0.3s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.30) 0px 5px 8px;
 }
 
 @media (hover: hover) {
+
   .card:hover,
   .portfolio .portfolio-item:hover {
     box-shadow: rgba(0, 0, 0, 0.30) 0px 8px 8px;
@@ -12426,13 +12423,21 @@ html {
 }
 
 
-@media (min-width: 766px) {
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  min-width: inherit;
+  object-fit: cover;
+}
 
-  .portfolio .portfolio-item img,
-  .portfolio .portfolio-item {
-    max-height: 250px;
+@media screen and (max-width: 400px) {
+  .img-fluid {
+    max-width: 100%;
+    width: 350px;
+    height: auto;
   }
 }
+
 
 .card .portfolio-item-caption,
 .portfolio .portfolio-item .portfolio-item-caption {
@@ -12452,6 +12457,10 @@ html {
 .card .portfolio-item-caption .portfolio-item-caption-content,
 .portfolio .portfolio-item .portfolio-item-caption .portfolio-item-caption-content {
   font-size: 1.5rem;
+}
+
+.portfolio-modal {
+  max-height: 100vh;
 }
 
 .portfolio-modal .btn-close {
@@ -12500,8 +12509,8 @@ html {
 
 /*Custom Image carousel home---- */
 .item_outer {
-  width: 100%;
-  height: 300px;
+  width: auto;
+  height: auto;
   overflow: hidden;
   display: flex;
   justify-content: space-around;
@@ -12574,10 +12583,23 @@ html {
   opacity: .3;
 }
 
+
+
 /* Modal body */
 .modal-body {
   border: none;
   background-color: #f5f5f5;
+}
+
+
+.modal_img {
+  max-height: 100vh;
+}
+
+.modal_img img {
+  border-radius: 6px;
+  width: 100%;
+  max-height: 100%;
 }
 
 

@@ -213,7 +213,7 @@ def add_post():
             # Get image thumblail URL
             image_small, options = cloudinary_url(
                 upload_result['public_id'],
-                format="jpg", crop="fill", width=450)
+                format="jpg", crop="fill", width=300, height=300)
             # Get image public id
             img_id = upload_result.get('public_id')
             # requers url status
@@ -350,5 +350,5 @@ def galery():
     # Gallery page
     # Get all posts form DB
     categories = mongo.db.categories.find()
-    posts = mongo.db.posts.find().sort('_id', -1)
+    posts = list(mongo.db.posts.find().sort('_id', -1))
     return render_template('gallery.html', posts=posts, categories=categories)
