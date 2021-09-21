@@ -12403,6 +12403,7 @@ html {
 
 
 /* Gallery--------------- */
+.card,
 .portfolio .portfolio-item {
   cursor: pointer;
   position: relative;
@@ -12410,8 +12411,20 @@ html {
   max-width: 25rem;
   border-radius: 0.5rem;
   overflow: hidden;
-  max-height: auto;
+  height: 100vh;
+  
+  transition: all 0.3s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.30) 0px 5px 8px;
 }
+
+@media (hover: hover) {
+  .card:hover,
+  .portfolio .portfolio-item:hover {
+    box-shadow: rgba(0, 0, 0, 0.30) 0px 8px 8px;
+    transform: scale(1.01);
+  }
+}
+
 
 @media (min-width: 766px) {
 
@@ -12421,19 +12434,22 @@ html {
   }
 }
 
+.card .portfolio-item-caption,
 .portfolio .portfolio-item .portfolio-item-caption {
   position: absolute;
   top: 0;
   left: 0;
   transition: all 0.2s ease-in-out;
   opacity: 0;
-  background-color: rgba(26, 188, 156, 0.6);
+  background-color: hsla(210, 28%, 17%, 0.212);
 }
 
+.card .portfolio-item-caption:hover,
 .portfolio .portfolio-item .portfolio-item-caption:hover {
   opacity: 1;
 }
 
+.card .portfolio-item-caption .portfolio-item-caption-content,
 .portfolio .portfolio-item .portfolio-item-caption .portfolio-item-caption-content {
   font-size: 1.5rem;
 }
@@ -12520,13 +12536,63 @@ html {
 
 
 @media screen and (max-width: 999px) {
-  .item_outer div:nth-child(3n+0){
+  .item_outer div:nth-child(3n+0) {
     display: none;
   }
 }
 
 @media screen and (max-width: 666px) {
-  .item_outer div:nth-child(2n+0){
+  .item_outer div:nth-child(2n+0) {
     display: none;
+  }
+}
+
+/* My posts section */
+/* Card styling */
+.my-card {
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+  border: none;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  font-size: .8rem;
+  max-width: 200px;
+}
+
+.img_posts img {
+  object-fit: cover;
+  overflow: hidden;
+  height: 150px;
+  width: 200px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.card-img-overlay:hover {
+  opacity: .3;
+}
+
+/* Modal body */
+.modal-body {
+  border: none;
+  background-color: #f5f5f5;
+}
+
+
+@media screen and (max-width: 465px) {
+  .my-card h6 {
+    font-size: .8rem;
+  }
+
+  .my-card {
+    font-size: .6rem;
+    max-width: 150px;
+  }
+
+  .img_posts img {
+    height: 100px;
+    width: 150px;
   }
 }

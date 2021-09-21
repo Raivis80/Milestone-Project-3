@@ -4,30 +4,61 @@
 {% block title %}My Posts{% endblock %}
 
 {% block content %}
-    <!-- User Profile Section-->
-    <div class="row justify-content-center">
-        <!-- uer posts -->
-        {% for post in posts %}
-            {% if session.user == post.created_by %}
-                <div class="card col-md-6 col-lg-4 m-3" style="width: 18rem;">
-                    <img src="{{ post.image_sm }}" class="card-img-top" alt="...">
-                    <div class="card-body d-flex flex-column justify-content-between">
-                        <div>
-                            <h5 class="card-title">{{post.title}}</h5>
-                            <p class="card-text">{{post.description}}.</p>
-                        </div>
-                        <div class="col-12 d-flex justify-content-between">    
-                            <a href="{{ url_for('edit_post',  post_id=post._id) }}" class="btn btn-info btn-md">Edit
-                            Post</a>
-                            <a href="{{ url_for('delete_post', post_id=post._id) }}" class="btn btn-danger btn-md">Delete
-                            Post</a>
-                        </div>
-
+<!-- User Profile Section-->
+<div class="row justify-content-center">
+    <!-- uer posts -->
+    {% for post in posts %}
+        {% if session.user == post.created_by %}
+            <div class="card my-card text-center m-2" data-bs-toggle="modal" data-bs-target="#a{{post._id}}">
+                <div class="img_posts ">
+                    <img src="{{ post.image_sm }}" class="card-img-top img-fluid" alt="{{ post.categoty_name }}title {{ post.title }}">
+                </a>
+                </div>
+                <div class="p-1 d-flex flex-column justify-content-between mt-1">
+                    <div>
+                        <h6 class="card-title">{{post.title}}</h6>
+                        <p class="card-text">{{post.description}}.</p>
                     </div>
                 </div>
-            {% endif %}
-        {% endfor %}
-   
-    </div>   
-     
+                <div class="portfolio-item-caption  d-flex align-items-center justify-content-center h-100 w-100">
+                    <div class="portfolio-item-caption-content text-center text-white">Edit
+                    </div>
+                </div>
+            </div>
+            <!-- Vertically centered scrollable modal -->
+            <div class="portfolio-modal modal fade" id="a{{post._id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <!-- Profile Modal 1-->
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                         <!-- Profile Modal - Title-->
+                      <h5 class="modal-title text-secondary text-uppercase" id="staticBackdropLabel">{{post.title}}</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Profile Modal - Image-->
+                        <div class="modal_img mb-2"> 
+                            <img src="{{ post.image_sm }}" class="card-img-top" alt="{{ post.categoty_name }}title {{ post.title }}">
+                        </div>
+                        <!-- Profile Modal - Text-->
+                        <div class="p-1">
+                            <p class="card-text">{{post.description}}.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-12 d-flex justify-content-between">
+                            <a href="{{ url_for('edit_post',  post_id=post._id) }}" class="btn btn-info btn-md">Edit
+                                Post</a>
+                            <a href="{{ url_for('delete_post', post_id=post._id) }}" class="btn btn-danger btn-md">Delete
+                                Post</a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        {% endif %}
+    {% endfor %}
+
+</div>
+
 {% endblock %}

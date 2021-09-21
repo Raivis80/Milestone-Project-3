@@ -103,7 +103,7 @@ def profile(username):
         categories = mongo.db.categories.find()
         # IsButton=True show account button for profile page
         if session["user"]:
-            posts = mongo.db.posts.find().sort('time_created', -1)
+            posts = mongo.db.posts.find().sort('_id', -1)
             return render_template(
                 "profile.html", username=username,
                 isButton=True, categories=categories, posts=posts)
@@ -187,7 +187,7 @@ def add_post():
     """
     try:
         # Find user's username from db
-        # #and chect match session cookie
+        # and chect match for session cookie
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
     except KeyError:
@@ -201,14 +201,19 @@ def add_post():
         upload_result = None
         image = None
         image_small = None
-        # File upoad to cloudinary
-        if request.files:    
+        if request.files:
+            # File upoad to cloudinary
+            folder = request.form.get("category")
             file_to_upload = request.files['file']
-            upload_result = upload(file_to_upload)
-            # Get full size image url
-            image, options = cloudinary_url(upload_result['public_id'], format="jpg")
-            # Get image thumblail
-            image_small, options = cloudinary_url(upload_result['public_id'], format="jpg", crop="fill", height=300)
+            upload_result = upload(file_to_upload, folder=folder)
+            # Get 1920p size image URL
+            image, options = cloudinary_url(
+                upload_result['public_id'],
+                format="jpg", crop="fill", width=1920)
+            # Get image thumblail URL
+            image_small, options = cloudinary_url(
+                upload_result['public_id'],
+                format="jpg", crop="fill", width=450)
             # Get image public id
             img_id = upload_result.get('public_id')
             # requers url status
@@ -252,7 +257,6 @@ def edit_post(post_id):
     Update existing post Title and
     description only
     """
-
     try:
         # Find user's username from db
         # and chect matching session cookie
@@ -269,9 +273,11 @@ def edit_post(post_id):
     # Get image id and url out of mongo DB
     for k, v in post.items():
         if k == "image":
-            image_URL = v
-        elif k == "img_id":
             image = v
+        elif k == "img_id":
+            image_id = v
+        elif k == "image_sm":
+            image_sm = v
         elif k == "time_created":
             time_stamp = v
 
@@ -281,8 +287,9 @@ def edit_post(post_id):
             "category_name": request.form.get("category"),
             "title": request.form.get("title"),
             "description": request.form.get("description"),
-            "image": image_URL,
-            "img_id": image,
+            "image": image,
+            "image_sm": image_sm,
+            "img_id": image_id,
             "created_by": session["user"],
             "time_created": time_stamp
         }
@@ -310,16 +317,18 @@ def delete_post(post_id):
 
     # Find post by id and iterate
     # over to extract image id and URL
-    posts = mongo.db.posts.find_one({"_id": ObjectId(post_id)}, {"img_id": 1, "_id": 0})
+    posts = mongo.db.posts.find_one(
+        {"_id": ObjectId(post_id)}, {"img_id": 1, "_id": 0})
     for x, y in posts.items():
         if x == "img_id":
             image_id = y
 
     try:
-        # Try destroy image file
-        cloudinary.api.delete_resources([image_id])
+        # Destroy permanently delete a single asset
+        # Invalidates CDN cached copies of the asset
+        cloudinary.uploader.destroy(image_id, invalidate='true')
         status = True
-    # If try delete same again catch error
+    # Catch error If try delete same asset again
     except AttributeError:
         flash("file already was deleted")
         return redirect(url_for("profile", username=session["user"]))
@@ -340,5 +349,6 @@ def delete_post(post_id):
 def galery():
     # Gallery page
     # Get all posts form DB
-    posts = mongo.db.posts.find().sort('time_created', -1)
-    return render_template('gallery.html', posts=posts)
+    categories = mongo.db.categories.find()
+    posts = mongo.db.posts.find().sort('_id', -1)
+    return render_template('gallery.html', posts=posts, categories=categories)

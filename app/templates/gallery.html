@@ -12,43 +12,42 @@
 
     <!-- Gallery Item 1-->
     <div class="h-25 m-1">
-        <div class="portfolio-item mr-auto" data-bs-toggle="modal"
-            data-bs-target="#a{{post._id}}">
+        <div class="portfolio-item mr-auto" data-bs-toggle="modal" data-bs-target="#a{{post._id}}">
             <div class="portfolio-item-caption  d-flex align-items-center justify-content-center h-100 w-100">
                 <div class="portfolio-item-caption-content text-center text-white">{{post.title}}
                 </div>
             </div>
-            
-            <img class="img-fluid" style="object-fit: contain;" src="{{ post.image_sm }}" alt="..." />
+
+            <img class="img-fluid" style="object-fit: contain;" src="{{ post.image_sm }}" alt="{{ post.categoty_name }}title {{ post.title }}" />
         </div>
     </div>
 
     <div class="portfolio-modal modal fade" id="a{{post._id}}" tabindex="-1" aria-hidden="true">
         <!-- Gallery Modal 1-->
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog ">
             <div class="modal-content">
-                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
-                        aria-label="Close"></button></div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Gallery Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase m-3">
-                                    {{ post.title }}
-                                </h2>
-                                <!-- Gallery Modal - Image-->
-                                <img class="img-fluid 50vh rounded mb-5" src="{{ post.image }}" alt="..." />
-                                <!-- Gallery Modal - Text-->
-                                <p class="mb-4">{{ post.description }}</p>
-                                <div class="col-12 text-left"><em>Created by: {{post.created_by}} Time: {{x}}</em>
-                                </div>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-times fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
+                <!-- Gallery Modal - Title-->
+
+                <div class="modal-header">
+                    <h2 class="modal-title text-secondary text-uppercase ">
+                        {{ post.title }}
+                    </h2>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Gallery Modal - Image-->
+
+                    <div class="modal_img mb-2">
+                        <a href="{{ post.image }}" target=”_blank” ><img src="{{ post.image }}" class="card-img-top" alt="{{ post.categoty_name }}title {{ post.title }}></a>
+                    </div>
+                    <!-- Gallery Modal - Text-->
+                    <div class="p-1">
+                        <p class="card-text">{{post.description}}.</p>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <div class="col-12 text-left"><em>Created by: {{post.created_by}}</em>
                     </div>
                 </div>
             </div>
