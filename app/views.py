@@ -267,12 +267,14 @@ def edit_post(post_id):
             }
             mongo.db.posts.update({"_id": ObjectId(post_id)}, submit)
             flash("post Successfully Updated")
+            return redirect(url_for("profile", username=session["user"]))
 
         return render_template("edit_post.html", categories=categories, post=post)
     # Rediret unauthorized users page access
     else:
         flash("Please log in or register")
         return redirect(url_for("login"))
+   
 
 
 @app.route("/delete_post/<post_id>")

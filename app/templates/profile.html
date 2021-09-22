@@ -5,12 +5,13 @@
 
 {% block content %}
 <!-- User Profile Section-->
-<div class="profile-cont row justify-content-center">
+<div class=" row justify-content-center">
     <!-- uer posts -->
     {% for post in posts %}
         {% if session.user == post.created_by %}
-            <div class="card my-card text-center m-2" data-bs-toggle="modal" data-bs-target="#a{{post._id}}">
+            <div class="card my-card text-center m-2" >
                 <div class="img_posts">
+                <a href="">
                     <img src="{{ post.image_sm }}" class="" alt="{{ post.categoty_name }}title {{ post.title }}">
                 </a>
                 </div>
@@ -20,42 +21,13 @@
                         <p class="card-text">{{post.description}}.</p>
                     </div>
                 </div>
+                <a href="{{ url_for('edit_post',  post_id=post._id) }}">
                 <div class="portfolio-item-caption  d-flex align-items-center justify-content-center h-100 w-100">
                     <div class="portfolio-item-caption-content text-center text-white">Edit
                     </div>
                 </div>
+                 </a>
             </div>
-            <!-- Vertically centered scrollable modal -->
-            <div class="portfolio-modal modal fade" id="a{{post._id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <!-- Profile Modal 1-->
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                         <!-- Profile Modal - Title-->
-                      <h5 class="modal-title text-secondary text-uppercase" id="staticBackdropLabel">{{post.title}}</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Profile Modal - Image-->
-                        <div class="modal_img mb-2"> 
-                            <img src="{{ post.image_sm }}" class="card-img-top" alt="{{ post.categoty_name }}title {{ post.title }}">
-                        </div>
-                        <!-- Profile Modal - Text-->
-                        <div class="p-1">
-                            <p class="card-text">{{post.description}}.</p>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="col-12 d-flex justify-content-between">
-                            <a href="{{ url_for('edit_post',  post_id=post._id) }}" class="btn btn-info btn-md">Edit
-                                Post</a>
-                            <a href="{{ url_for('delete_post', post_id=post._id) }}" class="btn btn-danger btn-md">Delete
-                                Post</a>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
         {% endif %}
     {% endfor %}
 
