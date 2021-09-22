@@ -96,7 +96,7 @@ def profile(username):
     Check if user match session cookie
     Render Profile page if verified
     """
-    try:
+    if "user" in session:
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
         # Get categories from DB
@@ -107,12 +107,10 @@ def profile(username):
             return render_template(
                 "profile.html", username=username,
                 isButton=True, categories=categories, posts=posts)
-    # Catch and rediret unauthorized users page access
-    except KeyError:
+    # Rediret unauthorized users page access
+    else:
         flash("Please log in or register")
         return redirect(url_for("login"))
-
-    return redirect(url_for("login"))
     
 
 @app.route("/delete_profile", methods=["GET", "POST"])
@@ -123,36 +121,32 @@ def delete_profile():
     from form and find username
     and password in the DB For deletion
     """
-    try:
-        # Find user's username from db 
-        # #and chect matching session cookie
-        username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
-    except KeyError:
-        flash("Please log in or register")
-        return redirect(url_for("login"))
-
-    if request.method == "POST" and username:
-        # check if username exists in db
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
-        if existing_user:
-            # ensure hashed password matches user input
-            if check_password_hash(
-                    existing_user["password"], request.form.get("password")):
-                mongo.db.users.remove(existing_user)
-                flash("Good Buy")
-                return redirect(url_for("logout"))
+    if "user" in session:
+        if request.method == "POST":
+            # check if username exists in db
+            existing_user = mongo.db.users.find_one(
+                {"username": request.form.get("username").lower()})
+            if existing_user:
+                # ensure hashed password matches user input
+                if check_password_hash(
+                        existing_user["password"], request.form.get("password")):
+                    mongo.db.users.remove(existing_user)
+                    flash("Good Buy")
+                    return redirect(url_for("logout"))
+                else:
+                    # invalid password match
+                    flash("Incorrect Username and/or Password")
+                    return redirect(url_for("delete_profile"))
             else:
-                # invalid password match
+                # username doesn't exist
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("delete_profile"))
-        else:
-            # username doesn't exist
-            flash("Incorrect Username and/or Password")
-            return redirect(url_for("delete_profile"))
 
-    return render_template("edit_profile.html")
+        return render_template("edit_profile.html")
+        # Rediret unauthorized users page access
+    else:
+        flash("Please log in or register")
+        return redirect(url_for("login"))
 
 
 @app.route("/logout")
@@ -160,23 +154,14 @@ def logout():
     """
     remove the username from the session if it's there
     """
-    try:
-        # Find user's username from db
-        # #and chect match session cookie
-        username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
-
-    except KeyError:
-        flash("Please log in or register")
-        return redirect(url_for("login"))
-
     # Remove session cookie
-    if username:
+    if "user" in session:
         session.pop('user')
         return redirect(url_for('index'))
+    # Rediret unauthorized users page access
     else:
         flash("Please log in or register")
-        return redirect(url_for('index'))
+        return redirect(url_for("login"))
 
 
 @app.route("/add_post", methods=("POST", "GET"))
@@ -185,68 +170,63 @@ def add_post():
     Add new posts to the Mongo DB
     Upload image to the Cloudinary API
     """
-    try:
-        # Find user's username from db
-        # and chect match for session cookie
-        username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
-    except KeyError:
+    if "user" in session:
+        # Return all the categories form DB
+        categories = mongo.db.categories.find()
+        if request.method == "POST":
+            upload_result = None
+            image = None
+            image_small = None
+            if request.files:
+                # File upoad to cloudinary
+                folder = request.form.get("category")
+                file_to_upload = request.files['file']
+                upload_result = upload(file_to_upload, folder=folder)
+                # Get 1920p size image URL
+                image, options = cloudinary_url(
+                    upload_result['public_id'],
+                    format="jpg", crop="fill", width=1920)
+                # Get image thumblail URL
+                image_small, options = cloudinary_url(
+                    upload_result['public_id'],
+                    format="jpg", crop="fill", width=300, height=300)
+                # Get image public id
+                img_id = upload_result.get('public_id')
+                # requers url status
+                URL_status = requests.get(image)
+                # Submit post to Mongo DB if file upload was success
+                if URL_status.status_code == 200:
+                    submit = {
+                        "category_name": request.form.get("category"),
+                        "title": request.form.get("title"),
+                        "description": request.form.get("description"),
+                        "image": image,
+                        "image_sm": image_small,
+                        "img_id": img_id,
+                        "created_by": session["user"],
+                        "time_created": now
+                        }
+                    mongo.db.posts.insert_one(submit)
+                    flash("Post was successfully added")
+                    return redirect(url_for("add_post", categories=categories))
+                else:
+                    # failed cloudinary API
+                    if URL_status.status_code != 200:
+                        flash(f"Status code: {URL_status.status_code}")
+                        flash("Post did not upload Try again")
+                        return redirect(url_for("add_post", categories=categories))
+                        # Failed to uplload to the mongo DB
+                    else:
+                        flash("Post failed upload")
+                        flash("Please try again later")
+                        return redirect(url_for("add_post", categories=categories))
+
+        else:
+            return render_template("add_post.html", categories=categories)
+    # Rediret unauthorized users page access
+    else:
         flash("Please log in or register")
         return redirect(url_for("login"))
-
-    # Return all the categories form DB
-    categories = mongo.db.categories.find()
-
-    if username and request.method == "POST":
-        upload_result = None
-        image = None
-        image_small = None
-        if request.files:
-            # File upoad to cloudinary
-            folder = request.form.get("category")
-            file_to_upload = request.files['file']
-            upload_result = upload(file_to_upload, folder=folder)
-            # Get 1920p size image URL
-            image, options = cloudinary_url(
-                upload_result['public_id'],
-                format="jpg", crop="fill", width=1920)
-            # Get image thumblail URL
-            image_small, options = cloudinary_url(
-                upload_result['public_id'],
-                format="jpg", crop="fill", width=300, height=300)
-            # Get image public id
-            img_id = upload_result.get('public_id')
-            # requers url status
-            URL_status = requests.get(image)
-            # Submit post to Mongo DB if file upload was success
-            if URL_status.status_code == 200:
-                submit = {
-                    "category_name": request.form.get("category"),
-                    "title": request.form.get("title"),
-                    "description": request.form.get("description"),
-                    "image": image,
-                    "image_sm": image_small,
-                    "img_id": img_id,
-                    "created_by": session["user"],
-                    "time_created": now
-                    }
-                mongo.db.posts.insert_one(submit)
-                flash("Post was successfully added")
-                return redirect(url_for("add_post", categories=categories))
-            else:
-                # failed cloudinary API
-                if URL_status.status_code != 200:
-                    flash(f"Status code: {URL_status.status_code}")
-                    flash("Post did not upload Try again")
-                    return redirect(url_for("add_post", categories=categories))
-                    # Failed to uplload to the mongo DB
-                else:
-                    flash("Post failed upload")
-                    flash("Please try again later")
-                    return redirect(url_for("add_post", categories=categories))
-
-    else:
-        return render_template("add_post.html", categories=categories)
 
 
 @app.route("/edit_post/<post_id>", methods=["GET", "POST"])
@@ -257,46 +237,42 @@ def edit_post(post_id):
     Update existing post Title and
     description only
     """
-    try:
-        # Find user's username from db
-        # and chect matching session cookie
-        username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
-    except KeyError:
+    if "user" in session:
+        # Find existing post by id and get category
+        post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+        categories = mongo.db.categories.find().sort("category_name", 1)
+
+        # Get image id and url out of mongo DB
+        for k, v in post.items():
+            if k == "image":
+                image = v
+            elif k == "img_id":
+                image_id = v
+            elif k == "image_sm":
+                image_sm = v
+            elif k == "time_created":
+                time_stamp = v
+
+        # Update Object to be submitet for update
+        if request.method == "POST":
+            submit = {
+                "category_name": request.form.get("category"),
+                "title": request.form.get("title"),
+                "description": request.form.get("description"),
+                "image": image,
+                "image_sm": image_sm,
+                "img_id": image_id,
+                "created_by": session["user"],
+                "time_created": time_stamp
+            }
+            mongo.db.posts.update({"_id": ObjectId(post_id)}, submit)
+            flash("post Successfully Updated")
+
+        return render_template("edit_post.html", categories=categories, post=post)
+    # Rediret unauthorized users page access
+    else:
         flash("Please log in or register")
         return redirect(url_for("login"))
-
-    # Find existing post by id and get category
-    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-    categories = mongo.db.categories.find().sort("category_name", 1)
-
-    # Get image id and url out of mongo DB
-    for k, v in post.items():
-        if k == "image":
-            image = v
-        elif k == "img_id":
-            image_id = v
-        elif k == "image_sm":
-            image_sm = v
-        elif k == "time_created":
-            time_stamp = v
-
-    # Update Object to be submitet for update
-    if username and request.method == "POST":
-        submit = {
-            "category_name": request.form.get("category"),
-            "title": request.form.get("title"),
-            "description": request.form.get("description"),
-            "image": image,
-            "image_sm": image_sm,
-            "img_id": image_id,
-            "created_by": session["user"],
-            "time_created": time_stamp
-        }
-        mongo.db.posts.update({"_id": ObjectId(post_id)}, submit)
-        flash("post Successfully Updated")
-
-    return render_template("edit_post.html", categories=categories, post=post)
 
 
 @app.route("/delete_post/<post_id>")
@@ -306,43 +282,39 @@ def delete_post(post_id):
     Get image url trom DB and
     delete from cloudinary storage
     """
-    try:
-        # Find user's username from db
-        # #and chect matching session cookie
-        mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
-    except KeyError:
+    if user in session:
+        # Find post by id and iterate
+        # over to extract image id and URL
+        posts = mongo.db.posts.find_one(
+            {"_id": ObjectId(post_id)}, {"img_id": 1, "_id": 0})
+        for x, y in posts.items():
+            if x == "img_id":
+                image_id = y
+
+        try:
+            # Destroy permanently delete a single asset
+            # Invalidates CDN cached copies of the asset
+            cloudinary.uploader.destroy(image_id, invalidate='true')
+            status = True
+        # Catch error If try delete same asset again
+        except AttributeError:
+            flash("file already was deleted")
+            return redirect(url_for("profile", username=session["user"]))
+
+        if status:
+            mongo.db.posts.remove({"_id": ObjectId(post_id)})
+            flash("Post was successluly deleted")
+        else:
+            # Failed to destroy image from cloudinary
+            flash("Failed to delete Image file")
+            flash("Please try again later")
+            return redirect(url_for("profile", username=session["user"]))
+
+        return redirect(url_for("profile", username=session["user"]))
+    # Rediret unauthorized users page access
+    else:
         flash("Please log in or register")
         return redirect(url_for("login"))
-
-    # Find post by id and iterate
-    # over to extract image id and URL
-    posts = mongo.db.posts.find_one(
-        {"_id": ObjectId(post_id)}, {"img_id": 1, "_id": 0})
-    for x, y in posts.items():
-        if x == "img_id":
-            image_id = y
-
-    try:
-        # Destroy permanently delete a single asset
-        # Invalidates CDN cached copies of the asset
-        cloudinary.uploader.destroy(image_id, invalidate='true')
-        status = True
-    # Catch error If try delete same asset again
-    except AttributeError:
-        flash("file already was deleted")
-        return redirect(url_for("profile", username=session["user"]))
-
-    if status:
-        mongo.db.posts.remove({"_id": ObjectId(post_id)})
-        flash("Post was successluly deleted")
-    else:
-        # Failed to destroy image from cloudinary
-        flash("Failed to delete Image file")
-        flash("Please try again later")
-        return redirect(url_for("profile", username=session["user"]))
-
-    return redirect(url_for("profile", username=session["user"]))
 
 
 @app.route('/gallery')

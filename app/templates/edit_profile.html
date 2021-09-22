@@ -10,17 +10,17 @@
     <div class="max-width">
         <div class="col-12">
             <!-- to get an API token!-->
-            <form method="POST" action="{{ url_for('delete_profile') }}">
+            <form clas="was-validated" method="POST" action="{{ url_for('delete_profile') }}">
                 <!-- title input-->
-                <div class="custom form-floating mb-3">
-                    <input class=" form-control" style="height: 4rem" minlength="5" maxlength="15"
+                <div class="form-floating mb-3">
+                    <input class="form-control" style="height: 4rem" minlength="5" maxlength="15"
                     pattern="^[a-zA-Z0-9]{5,15}$" name="username" id="username" type="text"
                         placeholder="Enter your username..." required />
                     <label for="username">username</label>
                 </div>
                 <!-- Description input-->
         
-                <div class="custom form-floating mb-3">
+                <div class="form-floating mb-3">
                     <input class="form-control" style="height: 4rem" name="password" minlength="5" maxlength="15"
                     pattern="^[a-zA-Z0-9]{5,15}$" id="password" type="password"
                         placeholder="Enter your password..." required />

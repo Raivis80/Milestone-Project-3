@@ -5,13 +5,13 @@
 
 {% block content %}
 <!-- User Profile Section-->
-<div class="row justify-content-center">
+<div class="profile-cont row justify-content-center">
     <!-- uer posts -->
     {% for post in posts %}
         {% if session.user == post.created_by %}
             <div class="card my-card text-center m-2" data-bs-toggle="modal" data-bs-target="#a{{post._id}}">
-                <div class="img_post">
-                    <img src="{{ post.image_sm }}" class="card-img-top img-fluid" alt="{{ post.categoty_name }}title {{ post.title }}">
+                <div class="img_posts">
+                    <img src="{{ post.image_sm }}" class="" alt="{{ post.categoty_name }}title {{ post.title }}">
                 </a>
                 </div>
                 <div class="p-1 d-flex flex-column justify-content-between mt-1">
@@ -28,7 +28,7 @@
             <!-- Vertically centered scrollable modal -->
             <div class="portfolio-modal modal fade" id="a{{post._id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <!-- Profile Modal 1-->
-                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                   <div class="modal-content">
                     <div class="modal-header">
                          <!-- Profile Modal - Title-->
