@@ -189,7 +189,7 @@ def add_post():
                 # Get image thumblail URL
                 image_small, options = cloudinary_url(
                     upload_result['public_id'],
-                    format="jpg", crop="fill", width=300, height=300)
+                    format="jpg", crop="fill", width=300)
                 # Get image public id
                 img_id = upload_result.get('public_id')
                 # requers url status

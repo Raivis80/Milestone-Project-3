@@ -14,25 +14,35 @@
                 <!-- title input-->
                 <div class="form-floating mb-3">
                     <input class="form-control" style="height: 4rem" minlength="5" maxlength="15"
-                    pattern="^[a-zA-Z0-9]{5,15}$" name="username" id="username" type="text"
+                        pattern="^[a-zA-Z0-9]{5,15}$" name="username" id="username" type="text"
                         placeholder="Enter your username..." required />
                     <label for="username">username</label>
                 </div>
                 <!-- Description input-->
-        
+
                 <div class="form-floating mb-3">
                     <input class="form-control" style="height: 4rem" name="password" minlength="5" maxlength="15"
-                    pattern="^[a-zA-Z0-9]{5,15}$" id="password" type="password"
-                        placeholder="Enter your password..." required />
+                        pattern="^[a-zA-Z0-9]{5,15}$" id="password" type="password" placeholder="Enter your password..."
+                        required />
                     <label for="password">Password</label>
                 </div>
 
                 <!-- Submit Button-->
-                <div class="btn_goup_user custom-btn d-flex justify-content-between">
-                    <button class="btn col-12 btn-danger btn-lg" id="delete" type="submit">Delete
-                        Account
-                    </button>
+                <div class="pt-2 del_post form-check d-flex justify-content-between">
+                    <div>
+                        <label for="myCheck">
+                            <em>Confirm to delete</em>
+                        </label>
+                        <input class="form-check-input bg-danger" type="checkbox" id="myCheck" onclick="myFunction()">
+                    </div>
+                    <div class="btn_goup_user custom-btn d-flex justify-content-between">
+                        <button id="enabled" class="btn col-12 btn-danger btn-lg" id="delete" type="submit">Delete
+                            Account
+                        </button>
+                    </div>
+                    <div id="disabled" class="btn btn-danger btn-lg">Delete Account</div>
                 </div>
+
             </form>
         </div>
     </div>
