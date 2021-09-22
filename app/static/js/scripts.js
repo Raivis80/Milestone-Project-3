@@ -52,3 +52,22 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+// Enale delete button
+
+
+const enabled = document.getElementById('enabled');
+const disabled = document.getElementById('disabled');
+enabled.style.display = "none"
+disabled.style.display = "block"
+
+function myFunction() {
+    let checkBox = document.getElementById("myCheck");
+    if (checkBox.checked == true){
+        enabled.style.display = "block"
+        disabled.style.display = "none"
+    } else {
+        enabled.style.display = "none"
+        disabled.style.display = "block"
+    }
+  }

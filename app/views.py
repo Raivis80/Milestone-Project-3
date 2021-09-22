@@ -284,7 +284,7 @@ def delete_post(post_id):
     Get image url trom DB and
     delete from cloudinary storage
     """
-    if user in session:
+    if "user" in session:
         # Find post by id and iterate
         # over to extract image id and URL
         posts = mongo.db.posts.find_one(
