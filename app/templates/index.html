@@ -22,7 +22,7 @@
           {% for image in images %}
           {% if loop.index <= 3 %}
           <div class="item">
-            <a href="{{ url_for('galery') }}">
+            <a href="{{ url_for('gallery') }}">
               <img class="" src="{{ image.image_sm }}" alt="{{ image.category }} Title Text {{ image.title }}" />
             </a>
           </div>
@@ -35,7 +35,7 @@
         {% for art in digital_art %}
         {% if loop.index <= 3 %}
         <div class="item">
-          <a href="{{ url_for('galery') }}">
+          <a href="{{ url_for('gallery') }}">
             <img class="" src="{{ art.image_sm }}" alt="{{ art.category }} Title Text {{ art.title }}" />
           </a>
         </div>
@@ -48,7 +48,7 @@
         {% for post in painting %}
         {% if loop.index <= 3 %}
         <div class="item">
-          <a href="{{ url_for('galery') }}">
+          <a href="{{ url_for('gallery') }}">
             <img class="" src="{{ post.image_sm }}" alt="{{ post.category }} Title Text {{ post.title }}" />
           </a>
         </div>

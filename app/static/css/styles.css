@@ -2229,8 +2229,8 @@ progress {
 }
 
 .col-form-label-lg {
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
   font-size: 1.25rem;
 }
 
@@ -4471,6 +4471,11 @@ fieldset:disabled .btn {
   color: #15967d;
 }
 
+.nav-link:hover,
+.nav-link:focus {
+  color: #15967d;
+}
+
 .nav-link.disabled {
   color: #6c757d;
   pointer-events: none;
@@ -5135,7 +5140,7 @@ fieldset:disabled .btn {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 0.125rem solid rgba(0, 0, 0, 0.125);
+  border-top: 1px solid	#aaafb3;
   border-radius: 0.5rem;
 }
 
@@ -6300,8 +6305,7 @@ fieldset:disabled .btn {
   pointer-events: auto;
   background-color: #fff;
   background-clip: padding-box;
-  border: 0.125rem solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.75rem;
+  border-radius: 0.2rem;
   outline: 0;
 }
 
@@ -6328,10 +6332,8 @@ fieldset:disabled .btn {
   flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1rem;
-  border-bottom: 0.125rem solid #dee2e6;
-  border-top-left-radius: 0.625rem;
-  border-top-right-radius: 0.625rem;
+  padding: .5rem .5rem;
+  border-bottom: 1px solid	#aaafb3;
 }
 
 .modal-header .btn-close {
@@ -6347,7 +6349,6 @@ fieldset:disabled .btn {
 .modal-body {
   position: relative;
   flex: 1 1 auto;
-  padding: 1rem;
 }
 
 .modal-footer {
@@ -6357,9 +6358,7 @@ fieldset:disabled .btn {
   align-items: center;
   justify-content: flex-end;
   padding: 0.75rem;
-  border-top: 0.125rem solid #dee2e6;
-  border-bottom-right-radius: 0.625rem;
-  border-bottom-left-radius: 0.625rem;
+  border-top: 1px solid	#aaafb3;
 }
 
 .modal-footer>* {
@@ -6368,7 +6367,7 @@ fieldset:disabled .btn {
 
 @media (min-width: 576px) {
   .modal-dialog {
-    max-width: 500px;
+    max-width: 900px;
     margin: 1.75rem auto;
   }
 
@@ -6731,7 +6730,7 @@ fieldset:disabled .btn {
 
 .bs-popover-top>.popover-arrow,
 .bs-popover-auto[data-popper-placement^=top]>.popover-arrow {
-  bottom: -0.625rem;
+  bottom: -0.2rem;
 }
 
 .bs-popover-top>.popover-arrow::before,
@@ -6750,7 +6749,7 @@ fieldset:disabled .btn {
 
 .bs-popover-end>.popover-arrow,
 .bs-popover-auto[data-popper-placement^=right]>.popover-arrow {
-  left: -0.625rem;
+  left: -0.2rem;
   width: 0.5rem;
   height: 1rem;
 }
@@ -6771,7 +6770,7 @@ fieldset:disabled .btn {
 
 .bs-popover-bottom>.popover-arrow,
 .bs-popover-auto[data-popper-placement^=bottom]>.popover-arrow {
-  top: -0.625rem;
+  top: -0.2rem;
 }
 
 .bs-popover-bottom>.popover-arrow::before,
@@ -6802,7 +6801,7 @@ fieldset:disabled .btn {
 
 .bs-popover-start>.popover-arrow,
 .bs-popover-auto[data-popper-placement^=left]>.popover-arrow {
-  right: -0.625rem;
+  right: -0.2rem;
   width: 0.5rem;
   height: 1rem;
 }
@@ -6827,8 +6826,8 @@ fieldset:disabled .btn {
   font-size: 1rem;
   background-color: #f0f0f0;
   border-bottom: 0.125rem solid rgba(0, 0, 0, 0.2);
-  border-top-left-radius: 0.625rem;
-  border-top-right-radius: 0.625rem;
+  border-top-left-radius: 0.2rem;
+  border-top-right-radius: 0.2rem;
 }
 
 .popover-header:empty {
@@ -12306,7 +12305,7 @@ html {
 
 #mainNav .navbar-nav li.nav-item a.nav-link:active,
 #mainNav .navbar-nav li.nav-item a.nav-link:focus {
-  color: #fff;
+  color: #1abc9c;
 }
 
 #mainNav .navbar-nav li.nav-item a.nav-link.active {
@@ -12335,15 +12334,13 @@ html {
   }
 
   #mainNav .navbar-nav>li.nav-item>a.nav-link.active {
-    color: #fff;
-    background: #1abc9c;
+    color: #1abc9c;
   }
 
   #mainNav .navbar-nav>li.nav-item>a.nav-link.active:active,
   #mainNav .navbar-nav>li.nav-item>a.nav-link.active:focus,
   #mainNav .navbar-nav>li.nav-item>a.nav-link.active:hover {
-    color: #fff;
-    background: #1abc9c;
+    color: #1abc9c;
   }
 
   #mainNav.navbar-shrink {
@@ -12549,6 +12546,12 @@ html {
   min-height: 90vh;
 }
 
+
+.x_btn:hover {
+  color: #16a085;
+}
+
+
 /* My posts section */
 /* Card styling */
 .my-card {
@@ -12572,23 +12575,16 @@ html {
   transform: translateX(-50%);
 }
 
-/* Modal body */
-.modal-body {
-  border: none;
-  background-color: #f5f5f5;
+/* Modal body  border-top: 1px solid	#aaafb3; */
+
+.modal_img  {
+  max-height: 80vh;
+  max-width: 99.9%;
 }
 
-
-.modal_img {
-  max-height: 100vh;
+.modal_text {
+  max-width: 400px;
 }
-
-.modal_img img {
-  border-radius: .2rem;
-  width: 100%;
-  max-height: 100%;
-}
-
 
 @media screen and (max-width: 465px) {
   .my-card h6 {
@@ -12664,8 +12660,6 @@ html {
   .item img {
     min-height: 300px;
   }
-
-
 }
 
 @media screen and (max-width: 555px) {
