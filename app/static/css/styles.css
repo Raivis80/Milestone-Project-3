@@ -12546,7 +12546,11 @@ html {
   min-height: 90vh;
 }
 
+.search_bb {
+  color: white;
+}
 
+.search_bb:hover,
 .x_btn:hover {
   color: #16a085;
 }
@@ -12695,4 +12699,17 @@ html {
   .item img {
     min-height: 250px;
   }
+}
+
+.search_bb {
+  margin-top: -50px;
+  font-size: 1.8rem;
+}
+
+.alert.success {
+  color: #1abc9c;
+}
+
+.alert.error {
+  color: #ff6666;
 }

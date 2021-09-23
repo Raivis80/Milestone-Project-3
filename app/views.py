@@ -77,12 +77,12 @@ def login():
                 # Add user to session cookie
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(
-                    request.form.get("username").capitalize()))
+                    request.form.get("username").capitalize()), 'success')
                 return redirect(url_for(
                     "profile", username=session["user"]))
         else:
             # If username doesn't exist
-            flash("Incorrect Username and/or Password")
+            flash("Incorrect Username and/or Password", 'error')
             return redirect(url_for("login"))
 
     return render_template("login.html")
@@ -109,7 +109,7 @@ def profile(username):
                 isButton=True, categories=categories, posts=posts,  profile=True)
     # Rediret unauthorized users page access
     else:
-        flash("Please log in or register")
+        flash("Please log in or register", 'error')
         return redirect(url_for("login"))
     
 
@@ -131,21 +131,21 @@ def delete_profile():
                 if check_password_hash(
                         existing_user["password"], request.form.get("password")):
                     mongo.db.users.remove(existing_user)
-                    flash("Good Buy")
+                    flash("Good Buy", 'success')
                     return redirect(url_for("logout"))
                 else:
                     # invalid password match
-                    flash("Incorrect Username and/or Password")
+                    flash("Incorrect Username and/or Password", 'error')
                     return redirect(url_for("delete_profile", account=True))
             else:
                 # username doesn't exist
-                flash("Incorrect Username and/or Password")
+                flash("Incorrect Username and/or Password", 'error')
                 return redirect(url_for("delete_profile", account=True))
 
         return render_template("edit_profile.html", account=True)
         # Rediret unauthorized users page access
     else:
-        flash("Please log in or register")
+        flash("Please log in or register", 'error')
         return redirect(url_for("login"))
 
 
@@ -160,7 +160,7 @@ def logout():
         return redirect(url_for('index'))
     # Rediret unauthorized users page access
     else:
-        flash("Please log in or register")
+        flash("Please log in or register", 'error')
         return redirect(url_for("login"))
 
 
@@ -207,25 +207,25 @@ def add_post():
                         "time_created": now
                         }
                     mongo.db.posts.insert_one(submit)
-                    flash("Post was successfully added")
+                    flash("Post was successfully added", 'success')
                     return redirect(url_for("add_post", categories=categories, post=True))
                 else:
                     # failed cloudinary API
                     if URL_status.status_code != 200:
                         flash(f"Status code: {URL_status.status_code}")
-                        flash("Post did not upload Try again")
+                        flash("Post did not upload Try again", 'error')
                         return redirect(url_for("add_post", categories=categories, post=True))
                         # Failed to uplload to the mongo DB
                     else:
-                        flash("Post failed upload")
-                        flash("Please try again later")
+                        flash("Post failed upload", 'error')
+                        flash("Please try again later", 'error')
                         return redirect(url_for("add_post", categories=categories, post=True))
 
         else:
             return render_template("add_post.html", categories=categories, post=True)
     # Rediret unauthorized users page access
     else:
-        flash("Please log in or register")
+        flash("Please log in or register", 'error')
         return redirect(url_for("login"))
 
 
@@ -266,16 +266,15 @@ def edit_post(post_id):
                 "time_created": time_stamp
             }
             mongo.db.posts.update({"_id": ObjectId(post_id)}, submit)
-            flash("post Successfully Updated")
+            flash("post Successfully Updated", 'success')
             return redirect(url_for("profile", username=session["user"]))
 
         return render_template("edit_post.html", categories=categories, post=post)
     # Rediret unauthorized users page access
     else:
-        flash("Please log in or register")
+        flash("Please log in or register", 'error')
         return redirect(url_for("login"))
    
-
 
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
@@ -300,29 +299,55 @@ def delete_post(post_id):
             status = True
         # Catch error If try delete same asset again
         except AttributeError:
-            flash("file already was deleted")
+            flash("file already was deleted", 'error')
             return redirect(url_for("profile", username=session["user"]))
 
         if status:
             mongo.db.posts.remove({"_id": ObjectId(post_id)})
-            flash("Post was successluly deleted")
+            flash("Post was successluly deleted", 'success')
         else:
             # Failed to destroy image from cloudinary
-            flash("Failed to delete Image file")
-            flash("Please try again later")
+            flash("Failed to delete Image file", 'error')
+            flash("Please try again later", 'error')
             return redirect(url_for("profile", username=session["user"]))
 
         return redirect(url_for("profile", username=session["user"]))
     # Rediret unauthorized users page access
     else:
-        flash("Please log in or register")
+        flash("Please log in or register", 'error')
         return redirect(url_for("login"))
 
 
-@app.route('/gallery')
+@app.route('/gallery', methods=["GET", "POST"])
 def gallery():
-    # Gallery page
-    # Get all posts form DB
+    """
+    Gallery page
+    Get all posts form DB
+    """
     categories = mongo.db.categories.find()
     posts = list(mongo.db.posts.find().sort('_id', -1))
-    return render_template('gallery.html', posts=posts, categories=categories, title="gallery")
+    if request.method == "POST":
+        # Query posts by category
+        categories = mongo.db.categories.find()
+        category_name = request.form.get("category")
+
+        posts = list(mongo.db.posts.find({"category_name": category_name }))
+        
+        flash(f"search Results for {category_name}", 'success')
+        return render_template("gallery.html", posts=posts,
+            categories=categories, title="gallery")
+
+    return render_template('gallery.html', posts=posts,
+        categories=categories, title="gallery")
+
+
+@app.route('/select', methods=["GET", "POST"])
+def select():
+    if request.method == "POST":
+        categories = mongo.db.categories.find()
+        category_name = request.form.get("category")
+
+        posts = list(mongo.db.posts.find({"category_name": category_name }))
+        
+        return render_template("gallery.html", posts=posts,
+            categories=categories, title="gallery")
