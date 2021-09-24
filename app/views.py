@@ -179,7 +179,7 @@ def add_post():
             image_small = None
             if request.files:
                 # File upoad to cloudinary
-                folder = request.form.get("category")
+                folder = request.form.get("category").lower()
                 file_to_upload = request.files['file']
                 upload_result = upload(file_to_upload, folder=folder)
                 # Get 1920p size image URL
@@ -197,8 +197,8 @@ def add_post():
                 # Submit post to Mongo DB if file upload was success
                 if URL_status.status_code == 200:
                     submit = {
-                        "category_name": request.form.get("category"),
-                        "title": request.form.get("title"),
+                        "category_name": request.form.get("category").lower(),
+                        "title": request.form.get("title").lower(),
                         "description": request.form.get("description"),
                         "image": image,
                         "image_sm": image_small,
@@ -256,8 +256,8 @@ def edit_post(post_id):
         # Update Object to be submitet for update
         if request.method == "POST":
             submit = {
-                "category_name": request.form.get("category"),
-                "title": request.form.get("title"),
+                "category_name": request.form.get("category").lower(),
+                "title": request.form.get("title").lower(),
                 "description": request.form.get("description"),
                 "image": image,
                 "image_sm": image_sm,
@@ -324,30 +324,57 @@ def gallery():
     Gallery page
     Get all posts form DB
     """
+    # mongo.db.posts.drop_indexes()
+    # mongo.db.posts.create_index([
+    #   ("title", "text"), ("description", "text"), ("created_by", "text")])
     categories = mongo.db.categories.find()
     posts = list(mongo.db.posts.find().sort('_id', -1))
     if request.method == "POST":
-        # Query posts by category
+        search = request.form.get("search").lower()
+        category_name = request.form.get("category").lower()
         categories = mongo.db.categories.find()
-        category_name = request.form.get("category")
+        # Search by keyword, username
+        # Or Query posts by category
+        test = "select category"
+        # Search by keyword and category
+        if search != "" and category_name != test:
+            posts = list(mongo.db.posts.find({ "$and" : [ {
+                "category_name": category_name }, {"$text": {"$search": search}}] }))
+            if len(posts) == 0:     
+                flash(f"No results for {search} in {category_name}", 'error')
+                return render_template("gallery.html", posts=posts, 
+                    categories=categories, title="gallery")
+            else:
+                flash(f"Results for {search} in {category_name}", 'success')
+                return render_template("gallery.html", posts=posts,
+                categories=categories, title="gallery")
+        # Search by Keyword only
+        elif search != "":
+            posts = list(mongo.db.posts.find({"$text": {"$search": search}}))
+            if len(posts) == 0:     
+                flash(f"No results for {search}", 'error')
+                return render_template("gallery.html", posts=posts, 
+                    categories=categories, title="gallery")
+            else:
+                flash(f"Results for {search}", 'success')
+                return render_template("gallery.html", posts=posts,
+                categories=categories, title="gallery")
+        # Search by category only
+        elif category_name != test and search == "":
+            posts = list(mongo.db.posts.find({"category_name": category_name }))
+            if len(posts) == 0:     
+                flash(f"No results for {category_name}", 'error')
+                return render_template("gallery.html", posts=posts, 
+                    categories=categories, title="gallery")
+            else:
+                flash(f"Results for category {category_name}", 'success')
+                return render_template("gallery.html", posts=posts,
+                categories=categories, title="gallery")
+        else:
+            return render_template("gallery.html", posts=posts,
+                categories=categories, title="gallery")
 
-        posts = list(mongo.db.posts.find({"category_name": category_name }))
-        
-        flash(f"search Results for {category_name}", 'success')
-        return render_template("gallery.html", posts=posts,
+    else:
+        return render_template('gallery.html', posts=posts,
             categories=categories, title="gallery")
 
-    return render_template('gallery.html', posts=posts,
-        categories=categories, title="gallery")
-
-
-@app.route('/select', methods=["GET", "POST"])
-def select():
-    if request.method == "POST":
-        categories = mongo.db.categories.find()
-        category_name = request.form.get("category")
-
-        posts = list(mongo.db.posts.find({"category_name": category_name }))
-        
-        return render_template("gallery.html", posts=posts,
-            categories=categories, title="gallery")

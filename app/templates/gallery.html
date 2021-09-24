@@ -27,7 +27,7 @@
                 <div class="modal-header  text-uppercase font-weight-bold bg-secondary text-white"
                     data-bs-dismiss="modal" aria-label="Close">
                     <h2 class="modal-title">
-                        {{ post.title }}{{post.category_name}}
+                        {{ post.title }}
                     </h2>
                     <div>
                         <h2><i class="fas fa-times x_btn text-twite"></i></h2>
@@ -73,11 +73,11 @@
                 <form id="postForm" method="POST" action="{{ url_for('gallery') }}">
                     <!-- Search query Input field -->
                     <div class="mb-3">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
                     </div>
                     <!-- select category From existing categories -->
                     <select class="form-select mb-2" name="category" id="category" aria-label="example">
-                        <option selected value="Select Categoy">Select Category</option>
+                        <option selected value="select category">select category</option>
                         {% for category in categories %}
 
                         <option value="{{ category.category_name }}">{{ category.category_name }}
