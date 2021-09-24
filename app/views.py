@@ -126,7 +126,7 @@ def delete_profile():
             # check if username exists in db
             existing_user = mongo.db.users.find_one(
                 {"username": request.form.get("username").lower()})
-            if existing_user:
+            if existing_user == session["user"]:
                 # ensure hashed password matches user input
                 if check_password_hash(
                         existing_user["password"], request.form.get("password")):
@@ -291,7 +291,6 @@ def delete_post(post_id):
         for x, y in posts.items():
             if x == "img_id":
                 image_id = y
-
         try:
             # Destroy permanently delete a single asset
             # Invalidates CDN cached copies of the asset
