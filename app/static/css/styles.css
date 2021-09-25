@@ -12183,7 +12183,13 @@ html {
 }
 
 .page-section {
-  padding: 4rem 0;
+  padding: 6rem 0;
+}
+
+@media (min-width: 999)  {
+  .page-section {
+    padding: 2rem 0;
+  }
 }
 
 .page-section .page-section-heading {
@@ -12198,9 +12204,6 @@ html {
 
   }
 
-  .page-section {
-    padding: 6rem 0;
-  }
 }
 
 
@@ -12356,6 +12359,31 @@ html {
   color: #7d6c6c;
 }
 
+/* Indeh Page----------------------- */
+/* ================================== */
+.brand {
+  position: relative;
+}
+
+.brand::after {
+  font-size: .7rem;
+  position: absolute;
+  bottom: -45%;
+  left: 4px;
+  content: "Expressing Emotions Through Creativity";
+}
+
+.brand::before {
+  position: absolute;
+  content: "";
+  width: 95%;
+  height:93%;
+  left: -10px;
+  top: 9px;
+  border-left: #1abc9c 10px solid;
+  border-bottom: #1abc9c 3px solid;
+}
+
 .masthead {
   padding-top: 2rem;
   padding-bottom: 4rem;
@@ -12377,20 +12405,103 @@ html {
 @media (min-width: 992px) {
   .masthead {
     padding-top: calc(2rem + 104px);
-    padding-bottom: 4rem;
+    padding-bottom: 5rem;
   }
 
   .masthead .masthead-heading {
     font-size: 6rem;
-    line-height: 3.5rem;
+    line-height: 6rem;
   }
 
   .masthead .masthead-subheading {
     font-size: 1.5rem;
   }
+  .brand::after {
+    font-size: 1.06rem;
+    left: 6px;
+  }
+  .brand::before {
+  width: 95%;
+  height:92%;
+  left: -10px;
+  top:14px;
+}
 }
 
+.text-bottom {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  min-height: 50px;
+  border-left: #1abc9c 10px solid;
+}
 
+.text-bottom p {
+  margin:0;
+}
+/*Custom Image carousel home---- */
+.item .portfolio-item-caption-content {
+  font-size: 1.5rem;
+}
+
+.item {
+  width: 33%;
+  height: 300px;
+}
+
+.item img {
+  width: 100%;
+  border-radius: .2rem;
+  min-height: 300px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 999px) {
+  .item_outer div:nth-child(3n+0) {
+    display: none;
+  }
+
+  .item {
+    background-color: lightcoral;
+    width: 50%;
+    height: 300px;
+  }
+
+  .item img {
+    min-height: 300px;
+  }
+}
+
+@media screen and (max-width: 555px) {
+  .item {
+    background-color: lightcoral;
+    width: 50%;
+    height: 250px;
+  }
+
+  .item img {
+    min-height: 250px;
+  }
+  .paddi{
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .item_outer div:nth-child(2n+0) {
+    display: none;
+  }
+
+  .item {
+    background-color: lightcoral;
+    width: 100%;
+    max-height: 400px;
+  }
+
+  .item img {
+    min-height: 250px;
+  }
+}
 /* Gallery--------------- */
 .cont,
 .card,
@@ -12421,7 +12532,6 @@ html {
 }
 
 @media screen and (max-width: 400px) {
-
   .cont,
   .img-fluid-gall img {
     width: 400px;
@@ -12436,8 +12546,6 @@ html {
 }
 
 /* Gallery---------- */
-
-
 .img-fluid-gall {
   width: 100%;
   height: 100%;
@@ -12477,6 +12585,7 @@ html {
 }
 
 .portfolio-modal {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   max-height: 100vh;
 }
 
@@ -12537,7 +12646,7 @@ html {
 /* My posts section */
 /* Card styling */
 .my-card {
-  
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   padding-left: 0;
   padding-right: 0;
   position: relative;
@@ -12545,7 +12654,6 @@ html {
   cursor: pointer;
   font-size: .8rem;
   letter-spacing: .3px;
-  font-weight: 600;
   max-width: 200px;
 }
 
@@ -12604,84 +12712,17 @@ html {
   border-top: indianred 1px solid;
 }
 
+.red {
+  color: lightcoral;
+}
+
 /* Delete buttons  */
-
-
 #disabled {
   background-color: lightcoral;
 }
 
 
-/*Custom Image carousel home---- */
-
-
-.item .portfolio-item-caption-content {
-  font-size: 1.5rem;
-}
-
-.item {
-  width: 33%;
-  height: 300px;
-}
-
-.item img {
-  width: 100%;
-  border-radius: .2rem;
-  min-height: 300px;
-  object-fit: cover;
-}
-
-@media screen and (max-width: 999px) {
-  .item_outer div:nth-child(3n+0) {
-    display: none;
-  }
-
-  .item {
-    background-color: lightcoral;
-    width: 50%;
-    height: 300px;
-  }
-
-  .item img {
-    min-height: 300px;
-  }
-}
-
-@media screen and (max-width: 555px) {
-
-  .item {
-    background-color: lightcoral;
-    width: 50%;
-    height: 250px;
-  }
-
-  .item img {
-    min-height: 250px;
-  }
-  .paddi{
-    padding-left: 0;
-    padding-right: 0;
-    margin: 0;
-  }
-
-}
-
-@media screen and (max-width: 400px) {
-  .item_outer div:nth-child(2n+0) {
-    display: none;
-  }
-
-  .item {
-    background-color: lightcoral;
-    width: 100%;
-    max-height: 400px;
-  }
-
-  .item img {
-    min-height: 250px;
-  }
-}
-
+/* Allerts----------- */
 .search_bb {
   margin-top: -50px;
   font-size: 1.8rem;

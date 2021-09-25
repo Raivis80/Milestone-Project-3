@@ -9,9 +9,8 @@
  <!-- Masthead-->
  <header class="masthead  text-secondary text-center">
   <div class="container d-flex align-items-center justify-content-around flex-column">
-      <div><h1 class="masthead-heading text-uppercase ">EmotiFy</h1></div>
+      <div><h1 class="brand masthead-heading text-uppercase ">EmotiFy</h1></div>
       <!-- Masthead Subheading-->
-      <h3 class="masthead-subheading mt-3 font-weight-light">Expressing Emotions Through Creativity</h3></div>
                                   
   </div>
 </header>
@@ -78,6 +77,11 @@
   </button>
 </div>
 
-<div class="text-center mt-3 "><h5 class="masthead-subheading font-weight-light">Create and share your own art or discover the work of others</h5></div>
+<div class="mt-5 px-3 py-1 text-left text-bottom head-subheading">
+  <p>Create and share your own art or discover the work of others</p>
+  <p>Share your <em>Paintings - Digital Art - Creative Images</em></p>
+  <p>Post and publish your artwork online for free</p>
+  <a href="{{ url_for('register') }}">Register Account</a>
+</div>
 
 {% endblock %}
