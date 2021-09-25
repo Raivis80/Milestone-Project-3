@@ -1,7 +1,7 @@
 from flask import (Flask, flash, render_template,
         redirect, request, session, url_for, jsonify)
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.form import registerForm, loginForm, UploadForm
+from app.form import RegisterForm, LoginForm, UploadForm, EditForm
 from cloudinary.utils import cloudinary_url
 from cloudinary.uploader import upload
 from bson.objectid import ObjectId
@@ -37,7 +37,7 @@ def register():
     add to the mongo DB user collection
     """
 
-    form = registerForm(request.form)
+    form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
         existing_user = mongo.db.users.find_one(
             {"username": form.username.data.lower()})
@@ -76,7 +76,7 @@ def login():
     Back to register page
     """
 
-    form = loginForm(request.form)
+    form = LoginForm(request.form)
     if request.method == 'POST' and form.validate():
         existing_user = mongo.db.users.find_one(
             {"username": form.username.data.lower()})
@@ -247,6 +247,7 @@ def edit_post(post_id):
     """
 
     if "user" in session:
+        form = EditForm(request.form)
         # Find existing post by id and get category
         post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
         categories = mongo.db.categories.find().sort("category_name", 1)
@@ -263,11 +264,11 @@ def edit_post(post_id):
                 time_stamp = v
 
         # Update Object to be submitet for update
-        if request.method == "POST":
+        if request.method == "POST" and form.validate():
             submit = {
                 "category_name": request.form.get("category").lower(),
-                "title": request.form.get("title").lower(),
-                "description": request.form.get("description"),
+                "title": form.title.data.lower(),
+                "description": form.description.data,
                 "image": image,
                 "image_sm": image_sm,
                 "img_id": image_id,
@@ -278,7 +279,7 @@ def edit_post(post_id):
             flash("post Successfully Updated", 'success')
             return redirect(url_for("profile", username=session["user"]))
 
-        return render_template("edit_post.html", categories=categories, post=post)
+        return render_template("edit_post.html", categories=categories, post=post, form=form)
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("login"))

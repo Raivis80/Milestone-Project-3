@@ -12537,13 +12537,15 @@ html {
 /* My posts section */
 /* Card styling */
 .my-card {
+  
   padding-left: 0;
   padding-right: 0;
   position: relative;
-  border: none;
-  background-color: #273442;
+  box-shadow: rgba(46, 46, 46, 0.219) 0 3px 4px;
   cursor: pointer;
   font-size: .8rem;
+  letter-spacing: .3px;
+  font-weight: 600;
   max-width: 200px;
 }
 

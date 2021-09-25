@@ -4,62 +4,78 @@
 {% block title %}Edit Post{% endblock %}
 
 {% block content %}
-   
-    <!-- Add post form Form-->
-    <div class="row justify-content-center">
-        <div class="w-100 max-width">
-            <div class="bg-secondary img-edit mb-2">
-                <img class="" src="{{ post.image_sm }}" alt="{{ post.title }}">
-            </div>
-            <form id="postForm" method="POST" action="{{ url_for('edit_post', post_id=post._id)}}">
-                <div class="w-100 select-wrap">
-                    
-                    <select class="form-select mb-2" name="category" id="category" aria-label="example">
-                        
-                        {% for category in categories %}
-                        
-                            {% if category.category_name == post.category_name %}
-                                <option selected value="{{ category.category_name }}">{{ post.category_name }}</option>
-                            {% else %}
-                                <option value="{{ category.category_name }}">{{ category.category_name }}
-                                </option>
-                            {% endif %}
 
-                        {% endfor %}
-
-                    </select>
-                </div>
-                <!-- title input-->
-                <div class="custom  mb-2">
-                    <input class="form-control post_form_title" minlength="4" maxlength="15"
-                     name="title" style="height: 4rem" id="title" type="text"
-                        value="{{ post.title }}"/>
-                </div>
-                <!-- Description input-->
-                <div class="custom  mb-2">
-                    <textarea class=" form-control" id="description" minlength="20" maxlength="300" name="description" type="text"
-                        placeholder="" style="height: 8rem">{{ post.description }}</textarea>
-                </div>
-
-                <!-- Submit Button-->
-                <div class="mb-2 d-flex justify-content-between">
-                    <button class="btn btn-primary col-12 btn-lg" id="submitButton" type="submit">Submit Changes</button>
-                </div>
-                <!-- Delete post -->
-                <div class="pt-2 del_post form-check d-flex justify-content-between">
-                    <div>
-                        <label for="myCheck">
-                            <em>Confirm to delete</em>
-                        </label> 
-                        <input class="form-check-input bg-danger" type="checkbox" id="myCheck" onclick="myFunction()">
-                    </div>
-                    
-                    <a id="enabled" href="{{ url_for('delete_post', post_id=post._id) }}" class="btn btn-danger btn-sm">
-                        Delete Post</a>
-                    <div id="disabled" class="btn btn-danger btn-sm">Delete Post</div>
-                </div>
-            </form>
+<!-- Add post form Form-->
+<div class="row justify-content-center">
+    <div class="w-100 max-width">
+        <div class="bg-secondary img-edit mb-2">
+            <img class="" src="{{ post.image_sm }}" alt="{{ post.title }}">
         </div>
+        <form id="postForm" method="POST" action="{{ url_for('edit_post', post_id=post._id)}}">
+            <div class="w-100 select-wrap">
+
+                <select class="form-select mb-2" name="category" id="category" aria-label="example">
+
+                    {% for category in categories %}
+
+                    {% if category.category_name == post.category_name %}
+                    <option selected value="{{ category.category_name }}">{{ post.category_name }}</option>
+                    {% else %}
+                    <option value="{{ category.category_name }}">{{ category.category_name }}
+                    </option>
+                    {% endif %}
+
+                    {% endfor %}
+
+                </select>
+            </div>
+            <!-- title input-->
+
+            <div class="custom  mb-2">
+                {{ form.title( class="form-control", placeholder="Title", value=post.title ) }}
+
+                {% if form.title.errors %}
+                <ul class="errors text-danger">
+                    {% for error in form.title.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <!-- Description input-->
+            <div class="custom  mb-2">
+
+                <textarea class=" form-control" id="description" name="description" type="text" placeholder=""
+                    style="height: 8rem">{{ post.description }}</textarea>
+                {% if form.description.errors %}
+                <ul class="errors text-danger">
+                    {% for error in form.description.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+            </div>
+
+            <!-- Submit Button-->
+            <div class="mb-2 d-flex justify-content-between">
+                <button class="btn btn-primary col-12 btn-lg" id="submitButton" type="submit">Submit Changes</button>
+            </div>
+            <!-- Delete post -->
+            <div class="pt-2 del_post form-check d-flex justify-content-between">
+                <div>
+                    <label for="myCheck">
+                        <em>Confirm to delete</em>
+                    </label>
+                    <input class="form-check-input bg-danger" type="checkbox" id="myCheck" onclick="myFunction()">
+                </div>
+
+                <a id="enabled" href="{{ url_for('delete_post', post_id=post._id) }}" class="btn btn-danger btn-sm">
+                    Delete Post</a>
+                <div id="disabled" class="btn btn-danger btn-sm">Delete Post</div>
+            </div>
+        </form>
     </div>
+</div>
 
 {% endblock %}

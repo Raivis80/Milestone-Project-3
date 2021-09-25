@@ -7,7 +7,7 @@ from flask_wtf.file import FileField, FileAllowed, FileRequired
 
 
 # Regisrter form 
-class registerForm(Form):
+class RegisterForm(Form):
     username = StringField('Username', [
         validators.InputRequired(),
         validators.Length(min=4, max=15,
@@ -20,7 +20,7 @@ class registerForm(Form):
 
 
 # Login Form
-class loginForm(Form):
+class LoginForm(Form):
     username = StringField('Username', [
         validators.InputRequired(),
         validators.Length(min=5, max=15,
@@ -45,9 +45,10 @@ class UploadForm(Form):
 
 
 # edit post Form
-class editForm(Form):
+class EditForm(Form):
     title = StringField('Title', [
-        validators.Length( min=3, max=10,
-        message='Title Lenght between 3 to 10 charters')])
+        validators.InputRequired(), validators.Length(
+            min=3, max=10, message='Title Lenght between 3 to 10 charters')])
     description = TextAreaField('Description', [
-        validators.length(min=20, max=200, message='Between 20 to 200 charters required')])
+        InputRequired(), validators.length(
+            min=20, max=200, message='Between 20 to 200 charters required')])
