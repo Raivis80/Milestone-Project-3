@@ -1,10 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %}EmotiFy{% endblock %}
+{% block title %}{% endblock %}
 
 {% block content %}
 
 <!-- Home Page -->
+
+ <!-- Masthead-->
+ <header class="masthead  text-secondary text-center">
+  <div class="container d-flex align-items-center justify-content-around flex-column">
+      <div><h1 class="masthead-heading text-uppercase ">EmotiFy</h1></div>
+      <!-- Masthead Subheading-->
+      <h3 class="masthead-subheading mt-3 font-weight-light">Expressing Emotions Through Creativity</h3></div>
+                                  
+  </div>
+</header>
+
 <div class="container-fluid paddi col-md-10">
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
@@ -66,5 +77,7 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+
+<div class="text-center mt-3 "><h5 class="masthead-subheading font-weight-light">Create and share your own art or discover the work of others</h5></div>
 
 {% endblock %}
