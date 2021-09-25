@@ -10,7 +10,7 @@
         <div class="w-100 max-width">
             <form id="postForm" enctype="multipart/form-data" method="POST" action="{{ url_for('add_post') }}">
                 <div class="w-100 select-wrap">
-                    <select class="form-select mb-2" name="category" id="category" aria-label="example" required>
+                    <select class="form-select mb-2" name="category" id="category" aria-label="example">
                         <option value="">Select Category</option>
 
                         {% for category in categories %}
@@ -24,20 +24,44 @@
                 </div>
                 <!-- title input-->
                 <div class="custom  mb-2">
-                    <input class="form-control post_form_title" name="title" style="height: 4rem" id="title" type="text"
-                        placeholder="Enter your title..." required />
+                    {{ form.title( class="form-control", placeholder="Title") }}
+
+                    {% if form.title.errors %}
+                    <ul class="errors text-danger">
+                        {% for error in form.title.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
 
                 </div>
                 <!-- Description input-->
                 <div class="custom  mb-2">
-                    <textarea class=" form-control" id="description" name="description" type="text"
-                        placeholder="Enter your Description here..." style="height: 8rem" required></textarea>
+                    {{ form.description( class="form-control", placeholder="Enter your Description here...", style="height: 8rem") }}
+
+                    {% if form.description.errors %}
+                    <ul class="errors text-danger">
+                        {% for error in form.description.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    
                 </div>
 
-                <!-- select File to upload -->
+                <!-- select File to upload class="form-control form-control-lg-->
                 <div class="mb-3">
+                    
+                    {{ form.file( class="form-control form-control-lg" ) }}
                     <label for="file" class="form-label">JPG Or PNG Aloved</label>
-                    <input name="file" class="form-control form-control-lg" id="file" type="file" />
+                    {% if form.file.errors %}
+                    <ul class="errors text-danger">
+                        {% for error in form.file.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
                 </div>
 
                 <!-- Submit Button-->

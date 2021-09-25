@@ -1,13 +1,17 @@
 from flask import (Flask, flash, render_template,
         redirect, request, session, url_for, jsonify)
 from werkzeug.security import generate_password_hash, check_password_hash
+from app.form import registerForm, loginForm, UploadForm
 from cloudinary.utils import cloudinary_url
 from cloudinary.uploader import upload
 from bson.objectid import ObjectId
 from datetime import datetime
 from app import app, mongo
+
 import cloudinary.api
 import requests
+
+from werkzeug.datastructures import CombinedMultiDict
 
 # dd/mm/YY H:M:S format
 now = datetime.now().strftime("%d-%m-%y, %H:%M:%S")
@@ -21,38 +25,41 @@ def index():
     painting = mongo.db.posts.find({"category_name": "paintings"}).limit(3)
     images = mongo.db.posts.find({"category_name": "images"}).limit(3)
     return render_template(
-        'index.html', digital_art=digital_art, painting=painting, images=images, title="home")
+        'index.html', digital_art=digital_art,
+        painting=painting, images=images, title="home")
 
 
-@app.route("/register", methods=["GET", "POST"])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-
     """
-    Register new users
+    Register new user Usernames
     Hash the passwords and
     add to the mongo DB user collection
     """
 
-    if request.method == "POST":
-        # check username exists in db
+    form = registerForm(request.form)
+    if request.method == 'POST' and form.validate():
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": form.username.data.lower()})
+
         if existing_user:
             flash("Username already exists")
-            return redirect(url_for("register"))
-        # Add user to the Mongo DB
+            return redirect(url_for("register"))   
         else:
             register = {
-                "username": request.form.get("username").lower(),
+                "username": form.username.data.lower(),
                 "password": generate_password_hash(
-                    request.form.get("password"))
+                    form.password.data)
             }
             mongo.db.users.insert_one(register)
-            flash(f'Welcome, {request.form.get("username").capitalize()}')
+            flash(f'Welcome, {form.username.data.capitalize()}')
             flash("Registration successfuly")
             return redirect(url_for("login"))
+        
+        flash('Thanks for registering')
+        return redirect(url_for('login'))
 
-    return render_template("register.html")
+    return render_template('register.html', form=form)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -60,32 +67,35 @@ def login():
 
     """
     Registered user login
-    Chsck if user is stored in the DB
-    Verifies that a password matches a hash
+    Check if user is stored in the DB
+    Check password hash for match
     If user war verified The user is
+    Add user to session cookie
     redirected to a profile page
+    Or If username doesn't exist
+    Back to register page
     """
 
-    if request.method == "POST":
-        # check username exists in db
+    form = loginForm(request.form)
+    if request.method == 'POST' and form.validate():
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": form.username.data.lower()})
         if existing_user:
-            # Check password hash for match
             if check_password_hash(
-                    existing_user["password"], request.form.get("password")):
-                # Add user to session cookie
-                session["user"] = request.form.get("username").lower()
+                    existing_user["password"], form.password.data.lower()):
+                session["user"] = form.username.data.lower()
                 flash("Welcome, {}".format(
-                    request.form.get("username").capitalize()), 'success')
+                    form.username.data.capitalize()), 'success')
                 return redirect(url_for(
                     "profile", username=session["user"]))
+            else:
+                flash("Incorrect Username and/or Password", 'error')
+                return redirect(url_for("login"))
         else:
-            # If username doesn't exist
             flash("Incorrect Username and/or Password", 'error')
             return redirect(url_for("login"))
 
-    return render_template("login.html")
+    return render_template("login.html", form=form)
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
@@ -95,23 +105,21 @@ def profile(username):
     Find user's username from db
     Check if user match session cookie
     Render Profile page if verified
+    Or Rediret unauthorized users page access
     """
+
     if "user" in session:
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
-        # Get categories from DB
         categories = mongo.db.categories.find()
-        # IsButton=True show account button for profile page
-        if session["user"]:
-            posts = mongo.db.posts.find().sort('_id', -1)
-            return render_template(
-                "profile.html", username=username,
+        posts = list(mongo.db.posts.find({"created_by": session["user"]}))
+        return render_template(
+            "profile.html", username=username,
                 isButton=True, categories=categories, posts=posts,  profile=True)
-    # Rediret unauthorized users page access
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("login"))
-    
+
 
 @app.route("/delete_profile", methods=["GET", "POST"])
 def delete_profile():
@@ -121,6 +129,7 @@ def delete_profile():
     from form and find username
     and password in the DB For deletion
     """
+
     if "user" in session:
         if request.method == "POST":
             # check if username exists in db
@@ -134,16 +143,13 @@ def delete_profile():
                     flash("Good Buy", 'success')
                     return redirect(url_for("logout"))
                 else:
-                    # invalid password match
                     flash("Incorrect Username and/or Password", 'error')
                     return redirect(url_for("delete_profile", account=True))
             else:
-                # username doesn't exist
                 flash("Incorrect Username and/or Password", 'error')
                 return redirect(url_for("delete_profile", account=True))
 
         return render_template("edit_profile.html", account=True)
-        # Rediret unauthorized users page access
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("login"))
@@ -151,14 +157,14 @@ def delete_profile():
 
 @app.route("/logout")
 def logout():
+
     """
     remove the username from the session if it's there
     """
-    # Remove session cookie
+
     if "user" in session:
         session.pop('user')
         return redirect(url_for('index'))
-    # Rediret unauthorized users page access
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("login"))
@@ -166,22 +172,25 @@ def logout():
 
 @app.route("/add_post", methods=("POST", "GET"))
 def add_post():
+
     """
     Add new posts to the Mongo DB
     Upload image to the Cloudinary API
     """
+
+    form = UploadForm(CombinedMultiDict((request.files, request.form)))
     if "user" in session:
         # Return all the categories form DB
         categories = mongo.db.categories.find()
-        if request.method == "POST":
+        if request.method == "POST" and form.validate():
+            file = request.files['file']
             upload_result = None
             image = None
             image_small = None
-            if request.files:
+            if file:
                 # File upoad to cloudinary
                 folder = request.form.get("category").lower()
-                file_to_upload = request.files['file']
-                upload_result = upload(file_to_upload, folder=folder)
+                upload_result = upload(file, folder=folder)
                 # Get 1920p size image URL
                 image, options = cloudinary_url(
                     upload_result['public_id'],
@@ -198,8 +207,8 @@ def add_post():
                 if URL_status.status_code == 200:
                     submit = {
                         "category_name": request.form.get("category").lower(),
-                        "title": request.form.get("title").lower(),
-                        "description": request.form.get("description"),
+                        "title": form.title.data.lower(),
+                        "description": form.description.data,
                         "image": image,
                         "image_sm": image_small,
                         "img_id": img_id,
@@ -208,22 +217,21 @@ def add_post():
                         }
                     mongo.db.posts.insert_one(submit)
                     flash("Post was successfully added", 'success')
-                    return redirect(url_for("add_post", categories=categories, post=True))
+                    return redirect(url_for("add_post", categories=categories, post=True, form=form))
                 else:
-                    # failed cloudinary API
                     if URL_status.status_code != 200:
                         flash(f"Status code: {URL_status.status_code}")
                         flash("Post did not upload Try again", 'error')
-                        return redirect(url_for("add_post", categories=categories, post=True))
-                        # Failed to uplload to the mongo DB
+                        return redirect(url_for("add_post", categories=categories, post=True, form=form))
                     else:
                         flash("Post failed upload", 'error')
                         flash("Please try again later", 'error')
-                        return redirect(url_for("add_post", categories=categories, post=True))
-
+                        return redirect(url_for("add_post", categories=categories, post=True, form=form))
+            else:
+                flash('File is required', 'error')
+                return render_template("add_post.html", categories=categories, post=True, form=form)
         else:
-            return render_template("add_post.html", categories=categories, post=True)
-    # Rediret unauthorized users page access
+            return render_template("add_post.html", categories=categories, post=True, form=form)
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("login"))
@@ -237,6 +245,7 @@ def edit_post(post_id):
     Update existing post Title and
     description only
     """
+
     if "user" in session:
         # Find existing post by id and get category
         post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
@@ -270,7 +279,6 @@ def edit_post(post_id):
             return redirect(url_for("profile", username=session["user"]))
 
         return render_template("edit_post.html", categories=categories, post=post)
-    # Rediret unauthorized users page access
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("login"))
@@ -278,11 +286,13 @@ def edit_post(post_id):
 
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
+
     """
     DElete post from mongo DB
     Get image url trom DB and
     delete from cloudinary storage
     """
+
     if "user" in session:
         # Find post by id and iterate
         # over to extract image id and URL
@@ -305,13 +315,12 @@ def delete_post(post_id):
             mongo.db.posts.remove({"_id": ObjectId(post_id)})
             flash("Post was successluly deleted", 'success')
         else:
-            # Failed to destroy image from cloudinary
             flash("Failed to delete Image file", 'error')
             flash("Please try again later", 'error')
             return redirect(url_for("profile", username=session["user"]))
 
         return redirect(url_for("profile", username=session["user"]))
-    # Rediret unauthorized users page access
+
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("login"))
@@ -322,6 +331,8 @@ def gallery():
     """
     Gallery page
     Get all posts form DB
+    Search by keyword, username
+    Or Query posts by category
     """
     # mongo.db.posts.drop_indexes()
     # mongo.db.posts.create_index([
@@ -334,9 +345,9 @@ def gallery():
         categories = mongo.db.categories.find()
         # Search by keyword, username
         # Or Query posts by category
-        test = "select category"
+        not_elected = "select category"
         # Search by keyword and category
-        if search != "" and category_name != test:
+        if search != "" and category_name != not_elected:
             posts = list(mongo.db.posts.find({ "$and" : [ {
                 "category_name": category_name }, {"$text": {"$search": search}}] }))
             if len(posts) == 0:     
@@ -359,7 +370,7 @@ def gallery():
                 return render_template("gallery.html", posts=posts,
                 categories=categories, title="gallery")
         # Search by category only
-        elif category_name != test and search == "":
+        elif category_name != not_elected and search == "":
             posts = list(mongo.db.posts.find({"category_name": category_name }))
             if len(posts) == 0:     
                 flash(f"No results for {category_name}", 'error')
@@ -372,7 +383,6 @@ def gallery():
         else:
             return render_template("gallery.html", posts=posts,
                 categories=categories, title="gallery")
-
     else:
         return render_template('gallery.html', posts=posts,
             categories=categories, title="gallery")

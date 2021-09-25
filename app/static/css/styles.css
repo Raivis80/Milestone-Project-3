@@ -12395,6 +12395,7 @@ html {
 .cont,
 .card,
 .portfolio .portfolio-item {
+  z-index: 1;
   cursor: pointer;
   position: relative;
   display: block;
@@ -12404,16 +12405,13 @@ html {
   max-height: auto;
   background-color: lightcoral;
   transition: all 0.3s ease-in-out;
-  box-shadow: rgba(0, 0, 0, 0.30) 0px 5px 8px;
 }
 
 @media screen and (max-width: 600px) {
-
   .cont,
   .img-fluid-gall img {
     width: 500px;
     height: 100%;
-
   }
 
   .g-container {
@@ -12428,7 +12426,6 @@ html {
   .img-fluid-gall img {
     width: 400px;
     height: 100%;
-
   }
 
   .img-fluid {
@@ -12447,13 +12444,11 @@ html {
   object-fit: cover;
 }
 
-
 @media (hover: hover) {
-
   .cont:hover,
   .card:hover,
   .portfolio .portfolio-item:hover {
-    box-shadow: rgba(0, 0, 0, 0.30) 0px 8px 8px;
+    box-shadow: rgba(66, 66, 66, 0.4) 0px 3px 6px;
   }
 }
 
@@ -12466,7 +12461,7 @@ html {
   left: 0;
   transition: all 0.2s ease-in-out;
   opacity: 0;
-  background-color: hsla(210, 28%, 17%, 0.212);
+  background-color: hsla(210, 28%, 17%, 0.2);
 }
 
 .cont .portfolio-item-caption:hover,
@@ -12546,13 +12541,14 @@ html {
   padding-right: 0;
   position: relative;
   border: none;
-  background-color: #f5f5f5;
+  background-color: #273442;
   cursor: pointer;
   font-size: .8rem;
   max-width: 200px;
 }
 
 .img_posts img {
+  z-index: 2;
   object-fit: cover;
   overflow: hidden;
   height: 150px;
