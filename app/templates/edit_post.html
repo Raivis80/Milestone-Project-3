@@ -11,7 +11,7 @@
         <div class="bg-secondary img-edit mb-2">
             <img class="" src="{{ post.image_sm }}" alt="{{ post.title }}">
         </div>
-        <form id="postForm" method="POST" action="{{ url_for('edit_post', post_id=post._id)}}">
+        <form id="postForm" class="mx-2" method="POST" action="{{ url_for('edit_post', post_id=post._id)}}">
             <div class="w-100 select-wrap">
 
                 <select class="form-select mb-2" name="category" id="category" aria-label="example">

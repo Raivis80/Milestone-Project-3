@@ -5,11 +5,11 @@
 
 {% block content %}
 <!-- User Profile Section-->
-<div class=" row justify-content-center">
+<div class="container-fluid d-flex flex-wrap justify-content-center">
     <!-- uer posts -->
     {% for post in posts %}
 
-    <div class="card my-card text-center bg-secondary d-flex text-white m-2">
+    <div class="card my-card font text-center bg-secondary d-flex text-white m-1">
         <div class="img_posts">
             <a href="">
                 <img src="{{ post.image_sm }}" class="" alt="{{ post.categoty_name }}title {{ post.title }}">
