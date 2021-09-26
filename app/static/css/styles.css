@@ -12684,12 +12684,12 @@ html {
   }
 
   .my-card {
-    max-width: 180px;
+    max-width: 170px;
   }
 
   .img_posts img {
     height: 100px;
-    max-width: 180px;
+    max-width: 170px;
   }
 }
 
@@ -12722,6 +12722,7 @@ html {
 
 /* Allerts----------- */
 .search_bb {
+  color: white;
   margin-top: -50px;
   font-size: 1.8rem;
 }

@@ -5,10 +5,9 @@
 
 {% block content %}
 <!-- Sign In -->
-<div class="row px-2 justify-content-center">
-    <div class="col max-width">
-
-        <form lass="col-12 needs-validation" method="POST" action="{{ url_for('login') }}">
+<div class="container-fluid px-2 d-flex flex-column align-items-center justify-content-center">
+    <div class="col-12 max-width">
+        <form lass="needs-validation" method="POST" action="{{ url_for('login') }}">
             <div class="card-panel">
                 <!-- username -->
                 <div class="col-12 form-floating mb-2">
