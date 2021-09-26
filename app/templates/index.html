@@ -6,17 +6,21 @@
 
 <!-- Home Page -->
 
- <!-- Masthead-->
- <header class="masthead  text-secondary text-center">
+<!-- Masthead-->
+<header class="masthead  text-secondary text-center">
   <div class="container d-flex align-items-center justify-content-around flex-column">
-      <div><h1 class="brand masthead-heading text-uppercase ">EmotiFy</h1></div>
-      <!-- Masthead Subheading-->
-                                  
+    <div>
+      <h1 class="brand masthead-heading text-uppercase ">EmotiFy</h1>
+    </div>
+    <!-- Masthead Subheading-->
+
   </div>
 </header>
 
 <div class="container-fluid mx-auto col-md-10">
+
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
         aria-current="true" aria-label="Slide 1"></button>
@@ -39,23 +43,32 @@
           {% endif %}
           {% endfor %}
         </div>
+        <div class="carousel-caption">
+          <h5>Share Your Images</h5>
+          <p>The pace to share your creative images</p>
+        </div>
       </div>
       <div class="carousel-item">
-      <div class="item_outer d-flex gap-2">
-        {% for art in digital_art %}
-        {% if loop.index <= 3 %}
-        <div class="item">
-          <a href="{{ url_for('gallery') }}">
-            <img class="" src="{{ art.image_sm }}" alt="{{ art.category }} Title Text {{ art.title }}" />
-          </a>
+        <div class="item_outer d-flex gap-2">
+          {% for art in digital_art %}
+          {% if loop.index <= 3 %}
+          <div class="item">
+            <a href="{{ url_for('gallery') }}">
+              <img class="" src="{{ art.image_sm }}" alt="{{ art.category }} Title Text {{ art.title }}" />
+            </a>
+          </div>
+          {% endif %}
+          {% endfor %}
         </div>
-        {% endif %}
-        {% endfor %}
+        <div class="carousel-caption">
+          <h5>Share Your Digital Art</h5>
+          <p>Share your Digital Art and get discovered</p>
+        </div>
       </div>
     </div>
     <div class="carousel-item">
       <div class="item_outer d-flex gap-2">
-        {% for post in painting %}
+        {% for post in paintings %}
         {% if loop.index <= 3 %}
         <div class="item">
           <a href="{{ url_for('gallery') }}">
@@ -65,24 +78,31 @@
         {% endif %}
         {% endfor %}
       </div>
+      <div class="carousel-caption">
+        <h5>Share your Art</h5>
+        <p>The pace to share your creative images</p>
+      </div>
     </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+
+  <div class="mt-5 mx-2 font px-3 py-1 text-left text-bottom head-subheading">
+    <p>There are only a few steps to unleashing your creativity</p>
+    <p>Create and share your own art or discover the work of others</p>
+    <p>Share your <em>Paintings - Digital Art - Creative Images</em></p>
+    <p>Post and publish your artwork online for free</p>
+    <a href="{{ url_for('register') }}">Register Account</a>
+  </div>
+
 </div>
 
-
-<div class="mt-5 mx-2 font px-3 py-1 text-left text-bottom head-subheading">
-  <p>Create and share your own art or discover the work of others</p>
-  <p>Share your <em>Paintings - Digital Art - Creative Images</em></p>
-  <p>Post and publish your artwork online for free</p>
-  <a href="{{ url_for('register') }}">Register Account</a>
-</div>
 
 {% endblock %}

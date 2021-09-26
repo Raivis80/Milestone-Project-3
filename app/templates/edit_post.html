@@ -11,6 +11,11 @@
         <div class="bg-secondary img-edit mb-2">
             <img class="" src="{{ post.image_sm }}" alt="{{ post.title }}">
         </div>
+
+        {% if session.user == "admin" %}
+        <div class="col-12 m-2">Createt by user: <a href="">{{ created_by.username }}</a> </div>
+        {% endif %}
+
         <form id="postForm" class="mx-2" method="POST" action="{{ url_for('edit_post', post_id=post._id)}}">
             <div class="w-100 select-wrap">
 
@@ -61,6 +66,7 @@
             <div class="mb-2 d-flex justify-content-between">
                 <button class="btn btn-primary col-12 btn-lg" id="submitButton" type="submit">Submit Changes</button>
             </div>
+
             <!-- Delete post -->
             <div class="pt-2 del_post form-check d-flex justify-content-between">
                 <div>

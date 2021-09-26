@@ -38,26 +38,42 @@
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
+                    {% if session.user != "admin" %}
                     <li class="nav-item mx-0 mx-lg-1 "><a
                             class="nav-link py-3 px-0 px-lg-3 rounded {% if request.endpoint == 'index' %} active {% endif %}"
                             href="{{ url_for('index') }}">Home</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a
                             class="nav-link py-3 px-0 px-lg-3 rounded {% if request.endpoint == 'gallery' %} active {% endif %}"
                             href="{{ url_for('gallery') }}">Gallery</a></li>
+                    {% endif %}
 
                     {% if session.user %}
 
-                    <li class="nav-item mx-0 mx-lg-1"><a
-                            class="nav-link py-3 px-0 px-lg-3 rounded {% if profile == True %} active {% endif %}"
-                            href="{{ url_for('profile', username=session['user']) }}">My Posts</a></li>
+                        {% if session.user != "admin" %}
 
-                    <li class="nav-item mx-0 mx-lg-1"><a
-                            class="nav-link py-3 px-0 px-lg-3 rounded {% if post == True %} active {% endif %}"
-                            href="{{ url_for('add_post') }}">Add Post</a></li>
+                            <li class="nav-item mx-0 mx-lg-1"><a
+                                    class="nav-link py-3 px-0 px-lg-3 rounded {% if profile == True %} active {% endif %}"
+                                    href="{{ url_for('profile', username=session['user']) }}">My Posts</a></li>
+
+                            <li class="nav-item mx-0 mx-lg-1"><a
+                                class="nav-link py-3 px-0 px-lg-3 rounded {% if post == True %} active {% endif %}"
+                                href="{{ url_for('add_post') }}">Add Post</a></li>
+
+                        {% else %}
+
+                            <li class="nav-item mx-0 mx-lg-1"><a
+                                class="nav-link py-3 px-0 px-lg-3 rounded {% if profile == True %} active {% endif %}"
+                                href="{{ url_for('admin') }}">Manage Posts</a></li>
+
+                            <li class="nav-item mx-0 mx-lg-1"><a
+                                    class="nav-link py-3 px-0 px-lg-3 rounded {% if post == True %} active {% endif %}"
+                                    href="{{ url_for('manage_users') }}">Manage Users</a></li>
+
+                        {% endif %}
 
                     <li class="nav-item mx-0 mx-lg-1"><a
                             class="nav-link py-3 px-0 px-lg-3 rounded {% if account == True %} active {% endif %}"
-                            href="{{ url_for('delete_profile') }}">Account</a></li>
+                            href="{{ url_for('delete_profile') }}">My Account</a></li>
 
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="{{ url_for('logout') }}">Log Out</a></li>

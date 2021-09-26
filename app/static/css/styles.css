@@ -12748,3 +12748,10 @@ html {
     font-size: .9rem;
   }
 }
+
+@media screen and (max-width: 500px){
+  .my-card p {
+    font-size: .8em;
+  }
+}
+

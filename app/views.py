@@ -86,8 +86,11 @@ def login():
                 session["user"] = form.username.data.lower()
                 flash("Welcome, {}".format(
                     form.username.data.capitalize()), 'success')
-                return redirect(url_for(
-                    "profile", username=session["user"]))
+                if session["user"] != "admin":
+                    return redirect(url_for(
+                        "profile", username=session["user"]))
+                else:
+                    return redirect(url_for("admin"))
             else:
                 flash("Incorrect Username and/or Password", 'error')
                 return redirect(url_for("login"))
@@ -108,7 +111,7 @@ def profile(username):
     Or Rediret unauthorized users page access
     """
 
-    if "user" in session:
+    if "user" in session and session["user"] != "admin":
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
         categories = mongo.db.categories.find()
@@ -131,6 +134,8 @@ def delete_profile():
     """
 
     if "user" in session:
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
         if request.method == "POST":
             # check if username exists in db
             existing_user = mongo.db.users.find_one(
@@ -155,21 +160,6 @@ def delete_profile():
         return redirect(url_for("login"))
 
 
-@app.route("/logout")
-def logout():
-
-    """
-    remove the username from the session if it's there
-    """
-
-    if "user" in session:
-        session.pop('user')
-        return redirect(url_for('index'))
-    else:
-        flash("Please log in or register", 'error')
-        return redirect(url_for("login"))
-
-
 @app.route("/add_post", methods=("POST", "GET"))
 def add_post():
 
@@ -179,7 +169,7 @@ def add_post():
     """
 
     form = UploadForm(CombinedMultiDict((request.files, request.form)))
-    if "user" in session:
+    if "user" in session and session["user"] != "admin":
         # Return all the categories form DB
         categories = mongo.db.categories.find()
         if request.method == "POST" and form.validate():
@@ -251,7 +241,11 @@ def edit_post(post_id):
         # Find existing post by id and get category
         post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
         categories = mongo.db.categories.find().sort("category_name", 1)
-
+        if session["user"] == "admin":
+            for key, value in post.items():
+                if key == "created_by":
+                    created_by = mongo.db.users.find_one({"username": value})
+            
         # Get image id and url out of mongo DB
         for k, v in post.items():
             if k == "image":
@@ -277,9 +271,12 @@ def edit_post(post_id):
             }
             mongo.db.posts.update({"_id": ObjectId(post_id)}, submit)
             flash("post Successfully Updated", 'success')
-            return redirect(url_for("profile", username=session["user"]))
+            if session["user"] != "admin":
+                return redirect(url_for("profile", username=session["user"]))
+            else:
+                return redirect(url_for("admin"))
 
-        return render_template("edit_post.html", categories=categories, post=post, form=form)
+        return render_template("edit_post.html", categories=categories, post=post, form=form, created_by=created_by )
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("login"))
@@ -310,18 +307,25 @@ def delete_post(post_id):
         # Catch error If try delete same asset again
         except AttributeError:
             flash("file already was deleted", 'error')
-            return redirect(url_for("profile", username=session["user"]))
-
+            if session["user"] != "admin":
+                return redirect(url_for("profile", username=session["user"]))
+            else:
+                return redirect(url_for("admin"))
         if status:
             mongo.db.posts.remove({"_id": ObjectId(post_id)})
             flash("Post was successluly deleted", 'success')
         else:
             flash("Failed to delete Image file", 'error')
             flash("Please try again later", 'error')
+            if session["user"] != "admin":
+                return redirect(url_for("profile", username=session["user"]))
+            else:
+                return redirect(url_for("admin"))
+
+        if session["user"] != "admin":
             return redirect(url_for("profile", username=session["user"]))
-
-        return redirect(url_for("profile", username=session["user"]))
-
+        else:
+            return redirect(url_for("admin"))
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("login"))
@@ -388,3 +392,102 @@ def gallery():
         return render_template('gallery.html', posts=posts,
             categories=categories, title="gallery")
 
+
+#==============ADMIN================
+@app.route("/admin", methods=["GET", "POST"])
+def admin():
+
+    """
+    Find user's username from db
+    Check if user match session cookie
+    Render Profile page if verified
+    Or Rediret unauthorized users page access
+    """
+
+    if "user" in session and session["user"] == "admin":
+        categories = mongo.db.categories.find()
+        posts = list(mongo.db.posts.find().sort('_id', -1))
+        users = list(mongo.db.users.find())
+        return render_template(
+            "admin.html", categories=categories, posts=posts, users=users, admin=True)
+
+        if request.method == "POST":
+            admin = mongo.db.users.find_one(
+                {"username": "admin"})
+            existing_user = mongo.db.users.find_one(
+                {"username": request.form.get("username").lower()})
+            url = url_for("manage_users", users=users)
+        if existing_user:
+            if check_password_hash(
+                    admin["password"], request.form.get("password")):
+                delete_user(existing_user, url)
+                flash("Good Buy", 'success')
+                return redirect(url_for("manage_users", users=users))
+            else:
+                flash("Incorrect Password", 'error')
+                return redirect(url_for("manage_users", users=users))
+        else:
+            flash("User does not exist", 'error')
+            return redirect(url_for("manage_users", users=users))
+    else:
+        flash("Please log in or register", 'error')
+        return redirect(url_for("logout"))
+        return redirect(url_for("login"))
+
+
+@app.route("/manage_users", methods=["GET", "POST"])
+def manage_users():
+
+    """ 
+    Delete user rofile Get input
+    from form and find username
+    and password in the DB For deletion
+    """
+    if "user" in session and session["user"] == "admin":
+        users = list(mongo.db.user.find())
+        if request.method == "POST":
+            # check if username exists in db
+            admin = mongo.db.users.find_one(
+                {"username": "admin"})
+            existing_user = mongo.db.users.find_one(
+                {"username": request.form.get("username").lower()})
+            url = url_for("manage_users", users=users)
+            if existing_user:
+                # ensure admin hashed password matches admin input
+                if check_password_hash(
+                        admin["password"], request.form.get("password")):
+                    try:
+                        mongo.db.users.remove(existing_user)
+                        flash("Deleted Successfuly", 'success')
+                        return redirect(url_for("manage_users", users=users))
+                    except BaseException:
+                        flash("Failed to delete Or user not exist", 'success')
+                        return redirect(url_for("manage_users", users=users))
+                else:
+                    flash("Incorrect Password", 'error')
+                    return redirect(url_for("manage_users", users=users))
+            else:
+                flash("User does not exist", 'error')
+                return redirect(url_for("manage_users", users=users))
+
+        return render_template("manage_users.html", users=users)
+
+    else:
+        flash("Please log in or register", 'error')
+        return redirect(url_for("login"))
+
+   
+
+@app.route("/logout")
+def logout():
+
+    """
+    remove the username from the session if it's there
+    """
+
+    if "user" in session:
+        session.pop('user')
+        return redirect(url_for('index'))
+    else:
+        flash("Please log in or register", 'error')
+        return redirect(url_for("login"))
