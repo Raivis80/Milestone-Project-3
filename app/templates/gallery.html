@@ -1,10 +1,40 @@
 {% extends "base.html" %}
 
 <!-- Page title -->
-{% block title %}Gallery{% endblock %}
+{% block title %}<i class="fas fa-images"></i> Gallery{% endblock %}
 
 {% block content %}
+<!--  search Modal -->
+<div class=" m-2 ">
+    <form class="mx-auto" id="postForm" method="POST" action="{{ url_for('query') }}">
+        <!-- Search query Input field -->
+        <div class="d-flex justify-content-center">
+            <div class="col-3 input-group-sm">
+                <input class="input form-control me-2" name="search" type="search" placeholder="Keyword"
+                    aria-label="Search">
+            </div>
+            <!-- select category From existing categories -->
+            <div class="col-md-3 input-group-sm">
+                <select class="form-select text-capitalize input" name="category" id="category" aria-label="example">
+                    <option selected value="select category">select category</option>
+                    {% for category in categories %}
 
+                    <option value="{{ category.category_name }}">{{ category.category_name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+            </div>
+
+            <!-- Submit button -->
+            <div class="col-3">
+                <button class="btn col-12 btn-primary btn-sm" id="submitButton" type="submit"><i
+                        class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+    </form>
+</div>
 <!-- Galley Grid Items-->
 <div class="g-container d-flex gap-3 flex-wrap justify-content-center">
 
@@ -59,44 +89,5 @@
     {% endfor %}
 
 </div>
-
-<!--  search Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content p-3 gap-3">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-search"></i> Search</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class=" select-wrap"></div>
-                <form id="postForm" method="POST" action="{{ url_for('gallery') }}">
-                    <!-- Search query Input field -->
-                    <div class="mb-3">
-                        <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                    </div>
-                    <!-- select category From existing categories -->
-                    <select class="form-select mb-2" name="category" id="category" aria-label="example">
-                        <option selected value="select category">select category</option>
-                        {% for category in categories %}
-
-                        <option value="{{ category.category_name }}">{{ category.category_name }}
-                        </option>
-
-                        {% endfor %}
-
-                    </select>
-            </div>
-            <!-- Submit button -->
-            <div class="mb-2 d-flex justify-content-between">
-                <button class="btn btn-primary col-12 btn-lg" id="submitButton" type="submit">Search</button>
-            </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-        </div>
-    </div>
-</div>
-
 
 {% endblock %}

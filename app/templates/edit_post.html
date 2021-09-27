@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 <!-- Page title -->
-{% block title %}Edit Post{% endblock %}
+{% block title %}<i class="fas fa-cogs"></i> Post{% endblock %}
 
 {% block content %}
 
@@ -11,10 +11,6 @@
         <div class="bg-secondary img-edit mb-2">
             <img class="" src="{{ post.image_sm }}" alt="{{ post.title }}">
         </div>
-
-        {% if session.user == "admin" %}
-        <div class="col-12 m-2">Createt by user: <a href="">{{ created_by.username }}</a> </div>
-        {% endif %}
 
         <form id="postForm" class="mx-2" method="POST" action="{{ url_for('edit_post', post_id=post._id)}}">
             <div class="w-100 select-wrap">

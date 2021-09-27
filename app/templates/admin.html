@@ -1,40 +1,40 @@
 {% extends "base.html" %}
 
 <!-- Page title -->
-{% block title %}Manage Posts{% endblock %}
+{% block title %}<i class="fas fa-images"></i> User{% endblock %}
 
 {% block content %}
 
 
 <!--  search Modal -->
-
-
 <div class=" m-2 ">
-     <form class="mx-auto" id="postForm" method="POST" action="{{ url_for('query') }}">
+    <form class="mx-auto" id="postForm" method="POST" action="{{ url_for('query') }}">
         <!-- Search query Input field -->
         <div class="d-flex justify-content-center">
-        <div class="col-3 input-group-sm">
-            <input class="input form-control me-2" name="search" type="search" placeholder="Keyword" aria-label="Search">
+            <div class="col-3 input-group-sm">
+                <input class="input form-control me-2" name="search" type="search" placeholder="Keyword"
+                    aria-label="Search">
+            </div>
+            <!-- select category From existing categories -->
+            <div class="col-md-3 input-group-sm">
+                <select class="form-select text-capitalize input" name="category" id="category" aria-label="example">
+                    <option selected value="select category">select category</option>
+                    {% for category in categories %}
+
+                    <option value="{{ category.category_name }}">{{ category.category_name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+            </div>
+
+            <!-- Submit button -->
+            <div class="col-3">
+                <button class="btn col-12 btn-primary btn-sm" id="submitButton" type="submit"><i
+                        class="fas fa-search"></i> Search</button>
+            </div>
         </div>
-        <!-- select category From existing categories -->
-        <div class="col-md-3 input-group-sm">
-        <select class="form-select text-capitalize input" name="category" id="category" aria-label="example">
-            <option selected value="select category">select category</option>
-            {% for category in categories %}
-    
-            <option value="{{ category.category_name }}">{{ category.category_name }}
-            </option>
-    
-            {% endfor %}
-    
-        </select>
-        </div>
-        
-        <!-- Submit button -->
-        <div class="col-3">
-            <button class="btn col-12 btn-primary btn-sm" id="submitButton" type="submit"><i class="fas fa-search"></i> Search</button>
-        </div>
-    </div>
     </form>
 </div>
 
@@ -60,7 +60,7 @@
 
             <p class="card-text">{{post.time_created}}.</p>
         </div>
-        <a href="{{ url_for('edit_post',  post_id=post._id ) }}">
+        <a href="{{ url_for('admin_posts',  post_id=post._id ) }}">
             <div class="portfolio-item-caption  d-flex align-items-center justify-content-center h-100 w-100">
                 <div class="portfolio-item-caption-content text-center text-white">Edit
                 </div>
@@ -68,9 +68,6 @@
         </a>
         <p class="card-text">Created by user: {{post.created_by}}.</p>
     </div>
-
-
-
 
     {% endfor %}
 

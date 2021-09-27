@@ -24,10 +24,6 @@
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container px-2 ">
             <a class="navbar-brand red rm-5" href="{{ url_for('index') }}">EmotiFy</a>
-            {% if title == "gallery" %}
-            <div class="px-5" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                data-bs-whatever="@fat"><i class="fas fa-search search_bb"></i></div>
-            {% endif %}
 
             <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -62,18 +58,20 @@
                         {% else %}
 
                             <li class="nav-item mx-0 mx-lg-1"><a
-                                class="nav-link py-3 px-0 px-lg-3 rounded {% if profile == True %} active {% endif %}"
-                                href="{{ url_for('admin') }}">Manage Posts</a></li>
+                                class="nav-link py-3 px-0 px-lg-3 rounded {% if admin == True %} active {% endif %}"
+                                href="{{ url_for('admin') }}">User Posts</a></li>
 
                             <li class="nav-item mx-0 mx-lg-1"><a
-                                    class="nav-link py-3 px-0 px-lg-3 rounded {% if post == True %} active {% endif %}"
-                                    href="{{ url_for('manage_users') }}">Manage Users</a></li>
+                                    class="nav-link py-3 px-0 px-lg-3 rounded {% if manage == True %} active {% endif %}"
+                                    href="{{ url_for('manage_users') }}">Users</a></li>
 
                         {% endif %}
 
-                    <li class="nav-item mx-0 mx-lg-1"><a
-                            class="nav-link py-3 px-0 px-lg-3 rounded {% if account == True %} active {% endif %}"
-                            href="{{ url_for('delete_profile') }}">My Account</a></li>
+                    {% if session.user != "admin" %}
+                        <li class="nav-item mx-0 mx-lg-1"><a
+                                class="nav-link py-3 px-0 px-lg-3 rounded {% if account == True %} active {% endif %}"
+                                href="{{ url_for('delete_profile') }}">Account</a></li>
+                    {% endif %}
 
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="{{ url_for('logout') }}">Log Out</a></li>
@@ -107,7 +105,7 @@
                 {% if messages%}
                     {% for color, message in messages %}
 
-                    <h5 class="alert {{ color }} masthead-subheading m-3 text-uppercase text-center">{{ message }}</h5>
+                    <h5 class="alert {{ color }} masthead-subheading text-uppercase text-center">{{ message }}</h5>
 
                     {% endfor %}
                 {% endif %}

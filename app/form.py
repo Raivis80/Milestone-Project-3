@@ -52,3 +52,17 @@ class EditForm(Form):
     description = TextAreaField('Description', [
         InputRequired(), validators.length(
             min=20, max=200, message='Between 20 to 200 charters required')])
+
+
+# Delete form 
+class DeleteUser(Form):
+    username = StringField('Username', [
+        validators.InputRequired(),
+        validators.Length(min=4, max=15,
+        message="Lenght between 5 to 15 charters")])
+    password = PasswordField('Password', [
+        validators.InputRequired(),
+        validators.EqualTo('confirm', message='Passwords must match')
+    ])
+    confirm = PasswordField('Repeat Password')
+
