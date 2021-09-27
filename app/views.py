@@ -1,7 +1,8 @@
 from flask import (Flask, flash, render_template,
         redirect, request, session, url_for, jsonify)
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.form import RegisterForm, LoginForm, UploadForm, EditForm, DeleteUser
+from app.form import (RegisterForm, LoginForm,
+        UploadForm, EditForm, DeleteUser, AddCategory)
 from cloudinary.utils import cloudinary_url
 from cloudinary.uploader import upload
 from bson.objectid import ObjectId
@@ -279,7 +280,7 @@ def edit_post(post_id):
             for key, value in post.items():
                 if key == "created_by":
                     created_by = mongo.db.users.find_one({"username": value})
-            
+
         for k, v in post.items():
             if k == "image":
                 image = v
@@ -317,7 +318,7 @@ def edit_post(post_id):
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("login"))
-   
+
 
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
@@ -373,6 +374,33 @@ def delete_post(post_id):
         return redirect(url_for("login"))
 
 
+@app.route('/new_category', methods=["GET", "POST"])
+def new_category():
+
+    """
+    Create New category If user in session 
+    is Administrator, Insert one documet
+    into Mongo DB categories collection
+    Return back to request route after insert
+    """
+
+    if "user" in session and session["user"] == "admin":
+        if request.method == "post":
+            cat_name = form.title.data.lower()
+            mongo.db.categories.insert_one({"category_name": "cat_name"})
+            flash(f"New Category {new_category} was created", "success")
+            return redirect("manage")
+
+        else:
+            flash("Failed to create category", "error")
+            return redirect("manage")
+    else:
+        flash("Please log in or register", 'error')
+        return redirect(url_for("logout"))
+
+
+
+
 @app.route('/query', methods=["GET", "POST"])
 def query():
     """
@@ -384,8 +412,8 @@ def query():
     categories = mongo.db.categories.find()
     posts = list(mongo.db.posts.find().sort('_id', -1))
     if "user" in session and session["user"] == "admin":
-        url = "admin.html"
-        title= "admin"
+        url = "user_posts.html"
+        title= "user_posts"
     else:
         url = "gallery.html"
         title = "gallery"
@@ -406,7 +434,7 @@ def query():
                 return render_template(url, posts=posts, 
                     categories=categories, title=title)
             else:
-                flash(f"Results for {search} in {category_name}", 'success')
+                flash(f"{len(posts)} Results for {search} in {category_name}", 'success')
                 return render_template(url, posts=posts, 
                     categories=categories, title=title)
 
@@ -418,7 +446,7 @@ def query():
                 return render_template(url, posts=posts, 
                     categories=categories, title=title)
             else:
-                flash(f"Results for {search}", 'success')
+                flash(f"{len(posts)} Results for {search}", 'success')
                 return render_template(url, posts=posts, 
                     categories=categories, title=title)
 
@@ -430,7 +458,7 @@ def query():
                 return render_template(url, posts=posts, 
                     categories=categories, title=title)
             else:
-                flash(f"Results for category {category_name}", 'success')
+                flash(f"{len(posts)} Results for category {category_name}", 'success')
                 return render_template(url, posts=posts, 
                     categories=categories, title=title)
 
@@ -444,10 +472,12 @@ def query():
 
 @app.route('/gallery', methods=["GET", "POST"])
 def gallery():
+
     """
     Gallery page: Get all posts 
     form Mongo DB Search qurey.
     """
+
     categories = mongo.db.categories.find()
     posts = list(mongo.db.posts.find().sort('_id', -1))
 
@@ -492,11 +522,15 @@ def manage():
     Else redirect to the login page if not.
     """
     if "user" in session and session["user"] == "admin":
-        form2 = DeleteUser(request.form)
+        form = AddCategory(request.form)
+        categories = mongo.db.categories.find()
+        posts = list(mongo.db.posts.find().sort('_id', -1))
         users = list(mongo.db.user.find())
-        
+        form2 = DeleteUser(request.form)
+
         return render_template("manage.html",
-            users=users, form2=form2, manage=True)
+            posts=posts, categories=categories,
+            users=users, form=form, form2=form2, manage=True)
 
     else:
         flash("Please log in or register", 'error')
@@ -522,19 +556,7 @@ def admin_posts(post_id):
         for key, value in post.items():
             if key == "created_by":
                 created_by = mongo.db.users.find_one({"username": value})
-            
-        for k, v in post.items():
-            if k == "image":
-                image = v
-            elif k == "img_id":
-                image_id = v
-            elif k == "image_sm":
-                image_sm = v
-            elif k == "time_created":
-                time_stamp = v
-            elif k == "created_by":
-                created = v
-   
+
         return render_template( 
             "admin_posts.html", categories=categories,
             post=post, form=form, form2=form2, created_by=created_by )

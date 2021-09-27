@@ -15,6 +15,7 @@
                 <input class="input form-control me-2" name="search" type="search" placeholder="Keyword"
                     aria-label="Search">
             </div>
+
             <!-- select category From existing categories -->
             <div class="col-md-3 input-group-sm">
                 <select class="form-select text-capitalize input" name="category" id="category" aria-label="example">
@@ -44,7 +45,7 @@
     <!-- uer posts -->
     {% for post in posts %}
 
-    <div class="card my-card text-center bg-secondary d-flex flex-column text-white m-1">
+    <div class="card my-card  text-center bg-secondary d-flex flex-column text-white m-1">
         <div class="img_posts">
             <a href="">
                 <img src="{{ post.image_sm }}" class="" alt="{{ post.categoty_name }}title {{ post.title }}">

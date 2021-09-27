@@ -2,85 +2,114 @@
 
 <!-- Page title -->
 {% block title %}Admin{% endblock %}
-
+{% block sub %}
+<div class="mb-3 pt-3 text-primary"><i class="fas fa-folder-open"></i>Add New Category</div>
+{% endblock %}
 {% block content %}
 
-<!-- Manage  profile-->
+
+
 <div class="container-fluid px-2 d-flex flex-column align-items-center justify-content-center">
     <div class="max-width col-12">
 
-        <div class="bg-danger ms-2 mb-2 btn btn-sm text-white" data-bs-toggle="modal" data-bs-target="#delete_user"><i class="fas fa-user-slash"></i> Delete user: 
-            user </div>
+        <select class="form-select mb-2" name="category" id="category" aria-label="example">
+            <option value="">Existing Categoies</option>
+
+            {% for category in categories %}
+
+            <option value="{{ category.category_name }}">{{ category.category_name }}
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <form id="postForm" enctype="multipart/form-data" method="POST" action="{{ url_for('add_post') }}">
+
+            <!-- title input-->
+            <div class=" mb-2">
+                {{ form.category( class="form-control", placeholder="category") }}
+                {% if form.category.errors %}
+                <ul class="errors text-danger">
+                    {% for error in form.category.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+            </div>
+
+            <!-- Submit Button-->
+            <div class="btn_goup_user custom-btn  d-flex justify-content-between">
+                <button class="btn btn-primary col-12 btn-lg" id="submitButton" type="submit">Submit</button>
+            </div>
+            <!-- Subheading -->
+
         </form>
     </div>
 </div>
 
-<!--  search Modal -->
-<div class="modal fade" id="delete_user" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md">
-        <div class="modal-content p-3 gap-3">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-user-slash"></i>DELETE USER</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<hr>
+
+        <!-- Manage  profile-->
+<div class="container-fluid px-2 d-flex flex-column align-items-center justify-content-center">
+    <div class="max-width col-12">
+        
+        <h4 class="masthead-subheading text-danger py-4 text-center text-danget font-weight-light mb-0">
+            <i class="fas fa-user-slash"></i> Delete User
+        </h4>
+
+        <form clas=" needs-validation" method="POST" action="{{ url_for('delete_profile') }}">
+            <!-- title input-->
+
+            <div class="form-floating  mb-2">
+                {{ form2.username( class="form-control" ) }}
+                <label><i class="fas fa-user-minus"></i> Username</label>
+                {% if form2.username.errors %}
+                <ul class="errors text-danger">
+                    {% for error in form2.username.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
             </div>
-            <div class="modal-body">
-                <div class="container-fluid px-2 d-flex flex-column align-items-center justify-content-center">
-                    <div class="max-width col-12">
-                        <!-- to get an API token!-->
-                        <form clas=" needs-validation" method="POST" action="{{ url_for('delete_profile') }}">
-                            <!-- title input-->
 
-                            <div class="col-12 form-floating mb-2">
-                                {{ form2.username( class="form-control" ) }}
-                                <label for="username"><i class="fas fa-user-minus"></i> Username</label>
-                                {% if form2.username.errors %}
-                                <ul class="errors text-danger">
-                                    {% for error in form2.username.errors %}
-                                    <li>{{ error }}</li>
-                                    {% endfor %}
-                                </ul>
-                                {% endif %}
-                            </div>
-
-                            <!-- Password -->
-                            <div class="col-12 form-floating mb-2">
-                                {{ form2.password( class="form-control") }}
-                                <label for="password"><i class="fas fa-user-lock"></i> Admin Password</label>
-                                {% if form2.password.errors %}
-                                <ul class="errors text-danger">
-                                    {% for error in form2.password.errors %}
-                                    <li>{{ error }}</li>
-                                    {% endfor %}
-                                </ul>
-                                {% endif %}
-                            </div>
-
-                            <!-- Password -->
-                            <div class="col-12 form-floating mb-2">
-                                {{ form2.confirm( class="form-control") }}
-                                <label for="confirm"><i class="fas fa-user-lock"></i> Confirm Password</label>
-                                {% if form2.confirm.errors %}
-                                <ul class="errors text-danger">
-                                    {% for error in form2.confirm.errors %}
-                                    <li>{{ error }}</li>
-                                    {% endfor %}
-                                </ul>
-                                {% endif %}
-                            </div>
-
-                            <!-- Submit Button-->
-                            <button class="btn col-12 btn-danger btn-lg"
-                            type="submit" name="submit">Delete
-                            </button>  
-                            
-                        </form>
-                    </div>
-                </div>
+            <!-- Password -->
+            <div class="form-floating  mb-2">
+                {{ form2.password( class="form-control" ) }}
+                <label><i class="fas fa-user-lock"></i> Admin Password</label>
+                {% if form2.password.errors %}
+                <ul class="errors text-danger">
+                    {% for error in form2.password.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
             </div>
-        </div>
-        <div class="modal-footer">
-        </div>
+
+            <!-- Confirm Password -->
+            <div class="form-floating  mb-2">
+                {{ form2.confirm( class="form-control" ) }}
+                <label><i class="fas fa-user-lock"></i> Confirm Password</label>
+                {% if form2.confirm.errors %}
+                <ul class="errors text-danger">
+                    {% for error in form2.confirm.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button-->
+            <button class="btn col-12 btn-danger btn-lg" type="submit" name="submit">Delete
+            </button>
+
+        </form>
     </div>
+  
 </div>
+
+  <hr>
+
 
 {% endblock %}

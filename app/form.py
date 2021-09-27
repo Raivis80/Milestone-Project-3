@@ -66,3 +66,10 @@ class DeleteUser(Form):
     ])
     confirm = PasswordField('Repeat Password')
 
+
+# Add Category form 
+class AddCategory(Form):
+    category = StringField('Category', [
+        validators.InputRequired(),
+        validators.Length(min=4, max=15,
+        message="Lenght between 5 to 15 charters")])
