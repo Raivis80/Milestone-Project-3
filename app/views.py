@@ -50,7 +50,7 @@ def register():
 
         if existing_user:
             flash("Username already exists")
-            return redirect(url_for("register"))   
+            return redirect(request.url)   
         else:
             register = {
                 "username": form.username.data.lower(),
@@ -58,12 +58,8 @@ def register():
                     form.password.data)
             }
             mongo.db.users.insert_one(register)
-            flash(f'Welcome, {form.username.data.capitalize()}')
-            flash("Registration successfuly")
+            flash(f'Welcome, {form.username.data.capitalize()}', 'success')
             return redirect(url_for("login"))
-        
-        flash('Thanks for registering')
-        return redirect(url_for('login'))
 
     return render_template('register.html', form=form)
 
@@ -96,7 +92,7 @@ def login():
                     return redirect(url_for(
                         "profile", username=session["user"]))
                 else:
-                    return redirect(url_for("admin"))
+                    return redirect(url_for("manage"))
 
             else:
                 flash("Incorrect Username and/or Password", 'error')
@@ -159,10 +155,10 @@ def delete_profile():
                         admin["password"], form.password.data.lower()):
                     mongo.db.users.remove(existing_user)
                     flash("User was remover", 'success')
-                    return redirect(url_for("admin"))
+                    return redirect(request.referrer)
                 else:
                     flash("You Entered Incorrect Password", 'error')
-                    return redirect(url_for("delete_profile"))
+                    return redirect(request.referrer)
 
             elif existing_user == session["user"]:
                 if check_password_hash(
@@ -173,11 +169,11 @@ def delete_profile():
                     return redirect(url_for("logout"))
                 else:
                     flash("Incorrect Username and/or Password", 'error')
-                    return redirect(url_for("delete_profile"))
+                    return redirect(request.referrer)
 
             else:
                 flash("Incorrect Username and/or Password", 'error')
-                return redirect(url_for("delete_profile"))
+                return redirect(request.referrer)
 
         return render_template("edit_profile.html", form=form, account=True)
 
@@ -236,23 +232,17 @@ def add_post():
                         }
                     mongo.db.posts.insert_one(submit)
                     flash("Post was successfully added", 'success')
-                    return redirect(url_for(
-                        "add_post", categories=categories,
-                        post=True, form=form))
+                    return redirect(request.url)
 
                 else:
                     if URL_status.status_code != 200:
                         flash(f"Status code: {URL_status.status_code}")
                         flash("Post did not upload Try again", 'error')
-                        return redirect(url_for(
-                            "add_post", categories=categories,
-                            post=True, form=form))
+                        return redirect(request.url)
                     else:
                         flash("Post failed upload", 'error')
                         flash("Please try again later", 'error')
-                        return redirect(url_for(
-                            "add_post", categories=categories,
-                            post=True, form=form))
+                        return redirect(request.url)
 
             else:
                 flash('File is required', 'error')
@@ -315,14 +305,14 @@ def edit_post(post_id):
             }
             mongo.db.posts.update({"_id": ObjectId(post_id)}, submit)
             flash("post Successfully Updated", 'success')
-            if session["user"] != "admin":
-                return redirect(url_for("profile", username=session["user"]))
-            else:
-                return redirect(url_for("admin"))
+            return redirect(request.referrer)
 
-        return render_template(
-            "edit_post.html", categories=categories,
-            post=post, form=form, form2=form2 )
+        if session["user"] != "admin":
+            return render_template(
+                "edit_post.html", categories=categories,
+                post=post, form=form, form2=form2 )
+        else:
+            return redirect(url_for("manage"))
 
     else:
         flash("Please log in or register", 'error')
@@ -355,7 +345,7 @@ def delete_post(post_id):
             if session["user"] != "admin":
                 return redirect(url_for("profile", username=session["user"]))
             else:
-                return redirect(url_for("admin"))
+                return redirect(url_for("manage"))
 
         if status:
             mongo.db.posts.remove({"_id": ObjectId(post_id)})
@@ -363,7 +353,7 @@ def delete_post(post_id):
             if session["user"] != "admin":
                 return redirect(url_for("profile", username=session["user"]))
             else:
-                return redirect(url_for("admin"))
+                return redirect(url_for("manage"))
 
         else:
             flash("Failed to delete Image file", 'error')
@@ -371,13 +361,13 @@ def delete_post(post_id):
             if session["user"] != "admin":
                 return redirect(url_for("profile", username=session["user"]))
             else:
-                return redirect(url_for("admin"))
+                return redirect(url_for("manage"))
 
         if session["user"] != "admin":
             return redirect(url_for("profile", username=session["user"]))
 
         else:
-            return redirect(url_for("admin"))
+            return redirect(url_for("manage"))
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("login"))
@@ -462,12 +452,12 @@ def gallery():
     posts = list(mongo.db.posts.find().sort('_id', -1))
 
     return render_template('gallery.html', posts=posts,
-        categories=categories, title="gallery")
+                categories=categories, title="gallery")
 
 
 #==============ADMIN================
-@app.route("/admin", methods=["GET", "POST"])
-def admin():
+@app.route("/user_posts", methods=["GET", "POST"])
+def user_posts():
 
     """
     Find Admin username from db Check
@@ -486,25 +476,27 @@ def admin():
         posts = list(mongo.db.posts.find().sort('_id', -1))
         users = list(mongo.db.users.find())
         return render_template(
-            "admin.html", categories=categories, posts=posts, users=users, admin=True)
+            "user_posts.html", categories=categories,
+            posts=posts, users=users, admin=True)
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("logout"))
 
 
-@app.route("/manage_users", methods=["GET", "POST"])
-def manage_users():
+@app.route("/manage", methods=["GET", "POST"])
+def manage():
 
     """ 
     Manage users: Find a session user if
-    Admin render template "manage_users"
+    Admin render template "manage"
     Else redirect to the login page if not.
     """
     if "user" in session and session["user"] == "admin":
         form2 = DeleteUser(request.form)
         users = list(mongo.db.user.find())
         
-        return render_template("manage_users.html", users=users, form2=form2, manage=True)
+        return render_template("manage.html",
+            users=users, form2=form2, manage=True)
 
     else:
         flash("Please log in or register", 'error')

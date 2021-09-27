@@ -37,10 +37,10 @@
                     {% if session.user != "admin" %}
                     <li class="nav-item mx-0 mx-lg-1 "><a
                             class="nav-link py-3 px-0 px-lg-3 rounded {% if request.endpoint == 'index' %} active {% endif %}"
-                            href="{{ url_for('index') }}">Home</a></li>
+                            href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a
                             class="nav-link py-3 px-0 px-lg-3 rounded {% if request.endpoint == 'gallery' %} active {% endif %}"
-                            href="{{ url_for('gallery') }}">Gallery</a></li>
+                            href="{{ url_for('gallery') }}"><i class="fas fa-images"></i> Gallery</a></li>
                     {% endif %}
 
                     {% if session.user %}
@@ -49,37 +49,37 @@
 
                             <li class="nav-item mx-0 mx-lg-1"><a
                                     class="nav-link py-3 px-0 px-lg-3 rounded {% if profile == True %} active {% endif %}"
-                                    href="{{ url_for('profile', username=session['user']) }}">My Posts</a></li>
+                                    href="{{ url_for('profile', username=session['user']) }}"><i class="fas fa-images"></i> My Posts</a></li>
 
                             <li class="nav-item mx-0 mx-lg-1"><a
                                 class="nav-link py-3 px-0 px-lg-3 rounded {% if post == True %} active {% endif %}"
-                                href="{{ url_for('add_post') }}">Add Post</a></li>
+                                href="{{ url_for('add_post') }}"><i class="fas fa-file-image"></i> Add Post</a></li>
 
                         {% else %}
 
                             <li class="nav-item mx-0 mx-lg-1"><a
                                 class="nav-link py-3 px-0 px-lg-3 rounded {% if admin == True %} active {% endif %}"
-                                href="{{ url_for('admin') }}">User Posts</a></li>
+                                href="{{ url_for('user_posts') }}"><i class="fas fa-images"></i> User Posts</a></li>
 
                             <li class="nav-item mx-0 mx-lg-1"><a
                                     class="nav-link py-3 px-0 px-lg-3 rounded {% if manage == True %} active {% endif %}"
-                                    href="{{ url_for('manage_users') }}">Users</a></li>
+                                    href="{{ url_for('manage') }}"><i class="fas fa-cogs"></i> Manage</a></li>
 
                         {% endif %}
 
                     {% if session.user != "admin" %}
                         <li class="nav-item mx-0 mx-lg-1"><a
                                 class="nav-link py-3 px-0 px-lg-3 rounded {% if account == True %} active {% endif %}"
-                                href="{{ url_for('delete_profile') }}">Account</a></li>
+                                href="{{ url_for('delete_profile') }}"><i class="fas fa-cogs"></i> Account</a></li>
                     {% endif %}
 
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="{{ url_for('logout') }}">Log Out</a></li>
+                            href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
 
                     {% else %}
 
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="{{ url_for('login') }}">Log In | Sign Up</a></li>
+                            href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Log In | Sign Up</a></li>
 
                     {% endif %}
                 </ul>

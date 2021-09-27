@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 <!-- Page title -->
-{% block title %}<i class="fas fa-cogs"></i> Post{% endblock %}
+{% block title %}Update Post{% endblock %}
 
 {% block content %}
 
@@ -73,8 +73,8 @@
                 </div>
 
                 <a id="enabled" href="{{ url_for('delete_post', post_id=post._id) }}" class="btn btn-danger btn-sm">
-                    Delete Post</a>
-                <div id="disabled" class="btn btn-danger btn-sm">Delete Post</div>
+                    <i class="fas fa-trash-alt"></i> Delete Post</a>
+                <div id="disabled" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete Post</div>
             </div>
         </form>
     </div>

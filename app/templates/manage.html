@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 <!-- Page title -->
-{% block title %}<i class="fas fa-users-cog"></i> Users{% endblock %}
+{% block title %}Admin{% endblock %}
 
 {% block content %}
 
@@ -69,13 +69,10 @@
                             </div>
 
                             <!-- Submit Button-->
-
-                            <div class="btn_goup_user custom-btn d-flex justify-content-between">
-                                <button id="enabled" class="btn col-12 btn-danger btn-lg" id="delete"
-                                    type="submit">Delete
-                                    Account
-                                </button>
-                            </div>
+                            <button class="btn col-12 btn-danger btn-lg"
+                            type="submit" name="submit">Delete
+                            </button>  
+                            
                         </form>
                     </div>
                 </div>
