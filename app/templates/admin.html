@@ -4,11 +4,46 @@
 {% block title %}Manage Posts{% endblock %}
 
 {% block content %}
+
+
+<!--  search Modal -->
+
+
+<div class=" m-2 ">
+     <form class="mx-auto" id="postForm" method="POST" action="{{ url_for('query') }}">
+        <!-- Search query Input field -->
+        <div class="d-flex justify-content-center">
+        <div class="col-3 input-group-sm">
+            <input class="input form-control me-2" name="search" type="search" placeholder="Keyword" aria-label="Search">
+        </div>
+        <!-- select category From existing categories -->
+        <div class="col-md-3 input-group-sm">
+        <select class="form-select text-capitalize input" name="category" id="category" aria-label="example">
+            <option selected value="select category">select category</option>
+            {% for category in categories %}
+    
+            <option value="{{ category.category_name }}">{{ category.category_name }}
+            </option>
+    
+            {% endfor %}
+    
+        </select>
+        </div>
+        
+        <!-- Submit button -->
+        <div class="col-3">
+            <button class="btn col-12 btn-primary btn-sm" id="submitButton" type="submit"><i class="fas fa-search"></i> Search</button>
+        </div>
+    </div>
+    </form>
+</div>
+
 <!-- User Profile Section-->
-<div class="container-fluid d-flex flex-wrap justify-content-center">
+<div class="container-fluid mt-3 d-flex flex-wrap justify-content-center">
+
     <!-- uer posts -->
     {% for post in posts %}
-        
+
     <div class="card my-card text-center bg-secondary d-flex flex-column text-white m-1">
         <div class="img_posts">
             <a href="">
@@ -16,13 +51,13 @@
             </a>
         </div>
         <h6 class="card-title text-uppercase my-1">{{post.title}}</h6>
-        
+
         <div class="card-body bg-white text-secondary p-1">
             <p class="card-text p-1">{{post.description}}.</p>
         </div>
-        
+
         <div class="card-footer py-1">
-            
+
             <p class="card-text">{{post.time_created}}.</p>
         </div>
         <a href="{{ url_for('edit_post',  post_id=post._id ) }}">
@@ -33,10 +68,10 @@
         </a>
         <p class="card-text">Created by user: {{post.created_by}}.</p>
     </div>
-    
 
-    
-       
+
+
+
     {% endfor %}
 
 </div>

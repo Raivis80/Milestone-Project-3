@@ -140,7 +140,20 @@ def delete_profile():
             # check if username exists in db
             existing_user = mongo.db.users.find_one(
                 {"username": request.form.get("username").lower()})
-            if existing_user == session["user"]:
+            # Admin user management
+            if existing_user and session["user"] == "admin":
+                admin = mongo.db.users.find_one(
+                            {"username": session["user"].lower()})
+                if check_password_hash(
+                        admin["password"], request.form.get("password")):
+                    mongo.db.users.remove(existing_user)
+                    flash("User was remover", 'success')
+                    return redirect(url_for("admin"))
+                else:
+                    flash("You Entered Incorrect Password", 'error')
+                    return redirect(url_for("delete_profile", account=True))
+                # Existing user delete self
+            elif existing_user == session["user"]:
                 # ensure hashed password matches user input
                 if check_password_hash(
                         existing_user["password"], request.form.get("password")):
@@ -331,6 +344,71 @@ def delete_post(post_id):
         return redirect(url_for("login"))
 
 
+
+@app.route('/query', methods=["GET", "POST"])
+def query():
+    """
+    Search function
+    Get all posts form DB
+    Search by keyword, username
+    Or Query posts by category
+    """
+
+    categories = mongo.db.categories.find()
+    posts = list(mongo.db.posts.find().sort('_id', -1))
+    if session["user"] == "admin":
+        url = "admin.html"
+        title= "admin"
+    else:
+        url = "gallery.html"
+        title = "gallery"
+    if request.method == "POST":
+        search = request.form.get("search").lower()
+        category_name = request.form.get("category").lower()
+        categories = mongo.db.categories.find()
+        not_selected = "select category"
+        # Search by keyword and category
+        if search != "" and category_name != not_selected:
+            posts = list(mongo.db.posts.find({ "$and" : [ {
+                "category_name": category_name }, {"$text": {"$search": search}}] }))
+            if len(posts) == 0:     
+                flash(f"No results for {search} in {category_name}", 'error')
+                return render_template(url, posts=posts, 
+                    categories=categories, title=title)
+            else:
+                flash(f"Results for {search} in {category_name}", 'success')
+                return render_template(url, posts=posts, 
+                    categories=categories, title=title)
+        # Search by Key word only
+        elif search != "":
+            posts = list(mongo.db.posts.find({"$text": {"$search": search}}))
+            if len(posts) == 0:     
+                flash(f"No results for {search}", 'error')
+                return render_template(url, posts=posts, 
+                    categories=categories, title=title)
+            else:
+                flash(f"Results for {search}", 'success')
+                return render_template(url, posts=posts, 
+                    categories=categories, title=title)
+        # Search by category only
+        elif category_name != not_selected and search == "":
+            posts = list(mongo.db.posts.find({"category_name": category_name }))
+            if len(posts) == 0:     
+                flash(f"No results for {category_name}", 'error')
+                return render_template(url, posts=posts, 
+                    categories=categories, title=title)
+            else:
+                flash(f"Results for category {category_name}", 'success')
+                return render_template(url, posts=posts, 
+                    categories=categories, title=title)
+        else:
+            return render_template(url, posts=posts, 
+                categories=categories, title=title)
+    else:
+        return render_template(url, posts=posts, 
+            categories=categories, title=title)
+
+
 @app.route('/gallery', methods=["GET", "POST"])
 def gallery():
     """
@@ -339,58 +417,11 @@ def gallery():
     Search by keyword, username
     Or Query posts by category
     """
-    # mongo.db.posts.drop_indexes()
-    # mongo.db.posts.create_index([
-    #   ("title", "text"), ("description", "text"), ("created_by", "text")])
     categories = mongo.db.categories.find()
     posts = list(mongo.db.posts.find().sort('_id', -1))
-    if request.method == "POST":
-        search = request.form.get("search").lower()
-        category_name = request.form.get("category").lower()
-        categories = mongo.db.categories.find()
-        # Search by keyword, username
-        # Or Query posts by category
-        not_elected = "select category"
-        # Search by keyword and category
-        if search != "" and category_name != not_elected:
-            posts = list(mongo.db.posts.find({ "$and" : [ {
-                "category_name": category_name }, {"$text": {"$search": search}}] }))
-            if len(posts) == 0:     
-                flash(f"No results for {search} in {category_name}", 'error')
-                return render_template("gallery.html", posts=posts, 
-                    categories=categories, title="gallery")
-            else:
-                flash(f"Results for {search} in {category_name}", 'success')
-                return render_template("gallery.html", posts=posts,
-                categories=categories, title="gallery")
-        # Search by Keyword only
-        elif search != "":
-            posts = list(mongo.db.posts.find({"$text": {"$search": search}}))
-            if len(posts) == 0:     
-                flash(f"No results for {search}", 'error')
-                return render_template("gallery.html", posts=posts, 
-                    categories=categories, title="gallery")
-            else:
-                flash(f"Results for {search}", 'success')
-                return render_template("gallery.html", posts=posts,
-                categories=categories, title="gallery")
-        # Search by category only
-        elif category_name != not_elected and search == "":
-            posts = list(mongo.db.posts.find({"category_name": category_name }))
-            if len(posts) == 0:     
-                flash(f"No results for {category_name}", 'error')
-                return render_template("gallery.html", posts=posts, 
-                    categories=categories, title="gallery")
-            else:
-                flash(f"Results for category {category_name}", 'success')
-                return render_template("gallery.html", posts=posts,
-                categories=categories, title="gallery")
-        else:
-            return render_template("gallery.html", posts=posts,
-                categories=categories, title="gallery")
-    else:
-        return render_template('gallery.html', posts=posts,
-            categories=categories, title="gallery")
+
+    return render_template('gallery.html', posts=posts,
+        categories=categories, title="gallery")
 
 
 #==============ADMIN================
@@ -404,79 +435,38 @@ def admin():
     Or Rediret unauthorized users page access
     """
 
+    # mongo.db.posts.drop_indexes()
+    # mongo.db.posts.create_index([
+    #   ("title", "text"), ("description", "text"), ("created_by", "text")])
+
     if "user" in session and session["user"] == "admin":
         categories = mongo.db.categories.find()
         posts = list(mongo.db.posts.find().sort('_id', -1))
         users = list(mongo.db.users.find())
         return render_template(
             "admin.html", categories=categories, posts=posts, users=users, admin=True)
-
-        if request.method == "POST":
-            admin = mongo.db.users.find_one(
-                {"username": "admin"})
-            existing_user = mongo.db.users.find_one(
-                {"username": request.form.get("username").lower()})
-            url = url_for("manage_users", users=users)
-        if existing_user:
-            if check_password_hash(
-                    admin["password"], request.form.get("password")):
-                delete_user(existing_user, url)
-                flash("Good Buy", 'success')
-                return redirect(url_for("manage_users", users=users))
-            else:
-                flash("Incorrect Password", 'error')
-                return redirect(url_for("manage_users", users=users))
-        else:
-            flash("User does not exist", 'error')
-            return redirect(url_for("manage_users", users=users))
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("logout"))
-        return redirect(url_for("login"))
 
 
 @app.route("/manage_users", methods=["GET", "POST"])
 def manage_users():
 
     """ 
-    Delete user rofile Get input
+    Manage users Get input
     from form and find username
     and password in the DB For deletion
     """
     if "user" in session and session["user"] == "admin":
         users = list(mongo.db.user.find())
-        if request.method == "POST":
-            # check if username exists in db
-            admin = mongo.db.users.find_one(
-                {"username": "admin"})
-            existing_user = mongo.db.users.find_one(
-                {"username": request.form.get("username").lower()})
-            url = url_for("manage_users", users=users)
-            if existing_user:
-                # ensure admin hashed password matches admin input
-                if check_password_hash(
-                        admin["password"], request.form.get("password")):
-                    try:
-                        mongo.db.users.remove(existing_user)
-                        flash("Deleted Successfuly", 'success')
-                        return redirect(url_for("manage_users", users=users))
-                    except BaseException:
-                        flash("Failed to delete Or user not exist", 'success')
-                        return redirect(url_for("manage_users", users=users))
-                else:
-                    flash("Incorrect Password", 'error')
-                    return redirect(url_for("manage_users", users=users))
-            else:
-                flash("User does not exist", 'error')
-                return redirect(url_for("manage_users", users=users))
-
+        
         return render_template("manage_users.html", users=users)
 
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("login"))
 
-   
 
 @app.route("/logout")
 def logout():
