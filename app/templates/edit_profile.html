@@ -5,17 +5,21 @@
 
 {% block content %}
 
-<!-- Manage  profile-->
 <div class="container-fluid px-2 d-flex flex-column align-items-center justify-content-center">
     <div class="max-width col-12">
-        <!-- to get an API token!-->
-        <form clas=" needs-validation" method="POST" action="{{ url_for('delete_profile') }}">
-            <div class="col-12 form-floating mb-2">
-                {{ form.username( class="form-control" ) }}
-                <label for="username"><i class="fas fa-user-minus"></i> Username</label>
-                {% if form.username.errors %}
+
+        <h4 class="masthead-subheading text-info py-4 text-center text-danget font-weight-light mb-0">
+            <i class="fas fa-user-cog"></i> Change Password
+        </h4>
+
+        <form clas=" needs-validation" method="POST" action="{{ url_for('change_password') }}">
+
+            <div class="form-floating  mb-2">
+                {{ form.old_password( class="form-control", placeholder="Old Password") }}
+                <label><i class="fas fa-user-lock"></i> Old Password</label>
+                {% if form.old_password.errors %}
                 <ul class="errors text-danger">
-                    {% for error in form.username.errors %}
+                    {% for error in form.old_password.errors %}
                     <li>{{ error }}</li>
                     {% endfor %}
                 </ul>
@@ -24,7 +28,7 @@
 
             <!-- Password -->
             <div class="col-12 form-floating mb-2">
-                {{ form.password( class="form-control") }}
+                {{ form.password( class="form-control", placeholder="Password") }}
                 <label for="password"><i class="fas fa-user-lock"></i>Password</label>
                 {% if form.password.errors %}
                 <ul class="errors text-danger">
@@ -37,7 +41,7 @@
 
             <!-- Password -->
             <div class="col-12 form-floating mb-2">
-                {{ form.confirm( class="form-control") }}
+                {{ form.confirm( class="form-control", placeholder="Confirm Password") }}
                 <label for="confirm"><i class="fas fa-user-lock"></i> Confirm Password</label>
                 {% if form.confirm.errors %}
                 <ul class="errors text-danger">
@@ -47,14 +51,69 @@
                 </ul>
                 {% endif %}
             </div>
-
+            <button class="btn col-12 btn-info text-white btn-lg" type="submit" name="submit">Submit
+            </button>
             <!-- Submit Button-->
-            <button class="btn col-12 btn-danger btn-lg" name="submit" type="submit"><i class="fas fa-user-slash"></i> Delete</button>
-            <div class="pt-2 del_post form-check d-flex justify-content-between">
 
-            </div>
+
         </form>
     </div>
 </div>
+<hr>
+<!-- Change Password form-->
+<div class="container-fluid px-2 d-flex flex-column align-items-center justify-content-center">
+    <div class="max-width col-12">
 
+        <h4 class="masthead-subheading text-danger py-4 text-center text-danget font-weight-light mb-0">
+            <i class="fas fa-user-slash"></i> Delete Account
+        </h4>
+
+        <!-- title input-->
+        <form clas=" needs-validation" method="POST" action="{{ url_for('delete_profile') }}">
+
+            <div class="col-12 form-floating mb-2">
+                {{ form3.username( class="form-control", placeholder="Username Name") }}
+                <label for="username"><i class="fas fa-user-minus"></i> Username</label>
+                {% if form3.username.errors %}
+                <ul class="errors text-danger">
+                    {% for error in form3.username.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <!-- Password -->
+            <div class="form-floating  mb-2">
+                {{ form3.password( class="form-control", placeholder="Password") }}
+                <label><i class="fas fa-user-lock"></i> New Password</label>
+                {% if form3.password.errors %}
+                <ul class="errors text-danger">
+                    {% for error in form3.password.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-floating  mb-2">
+                {{ form3.confirm( class="form-control", placeholder="Confirm Password") }}
+                <label><i class="fas fa-user-lock"></i> Confirm Password</label>
+                {% if form3.confirm.errors %}
+                <ul class="errors text-danger">
+                    {% for error in form3.confirm.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button-->
+            <button class="btn col-12 btn-danger btn-lg" name="submit" type="submit">Delete</button>
+            <div class="pt-2 del_post form-check d-flex justify-content-between">
+
+        </form>
+    </div>
+</div>
 {% endblock %}

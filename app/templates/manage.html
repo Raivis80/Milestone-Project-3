@@ -3,7 +3,7 @@
 <!-- Page title -->
 {% block title %}Admin{% endblock %}
 {% block sub %}
-<div class="mb-3 pt-3 text-primary"><i class="fas fa-folder-open"></i>Add New Category</div>
+<div class="mb-3 pt-3 text-primary"><i class="fas fa-folder-plus"></i>Add New Category</div>
 {% endblock %}
 {% block content %}
 
@@ -16,8 +16,9 @@
         <form id="postForm" enctype="multipart/form-data" method="POST" action="{{ url_for('new_category') }}">
 
             <!-- Category select input-->
-            <div class=" mb-2">
-                {{ form.category( class="form-control", placeholder="category") }}
+            <div class="form-floating mb-2">
+                {{ form.category( class="form-control", placeholder="Category Name") }}
+                <label><i class="fas fa-plus"></i> New Category</label>
                 {% if form.category.errors %}
                 <ul class="errors text-danger">
                     {% for error in form.category.errors %}
@@ -36,12 +37,12 @@
         <!-- Existing categories select field -->
         <form id="postForm" enctype="multipart/form-data" method="POST" action="{{ url_for('delete_category') }}">
             <h4 class="masthead-subheading text-danger py-4 text-center text-danget font-weight-light mb-0">
-                <i class="fas fa-user-slash"></i> Delete Category
+                <i class="fas fa-folder-minus"></i> Delete Category
             </h4>
 
             <select class="form-select mb-2" name="category" id="category" aria-label="example">
 
-                <option value="">Cellect Categoy</option>
+                <option value="">Sellect Categoy</option>
                 {% for category in categories %}
                 <option value="{{ category.category_name }}">{{ category.category_name }}
                 </option>
@@ -64,14 +65,14 @@
     <div class="max-width col-12">
 
         <h4 class="masthead-subheading text-danger py-4 text-center text-danget font-weight-light mb-0">
-            <i class="fas fa-user-slash"></i> Manage Users
+            <i class="fas fa-user-slash"></i> Delete User
         </h4>
 
         <form clas=" needs-validation" method="POST" action="{{ url_for('delete_profile') }}">
             <!-- title input-->
 
             <div class="form-floating  mb-2">
-                {{ form2.username( class="form-control" ) }}
+                {{ form2.username( class="form-control", placeholder="Username Name") }}
                 <label><i class="fas fa-user-minus"></i> Username</label>
                 {% if form2.username.errors %}
                 <ul class="errors text-danger">
@@ -84,7 +85,7 @@
 
             <!-- Password -->
             <div class="form-floating  mb-2">
-                {{ form2.password( class="form-control" ) }}
+                {{ form2.password( class="form-control", placeholder="Password") }}
                 <label><i class="fas fa-user-lock"></i> Admin Password</label>
                 {% if form2.password.errors %}
                 <ul class="errors text-danger">
@@ -97,7 +98,7 @@
 
             <!-- Confirm Password -->
             <div class="form-floating  mb-2">
-                {{ form2.confirm( class="form-control" ) }}
+                {{ form2.confirm( class="form-control", placeholder="Confirm Password") }}
                 <label><i class="fas fa-user-lock"></i> Confirm Password</label>
                 {% if form2.confirm.errors %}
                 <ul class="errors text-danger">
@@ -118,6 +119,67 @@
 </div>
 
 <hr>
+
+<!-- Change Admin Password form-->
+<div class="container-fluid px-2 d-flex flex-column align-items-center justify-content-center">
+    <div class="max-width col-12">
+
+        <h4 class="masthead-subheading text-info py-4 text-center text-danget font-weight-light mb-0">
+            <i class="fas fa-user-cog"></i> Change Admin Password
+        </h4>
+
+        <form clas=" needs-validation" method="POST" action="{{ url_for('change_password') }}">
+            <!-- title input-->
+
+            <div class="form-floating  mb-2">
+                {{ form3.old_password( class="form-control", placeholder="Old Passwodre") }}
+                <label><i class="fas fa-user-lock"></i> Old Password</label>
+                {% if form3.old_password.errors %}
+                <ul class="errors text-danger">
+                    {% for error in form3.old_password.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <!-- Password -->
+            <div class="form-floating  mb-2">
+                {{ form3.password( class="form-control", placeholder="Password") }}
+                <label><i class="fas fa-user-lock"></i> New Password</label>
+                {% if form3.password.errors %}
+                <ul class="errors text-danger">
+                    {% for error in form3.password.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-floating  mb-2">
+                {{ form3.confirm( class="form-control", placeholder="Confirm Password") }}
+                <label><i class="fas fa-user-lock"></i> Confirm Password</label>
+                {% if form3.confirm.errors %}
+                <ul class="errors text-danger">
+                    {% for error in form3.confirm.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button-->
+            <button class="btn col-12 btn-info text-white btn-lg" type="submit" name="submit">Submit
+            </button>
+
+        </form>
+    </div>
+
+</div>
+
+<hr>
+
 
 
 {% endblock %}

@@ -70,7 +70,7 @@
                     {% if session.user != "admin" %}
                         <li class="nav-item mx-0 mx-lg-1"><a
                                 class="nav-link py-3 px-0 px-lg-3 rounded {% if account == True %} active {% endif %}"
-                                href="{{ url_for('delete_profile') }}"><i class="fas fa-cogs"></i> Account</a></li>
+                                href="{{ url_for('edit_profile') }}"><i class="fas fa-cogs"></i> Account</a></li>
                     {% endif %}
 
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"

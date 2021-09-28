@@ -4,7 +4,7 @@ from flask import (
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.form import (
     RegisterForm, LoginForm, UploadForm,
-    EditForm, DeleteUser, AddCategory)
+    EditForm, DeleteUser, AddCategory, ChangePassword)
 from cloudinary.utils import cloudinary_url
 from cloudinary.uploader import upload
 from bson.objectid import ObjectId
@@ -132,10 +132,50 @@ def profile(username):
         return redirect(url_for("login"))
 
 
+@app.route('/change_password', methods=['GET', 'POST'])
+def change_password():
+    """
+    change user password: Usernames Hash the
+    passwords and add to the mongo DB user
+    collection, redirect to login page.
+    """
+
+    if "user" in session:
+        form = ChangePassword(request.form)
+
+        if request.method == 'POST' and form.validate():
+            username = session["user"]
+            user = mongo.db.users.find_one(
+                {"username": session["user"]})
+
+            if check_password_hash(
+                    user["password"], form.old_password.data.lower()):
+                update = {
+                    "username": username.lower(),
+                    "password": generate_password_hash(
+                        form.password.data)
+                    }
+
+                mongo.db.users.update({"username": username}, update)
+                flash("Password Update success", 'success')
+                return redirect(request.referrer)
+
+            else:
+                flash("You Entered Incorrect Password", 'error')
+                return redirect(request.referrer)
+        else:
+            flash("You Entered Incorrect Password", 'error')
+            return redirect(request.referrer)
+
+    else:
+        flash("Register or Login", 'success')
+        return redirect(url_for("logout"))
+
+
 @app.route("/delete_profile", methods=["GET", "POST"])
 def delete_profile():
 
-    """ 
+    """
     Delete user rofile: Get input from DB and
     find username, check if username exists
     in db and ensure hashed password matches.
@@ -145,11 +185,10 @@ def delete_profile():
     """
 
     if "user" in session:
-        username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
+
         form = DeleteUser(request.form)
         if request.method == "POST":
-
+            username = session["user"]
             # Admin User management Delete a user account
             if username == "admin":
                 delete_usr = mongo.db.users.find_one(
@@ -169,10 +208,12 @@ def delete_profile():
 
             # Existing user delete own account
             elif username == session["user"]:
+                user = mongo.db.users.find_one(
+                    {"username": session["user"]})
                 if check_password_hash(
-                        username["password"],
-                        request.form.get("password")):
-                    mongo.db.users.remove(username)
+                        user["password"],
+                        form.password.data.lower()):
+                    mongo.db.users.remove(user)
                     flash("Good Buy", 'success')
                     return redirect(url_for("logout"))
                 else:
@@ -182,8 +223,6 @@ def delete_profile():
             else:
                 flash("Incorrect Username and/or Password", 'error')
                 return redirect(request.referrer)
-
-        return render_template("edit_profile.html", form=form, account=True)
 
     else:
         flash("Please log in or register", 'error')
@@ -226,7 +265,7 @@ def add_post():
                     format="jpg", crop="fill", width=300)
                 img_id = upload_result.get('public_id')
                 URL_status = requests.get(image)
-               
+
                 if URL_status.status_code == 200:
                     submit = {
                         "category_name": request.form.get("category").lower(),
@@ -529,11 +568,32 @@ def query():
             url, posts=posts, categories=categories, title=title)
 
 
+@app.route('/edit_profile', methods=["GET", "POST"])
+def edit_profile():
+
+    """
+    Manage users Profile: Find a session
+    if Mondo Db, Check for session user
+    Match and render template
+    Else redirect to the login page if not.
+    """
+
+    if "user" in session and session["user"] != "admin":
+        form3 = DeleteUser(request.form)
+        form = ChangePassword(request.form)
+        return render_template(
+            "edit_profile.html", form=form, form3=form3, account=True)
+
+    else:
+        flash("Please log in or register", 'error')
+        return redirect(url_for("logout"))
+
+
 @app.route('/gallery', methods=["GET", "POST"])
 def gallery():
 
     """
-    Gallery page: Get all posts 
+    Gallery page: Get all posts
     form Mongo DB Search qurey.
     """
 
@@ -551,7 +611,7 @@ def user_posts():
     """
     Find Admin username from db Check
     if user match session cookie Render
-    Admin Profile page if verified Or 
+    Admin Profile page if verified Or
     Rediret unauthorized users page access
     Create index for quering DB by keyword.
     """
@@ -575,7 +635,7 @@ def user_posts():
 @app.route("/manage", methods=["GET", "POST"])
 def manage():
 
-    """ 
+    """
     Manage users: Find a session user if
     Admin render template "manage"
     Else redirect to the login page if not.
@@ -586,10 +646,11 @@ def manage():
         posts = list(mongo.db.posts.find().sort('_id', -1))
         users = list(mongo.db.user.find())
         form2 = DeleteUser(request.form)
+        form3 = ChangePassword(request.form)
 
         return render_template(
             "manage.html", posts=posts, categories=categories,
-            users=users, form=form, form2=form2, manage=True)
+            users=users, form=form, form2=form2, form3=form3, manage=True)
 
     else:
         flash("Please log in or register", 'error')
