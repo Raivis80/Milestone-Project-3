@@ -8,25 +8,14 @@
 {% block content %}
 
 
-
+<!-- Manage Catergories Forms -->
 <div class="container-fluid px-2 d-flex flex-column align-items-center justify-content-center">
     <div class="max-width col-12">
 
-        <select class="form-select mb-2" name="category" id="category" aria-label="example">
-            <option value="">Existing Categoies</option>
+        <!-- Add New Category -->
+        <form id="postForm" enctype="multipart/form-data" method="POST" action="{{ url_for('new_category') }}">
 
-            {% for category in categories %}
-
-            <option value="{{ category.category_name }}">{{ category.category_name }}
-            </option>
-
-            {% endfor %}
-
-        </select>
-
-        <form id="postForm" enctype="multipart/form-data" method="POST" action="{{ url_for('add_post') }}">
-
-            <!-- title input-->
+            <!-- Category select input-->
             <div class=" mb-2">
                 {{ form.category( class="form-control", placeholder="category") }}
                 {% if form.category.errors %}
@@ -36,27 +25,46 @@
                     {% endfor %}
                 </ul>
                 {% endif %}
-
             </div>
 
             <!-- Submit Button-->
             <div class="btn_goup_user custom-btn  d-flex justify-content-between">
                 <button class="btn btn-primary col-12 btn-lg" id="submitButton" type="submit">Submit</button>
             </div>
-            <!-- Subheading -->
 
         </form>
+        <!-- Existing categories select field -->
+        <form id="postForm" enctype="multipart/form-data" method="POST" action="{{ url_for('delete_category') }}">
+            <h4 class="masthead-subheading text-danger py-4 text-center text-danget font-weight-light mb-0">
+                <i class="fas fa-user-slash"></i> Delete Category
+            </h4>
+
+            <select class="form-select mb-2" name="category" id="category" aria-label="example">
+
+                <option value="">Cellect Categoy</option>
+                {% for category in categories %}
+                <option value="{{ category.category_name }}">{{ category.category_name }}
+                </option>
+                {% endfor %}
+
+            </select>
+
+            <!-- Submit Button-->
+            <button class="btn col-12 btn-danger btn-lg" type="submit" name="submit">Delete
+            </button>
+        </form>
+
     </div>
 </div>
 
 <hr>
 
-        <!-- Manage  profile-->
+<!-- Manage  Users form-->
 <div class="container-fluid px-2 d-flex flex-column align-items-center justify-content-center">
     <div class="max-width col-12">
-        
+
         <h4 class="masthead-subheading text-danger py-4 text-center text-danget font-weight-light mb-0">
-            <i class="fas fa-user-slash"></i> Delete User
+            <i class="fas fa-user-slash"></i> Manage Users
         </h4>
 
         <form clas=" needs-validation" method="POST" action="{{ url_for('delete_profile') }}">
@@ -106,10 +114,10 @@
 
         </form>
     </div>
-  
+
 </div>
 
-  <hr>
+<hr>
 
 
 {% endblock %}

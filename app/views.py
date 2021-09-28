@@ -1,8 +1,10 @@
-from flask import (Flask, flash, render_template,
-        redirect, request, session, url_for, jsonify)
+from flask import (
+    Flask, flash, render_template,
+    redirect, request, session, url_for, jsonify)
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.form import (RegisterForm, LoginForm,
-        UploadForm, EditForm, DeleteUser, AddCategory)
+from app.form import (
+    RegisterForm, LoginForm, UploadForm,
+    EditForm, DeleteUser, AddCategory)
 from cloudinary.utils import cloudinary_url
 from cloudinary.uploader import upload
 from bson.objectid import ObjectId
@@ -70,8 +72,8 @@ def login():
 
     """
     Registered user login: Check if user
-    is stored in the DB Check password 
-    hash for match. If user was verified 
+    is stored in the DB Check password
+    hash for match. If user was verified
     Add user to the session cookie and
     redirected to a profile page Or If
     user net existreturn to register page
@@ -122,8 +124,8 @@ def profile(username):
         posts = list(mongo.db.posts.find({"created_by": session["user"]}))
         return render_template(
             "profile.html", username=username,
-                isButton=True, categories=categories,
-                posts=posts,  profile=True)
+            isButton=True, categories=categories,
+            posts=posts,  profile=True)
 
     else:
         flash("Please log in or register", 'error')
@@ -134,11 +136,12 @@ def profile(username):
 def delete_profile():
 
     """ 
-    Delete user rofile: Get input from DB and 
-    find username, check if username exists 
-    in db and ensure hashed password matches 
-    user or admin input. If admin in session
-    Admin able to delete any existing user.
+    Delete user rofile: Get input from DB and
+    find username, check if username exists
+    in db and ensure hashed password matches.
+    Admin user Management, If admin in session
+    Admin able to delete any existing user by
+    Providing and confirming admin Password.
     """
 
     if "user" in session:
@@ -146,26 +149,30 @@ def delete_profile():
             {"username": session["user"]})["username"]
         form = DeleteUser(request.form)
         if request.method == "POST":
-            existing_user = mongo.db.users.find_one(
-                {"username": form.username.data.lower()})
 
-            if existing_user and session["user"] == "admin":
-                admin = mongo.db.users.find_one(
-                            {"username": session["user"].lower()})
-                if check_password_hash(
-                        admin["password"], form.password.data.lower()):
-                    mongo.db.users.remove(existing_user)
-                    flash("User was remover", 'success')
-                    return redirect(request.referrer)
+            # Admin User management Delete a user account
+            if username == "admin":
+                delete_usr = mongo.db.users.find_one(
+                    {"username": form.username.data.lower()})
+                if delete_usr:
+                    if check_password_hash(
+                            username["password"], form.password.data.lower()):
+                        mongo.db.users.remove(delete_usr)
+                        flash("User was remover", 'success')
+                        return redirect(request.referrer)
+                    else:
+                        flash("You Entered Incorrect Password", 'error')
+                        return redirect(request.referrer)
                 else:
-                    flash("You Entered Incorrect Password", 'error')
+                    flash(f"{username} not found")
                     return redirect(request.referrer)
 
-            elif existing_user == session["user"]:
+            # Existing user delete own account
+            elif username == session["user"]:
                 if check_password_hash(
-                        existing_user["password"],
+                        username["password"],
                         request.form.get("password")):
-                    mongo.db.users.remove(existing_user)
+                    mongo.db.users.remove(username)
                     flash("Good Buy", 'success')
                     return redirect(url_for("logout"))
                 else:
@@ -311,7 +318,7 @@ def edit_post(post_id):
         if session["user"] != "admin":
             return render_template(
                 "edit_post.html", categories=categories,
-                post=post, form=form, form2=form2 )
+                post=post, form=form, form2=form2)
         else:
             return redirect(url_for("manage"))
 
@@ -325,9 +332,9 @@ def delete_post(post_id):
 
     """
     Delete post from mongo DB: Find post
-    by id to extract image id, Get image 
+    by id to extract image id, Get image
     url trom DB and permanently delete a
-    single asset witch Invalidates 
+    single asset witch Invalidates
     cloudinary CDN cached of the asset
     """
 
@@ -346,7 +353,7 @@ def delete_post(post_id):
             if session["user"] != "admin":
                 return redirect(url_for("profile", username=session["user"]))
             else:
-                return redirect(url_for("manage"))
+                return redirect(url_for("user_posts"))
 
         if status:
             mongo.db.posts.remove({"_id": ObjectId(post_id)})
@@ -354,7 +361,7 @@ def delete_post(post_id):
             if session["user"] != "admin":
                 return redirect(url_for("profile", username=session["user"]))
             else:
-                return redirect(url_for("manage"))
+                return redirect(url_for("user_posts"))
 
         else:
             flash("Failed to delete Image file", 'error')
@@ -362,13 +369,13 @@ def delete_post(post_id):
             if session["user"] != "admin":
                 return redirect(url_for("profile", username=session["user"]))
             else:
-                return redirect(url_for("manage"))
+                return redirect(url_for("user_posts"))
 
         if session["user"] != "admin":
             return redirect(url_for("profile", username=session["user"]))
 
         else:
-            return redirect(url_for("manage"))
+            return redirect(url_for("user_posts"))
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("login"))
@@ -378,33 +385,78 @@ def delete_post(post_id):
 def new_category():
 
     """
-    Create New category If user in session 
-    is Administrator, Insert one documet
+    Create New category: If user in session
+    is Administrator. Insert one documet
     into Mongo DB categories collection
-    Return back to request route after insert
+    Return back to request route after insert.
     """
 
-    if "user" in session and session["user"] == "admin":
-        if request.method == "post":
-            cat_name = form.title.data.lower()
-            mongo.db.categories.insert_one({"category_name": "cat_name"})
-            flash(f"New Category {new_category} was created", "success")
-            return redirect("manage")
+    if session["user"] == "admin":
+        form = AddCategory(request.form)
+        if request.method == "POST":
+            add_category = form.category.data.lower()
 
-        else:
-            flash("Failed to create category", "error")
-            return redirect("manage")
+            if not mongo.db.categories.find_one(
+                    {"category_name": add_category}):
+                try:
+                    mongo.db.categories.insert_one(
+                        {"category_name": add_category})
+                    flash(f"New Category {add_category} was created", "success")
+                    return redirect(request.referrer)
+
+                except Exception:
+                    add_category = form.category.data.lower()
+                    flash(f"Failed to create category {add_category}", "error")
+                    return redirect(request.referrer)
+            else:
+                flash(f"{add_category} category already exists", "error")
+                return redirect(request.referrer)
+
     else:
         flash("Please log in or register", 'error')
         return redirect(url_for("logout"))
 
 
+@app.route('/delete_category', methods=["GET", "POST"])
+def delete_category():
+
+    """
+    Delete category: If user in session
+    is Administrator. Delete one documet
+    From Mongo DB categories collection
+    Return back to request route after insert.
+    Redirect non administrator accounts.
+    """
+
+    if session["user"] == "admin":
+        if request.method == "POST":
+            delete_category = request.form.get("category").lower()
+
+            if mongo.db.categories.find_one(
+                    {"category_name": delete_category}):
+                try:
+                    mongo.db.categories.remove(
+                        {"category_name": delete_category})
+                    flash(f"Category {delete_category} was deleted", "success")
+                    return redirect(request.referrer)
+
+                except Exception:
+                    flash(f"Failed to remove category {delete_category}", "error")
+                    return redirect(request.referrer)
+
+            else:
+                flash(f"{delete_category} category not exist", "error")
+                return redirect(request.referrer)
+
+    else:
+        flash("Please log in or register", 'error')
+        return redirect(url_for("logout"))
 
 
 @app.route('/query', methods=["GET", "POST"])
 def query():
     """
-    Query function: Get "posts" collection 
+    Query function: Get "posts" collection
     form DB, enables Search by keyword, 
     username Or Query posts by category name.
     """
@@ -413,7 +465,7 @@ def query():
     posts = list(mongo.db.posts.find().sort('_id', -1))
     if "user" in session and session["user"] == "admin":
         url = "user_posts.html"
-        title= "user_posts"
+        title = "user_posts"
     else:
         url = "gallery.html"
         title = "gallery"
@@ -426,48 +478,55 @@ def query():
 
         # Search by keyword and category
         if search != "" and category_name != not_selected:
-            posts = list(mongo.db.posts.find({ "$and" : [ {
-                        "category_name": category_name },
-                        {"$text": {"$search": search}}] }))
-            if len(posts) == 0:     
-                flash(f"No results for {search} in {category_name}", 'error')
-                return render_template(url, posts=posts, 
-                    categories=categories, title=title)
+            posts = list(
+                mongo.db.posts.find(
+                    {"$and": [
+                        {"category_name": category_name},
+                        {"$text": {"$search": search}}
+                        ]}))
+            if len(posts) == 0:
+                flash(
+                    f"No results for {search}"
+                    in "{category_name}", 'error')
+                return render_template(
+                    url, posts=posts, categories=categories, title=title)
             else:
-                flash(f"{len(posts)} Results for {search} in {category_name}", 'success')
-                return render_template(url, posts=posts, 
-                    categories=categories, title=title)
+                flash(
+                    f"{len(posts)} Results for {search}"
+                    in "{category_name}", 'success')
+                return render_template(
+                    url, posts=posts, categories=categories, title=title)
 
         # Search by Key word only
         elif search != "":
             posts = list(mongo.db.posts.find({"$text": {"$search": search}}))
-            if len(posts) == 0:     
+            if len(posts) == 0:
                 flash(f"No results for {search}", 'error')
-                return render_template(url, posts=posts, 
-                    categories=categories, title=title)
+                return render_template(
+                    url, posts=posts, categories=categories, title=title)
             else:
                 flash(f"{len(posts)} Results for {search}", 'success')
-                return render_template(url, posts=posts, 
-                    categories=categories, title=title)
+                return render_template(
+                    url, posts=posts, categories=categories, title=title)
 
         # Search by category only
         elif category_name != not_selected and search == "":
-            posts = list(mongo.db.posts.find({"category_name": category_name }))
-            if len(posts) == 0:     
+            posts = list(mongo.db.posts.find({"category_name": category_name}))
+            if len(posts) == 0:
                 flash(f"No results for {category_name}", 'error')
-                return render_template(url, posts=posts, 
-                    categories=categories, title=title)
+                return render_template(
+                    url, posts=posts, categories=categories, title=title)
             else:
                 flash(f"{len(posts)} Results for category {category_name}", 'success')
-                return render_template(url, posts=posts, 
-                    categories=categories, title=title)
+                return render_template(
+                    url, posts=posts, categories=categories, title=title)
 
         else:
-            return render_template(url, posts=posts, 
-                categories=categories, title=title)
+            return render_template(
+                url, posts=posts, categories=categories, title=title)
     else:
-        return render_template(url, posts=posts, 
-            categories=categories, title=title)
+        return render_template(
+            url, posts=posts, categories=categories, title=title)
 
 
 @app.route('/gallery', methods=["GET", "POST"])
@@ -481,11 +540,11 @@ def gallery():
     categories = mongo.db.categories.find()
     posts = list(mongo.db.posts.find().sort('_id', -1))
 
-    return render_template('gallery.html', posts=posts,
-                categories=categories, title="gallery")
+    return render_template(
+        'gallery.html', posts=posts, categories=categories, title="gallery")
 
 
-#==============ADMIN================
+# ==============ADMIN================
 @app.route("/user_posts", methods=["GET", "POST"])
 def user_posts():
 
@@ -528,8 +587,8 @@ def manage():
         users = list(mongo.db.user.find())
         form2 = DeleteUser(request.form)
 
-        return render_template("manage.html",
-            posts=posts, categories=categories,
+        return render_template(
+            "manage.html", posts=posts, categories=categories,
             users=users, form=form, form2=form2, manage=True)
 
     else:
@@ -559,7 +618,7 @@ def admin_posts(post_id):
 
         return render_template( 
             "admin_posts.html", categories=categories,
-            post=post, form=form, form2=form2, created_by=created_by )
+            post=post, form=form, form2=form2, created_by=created_by)
 
     else:
         flash("Please log in or register", 'error')
