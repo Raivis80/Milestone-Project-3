@@ -55,8 +55,17 @@ class EditForm(Form):
             min=20, max=200, message='Between 20 to 200 charters required')])
 
 
-# Delete User form
+# Delete Account user form
 class DeleteUser(Form):
+    password = PasswordField('Password', [
+        validators.InputRequired(),
+        validators.EqualTo('confirm', message='Passwords must match')
+    ])
+    confirm = PasswordField('Repeat Password')
+
+
+# Delete User account admin form
+class DeleteUsersAdmin(Form):
     username = StringField('Username', [
         validators.InputRequired(),
         validators.Length(

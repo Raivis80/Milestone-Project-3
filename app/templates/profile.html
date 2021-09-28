@@ -9,7 +9,7 @@
     <!-- uer posts -->
     {% for post in posts %}
 
-    <div class="card my-card font text-center bg-secondary d-flex text-white m-1">
+    <div class="card my-card text-center d-flex text-secondary m-1">
         <div class="img_posts">
             <a href="">
                 <img src="{{ post.image_sm }}" class="" alt="{{ post.categoty_name }}title {{ post.title }}">
@@ -17,7 +17,7 @@
         </div>
         <h6 class="card-title text-uppercase my-1">{{post.title}}</h6>
         
-        <div class="card-body bg-white text-secondary p-1">
+        <div class="card-body text-secondary p-1">
             <p class="card-text p-1">{{post.description}}.</p>
         </div>
         

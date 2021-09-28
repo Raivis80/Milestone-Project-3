@@ -71,22 +71,10 @@
         <!-- title input-->
         <form clas=" needs-validation" method="POST" action="{{ url_for('delete_profile') }}">
 
-            <div class="col-12 form-floating mb-2">
-                {{ form3.username( class="form-control", placeholder="Username Name") }}
-                <label for="username"><i class="fas fa-user-minus"></i> Username</label>
-                {% if form3.username.errors %}
-                <ul class="errors text-danger">
-                    {% for error in form3.username.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            </div>
-
             <!-- Password -->
             <div class="form-floating  mb-2">
                 {{ form3.password( class="form-control", placeholder="Password") }}
-                <label><i class="fas fa-user-lock"></i> New Password</label>
+                <label><i class="fas fa-user-lock"></i> Password</label>
                 {% if form3.password.errors %}
                 <ul class="errors text-danger">
                     {% for error in form3.password.errors %}

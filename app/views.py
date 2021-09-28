@@ -4,7 +4,7 @@ from flask import (
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.form import (
     RegisterForm, LoginForm, UploadForm,
-    EditForm, DeleteUser, AddCategory, ChangePassword)
+    EditForm, DeleteUser, AddCategory, ChangePassword, DeleteUsersAdmin)
 from cloudinary.utils import cloudinary_url
 from cloudinary.uploader import upload
 from bson.objectid import ObjectId
@@ -32,7 +32,7 @@ def index():
     """
     digital_art = mongo.db.posts.find({"category_name": "digital_art"}).limit(3)
     painting = mongo.db.posts.find({"category_name": "paintings"}).limit(3)
-    images = mongo.db.posts.find({"category_name": "images"}).limit(3)
+    images = mongo.db.posts.find({"category_name": "images"}).limit(4)
     return render_template(
         'index.html', digital_art=digital_art,
         painting=painting, images=images, title="home")
@@ -185,8 +185,8 @@ def delete_profile():
     """
 
     if "user" in session:
-
-        form = DeleteUser(request.form)
+        form = DeleteUsersAdmin(request.form)
+        form3 = DeleteUser(request.form)
         if request.method == "POST":
             username = session["user"]
             # Admin User management Delete a user account
@@ -212,7 +212,7 @@ def delete_profile():
                     {"username": session["user"]})
                 if check_password_hash(
                         user["password"],
-                        form.password.data.lower()):
+                        form3.password.data.lower()):
                     mongo.db.users.remove(user)
                     flash("Good Buy", 'success')
                     return redirect(url_for("logout"))
@@ -645,7 +645,7 @@ def manage():
         categories = mongo.db.categories.find()
         posts = list(mongo.db.posts.find().sort('_id', -1))
         users = list(mongo.db.user.find())
-        form2 = DeleteUser(request.form)
+        form2 = DeleteUsersAdmin(request.form)
         form3 = ChangePassword(request.form)
 
         return render_template(
@@ -669,7 +669,7 @@ def admin_posts(post_id):
     """
 
     if "user" in session and session["user"] == "admin":
-        form2 = DeleteUser(request.form)
+        form2 = DeleteUsersAdmin(request.form)
         form = EditForm(request.form)
         post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
         categories = mongo.db.categories.find().sort("category_name", 1)

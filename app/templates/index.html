@@ -7,102 +7,47 @@
 <!-- Home Page -->
 
 <!-- Masthead-->
+<div class="container max_container">
+
 <header class="masthead  text-secondary text-center">
-  <div class="container d-flex align-items-center justify-content-around flex-column">
+  <div class="container d-flex align-items-center justify-content-between flex-row">
     <div>
-      <h1 class="brand masthead-heading text-uppercase ">EmotiFy</h1>
+      <h1 class="brand w-auto mx-auto ms-4 masthead-heading text-white text-uppercase ">EmotiFy</h1>
     </div>
-    <!-- Masthead Subheading-->
+    <div class="item d-none d-md-block item-top w-80">
+      <img class="" src="{{ digital_art[2].image_sm }}" alt="}" />
+    </div>
 
   </div>
 </header>
 
-<div class="container-fluid mx-auto col-md-10">
+  <div class="d-flex item_outer flex-row gap-2">
 
-  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-        aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-        aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-        aria-label="Slide 3"></button>
+    <div class="item w-100">
+      <img class="" src="{{ painting[3].image_sm }}" alt="}" />
     </div>
-    <!-- Image thumbnail carousel feature -->
-    <div class="disable carousel-inner">
-      <div class="carousel-item active">
-        <div class="item_outer d-flex justify-content-centerr align-content-center gap-2">
-          {% for image in images %}
-          {% if loop.index <= 3 %}
-          <div class="item">
-            <a href="{{ url_for('gallery') }}">
-              <img class="" src="{{ image.image_sm }}" alt="{{ image.category }} Title Text {{ image.title }}" />
-            </a>
-          </div>
-          {% endif %}
-          {% endfor %}
-        </div>
-        <div class="carousel-caption">
-          <h5>Share Your Images</h5>
-          <p>The pace to share your creative images</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="item_outer d-flex gap-2">
-          {% for art in digital_art %}
-          {% if loop.index <= 3 %}
-          <div class="item">
-            <a href="{{ url_for('gallery') }}">
-              <img class="" src="{{ art.image_sm }}" alt="{{ art.category }} Title Text {{ art.title }}" />
-            </a>
-          </div>
-          {% endif %}
-          {% endfor %}
-        </div>
-        <div class="carousel-caption">
-          <h5>Share Your Digital Art</h5>
-          <p>Share your Digital Art and get discovered</p>
-        </div>
-      </div>
+    <div class="item col-4">
+      <img class="" src="{{ digital_art[0].image_sm }}" alt="" />
     </div>
-    <div class="carousel-item">
-      <div class="item_outer d-flex gap-2">
-        {% for post in paintings %}
-        {% if loop.index <= 3 %}
-        <div class="item">
-          <a href="{{ url_for('gallery') }}">
-            <img class="" src="{{ post.image_sm }}" alt="{{ post.category }} Title Text {{ post.title }}" />
-          </a>
-        </div>
-        {% endif %}
-        {% endfor %}
-      </div>
-      <div class="carousel-caption">
-        <h5>Share your Art</h5>
-        <p>The pace to share your creative images</p>
-      </div>
+    <div class="item w-100">
+      <img class="" src="{{ images[2].image_sm }}" alt="" />
     </div>
-
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
 
-  <div class="mt-5 mx-2 font px-3 py-1 text-left text-bottom head-subheading">
-    <p>There are only a few steps to unleashing your creativity</p>
-    <p>Create and share your own art or discover the work of others</p>
-    <p>Share your <em>Paintings - Digital Art - Creative Images</em></p>
-    <p>Post and publish your artwork online for free</p>
-    <a href="{{ url_for('register') }}">Register Account</a>
+  <div class="d-flex pt-2 justify-content-between flex-row gap-2">
+    <div class="d-flex align-items-center col-6 col-sm-8">
+      <div class="mt-5 p-2 h-auto w-100 font py-1 text-left text-bottom text-white head-subheading">
+        <p>There are only a few steps to unleashing your creativity</p>
+        <p>Create and share your own art or discover the work of others</p>
+        <p>Share your <em>Paintings - Digital Art - Creative Images</em></p>
+        <p>Post and publish your artwork online for free</p>
+        <a href="{{ url_for('register') }}">Register Account</a>
+      </div>
+    </div>
+    <div class="item item-bottom ">
+      <img class="col-6 col-lg-4" src="{{ images[1].image_sm }}" alt="" />
+    </div>
   </div>
 
 </div>
-
-
-{% endblock %}
+  {% endblock %}

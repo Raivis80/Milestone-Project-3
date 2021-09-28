@@ -2787,16 +2787,19 @@ textarea.form-control-lg {
 .form-range:disabled::-moz-range-thumb {
   background-color: #adb5bd;
 }
+
 /*                       ----------------------------------------------------------------------------------------- */
 .form-floating {
   position: relative;
 }
-.form-floating > .form-control,
-.form-floating > .form-select {
+
+.form-floating>.form-control,
+.form-floating>.form-select {
   height: 5.5rem;
   line-height: 1.25;
 }
-.form-floating > label {
+
+.form-floating>label {
   position: absolute;
   top: 0;
   left: 0;
@@ -2807,58 +2810,73 @@ textarea.form-control-lg {
   transform-origin: 0 0;
   transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .form-floating > label {
+  .form-floating>label {
     transition: none;
   }
 }
-.form-floating > .form-control {
+
+.form-floating>.form-control {
   padding: 1.5rem 0;
 }
-.form-floating > .form-control::-moz-placeholder {
+
+.form-floating>.form-control::-moz-placeholder {
   color: transparent;
 }
-.form-floating > .form-control:-ms-input-placeholder {
+
+.form-floating>.form-control:-ms-input-placeholder {
   color: transparent;
 }
-.form-floating > .form-control::placeholder {
+
+.form-floating>.form-control::placeholder {
   color: transparent;
 }
-.form-floating > .form-control:not(:-moz-placeholder-shown) {
+
+.form-floating>.form-control:not(:-moz-placeholder-shown) {
   padding-top: 2.5rem;
   padding-bottom: 1.5rem;
 }
-.form-floating > .form-control:not(:-ms-input-placeholder) {
+
+.form-floating>.form-control:not(:-ms-input-placeholder) {
   padding-top: 2.5rem;
   padding-bottom: 1.5rem;
 }
-.form-floating > .form-control:focus, .form-floating > .form-control:not(:placeholder-shown) {
+
+.form-floating>.form-control:focus,
+.form-floating>.form-control:not(:placeholder-shown) {
   padding-top: 2.5rem;
   padding-bottom: 1.5rem;
 }
-.form-floating > .form-control:-webkit-autofill {
+
+.form-floating>.form-control:-webkit-autofill {
   padding-top: 2.5rem;
   padding-bottom: 1.5rem;
 }
-.form-floating > .form-select {
+
+.form-floating>.form-select {
   padding-top: 2.5rem;
   padding-bottom: 1.5rem;
 }
-.form-floating > .form-control:not(:-moz-placeholder-shown) ~ label {
+
+.form-floating>.form-control:not(:-moz-placeholder-shown)~label {
   opacity: 0.65;
   transform: scale(0.65) translateY(-0.5rem) translateX(0rem);
 }
-.form-floating > .form-control:not(:-ms-input-placeholder) ~ label {
+
+.form-floating>.form-control:not(:-ms-input-placeholder)~label {
   opacity: 0.65;
   transform: scale(0.65) translateY(-0.5rem) translateX(0rem);
 }
-.form-floating > .form-control:focus ~ label,
-.form-floating > .form-control:not(:placeholder-shown) ~ label,
-.form-floating > .form-select ~ label {
+
+.form-floating>.form-control:focus~label,
+.form-floating>.form-control:not(:placeholder-shown)~label,
+.form-floating>.form-select~label {
   opacity: 0.65;
   transform: scale(0.65) translateY(-0.5rem) translateX(0rem);
 }
-.form-floating > .form-control:-webkit-autofill ~ label {
+
+.form-floating>.form-control:-webkit-autofill~label {
   opacity: 0.65;
   transform: scale(0.65) translateY(-0.5rem) translateX(0rem);
 }
@@ -5123,7 +5141,7 @@ fieldset:disabled .btn {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border-top: 1px solid	#aaafb3;
+  border-top: 1px solid #aaafb3;
   border-radius: 0.5rem;
 }
 
@@ -6316,7 +6334,7 @@ fieldset:disabled .btn {
   align-items: center;
   justify-content: space-between;
   padding: .5rem .5rem;
-  border-bottom: 1px solid	#aaafb3;
+  border-bottom: 1px solid #aaafb3;
 }
 
 .modal-header .btn-close {
@@ -6341,7 +6359,7 @@ fieldset:disabled .btn {
   align-items: center;
   justify-content: flex-end;
   padding: 0.75rem;
-  border-top: 1px solid	#aaafb3;
+  border-top: 1px solid #aaafb3;
 }
 
 .modal-footer>* {
@@ -7021,15 +7039,17 @@ fieldset:disabled .btn {
 }
 
 .carousel-caption {
+  cursor: pointer;
   position: absolute;
-  right: 15%;
+  left: 0;
+  right: 0;
   bottom: 1.25rem;
-  left: 15%;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
+  top: 0;
+  bottom: 0;
   color: #fff;
   text-align: center;
 }
+
 
 .carousel-dark .carousel-control-prev-icon,
 .carousel-dark .carousel-control-next-icon {
@@ -12186,7 +12206,7 @@ html {
   padding: 6rem 0;
 }
 
-@media (min-width: 999)  {
+@media (min-width: 999) {
   .page-section {
     padding: 2rem 0;
   }
@@ -12371,19 +12391,8 @@ html {
   font-size: .7rem;
   position: absolute;
   bottom: -45%;
-  left: 4px;
+  left: 0;
   content: "Expressing Emotions Through Creativity";
-}
-
-.brand::before {
-  position: absolute;
-  content: "";
-  width: 95%;
-  height:93%;
-  left: -10px;
-  top: 9px;
-  border-left: #1abc9c 10px solid;
-  border-bottom: #1abc9c 3px solid;
 }
 
 .masthead {
@@ -12392,44 +12401,51 @@ html {
 }
 
 .masthead .masthead-heading {
-  font-size: 4rem;
-  line-height: 4rem;
+  font-size: 4.3rem;
+  line-height: 4.3rem;
 }
 
 .masthead .masthead-subheading {
-  font-size: 1.25rem;
+  font-size: 2rem;
 }
 
 .masthead-avatar {
   max-width: 300px;
 }
 
-@media (min-width: 992px) {
+.max_container {
+  max-width: 999px;
+}
+
+
+
+@media (min-width: 750px) {
   .masthead {
     padding-top: 2rem;
     padding-bottom: 5rem;
   }
 
   .masthead .masthead-heading {
-    font-size: 6rem;
-    line-height: 6rem;
+    font-size: 7em;
+    line-height: 7rem;
   }
 
   .masthead .masthead-subheading {
     font-size: 1.5rem;
   }
-  
+
   .brand::after {
     font-size: 1.06rem;
     left: 6px;
   }
 
   .brand::before {
-  width: 95%;
-  height:92%;
-  left: -10px;
-  top:14px;
-}
+    width: 95%;
+    height: 92%;
+    left: -10px;
+    top: 14px;
+  }
+
 }
 
 .text-bottom {
@@ -12438,8 +12454,9 @@ html {
 }
 
 .text-bottom p {
-  margin:0;
+  margin: 0;
 }
+
 /*Custom Image carousel home---- */
 .item .portfolio-item-caption-content {
   font-size: 1.5rem;
@@ -12447,47 +12464,33 @@ html {
 
 .item {
   width: 33%;
-  height: 300px;
+  height: 250px;
 }
+
 
 .item img {
   width: 100%;
   border-radius: .2rem;
-  min-height: 300px;
+  height: 250px;
+
   object-fit: cover;
 }
 
+.item-top img {
+
+  height: 320px;
+}
+
+.item-bottom img {
+  height: 320px;
+}
+
 @media screen and (max-width: 999px) {
-  .item_outer div:nth-child(3n+0) {
+  .item_outer div:nth-child(2n+0) {
     display: none;
   }
 
-  .item {
-    background-color: lightcoral;
-    width: 50%;
-    height: 300px;
-  }
 
-  .item img {
-    min-height: 300px;
-  }
-}
-
-@media screen and (max-width: 555px) {
-  .item {
-    background-color: lightcoral;
-    width: 50%;
-    height: 250px;
-  }
-
-  .item img {
-    min-height: 250px;
-  }
-  .padding_0 {
-    padding-left: 0;
-    padding-right: 0;
-    margin: 0;
-  }
 }
 
 @media screen and (max-width: 400px) {
@@ -12505,6 +12508,7 @@ html {
     min-height: 250px;
   }
 }
+
 /* Gallery--------------- */
 .cont,
 .card,
@@ -12522,6 +12526,7 @@ html {
 }
 
 @media screen and (max-width: 600px) {
+
   .cont,
   .img-fluid-gall img {
     width: 500px;
@@ -12535,6 +12540,7 @@ html {
 }
 
 @media screen and (max-width: 400px) {
+
   .cont,
   .img-fluid-gall img {
     width: 400px;
@@ -12556,6 +12562,7 @@ html {
 }
 
 @media (hover: hover) {
+
   .cont:hover,
   .card:hover,
   .portfolio .portfolio-item:hover {
@@ -12630,6 +12637,7 @@ html {
 
 .main_section {
   min-height: 90vh;
+  background: linear-gradient(#2c3e50 5%, #2c3e50 10%, #2c3e50);
 }
 
 .search_bb .container {
@@ -12641,17 +12649,22 @@ html {
   color: #16a085;
 }
 
+hr {
+  color: #aaafb3;
+}
+
 /* My posts section */
 /* Card styling */
 .my-card {
   padding-left: 0;
   padding-right: 0;
   position: relative;
-  box-shadow: rgba(46, 46, 46, 0.219) 0 3px 4px;
+  box-shadow: rgba(44, 44, 44, 0.377) 0 3px 46px;
   cursor: pointer;
   font-size: .8rem;
   letter-spacing: .3px;
   max-width: 200px;
+  background-color: #fff;
 }
 
 .img_posts img {
@@ -12667,7 +12680,7 @@ html {
 
 /* Modal body  border-top: 1px solid	#aaafb3; */
 
-.modal_img  {
+.modal_img {
   max-height: 80vh;
   max-width: 99.9%;
 }
@@ -12742,14 +12755,14 @@ html {
   font-size: .7rem;
 }
 
-@media (min-width: 600px){
+@media (min-width: 600px) {
   .font {
     font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: .9rem;
   }
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 500px) {
   .my-card p {
     font-size: .8em;
   }
