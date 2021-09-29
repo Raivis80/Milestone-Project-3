@@ -87,6 +87,7 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  background: radial-gradient(#4d6e8f, #2c3e50 80%);
 }
 
 hr {
@@ -12203,12 +12204,12 @@ html {
 }
 
 .page-section {
-  padding: 6rem 0;
+  padding-top: 4rem;
 }
 
 @media (min-width: 999) {
   .page-section {
-    padding: 2rem 0;
+    padding-top: 3rem;
   }
 }
 
@@ -12395,11 +12396,6 @@ html {
   content: "Expressing Emotions Through Creativity";
 }
 
-.masthead {
-  padding-top: 1rem;
-  padding-bottom: 4rem;
-}
-
 .masthead .masthead-heading {
   font-size: 4.3rem;
   line-height: 4.3rem;
@@ -12420,10 +12416,6 @@ html {
 
 
 @media (min-width: 750px) {
-  .masthead {
-    padding-top: 2rem;
-    padding-bottom: 5rem;
-  }
 
   .masthead .masthead-heading {
     font-size: 7em;
@@ -12474,15 +12466,6 @@ html {
   height: 250px;
 
   object-fit: cover;
-}
-
-.item-top img {
-
-  height: 320px;
-}
-
-.item-bottom img {
-  height: 320px;
 }
 
 @media screen and (max-width: 999px) {
@@ -12617,7 +12600,7 @@ html {
 .footer {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #2c3e50;
+  background: transparent;
   color: #fff;
 }
 
@@ -12636,8 +12619,8 @@ html {
 }
 
 .main_section {
-  min-height: 90vh;
-  background: linear-gradient(#2c3e50 5%, #2c3e50 10%, #2c3e50);
+  min-height: 80vh;
+  
 }
 
 .search_bb .container {
@@ -12731,7 +12714,6 @@ hr {
 #disabled {
   background-color: lightcoral;
 }
-
 
 /* Allerts----------- */
 .search_bb {

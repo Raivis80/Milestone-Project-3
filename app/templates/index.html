@@ -9,28 +9,27 @@
 <!-- Masthead-->
 <div class="container max_container">
 
-<header class="masthead  text-secondary text-center">
-  <div class="container d-flex align-items-center justify-content-between flex-row">
-    <div>
-      <h1 class="brand w-auto mx-auto ms-4 masthead-heading text-white text-uppercase ">EmotiFy</h1>
-    </div>
-    <div class="item d-none d-md-block item-top w-80">
-      <img class="" src="{{ digital_art[2].image_sm }}" alt="}" />
-    </div>
+  <header class="masthead text-secondary text-center mb-2">
+    <div class="container d-flex align-items-center justify-content-between flex-row">
+      <div>
+        <h1 class="brand w-auto mx-auto ms-4 masthead-heading text-white text-uppercase ">EmotiFy</h1>
+      </div>
+      <div class="item d-none d-md-block item-top w-80">
+        <img class="" src="{{ digital_art[1].image_sm }}" alt="}" />
+      </div>
 
-  </div>
-</header>
+    </div>
+  </header>
 
   <div class="d-flex item_outer flex-row gap-2">
-
     <div class="item w-100">
-      <img class="" src="{{ painting[3].image_sm }}" alt="}" />
+      <img class="" src="{{ painting[0].image_sm }}" alt="}" />
     </div>
     <div class="item col-4">
       <img class="" src="{{ digital_art[0].image_sm }}" alt="" />
     </div>
     <div class="item w-100">
-      <img class="" src="{{ images[2].image_sm }}" alt="" />
+      <img class="" src="{{ images[0].image_sm }}" alt="" />
     </div>
   </div>
 
@@ -44,10 +43,10 @@
         <a href="{{ url_for('register') }}">Register Account</a>
       </div>
     </div>
-    <div class="item item-bottom ">
+    <div class="item item-bottom">
       <img class="col-6 col-lg-4" src="{{ images[1].image_sm }}" alt="" />
     </div>
   </div>
 
 </div>
-  {% endblock %}
+{% endblock %}
