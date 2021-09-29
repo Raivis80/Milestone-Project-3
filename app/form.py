@@ -41,7 +41,7 @@ class UploadForm(Form):
     file = FileField('image', validators=[
         FileRequired(),
         FileAllowed(
-            ['jpg', 'png', 'JPEG', 'WebP', 'JPEG XR', 'WDP', 'HEIC'], message='Wrong file type jpg, png Images only!')
+            ['jpg', 'png', 'JPEG', 'WebP', 'JPEG XR', 'WDP', 'HEIC', 'RAW'], message='Wrong file type jpg, png Images only!')
     ])
 
 
