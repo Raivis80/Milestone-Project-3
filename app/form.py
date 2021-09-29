@@ -41,8 +41,8 @@ class UploadForm(Form):
     file = FileField('image', validators=[
         FileRequired(),
         FileAllowed(
-            ['jpg', 'png', 'JPEG', 'WebP', 'WDP', 'HEIC', 'RAW', 'HEVC']
-            , message='Wrong file type jpg, png Images only!')
+            ['png', 'jpg', 'jpeg', 'HEIC', 'RAW', 'HEVC', 'gif'],
+            message='Only "gif", "jpg", "jpeg" and "png" files are supported')
     ])
 
 
