@@ -8,7 +8,7 @@
 
 <!-- Masthead-->
 <div class="container max_container">
-<!-- Main heading -->
+  <!-- Main heading -->
   <header class="masthead text-secondary text-center mb-2">
     <div class="container ps-4 d-flex align-items-center justify-content-between flex-row">
       <div class="brand_wrapp">
@@ -21,20 +21,25 @@
     </div>
   </header>
 
+  <!-- Visible Mobile version only -->
+  <div class="item mb-2 d-sm-none w-100">
+    <img class="" src="{{ digital_art[0].image_sm }}" alt="Image name {{ images[0].title }}" />
+  </div>
+
   <!-- Central image feature home page -->
-  <div class="d-flex position-relative item_outer flex-row gap-2">
+  <div class="d-flex position-relative item_outer flex-sm-row gap-2">
     <div class="item w-100">
       <img class="" src="{{ painting[0].image_sm }}" alt="{{ painting[0].title }}" />
     </div>
     <div class="item col-4">
       <img class="" src="{{ digital_art[0].image_sm }}" alt="Image name {{ digital_art[0].title }}" />
     </div>
-    <div class="item w-100">
+    <div class="item  w-100">
       <img class="" src="{{ images[0].image_sm }}" alt="Image name {{ images[0].title }}" />
     </div>
   </div>
- 
-<!-- Description about page -->
+
+  <!-- Description about page -->
   <div class="d-flex pt-2 justify-content-between flex-row gap-2">
     <div class="d-flex align-items-center col-12 col-sm-8">
       <div class="mt-5 ms-3 p-2 h-auto w-100 font py-1 text-left text-bottom text-white head-subheading">
