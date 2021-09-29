@@ -4,6 +4,7 @@ from wtforms import (
      validators, SubmitField, TextAreaField)
 from wtforms.validators import InputRequired, Length
 from flask_wtf.file import FileField, FileAllowed, FileRequired
+from flask_uploads import UploadSet, IMAGES
 
 
 # Regisrter form 
@@ -41,7 +42,7 @@ class UploadForm(Form):
     file = FileField('image', validators=[
         FileRequired(),
         FileAllowed(
-            ['jpg', 'png'], message='Wrong file type jpg, png Images only!')
+            FileAllowed(images, message='Wrong file type jpg, png Images only!')
     ])
 
 
