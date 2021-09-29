@@ -12382,23 +12382,39 @@ html {
 
 /* Indeh Page----------------------- */
 /* ================================== */
-
+.brand_wrapp {
+  margin: auto;
+}
 
 .brand {
   position: relative;
+  color: #e0e0e0;
+}
+
+.brand::before {
+  position: absolute;
+  content: "E";
+  font-size: 123%;
+  width: 95%;
+  height: 92%;
+  left: -57%;
+  top: .3rem;
+  color: #1abc9c;
 }
 
 .brand::after {
-  font-size: .7rem;
   position: absolute;
+  font-size: .67rem;
   bottom: -45%;
-  left: 0;
-  content: "Expressing Emotions Through Creativity";
+  left: 0px;
+  color: #1abc9c;
+  content: "xpressing Emotions Through Creativity";
 }
 
 .masthead .masthead-heading {
   font-size: 4.3rem;
   line-height: 4.3rem;
+  margin-bottom: 3rem;
 }
 
 .masthead .masthead-subheading {
@@ -12420,6 +12436,7 @@ html {
   .masthead .masthead-heading {
     font-size: 7em;
     line-height: 7rem;
+    margin-bottom: 2rem;
   }
 
   .masthead .masthead-subheading {
@@ -12427,15 +12444,16 @@ html {
   }
 
   .brand::after {
-    font-size: 1.06rem;
-    left: 6px;
+    font-size: 1.1rem;
+    left: 0px;
   }
 
   .brand::before {
+    font-size: 120%;
     width: 95%;
     height: 92%;
-    left: -10px;
-    top: 14px;
+    left: -57%;
+    top: .5rem;
   }
 
 }
@@ -12449,7 +12467,7 @@ html {
   margin: 0;
 }
 
-/*Custom Image carousel home---- */
+/*Custom Image home---- */
 .item .portfolio-item-caption-content {
   font-size: 1.5rem;
 }
@@ -12457,31 +12475,32 @@ html {
 .item {
   width: 33%;
   height: 250px;
-}
+  border-radius: .2rem;
 
+}
 
 .item img {
   width: 100%;
   border-radius: .2rem;
   height: 250px;
-
+  filter:contrast(80%) brightness(80%);
   object-fit: cover;
 }
 
 @media screen and (max-width: 999px) {
   .item_outer div:nth-child(2n+0) {
     display: none;
+    border-radius: 0 50% 0 0;
   }
-
-
 }
 
 @media screen and (max-width: 400px) {
-  .item_outer div:nth-child(2n+0) {
+  .item_outer div:nth-child(3n+0) {
     display: none;
   }
 
   .item {
+    border-radius: .2rem;
     background-color: lightcoral;
     width: 100%;
     max-height: 400px;
@@ -12490,6 +12509,22 @@ html {
   .item img {
     min-height: 250px;
   }
+}
+
+.img_top {
+  position: relative;
+}
+
+.img_top::after {
+  border-radius: .2rem;
+  position: absolute;
+  top: -30px;
+  left: 50px;
+  content: "";
+  background-color: #1abc9c;
+  height: inherit;
+  width: 300px;
+  z-index: -1;
 }
 
 /* Gallery--------------- */
