@@ -30,9 +30,12 @@ def index():
     Index page with all required parameters.
 
     """
-    digital_art = mongo.db.posts.find({"category_name": "digital_art"}).limit(3)
-    painting = mongo.db.posts.find({"category_name": "paintings"}).limit(3)
-    images = mongo.db.posts.find({"category_name": "images"}).limit(4)
+    digital_art = mongo.db.posts.find(
+        {"category_name": "digital_art"}).sort('_id', -1).limit(3)
+    painting = mongo.db.posts.find(
+        {"category_name": "paintings"}).sort('_id', -1).limit(3)
+    images = mongo.db.posts.find(
+        {"category_name": "images"}).sort('_id', -1).limit(4)
     return render_template(
         'index.html', digital_art=digital_art,
         painting=painting, images=images, title="home")
@@ -40,7 +43,6 @@ def index():
 
 @app.route('/gallery', methods=["GET", "POST"])
 def gallery():
-
     """
     Gallery page: Get all posts
     form Mongo DB Search qurey.
@@ -84,7 +86,6 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-
     """
     Registered user login: Check if user
     is stored in the DB Check password
@@ -124,7 +125,6 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-
     """
     Find user's username from db Check
     if user match session cookie and
@@ -189,7 +189,6 @@ def change_password():
 
 @app.route("/delete_profile", methods=["GET", "POST"])
 def delete_profile():
-
     """
     Delete user rofile: Get input from DB and
     find username, check if username exists
@@ -246,7 +245,6 @@ def delete_profile():
 
 @app.route("/add_post", methods=("POST", "GET"))
 def add_post():
-
     """
     Add new posts to the Mongo DB:
     Return all the categories form DB.
@@ -323,7 +321,6 @@ def add_post():
 
 @app.route("/edit_post/<post_id>", methods=["GET", "POST"])
 def edit_post(post_id):
-
     """
     Find existing post by id and get category.
     Update mongo existing post's Title and
@@ -383,7 +380,6 @@ def edit_post(post_id):
 
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
-
     """
     Delete post from mongo DB: Find post
     by id to extract image id, Get image
@@ -437,7 +433,6 @@ def delete_post(post_id):
 
 @app.route('/new_category', methods=["GET", "POST"])
 def new_category():
-
     """
     Create New category: If user in session
     is Administrator. Insert one documet
@@ -473,7 +468,6 @@ def new_category():
 
 @app.route('/delete_category', methods=["GET", "POST"])
 def delete_category():
-
     """
     Delete category: If user in session
     is Administrator. Delete one documet
@@ -585,7 +579,6 @@ def query():
 
 @app.route('/edit_profile', methods=["GET", "POST"])
 def edit_profile():
-
     """
     Manage users Profile: Find a session
     if Mondo Db, Check for session user
@@ -628,7 +621,6 @@ def resset_index():
 # ==============ADMIN================
 @app.route("/user_posts", methods=["GET", "POST"])
 def user_posts():
-
     """
     Find Admin username from db Check
     if user match session cookie Render
@@ -651,7 +643,6 @@ def user_posts():
 
 @app.route("/manage", methods=["GET", "POST"])
 def manage():
-
     """
     Manage users: Find a session user if
     Admin render template "manage"
@@ -676,7 +667,6 @@ def manage():
 
 @app.route("/admin_posts/<post_id>", methods=["GET", "POST"])
 def admin_posts(post_id):
-
     """
     Find existing post by id and get category.
     Update mongo existing post's Title and
@@ -705,7 +695,6 @@ def admin_posts(post_id):
 
 @app.route("/logout")
 def logout():
-
     """
     remove the username from session if it's there
     """
