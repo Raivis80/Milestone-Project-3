@@ -38,6 +38,21 @@ def index():
         painting=painting, images=images, title="home")
 
 
+@app.route('/gallery', methods=["GET", "POST"])
+def gallery():
+
+    """
+    Gallery page: Get all posts
+    form Mongo DB Search qurey.
+    """
+
+    categories = mongo.db.categories.find()
+    posts = list(mongo.db.posts.find().sort('_id', -1))
+
+    return render_template(
+        'gallery.html', posts=posts, categories=categories, title="gallery")
+
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     """
@@ -589,19 +604,25 @@ def edit_profile():
         return redirect(url_for("logout"))
 
 
-@app.route('/gallery', methods=["GET", "POST"])
-def gallery():
-
+@app.route("/resset_index")
+def resset_index():
     """
-    Gallery page: Get all posts
-    form Mongo DB Search qurey.
+    Resseet Mongo Db Search Index.
+    Drop Old index and create New.
+    Redirect back ro request URL.
+    Unauthorized redirect to logout function.
     """
+    if session["user"] == "admin":
+        mongo.db.posts.drop_indexes()
+        mongo.db.posts.create_index([
+            ("title", "text"), ("description", "text"),
+            ("created_by", "text")])
+        flash("Indexes was resset", "success")
+        return redirect(request.referrer)
 
-    categories = mongo.db.categories.find()
-    posts = list(mongo.db.posts.find().sort('_id', -1))
-
-    return render_template(
-        'gallery.html', posts=posts, categories=categories, title="gallery")
+    else:
+        flash("Please log in or register", 'error')
+        return redirect(url_for("logout"))
 
 
 # ==============ADMIN================
@@ -615,10 +636,6 @@ def user_posts():
     Rediret unauthorized users page access
     Create index for quering DB by keyword.
     """
-
-    # mongo.db.posts.drop_indexes()
-    # mongo.db.posts.create_index([
-    #   ("title", "text"), ("description", "text"), ("created_by", "text")])
 
     if "user" in session and session["user"] == "admin":
         categories = mongo.db.categories.find()

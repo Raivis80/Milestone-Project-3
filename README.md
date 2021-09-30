@@ -247,6 +247,7 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
    Added Individual post grid, arranged based on recent first.
    Added Buttons for edit and delete options
    Original wireframe version for user interface can be found [Here](project_files/wireframes/interface.png)
+
 ![Profile](project_files/wireframes/profile.png)
 
 - ### Add new post wireframe
@@ -274,9 +275,12 @@ New wireframe bellow
 # [&#8686;](#Introduction)
 ## ***Design***
 ### **Colour Scheme**
-
+Color sheme used through out the site.
+![Colors](project_files/images/Colors.png)
+Thanks to [coolors.co](https://coolors.co)
 ### **Fonts**
--  
+- "Montserrat" for Headings h6,h5,h4,h3,h2,h1 family [ Montserrat](https://fonts.googleapis.com/css?family=Montserrat:400,700")
+- Body font family [Lato](https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic")  As a backup sans-serif.
 ### **Media**
 Bootstrap ["Freelancer"](https://startbootstrap.com/theme/freelancer) starter template used for site modified to suit current project.
 

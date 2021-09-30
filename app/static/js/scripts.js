@@ -55,19 +55,13 @@ window.addEventListener('DOMContentLoaded', event => {
 
 // Enale delete button
 
-
-const enabled = document.getElementById('enabled');
-const disabled = document.getElementById('disabled');
-enabled.style.display = "none"
-disabled.style.display = "block"
-
+const onCheck = document.getElementById('on_check');
+onCheck.classList.add('disabled')
 function myFunction() {
     let checkBox = document.getElementById("myCheck");
     if (checkBox.checked == true){
-        enabled.style.display = "block"
-        disabled.style.display = "none"
+        onCheck.classList.remove('disabled')
     } else {
-        enabled.style.display = "none"
-        disabled.style.display = "block"
+        onCheck.classList.add('disabled')
     }
   }

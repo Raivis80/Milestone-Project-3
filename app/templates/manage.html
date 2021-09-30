@@ -6,10 +6,43 @@
 
 {% block content %}
 
+<!-- Resset DB Indexes -->
+<div class="container-fluid px-2 d-flex flex-column align-items-center justify-content-center">
+    <div class="max-width text-center col-12">
 
+        <h4 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
+            <i class="fas fa-cog"></i> Resset DB Indexes
+        </h4>
+
+        <p class="text-white"> Run this only if the collection size has changed significantly.</p>
+        <p class="text-white"> This Will drop all search indexes on a collection and recreates them.</p>
+
+        <!-- Confirm Check Box -->
+        <div class="pt-2 indexes form-check d-flex justify-content-between">
+
+            <div class="text-white">
+                <label for="myCheck">
+                    <em>Confirm To resset</em>
+                </label>
+                <input class="form-check-input bg-primary" type="checkbox" id="myCheck" onclick="myFunction()">
+            </div>
+
+            <!-- resset Button -->
+            <a id="on_check" href="{{ url_for('resset_index') }}" class="btn btn-primary btn-lg">
+                Resset Index
+            </a>
+
+        </div>
+    </div>
+</div>
+
+<hr class="mb-5">
 <!-- Manage Catergories Forms -->
 <div class="container-fluid px-2 d-flex flex-column align-items-center justify-content-center">
     <div class="max-width col-12">
+
+
+
 
         <h4 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
             <i class="fas fa-folder-plus"></i> Add New Category

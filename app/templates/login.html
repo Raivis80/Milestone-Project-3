@@ -5,22 +5,23 @@
 
 {% block content %}
 <!-- Sign In -->
-<div class="container-fluid px-2 d-flex flex-column align-items-center justify-content-center">
+<div class="container px-2 d-flex flex-column align-items-center justify-content-center">
     <div class="col-12 max-width">
         <form lass="needs-validation" method="POST" action="{{ url_for('login') }}">
             <div class="card-panel">
+
                 <!-- username -->
                 <div class="col-12 form-floating mb-2">
                     {{ form.username( class="form-control", placeholder="Username Name") }}
                     <label class="form-label" for="username"><i class="fas fa-user-cog form-floating"></i>
                         username</label>
-                        {% if form.username.errors %}
-                        <ul class="errors text-danger">
-                          {% for error in form.username.errors %}
-                            <li>{{ error }}</li>
-                          {% endfor %}
-                        </ul>
-                        {% endif %}
+                    {% if form.username.errors %}
+                    <ul class="errors text-danger">
+                        {% for error in form.username.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 </div>
 
                 <!-- Password -->
@@ -45,7 +46,7 @@
                 </div>
 
                 <!-- Link To Register -->
-                <div class="col-12">
+                <div class="col-12 text-white">
                     <p>
                         New Here? <a href="{{ url_for('register') }}">Register Account</a>
                     </p>
