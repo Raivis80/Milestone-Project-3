@@ -3,14 +3,56 @@
 <!-- Page title -->
 {% block title %}Admin{% endblock %}
 
-
 {% block content %}
 
-<!-- Resset DB Indexes -->
 <div class="container-fluid px-2 d-flex flex-column align-items-center justify-content-center">
     <div class="max-width text-center col-12">
 
+        <!-- User Posts -->
         <div class="accordion accordion-flush " id="accordionFlushExample">
+
+            <div class="accordion-item bg-transparent">
+
+                <h2 class="accordion-header" id="flush-heading">
+                    <button class="accordion-button bg-transparent collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapse" aria-expanded="false" aria-controls="flush-collapse">
+                        <h4 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
+                            <i class="fas fa-list"></i>Users And Posts
+                        </h4>
+                    </button>
+                </h2>
+
+                <div id="flush-collapse" class="accordion-collapse collapse" aria-labelledby="flush-heading"
+                    data-bs-parent="#accordionFlushExample">
+                    <!-- Users and Posts -->
+                    <div class="accordion-body text-start bg-transparent" style="overflow: hidden;">
+                        <!-- total numbers of users and posts -->
+                        <div class="row font text-white text-left">
+                            <p>Total Number of Users: <span class="text-primary">{{ users|length }}</span></p>
+                            <br>
+                            <p> Total Number posts: <span class="text-primary">{{ posts|length }}</span></p>
+                        </div>
+                        <hr class="mt-0">
+
+                        <!-- users and posts -->
+                        <div style="max-height: 400px; overflow-y: scroll;">
+                            {% for user, items in posts|groupby("created_by") %}
+
+                            <p class="text-white text-capitalize m-0">{{ user }} </p>
+                            <div class="font p-2 h-25 border_col text-left">{% for post in items %}
+
+                                <a href="{{ url_for('admin_posts', post_id=post._id) }}">{{ post.title }} ,</a>
+
+                                {% endfor %}
+                            </div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="m-0">
+
             <div class="accordion-item bg-transparent">
 
                 <h2 class="accordion-header" id="flush-headingOne">
@@ -50,7 +92,8 @@
                     </div>
                 </div>
                 <hr class="m-0">
-                 <!-- Add New Category -------------------------------------------->
+
+                <!-- Add New Category -->
                 <div class="accordion-item bg-transparent">
                     <h2 class="accordion-header" id="flush-heading2">
                         <button class="accordion-button bg-transparent collapsed" type="button"
@@ -65,7 +108,7 @@
                     </h2>
                     <div id="flush-collapse2" class="accordion-collapse collapse" aria-labelledby="flush-heading2"
                         data-bs-parent="#accordionFlushExample">
-          
+
                         <div class="accordion-body bg-transparent">
 
                             <!-- Add New Category -->
@@ -112,7 +155,7 @@
                     </h2>
                     <div id="flush-collapse3" class="accordion-collapse collapse" aria-labelledby="flush-heading3"
                         data-bs-parent="#accordionFlushExample">
-          
+
                         <div class="accordion-body bg-transparent">
                             <!-- Existing categories select field -->
                             <form id="postForm" enctype="multipart/form-data" method="POST"
@@ -120,10 +163,10 @@
 
                                 <select class="form-select mb-2" name="category" id="category" aria-label="example">
                                     <option value="">Sellect Categoy</option>
-                                        {% for category in categories %}
-                                            <option value="{{ category.category_name }}">{{ category.category_name }}
-                                            </option>
-                                        {% endfor %}
+                                    {% for category in categories %}
+                                    <option value="{{ category.category_name }}">{{ category.category_name }}
+                                    </option>
+                                    {% endfor %}
                                 </select>
 
                                 <!-- Submit Button-->
@@ -135,6 +178,7 @@
                     </div>
                 </div>
                 <hr class="m-0">
+
                 <!-- Delete Users accounts form-->
                 <div class="accordion-item bg-transparent">
                     <h2 class="accordion-header" id="flush-heading4">
@@ -212,9 +256,10 @@
                             data-bs-toggle="collapse" data-bs-target="#flush-collapse5" aria-expanded="false"
                             aria-controls="flush-collapse5">
 
-                        <h4 class="masthead-subheading text-info py-4 text-center text-white font-weight-light mb-0">
-                            <i class="fas fa-user-cog"></i> Change Admin Password
-                        </h4>
+                            <h4
+                                class="masthead-subheading text-info py-4 text-center text-white font-weight-light mb-0">
+                                <i class="fas fa-user-edit"></i> Change Admin Password
+                            </h4>
 
                         </button>
                     </h2>

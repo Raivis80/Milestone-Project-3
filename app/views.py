@@ -652,7 +652,7 @@ def manage():
         form = AddCategory(request.form)
         categories = mongo.db.categories.find()
         posts = list(mongo.db.posts.find().sort('_id', -1))
-        users = list(mongo.db.user.find())
+        users = list(mongo.db.users.find())
         form2 = DeleteUsersAdmin(request.form)
         form3 = ChangePassword(request.form)
 

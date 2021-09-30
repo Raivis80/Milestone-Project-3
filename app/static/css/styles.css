@@ -12697,6 +12697,10 @@ html {
   color: #16a085;
 }
 
+.border_col {
+    border: dotted 1px #aaafb3;
+}
+
 hr {
   color: #aaafb3;
 }
