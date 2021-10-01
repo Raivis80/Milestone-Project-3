@@ -64,7 +64,7 @@
     <!-- Gallery Item 1-->
 
     <div class="bg-secondary cont" data-bs-toggle="modal" data-bs-target="#a{{post._id}}">
-        <img class="img-fluid-gall" src="{{ post.image_sm }}" alt="{{ post.categoty_name }}title {{ post.title }}" />
+        <img class="img-fluid-gall" src="{{ post.image }}" loading="lazy" alt="{{ post.categoty_name }}title {{ post.title }}" />
         <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
             <div class="portfolio-item-caption-content text-center text-white">{{ post.title }}
             </div>
@@ -87,8 +87,8 @@
                 <div class="modal-body ">
                     <!-- Gallery Modal - Image-->
                     <div class="d-flex flex-column pt-3 justify-content-center align-items-center">
-                        <div> <a href="{{ post.image }}" target=”_blank”>
-                                <img src="{{ post.image }}" class="modal_img"
+                        <div> <a href="{{ post.img_origin }}" target=”_blank”>
+                                <img src="{{ post.img_origin }}" class="modal_img"
                                     alt="{{ post.categoty_name }}title {{ post.title }}">
                             </a>
                         </div>

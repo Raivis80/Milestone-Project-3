@@ -270,12 +270,15 @@ def add_post():
             if file:
                 folder = request.form.get("category").lower()
                 upload_result = upload(file, folder=folder)
+
+                img_origin = upload_result.get('secure_url')
                 image, options = cloudinary_url(
                     upload_result['public_id'],
                     format="jpg", crop="fill", width=1920)
                 image_small, options = cloudinary_url(
                     upload_result['public_id'],
                     format="jpg", crop="fill", width=300)
+
                 img_id = upload_result.get('public_id')
                 URL_status = requests.get(image)
 
@@ -284,6 +287,7 @@ def add_post():
                         "category_name": request.form.get("category").lower(),
                         "title": form.title.data.lower(),
                         "description": form.description.data,
+                        "img_origin": img_origin,
                         "image": image,
                         "image_sm": image_small,
                         "img_id": img_id,
@@ -335,27 +339,27 @@ def edit_post(post_id):
         post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
         categories = mongo.db.categories.find().sort("category_name", 1)
         if session["user"] == "admin":
-            for key, value in post.items():
-                if key == "created_by":
-                    created_by = mongo.db.users.find_one({"username": value})
 
-        for k, v in post.items():
-            if k == "image":
-                image = v
-            elif k == "img_id":
-                image_id = v
-            elif k == "image_sm":
-                image_sm = v
-            elif k == "time_created":
-                time_stamp = v
-            elif k == "created_by":
-                created = v
+            for k, v in post.items():
+                if k == "img_origin":
+                    img_origin = v
+                elif k == "image":
+                    image = v
+                elif k == "img_id":
+                    image_id = v
+                elif k == "image_sm":
+                    image_sm = v
+                elif k == "time_created":
+                    time_stamp = v
+                elif k == "created_by":
+                    created = v
 
         if request.method == "POST" and form.validate():
             submit = {
                 "category_name": request.form.get("category").lower(),
                 "title": form.title.data.lower(),
                 "description": form.description.data,
+                "img_origin": img_origin,
                 "image": image,
                 "image_sm": image_sm,
                 "img_id": image_id,
