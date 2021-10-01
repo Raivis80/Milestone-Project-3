@@ -16,9 +16,9 @@
                 <h2 class="accordion-header" id="flush-heading">
                     <button class="accordion-button bg-transparent collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#flush-collapse" aria-expanded="false" aria-controls="flush-collapse">
-                        <h4 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
+                        <h5 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
                             <i class="fas fa-list"></i> Users And Posts
-                        </h4>
+                        </h5>
                     </button>
                 </h2>
 
@@ -58,9 +58,9 @@
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button bg-transparent collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                        <h4 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
+                        <h5 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
                             <i class="fas fa-cog"></i> Resset DB Indexes
-                        </h4>
+                        </h5>
                     </button>
                 </h2>
 
@@ -100,9 +100,9 @@
                             data-bs-toggle="collapse" data-bs-target="#flush-collapse2" aria-expanded="false"
                             aria-controls="flush-collapse2">
 
-                            <h4 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
+                            <h5 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
                                 <i class="fas fa-folder-plus"></i> Add New Category
-                            </h4>
+                            </h5>
 
                         </button>
                     </h2>
@@ -147,9 +147,9 @@
                             data-bs-toggle="collapse" data-bs-target="#flush-collapse3" aria-expanded="false"
                             aria-controls="flush-collapse3">
 
-                            <h4 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
+                            <h5 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
                                 <i class="fas fa-folder-minus"></i> Delete Category
-                            </h4>
+                            </h5>
 
                         </button>
                     </h2>
@@ -161,8 +161,9 @@
                             <form id="postForm" enctype="multipart/form-data" method="POST"
                                 action="{{ url_for('delete_category') }}">
 
-                                <select class="form-select mb-2" name="category" id="category" aria-label="example">
-                                    <option value="">Sellect Categoy</option>
+                                <select class="form-select form-select-lg mb-2" name="category" id="category"
+                                    aria-label="example">
+                                    <option> Sellect Categoy</option>
                                     {% for category in categories %}
                                     <option value="{{ category.category_name }}">{{ category.category_name }}
                                     </option>
@@ -187,9 +188,9 @@
                             data-bs-toggle="collapse" data-bs-target="#flush-collapse4" aria-expanded="false"
                             aria-controls="flush-collapse4">
 
-                            <h4 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
+                            <h5 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
                                 <i class="fas fa-user-slash"></i> Delete User
-                            </h4>
+                            </h5>
 
                         </button>
                     </h2>
@@ -256,10 +257,10 @@
                             data-bs-toggle="collapse" data-bs-target="#flush-collapse5" aria-expanded="false"
                             aria-controls="flush-collapse5">
 
-                            <h4
+                            <h5
                                 class="masthead-subheading text-info py-4 text-center text-white font-weight-light mb-0">
                                 <i class="fas fa-user-edit"></i> Change Admin Password
-                            </h4>
+                            </h5>
 
                         </button>
                     </h2>

@@ -6,16 +6,16 @@
 {% block content %}
 
 <!-- Add post form Form-->
-<div class="row justify-content-center">
-    <div class="w-100 max-width">
+<div class="justify-content-center">
+    <div class="w-100 mx-auto max-width">
         <div class="bg-secondary img-edit mb-2">
-            <img class="" src="{{ post.image_sm }}" alt="{{ post.title }}">
+            <img class="" src="{{ post.image }}" alt="{{ post.title }}">
         </div>
 
         <form id="postForm" class="mx-2" method="POST" action="{{ url_for('edit_post', post_id=post._id)}}">
             <div class="w-100 select-wrap">
 
-                <select class="form-select mb-2" name="category" id="category" aria-label="example">
+                <select class="form-select form-select-lg mb-2" name="category" id="category" aria-label="example">
 
                     {% for category in categories %}
 
@@ -32,8 +32,8 @@
             </div>
             <!-- title input-->
 
-            <div class="custom  mb-2">
-                {{ form.title( class="form-control", placeholder="Title", value=post.title ) }}
+            <div class="mb-2 input-group input-group-lg">
+                {{ form.title( class="form-control ", placeholder="Title", value=post.title ) }}
 
                 {% if form.title.errors %}
                 <ul class="errors text-danger">

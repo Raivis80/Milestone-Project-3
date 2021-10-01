@@ -64,29 +64,34 @@
     <!-- uer posts -->
     {% for post in posts %}
 
-    <div class="card my-card  text-center d-flex flex-column text-secondary m-1">
-        <div class="img_posts">
+    <div class="card my-card text-center d-flex bg-secondary flex-column text-secondary m-1">
+        <!-- User Posts Card Image -->
+        <div class="img_posts bg-secondary">
             <img src="{{ post.image_sm }}" role="button" alt="{{ post.categoty_name }}title {{ post.title }}">
         </div>
-        <h6 class="card-title text-uppercase my-1">{{post.title}}</h6>
 
-        <hr>
-        <div class="card-body text-secondary p-1">
+        <!-- User Post Card Body description -->
+        <div class="card-body text-secondary card_color  p-1">
+            <h6 class="p-0 text-uppercase card_color my-1">{{post.title}}</h6>
+            <hr class="m-0">
             <p class="card-text p-1">{{post.description}}.</p>
         </div>
 
-        <div class="card-footer py-1">
-            <p class="card-text">{{post.time_created}}.</p>
+        <!-- User Posts Card Footer -->
+        <div class="card-footer card_color mb-0 pt-1">
+            <p class="card-text m-0">{{post.time_created}}.</p>
+            <hr class="m-0">
+            <p class="card-text card_color ">Created by user: {{post.created_by}}.</p>
         </div>
 
+        <!-- User Posts Card Link overlay -->
         <a href="{{ url_for('admin_posts',  post_id=post._id ) }}">
-            <div class="portfolio-item-caption  d-flex align-items-center justify-content-center h-100 w-100">
+            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                 <div class="portfolio-item-caption-content text-center text-white">Edit
                 </div>
             </div>
         </a>
-        <hr>
-        <p class="card-text">Created by user: {{post.created_by}}.</p>
+
     </div>
 
     {% endfor %}

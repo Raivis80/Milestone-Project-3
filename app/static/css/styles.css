@@ -87,7 +87,7 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  background: radial-gradient(#4d6e8f, #2c3e50 80%);
+  background: radial-gradient(#747e7c, #203531 80%);
 }
 
 hr {
@@ -2812,6 +2812,8 @@ textarea.form-control-lg {
   transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
 }
 
+
+
 @media (prefers-reduced-motion: reduce) {
   .form-floating>label {
     transition: none;
@@ -2933,7 +2935,7 @@ textarea.form-control-lg {
 .input-group-lg>.btn {
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
-  border-radius: 0.75rem;
+  border-radius: 0.2rem;
 }
 
 .input-group-sm>.form-control,
@@ -2942,7 +2944,7 @@ textarea.form-control-lg {
 .input-group-sm>.btn {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
-  border-radius: 0.25rem;
+  border-radius: 0.2rem;
 }
 
 .input-group-lg>.form-select,
@@ -4625,6 +4627,7 @@ fieldset:disabled .btn {
     max-width: 150px;
 
   }
+
   .navbar-nav li {
     border-radius: .2rem;
     padding-left: .6rem;
@@ -5329,7 +5332,7 @@ fieldset:disabled .btn {
   width: 100%;
   padding: 1rem 1.25rem;
   font-size: 1rem;
-  color:  #e8f8f5;
+  color: #e8f8f5;
   text-align: left;
   border: 0;
   border-radius: 0;
@@ -6726,7 +6729,7 @@ fieldset:disabled .btn {
   background-color: #e0e0e0;
   background-clip: padding-box;
   border: 0.125rem solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.75rem;
+  border-radius: 0.2rem;
 }
 
 .popover .popover-arrow {
@@ -12237,11 +12240,8 @@ html {
   .page-section .page-section-heading {
     font-size: 3rem;
     line-height: 2.5rem;
-
   }
-
 }
-
 
 .divider-custom {
   margin: .8rem;
@@ -12307,7 +12307,6 @@ html {
   padding-bottom: 1rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
-  
 }
 
 #mainNav .navbar-brand {
@@ -12371,11 +12370,9 @@ html {
     padding-bottom: 0.5rem;
   }
 
-  
-.changeColor {
+  .changeColor {
     background-color: turquoise;
   }
-
 
   #mainNav.navbar-shrink .navbar-brand {
     font-size: 1.5em;
@@ -12397,9 +12394,29 @@ html {
   box-shadow: none;
 }
 
+/* Form control responsive */
+
 .form-floating label {
   font-size: 1.5rem;
   color: #7d6c6c;
+}
+
+@media screen and (max-width: 500px) {
+
+  .form-floating>.form-control,
+  .form-floating>.form-select {
+    height: 4rem;
+    line-height: 1;
+  }
+
+  .form-floating label {
+    font-size: 1.2rem;
+    color: #7d6c6c;
+  }
+
+  .form-floating>label {
+    padding: .8rem 0;
+  }
 }
 
 /* Indeh Page----------------------- */
@@ -12503,7 +12520,7 @@ html {
   width: 100%;
   border-radius: .2rem;
   height: 250px;
-  filter:contrast(80%) brightness(80%);
+  filter: contrast(80%) brightness(80%);
   object-fit: cover;
 }
 
@@ -12550,7 +12567,7 @@ html {
   cursor: pointer;
   position: relative;
   display: block;
-  max-width: 26rem;
+  max-width: 20rem;
   border-radius: 0.2rem;
   overflow: hidden;
   max-height: auto;
@@ -12559,14 +12576,16 @@ html {
 }
 
 
-.modal_body_col{
- background: radial-gradient(#4d6e8f, #2c3e50 80%);
+.modal_body_col {
+  background: radial-gradient(#747e7c, #203531 80%);
 }
 
 
 @media screen and (max-width: 600px) {
+
   .cont,
   .img-fluid-gall img {
+    max-width: 26rem;
     width: 500px;
     height: 100%;
   }
@@ -12611,6 +12630,7 @@ html {
 }
 
 @media (hover: hover) {
+
   .cont:hover,
   .card:hover,
   .portfolio .portfolio-item:hover {
@@ -12685,7 +12705,7 @@ html {
 
 .main_section {
   min-height: 80vh;
-  
+
 }
 
 .search_bb .container {
@@ -12698,7 +12718,7 @@ html {
 }
 
 .border_col {
-    border: dotted 1px #aaafb3;
+  border: dotted 1px #aaafb3;
 }
 
 hr {
@@ -12714,8 +12734,10 @@ hr {
   font-size: .8rem;
   letter-spacing: .3px;
   max-width: 200px;
+}
+
+.card_color { 
   background-color: #e0e0e0;
-  border-top:  #1a252f 4px solid
 }
 
 .my-card hr {
