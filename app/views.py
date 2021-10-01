@@ -339,20 +339,23 @@ def edit_post(post_id):
         post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
         categories = mongo.db.categories.find().sort("category_name", 1)
         if session["user"] == "admin":
+            for key, value in post.items():
+                if key == "created_by":
+                    created_by = mongo.db.users.find_one({"username": value})
 
-            for k, v in post.items():
-                if k == "img_origin":
-                    img_origin = v
-                elif k == "image":
-                    image = v
-                elif k == "img_id":
-                    image_id = v
-                elif k == "image_sm":
-                    image_sm = v
-                elif k == "time_created":
-                    time_stamp = v
-                elif k == "created_by":
-                    created = v
+        for k, v in post.items():
+            if k == "img_origin":
+                img_origin = v
+            elif k == "image":
+                image = v
+            elif k == "img_id":
+                image_id = v
+            elif k == "image_sm":
+                image_sm = v
+            elif k == "time_created":
+                time_stamp = v
+            elif k == "created_by":
+                created = v
 
         if request.method == "POST" and form.validate():
             submit = {
