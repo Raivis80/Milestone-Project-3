@@ -74,75 +74,71 @@
                 </div>
             </div>
         </div>
-        <hr class="mb-5">
 
+        <hr class="margin-0">
         <!-- Delete Account Form -->
-        <div class="container-fluid px-2 d-flex flex-column align-items-center justify-content-center">
-            <div class="max-width col-12">
 
-                <div class="accordion accordion-flush " id="accordionFlushExample">
-                    <div class="accordion-item bg-transparent">
+        <div class="accordion accordion-flush " id="accordionFlushExample">
+            <div class="accordion-item bg-transparent">
 
-                        <div class="accordion-item bg-transparent">
-                            <h2 class="accordion-header" id="flush-heading4">
+                <div class="accordion-item bg-transparent">
+                    <h2 class="accordion-header" id="flush-heading4">
 
-                                <button class="accordion-button bg-transparent collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#flush-collapse4" aria-expanded="false"
-                                    aria-controls="flush-collapse4">
+                        <button class="accordion-button bg-transparent collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#flush-collapse4" aria-expanded="false"
+                            aria-controls="flush-collapse4">
 
-                                    <h4 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
-                                        <i class="fas fa-user-slash"></i> Delete Account
-                                    </h4>
-                                </button>
-                            </h2>
+                            <h4 class="masthead-subheading text-white py-4 text-center font-weight-light mb-0">
+                                <i class="fas fa-user-slash"></i> Delete Account
+                            </h4>
+                        </button>
+                    </h2>
 
-                            <div id="flush-collapse4" class="accordion-collapse collapse"
-                                aria-labelledby="flush-heading4" data-bs-parent="#accordionFlushExample">
-                                <!-- Resset DB Indexes -->
-                                <div class="accordion-body bg-transparent">
+                    <div id="flush-collapse4" class="accordion-collapse collapse" aria-labelledby="flush-heading4"
+                        data-bs-parent="#accordionFlushExample">
+                        <!-- Resset DB Indexes -->
+                        <div class="accordion-body bg-transparent">
 
-                                    <!-- title input-->
-                                    <form clas=" needs-validation" method="POST"
-                                        action="{{ url_for('delete_profile') }}">
+                            <!-- title input-->
+                            <form clas=" needs-validation" method="POST" action="{{ url_for('delete_profile') }}">
 
-                                        <!-- Password -->
-                                        <div class="form-floating  mb-2">
-                                            {{ form3.password( class="form-control", placeholder="Password") }}
-                                            <label><i class="fas fa-user-lock"></i> Password</label>
-                                            {% if form3.password.errors %}
-                                            <ul class="errors text-danger">
-                                                {% for error in form3.password.errors %}
-                                                <li>{{ error }}</li>
-                                                {% endfor %}
-                                            </ul>
-                                            {% endif %}
-                                        </div>
-
-                                        <!-- Confirm Password -->
-                                        <div class="form-floating  mb-2">
-                                            {{ form3.confirm( class="form-control", placeholder="Confirm Password") }}
-                                            <label><i class="fas fa-user-lock"></i> Confirm Password</label>
-                                            {% if form3.confirm.errors %}
-                                            <ul class="errors text-danger">
-                                                {% for error in form3.confirm.errors %}
-                                                <li>{{ error }}</li>
-                                                {% endfor %}
-                                            </ul>
-                                            {% endif %}
-                                        </div>
-
-                                        <!-- Submit Button to delete-->
-                                        <button class="btn col-12 btn-danger btn-lg" name="submit"
-                                            type="submit">Delete</button>
-                                        <div class="pt-2 del_post form-check d-flex justify-content-between">
-
-                                    </form>
+                                <!-- Password -->
+                                <div class="form-floating  mb-2">
+                                    {{ form3.password( class="form-control", placeholder="Password") }}
+                                    <label><i class="fas fa-user-lock"></i> Password</label>
+                                    {% if form3.password.errors %}
+                                    <ul class="errors text-danger">
+                                        {% for error in form3.password.errors %}
+                                        <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
                                 </div>
-                            </div>
+
+                                <!-- Confirm Password -->
+                                <div class="form-floating  mb-2">
+                                    {{ form3.confirm( class="form-control", placeholder="Confirm Password") }}
+                                    <label><i class="fas fa-user-lock"></i> Confirm Password</label>
+                                    {% if form3.confirm.errors %}
+                                    <ul class="errors text-danger">
+                                        {% for error in form3.confirm.errors %}
+                                        <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                </div>
+
+                                <!-- Submit Button to delete-->
+                                <button class="btn col-12 btn-danger btn-lg" name="submit" type="submit">Delete</button>
+                                <div class="pt-2 del_post form-check d-flex justify-content-between">
+
+                            </form>
                         </div>
-                        <hr class="m-0">
                     </div>
                 </div>
+                <hr class="m-0">
             </div>
-
-            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}
