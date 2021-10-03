@@ -42,7 +42,7 @@ class UploadForm(Form):
         FileRequired(),
         FileAllowed(
             ['png', 'jpg', 'jpeg', 'HEIC', 'RAW', 'HEVC', 'gif'],
-            message='Only "gif", "jpg", "jpeg" and "png" files are supported')
+            message='Unsupported file format')
     ])
 
 

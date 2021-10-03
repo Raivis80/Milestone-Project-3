@@ -50,10 +50,10 @@
                 </div>
 
                 <!-- select File to upload class="form-control form-control-lg-->
-                <div class="mb-3">
+                <div class="mb-3 font">
                     
                     {{ form.file( class="form-control form-control-lg" ) }}
-                    <label for="file" class="form-label text-white">Only JPG Or PNG Aloved</label>
+                    <label for="file" class="form-label text-light">Supported formats PNG, JPG, JPEG, HEIC, RAW, HEVC, GIF</label>
                     {% if form.file.errors %}
                     <ul class="errors text-danger">
                         {% for error in form.file.errors %}
