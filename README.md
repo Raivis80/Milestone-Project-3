@@ -329,14 +329,14 @@ The website built using a flask web framework and bootstrap framework. WTForms f
    - At The bottom of the form is a Delete Post button with confirm function for to prevent accidental deletion.
    - Delete function will wipe out all the content related to the post (")text and image links and with image files).
 - Account
-   1. Feature two bootstrap vertically collapsing accordions
-   1. Change password
-      - Old password, new password, confirm password fields with submit button
-      - Cange passwors will erase old Hashed Werkzeug and generate new ghash based on password
-      - Database user collection will update with new hash after submitting the form
-   1. Delete account
-      - password, confirm password fields with submit for deletion button
-      - All the user data will be removed from Mongo DB users collection
+   - Feature two bootstrap vertically collapsing accordions
+      1. Change password
+         - Old password, new password, confirm password fields with submit button
+         - Cange passwors will erase old Hashed Werkzeug and generate new ghash based on password
+         - Database user collection will update with new hash after submitting the form
+      1. Delete account
+         - password, confirm password fields with submit for deletion button
+         - All the user data will be removed from Mongo DB users collection
 - Admin manage
    - Feature bootstrap vertically collapsing accordions.
       1. Users And Posts

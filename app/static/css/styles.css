@@ -88,7 +88,7 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   background: linear-gradient( #36382e, #4d4745);
-  min-height: 100vh;
+  min-height: 80vh;
   background-repeat: no-repeat;
 }
 
@@ -12535,8 +12535,6 @@ html {
 }
 
 @media screen and (max-width: 500px) {
-
-
   .item {
     max-height: 180px;
   }
@@ -12578,11 +12576,9 @@ html {
   transition: all 0.3s ease-in-out;
 }
 
-
 .modal_body_col {
   background: linear-gradient( #36382e, #4d4745);
 }
-
 
 @media screen and (max-width: 600px) {
   .cont,
@@ -12826,4 +12822,19 @@ hr {
   .my-card p {
     font-size: .8em;
   }
+}
+
+/* About */
+.img-outer{
+  overflow: hidden;
+  max-height: 250px;
+  max-width:  400px;
+}
+
+
+.max_h {
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+
 }

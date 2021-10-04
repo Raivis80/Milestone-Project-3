@@ -41,6 +41,27 @@ def index():
         painting=painting, images=images, title="home")
 
 
+@app.route('/about')
+def about():
+    """
+    About Page: 
+    In "posts collection" and limit to 1 items.
+    For each of the 3 categories. And render
+    about page with all required parameters.
+
+    """
+    digital_art = mongo.db.posts.find(
+        {"category_name": "digital_art"}).sort('_id', -1).limit(1)
+    painting = mongo.db.posts.find(
+        {"category_name": "paintings"}).sort('_id', -1).limit(1)
+    images = mongo.db.posts.find(
+        {"category_name": "images"}).sort('_id', -1).limit(1)
+    return render_template(
+        'about.html', digital_art=digital_art,
+        painting=painting, images=images, about="home")
+
+
+
 @app.route('/gallery', methods=["GET", "POST"])
 def gallery():
     """
