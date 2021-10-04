@@ -4641,7 +4641,7 @@ fieldset:disabled .btn {
   .navbar-nav li {
     border-radius: .2rem;
     padding-left: .6rem;
-    background-color: rgba(88, 90, 82, 0.898)
+    background-color: hsla(73, 10%, 27%, 0.898)
   }
 }
 

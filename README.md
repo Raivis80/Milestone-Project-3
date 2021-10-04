@@ -7,7 +7,7 @@
 ### **Backend Development**
 
 This is my third of four Milestone Projects that the developer must complete during Full Stack Web Development Program at The Code Institute. 
-In this project, I will build a full-stack site which allow users to create, read, update and delete (CRUD) data. The Web application I'm building for this project is: Digital art sharing app. Users will share their unique, interesting pictures, paintings or digital art. Describing a specific meaning or generates emotions.
+In this project, I will build a full-stack site which allow users to create, read, update and delete (CRUD) data. The Web application I'm building for this project is: Digital art sharing app. Users will share their unique, interesting pictures, paintings or digital art.
 ### **Main Technologies**
 
 Required: HTML, CSS, JavaScript, Python+Flask, MongoDB. Additional libraries and external APIs
@@ -279,65 +279,100 @@ Color sheme used through out the site.
 ![Colors](project_files/images/Colors.png)
 Thanks to [coolors.co](https://coolors.co)
 ### **Fonts**
-- "Montserrat" for Headings h6,h5,h4,h3,h2,h1 family [ Montserrat](https://fonts.googleapis.com/css?family=Montserrat:400,700")
-- Body font family [Lato](https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic")  As a backup sans-serif.
+- Headings h6,h5,h4,h3,h2,h1 family [ Montserrat](https://fonts.googleapis.com/css?family=Montserrat:400,700")
+- Body main text font family [Lato](https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic")  As a backup sans-serif.
 ### **Media**
 Bootstrap ["Freelancer"](https://startbootstrap.com/theme/freelancer) starter template used for site modified to suit current project.
 
 Template source code can be found by clicking following link > [GitHib](https://github.com/startbootstrap/startbootstrap-freelancer)
 # [&#8686;](#-)
 ## ***Features***
-The Website is fully responsive fixed navigation bar that morphs when user scrolls.
-Display Gallery grid with simple hover effects responsive, mobile friendly contact form with form labels and form validation
+The website built using a flask web framework and bootstrap framework. WTForms form librarie Integration with forms validation. The Website is fully responsive fixed navigation bar at the top. MongoDB Cloud data platform for databases cloud storage. Cloidinary API for Image assets management.
 
-- NavBar
-   - Internal site navigation Links
-   - Login/Register link
-   - Site brand name 
-- Sign In
-   - In the "Username" field, enter a username
-   - Enter and confirm your password
-   - Click "Sign In" button
-- Create account
-   - In the "Username" field, enter a username
-   - Enter and confirm your password
-   - Enter email address.
-   - Click "Create new account" button
+- Sign In, Create account forms
+   - Forms Features "Username", enter your password fields.
+   - To help with form validation I.m using WTForms validation tools.
+   - WTForm validation used that includes validations such as"Min/Max-Lenght", "Allowed Characters".
+   - A new session cookie will be generated upon login.
+- Create account forms
+   - Forms Features "Username", enter and confirm your password fields.
+   - create account will generate Hashed Passwords With Werkzeug and store along with username on a mongo DB users collection.
+   - WTForm validation used that includes validations such as"Min/Max-Lenght", "Allowed Characters" and Confirm password.
 - Landing Page
-   - Central Hero image
-   - Carousel recent uploads feature
-- User upload Thumbnail grid
-   - Displays user content in a responsive grid
-- Contact Form
-   - First and Last Name input fields
-   - Email Address input field
-   - Text area input field
-   - Submit button 
-- User Interface
-   - Edit/delete this profile
-   - Image upload functionality
-   - Title input field
-   - Text area field for content description
-   - Post content button
-   - Edit content button
-   - Delete	Post button with confirm function for to prevent accidental deletion
-- Admin management Interface
-   - Manage/delete self profile
-   - Manage other User profile information reset passwords.
-   - Image upload functionality, Title input field
-   - Text area field for content description
-   - Post content button, Edit content button
-   - Edit/Delete	self/other user Posts
+   - Large fully responsive website brand name heading.
+   - Dynamic Image feature, displays latest user post inserts across three categories.
+- NavBar
+   - The website features a fully responsive navbar with a dropdown menu.
+   - Internal site navigation Links, Login/Register link, Site brand name.
+- Thumbnail Gallery
+   - Gallery Displays user content in a responsive grid thumbnails. Gallery order is displaying recent first.
+   - Gallery is generated dynamically using flask jinja2 a templating language for loop.
+   - All the text content and image links are stored on a Mongo DB.
+   - And all the image files are stored on a API cloud service "Cloudinary".
+   - Each Thumbnail has link that if clicked on will open up a modal with larger version of the image, description and author.
+   - Modal image link future more to secure cloudinary URL.
+- My Posts
+   - My Posts Page Displays user content cards in a responsive grid. Post order is displaying recent first.
+   - My Posts cards is generated dynamically using flask jinja2 a templating language for loop.
+   - All the text content and image links are stored on a Mongo DB.
+   - And all the image files are stored on a API cloud service "Cloudinary".
+   - Each Card has a build in link that if clicked on will open up a Edit post page.
+- Add Post
+   - Category dropdown sellect meny, Title input field, text area field for content description, Image upload functionality, 
+   - WTform validation used to verify allowed files such as Images. .jpg. .jpeg. .png. . gif ....
+   - Once form was submitted, the Images are uploaded to the "cloudinary" API.
+   - Three image links are generated out of cloudinary (300p small thumbnails, 1920p Larger thumbnails and full size image link)
+   - Image links along with text content are stored in he Mongo DB posts collection.  
+- Edit Post
+   - Features Category dropdown sellect meny, Title input field, text area field for content description and delete button.
+   - Edit post enables user to change post category, edit description and the title but not the image.
+   - At The bottom of the form is a Delete Post button with confirm function for to prevent accidental deletion.
+   - Delete function will wipe out all the content related to the post (")text and image links and with image files).
+- Account
+   1. Feature two bootstrap vertically collapsing accordions
+   1. Change password
+      - Old password, new password, confirm password fields with submit button
+      - Cange passwors will erase old Hashed Werkzeug and generate new ghash based on password
+      - Database user collection will update with new hash after submitting the form
+   1. Delete account
+      - password, confirm password fields with submit for deletion button
+      - All the user data will be removed from Mongo DB users collection
+- Admin manage
+   - Feature bootstrap vertically collapsing accordions.
+      1. Users And Posts
+         - Total number of the users
+         - Total number of the posts
+         - All the registered users and their posts with links to the post itself.
+      1. Resset DB Indexes
+         - This Will drop all search indexes on a collection and recreates
+         - Checbox following javascript function to prompt the user to confirm Before resset.
+      1. Add new Category
+         - Text input field for new category input and Submin button.
+         - After submitting the new category will be created and stored in mongoDB categories collection.
+      1. Delete Category
+         - Dropdown caegory sellect meny Submin button.
+         - After confirmation category will be deleted from mongoDB categories collection.
+      1. Delete any user account
+         - Username fiel, password, confirm password fields with submit for deletion button
+         - All the user data will be removed from Mongo DB users collection
+      1. Change Admin password
+         - Features, Old password, new password, confirm password fields with submit button
+         - Cange passwors will erase old Hashed Werkzeug and generate new ghash based on password
+         - Database user collection will update with new hash after submitting the form
+- Admin Edit User posts
+   - Features Category dropdown sellect meny, Title input field, text area field for content description and delete button.
+   - Edit post enables user to change post category, edit description and the title but not the image.
+   - At The bottom of the form is a Delete Post button with confirm function for to prevent accidental deletion.
+   - Delete function will wipe out all the content related to the post (text and image links and with image files).
+   - A link to delete user profile modal
+- Delete user popup modal 
+   - Prefilled with Username of the post, password, confirm password fields with submit for deletion button.
+   - All the user data will be removed from Mongo DB users collection.
 - footer
    - Copyright information
-   - Terms and privacy policy
    - Social Links
      - FaceBook, LinkedIn, Instagram
 
-
-
-
-#### - **Contact page**
 # [&#8686;](#Introduction)
 ## [TESTING](TESTING.md)
 - Testing information can be found in a separate testing file [TESTING.md](TESTING.md)
