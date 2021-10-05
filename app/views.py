@@ -30,6 +30,7 @@ def index():
     Index page with all required parameters.
 
     """
+    posts = list(mongo.db.posts.find().sort('_id', -1).limit(9))
     digital_art = mongo.db.posts.find(
         {"category_name": "digital_art"}).sort('_id', -1).limit(3)
     painting = mongo.db.posts.find(
@@ -38,7 +39,7 @@ def index():
         {"category_name": "images"}).sort('_id', -1).limit(4)
     return render_template(
         'index.html', digital_art=digital_art,
-        painting=painting, images=images, title="home")
+        painting=painting, images=images, posts=posts, title="home")
 
 
 @app.route('/about')

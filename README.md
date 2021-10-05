@@ -311,6 +311,9 @@ The website built using a flask web framework and bootstrap framework. WTForms f
    - And all the image files are stored on a API cloud service "Cloudinary".
    - Each Thumbnail has link that if clicked on will open up a modal with larger version of the image, description and author.
    - Modal image link future more to secure cloudinary URL.
+- About Page
+  - Features three latest, shared images from three different categories
+  - Each category with description about sharing images, art and digital art.
 - My Posts
    - My Posts Page Displays user content cards in a responsive grid. Post order is displaying recent first.
    - My Posts cards is generated dynamically using flask jinja2 a templating language for loop.

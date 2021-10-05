@@ -88,7 +88,7 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   background: linear-gradient( #36382e, #4d4745);
-  min-height: 80vh;
+  min-height: 100%;
   background-repeat: no-repeat;
 }
 
@@ -12220,7 +12220,6 @@ fieldset:disabled .btn {
 }
 
 html {
-  height: auto;
   scroll-padding-top: calc(4.5rem - 1px);
 }
 
@@ -12514,7 +12513,7 @@ html {
 
 .item {
   width: 33%;
-  height: 250px;
+  height: 300px;
   border-radius: .2rem;
 
 }
@@ -12522,42 +12521,37 @@ html {
 .item img {
   width: 100%;
   border-radius: .2rem;
-  height: 250px;
-  filter: contrast(90%) brightness(90%);
+  height: 300px;
+  transform: translate(-20px, 5%);
   object-fit: cover;
 }
 
-@media screen and (max-width: 999px) {
-  .item_outer div:nth-child(2n+0) {
-    display: none;
-    border-radius: 0 50% 0 0;
-  }
+.item_top {
+  width: auto;
 }
 
 @media screen and (max-width: 500px) {
   .item {
     max-height: 180px;
   }
-
   .item img {
     max-height: 180px;
   }
 }
 
-.img_top {
-  position: relative;
+.item_bottom {
+  width: 50%;
+  height: 300px;
+  border-radius: .2rem;
+
 }
 
-.img_top::after {
+.item_bottom img{
+  width: 100%;
   border-radius: .2rem;
-  position: absolute;
-  top: -30px;
-  left: 50px;
-  content: "";
-  background-color: #a5a58d;
-  height: inherit;
-  width: 300px;
-  z-index: -1;
+  height: 300px;
+  transform: translate(-20px, 5%);
+  object-fit: cover;
 }
 
 /* Gallery--Profile Page---- */
@@ -12607,6 +12601,13 @@ html {
     width: 350px;
     height: auto;
   }
+}
+
+.max {
+  padding: 0;
+  width: 30%;
+  height: 33%;
+  margin-bottom: 3px;
 }
 
 /* Gallery---------- */
@@ -12829,15 +12830,16 @@ hr {
   overflow: hidden;
   height: 250px;
   max-width:  400px;
-  padding-right: 30px;
+  
 }
 
 .max_h {
   overflow: hidden;
   min-height: 250px;
   height: auto;
-  width: 100%;
+  width: 92%;
   object-fit: cover;
+
 }
 
 .outer {
@@ -12850,11 +12852,10 @@ hr {
   z-index: -1;
   left: 0px;
   top: 0px;
-  width: 91%;
-  margin-left: 30px;
+  width: 92%;
   position: absolute;
   height: inherit;
   max-width:  inherit;
   background-color: #a5a58d;
-  transform: translate(0px, -30px);
+  transform: translate(20px, -20px);
 }
