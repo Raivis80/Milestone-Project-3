@@ -1,23 +1,18 @@
 {% extends "base.html" %}
 
-{% block title %}{% endblock %}
+{% block title %}About{% endblock %}
 
 {% block content %}
 
 <!-- About Page -->
-<div class="container font text-white max_container">
-  <!-- Main heading -->
-
-  <div class="w-100 text-center">
-    <h1 class="mx-auto mb-5 ms-4 text-white masthead-heading text-uppercase">About</h1>
-  </div>
+<div class="container pt-5 font text-white max_container">
 
   <!-- Central image feature home page -->
   <div class="d-flex position-relative flex-column">
 
     <!-- Description about page -->
     <div
-      class="d-flex pt-2 mb-5 col-12 align-items-center align-self-end justify-content-between flex-column flex-md-row gap-2">
+      class="d-flex pt-2 col-12 align-items-center align-self-end justify-content-between flex-column flex-md-row gap-2">
       <div class="outer">
         <div class="img-outer gap-2 d-flex flex-wrap">
           <img class="max_h" src="{{ images[1].image }}" alt="Image name {{ images[1].title }}" />
@@ -34,10 +29,10 @@
       </div>
 
     </div>
-
+    <hr class="mb-5">
     <!-- Description about page -->
     <div
-      class="d-flex pt-2 mb-5 col-12 align-items-center align-self-end justify-content-between flex-column flex-md-row gap-2">
+      class="d-flex pt-2 col-12 align-items-center align-self-end justify-content-between flex-column flex-md-row gap-2">
       <div class="order-1 order-md-0">
         <div class="ms-3 p-2 font py-1 text-left text-bottom text-white">
           <p>Created your art digitally hand crafted masterpiece</p>
@@ -52,10 +47,10 @@
         <div class="img_adout"></div>
       </div>
     </div>
-
+    <hr class="mb-5">
     <!-- Description about page -->
     <div
-      class="d-flex pt-2 mb-5 col-12 align-items-center align-self-end justify-content-between flex-column flex-md-row gap-2">
+      class="d-flex pt-2   col-12 align-items-center align-self-end justify-content-between flex-column flex-md-row gap-2">
       <div class="outer">
         <div class="img-outer">
           <img class="max_h" src="{{ painting[0].image }}" alt="Image name {{ painting[0].title }}" />

@@ -12515,19 +12515,23 @@ html {
   width: 33%;
   height: 300px;
   border-radius: .2rem;
-
+  z-index: -1;
 }
 
 .item img {
   width: 100%;
   border-radius: .2rem;
   height: 300px;
-  transform: translate(-20px, 5%);
+  transform: translate(-20px, 20px);
   object-fit: cover;
 }
 
 .item_top {
   width: auto;
+
+}
+.index_z{
+  z-index: 2;
 }
 
 @media screen and (max-width: 500px) {
@@ -12830,6 +12834,7 @@ hr {
   overflow: hidden;
   height: 250px;
   max-width:  400px;
+  border-radius: .2rem;
   
 }
 
@@ -12837,25 +12842,27 @@ hr {
   overflow: hidden;
   min-height: 250px;
   height: auto;
-  width: 92%;
+  width: 94%;
   object-fit: cover;
-
+  border-radius: .2rem;
 }
 
 .outer {
   position: relative;
   height: 250px;
   max-width:  400px;
+  border-radius: .2rem;
 }
 
 .img_adout{
   z-index: -1;
   left: 0px;
   top: 0px;
-  width: 92%;
+  width: 93%;
   position: absolute;
   height: inherit;
   max-width:  inherit;
   background-color: #a5a58d;
   transform: translate(20px, -20px);
+  border-radius: .2rem;
 }
