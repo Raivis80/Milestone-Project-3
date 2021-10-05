@@ -5,24 +5,24 @@
 <!-- Home Page -->
 
 <!-- Masthead-->
-<div class="container max_container d-flex flex-column justify-content-between">
+<div class="container max_container">
   <!-- Main heading -->
   <header class="masthead text-secondary text-center mb-2">
     <div class="container ps-4 d-flex align-items-center justify-content-between flex-md-row flex-column">
       <div class="brand_wrapp">
-        <h1 class="brand w-auto mx-auto ms-4 mb-5 masthead-heading text-light text-uppercase">motiFy</h1>
+        <h1 class="brand w-auto mx-auto ms-4 masthead-heading text-light text-uppercase">motiFy</h1>
       </div>
     </div>
   </header>
 
   <!-- Visible Mobile version only -->
-  <div class="item item_top bg-primary mb-3 ms-3 d-sm-none">
-    <img class="index_z" src="{{ digital_art[0].image }}" alt="Image name {{ images[0].title }}" />
+  <div class="item item_top bg-primary mb-4 ms-3 d-sm-none">
+    <img src="{{ digital_art[0].image }}" alt="Image name {{ images[0].title }}" />
   </div>
 
   <!-- Central image feature home page -->
   
-  <div class="d-flex position-relative ms-3 item_outer flex-sm-row gap-3">
+  <div class="d-flex position-relative ms-2 item_outer flex-sm-row gap-2">
     <div class="item bg-primary w-100">
       <img src="{{ images[0].image }}" alt="Image name {{ images[0].title }}" />
     </div>
@@ -32,11 +32,12 @@
   </div>
 
   <!-- Description about page -->
-  <div class="d-flex pt-3 mt-3 pb-3 justify-content-between flex-row gap-2">
+  <div class="d-flex pt-3 mt-2 justify-content-between flex-row gap-2">
     <div class="d-flex align-items-center col-12 col-sm-6">
       <div class="mt-5 ms-3 p-2 h-auto w-100 font py-1 text-left text-bottom text-white head-subheading">
         <p>Share your <em>Paintings - Digital Art - Creative Images</em></p>
         <p>Create and share your own art or discover the work of others</p>
+        <p>Post and publish your artwork online for free</p>
         <p>There are only a few steps to unleash your creativity</p>
         <p><a href="{{ url_for('register') }}">Register Account</a> And start sharing</p>
       </div>

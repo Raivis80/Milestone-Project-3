@@ -12520,6 +12520,9 @@ body {
   width: 33%;
   height: 250px;
   border-radius: .2rem;
+}
+
+.item_outer{
   z-index: -1;
 }
 
@@ -12536,7 +12539,8 @@ body {
 
 }
 .index_z{
-  z-index: 2;
+  position: absolute;
+  z-index: 3;
 }
 
 @media screen and (max-width: 500px) {
@@ -12623,13 +12627,13 @@ body {
 
 .hover_efect {
   width: fit-content;
-  color: #fff3eb54;
+  color: #fff3ebe7;
   transition: 120ms;
   z-index: 2000;
 }
 
 .hover_efect:hover {
-  color: #a5a58de0;
+  color: #a5a58d;
 }
 
 .img-fluid-gall {

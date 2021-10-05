@@ -229,8 +229,9 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
       - Delete account
       - Reset password
       - Delete/Edit/Update posts
+- About Page
 - footer
-     - FaceBook, LinkedIn, Instagram
+     - FaceBook, LinkedIn, Instagram, About
 
 #### **Wireframes**
 - ### Landing Page wireframe
@@ -289,64 +290,65 @@ Template source code can be found by clicking following link > [GitHib](https://
 ## ***Features***
 The website built using a flask web framework and bootstrap framework. WTForms form librarie Integration with forms validation. The Website is fully responsive fixed navigation bar at the top. MongoDB Cloud data platform for databases cloud storage. Cloidinary API for Image assets management.
 
-- Sign In, Create account forms
+- Sign In, Create account forms [Image](project_files/images/features/login.PNG)
    - Forms Features "Username", enter your password fields.
    - To help with form validation I.m using WTForms validation tools.
    - WTForm validation used that includes validations such as"Min/Max-Lenght", "Allowed Characters".
    - A new session cookie will be generated upon login.
-- Create account forms
+- Create account forms [Image](project_files/images/features/register.PNG)
    - Forms Features "Username", enter and confirm your password fields.
    - create account will generate Hashed Passwords With Werkzeug and store along with username on a mongo DB users collection.
    - WTForm validation used that includes validations such as"Min/Max-Lenght", "Allowed Characters" and Confirm password.
-- Landing Page
+- Landing Page [PC Image](project_files/images/features/index-pc.PNG), [mobile Image](project_files/images/features/index-mobile.PNG)
    - Large fully responsive website brand name heading.
    - Dynamic Image feature, displays latest user post inserts across three categories.
-- NavBar
+- NavBar [PC Image](project_files/images/features/navbar-desktop.PNG), [mobile Image](project_files/images/features/navbar-mobile.PNG)
    - The website features a fully responsive navbar with a dropdown menu.
    - Internal site navigation Links, Login/Register link, Site brand name.
-- Thumbnail Gallery
+- Thumbnail Gallery [PC Image](project_files/images/features/gallery-pc.PNG), [mobile Image](project_files/images/features/gallery.PNG)
    - Gallery Displays user content in a responsive grid thumbnails. Gallery order is displaying recent first.
    - Gallery is generated dynamically using flask jinja2 a templating language for loop.
    - All the text content and image links are stored on a Mongo DB.
    - And all the image files are stored on a API cloud service "Cloudinary".
    - Each Thumbnail has link that if clicked on will open up a modal with larger version of the image, description and author.
-   - Modal image link future more to secure cloudinary URL.
-- About Page
+   - Modal image link future more to secure cloudinary URL. [modal Image](project_files/images/features/gallery-modal.PNG) 
+- About Page [PC Image](project_files/images/features/about-pc.PNG), [mobile Image](project_files/images/features/about.PNG) 
   - Features three latest, shared images from three different categories
   - Each category with description about sharing images, art and digital art.
-- My Posts
+  - Galery search function enables user to search by keyword, uasername or category name [Image](project_files/images/features/search-bar.PNG)
+- My Posts [PC Image](project_files/images/features/my-osts-pc.PNG), [mobile Image](project_files/images/features/my-posts.PNG) 
    - My Posts Page Displays user content cards in a responsive grid. Post order is displaying recent first.
    - My Posts cards is generated dynamically using flask jinja2 a templating language for loop.
    - All the text content and image links are stored on a Mongo DB.
    - And all the image files are stored on a API cloud service "Cloudinary".
    - Each Card has a build in link that if clicked on will open up a Edit post page.
-- Add Post
+- Add Post [Image](project_files/images/features/add-post.PNG)
    - Category dropdown sellect meny, Title input field, text area field for content description, Image upload functionality, 
    - WTform validation used to verify allowed files such as Images. .jpg. .jpeg. .png. . gif ....
    - Once form was submitted, the Images are uploaded to the "cloudinary" API.
    - Three image links are generated out of cloudinary (300p small thumbnails, 1920p Larger thumbnails and full size image link)
    - Image links along with text content are stored in he Mongo DB posts collection.  
-- Edit Post
+- Edit Post [Image](project_files/images/features/updaet-post.PNG)
    - Features Category dropdown sellect meny, Title input field, text area field for content description and delete button.
    - Edit post enables user to change post category, edit description and the title but not the image.
    - At The bottom of the form is a Delete Post button with confirm function for to prevent accidental deletion.
    - Delete function will wipe out all the content related to the post (")text and image links and with image files).
-- Account
+- Account  [Image](project_files/images/features/my-account.PNG)
    - Feature two bootstrap vertically collapsing accordions
-      1. Change password
+      1. Change password [Image](project_files/images/features/change-password.PNG)
          - Old password, new password, confirm password fields with submit button
          - Cange passwors will erase old Hashed Werkzeug and generate new ghash based on password
          - Database user collection will update with new hash after submitting the form
-      1. Delete account
+      1. Delete account  [Image](project_files/images/features/change-password.PNG)
          - password, confirm password fields with submit for deletion button
          - All the user data will be removed from Mongo DB users collection
-- Admin manage
+- Admin manage [Image](project_files/images/features/admin.PNG)
    - Feature bootstrap vertically collapsing accordions.
-      1. Users And Posts
+      1. Users And Posts [Image](project_files/images/features/change-password.PNG)
          - Total number of the users
          - Total number of the posts
          - All the registered users and their posts with links to the post itself.
-      1. Resset DB Indexes
+      1. Resset DB Indexes [Image](project_files/images/features/user-posts-admin.PNG)
          - This Will drop all search indexes on a collection and recreates
          - Checbox following javascript function to prompt the user to confirm Before resset.
       1. Add new Category
@@ -355,24 +357,32 @@ The website built using a flask web framework and bootstrap framework. WTForms f
       1. Delete Category
          - Dropdown caegory sellect meny Submin button.
          - After confirmation category will be deleted from mongoDB categories collection.
-      1. Delete any user account
+      1. Delete any user account [Image](project_files/images/features/delete-user.PNG)
          - Username fiel, password, confirm password fields with submit for deletion button
          - All the user data will be removed from Mongo DB users collection
-      1. Change Admin password
+      1. Change Admin password [Image](project_files/images/features/admin-pass.PNG)
          - Features, Old password, new password, confirm password fields with submit button
          - Cange passwors will erase old Hashed Werkzeug and generate new ghash based on password
          - Database user collection will update with new hash after submitting the form
-- Admin Edit User posts
+- Admin section user posts [Image](project_files/images/features/admin-user-posts.PNG)
+   - user Posts Page Displays user content cards in a responsive grid. Post order is displaying recent first.
+   - User Posts cards is generated dynamically using flask jinja2 a templating language for loop.
+   - All the text content and image links are stored on a Mongo DB.
+   - And all the image files are stored on a API cloud service "Cloudinary".
+   - Each Card has a build in link that if clicked on will open up a Edit post page.
+   - Post search function enables admin to search by keyword, uasername or category name [Image](project_files/images/features/search-bar.PNG)
+- Admin manage User posts [Image](project_files/images/features/manage-user-posts.PNG)
    - Features Category dropdown sellect meny, Title input field, text area field for content description and delete button.
    - Edit post enables user to change post category, edit description and the title but not the image.
    - At The bottom of the form is a Delete Post button with confirm function for to prevent accidental deletion.
    - Delete function will wipe out all the content related to the post (text and image links and with image files).
    - A link to delete user profile modal
-- Delete user popup modal 
+- Delete user popup modal [Image](project_files/images/features/delete-user-modal.PNG)
    - Prefilled with Username of the post, password, confirm password fields with submit for deletion button.
    - All the user data will be removed from Mongo DB users collection.
 - footer
    - Copyright information
+   - Link to About page
    - Social Links
      - FaceBook, LinkedIn, Instagram
 
