@@ -12,59 +12,70 @@
 
 
   <div class="w-100 text-center">
-    <h1 class="mx-auto ms-4 text-white masthead-heading text-uppercase">EmotiFy</h1>
+    <h1 class="mx-auto mb-5 ms-4 text-white masthead-heading text-uppercase">About</h1>
   </div>
 
   <!-- Central image feature home page -->
   <div class="d-flex position-relative flex-column">
 
     <!-- Description about page -->
-    <div class="d-flex pt-2 col-12 align-items-center align-self-end justify-content-between flex-column flex-md-row gap-2">
-      <div class="img-outer">
-        <img class="max_h" src="{{ images[1].image }}" alt="Image name {{ images[1].title }}" />
+    <div
+      class="d-flex pt-2 mb-5 col-12 align-items-center align-self-end justify-content-between flex-column flex-md-row gap-2">
+      <div class="outer">
+        <div class="img-outer">
+          <img class="max_h" src="{{ images[1].image }}" alt="Image name {{ images[1].title }}" />
+        </div>
+        <div class="img_adout"></div>
       </div>
-      
+
       <div>
-        <div class="ms-3 p-2 h-auto font py-1 text-left text-bottom text-white">
-          <p>The place where you share your<em>Creative Images</em></p>
-          <p>Post and publish your creative images online</p>
+        <div class="ms-3 p-2 font py-1 text-left text-bottom text-white">
+          <p>The place where you share your Creative Images</em></p>
+          <p>Get on Emotify to share your love of your crafty Images </p>
+          <p><a href="{{ url_for('register') }}">Register Account,</a> post and publish your creative images online </p>
         </div>
       </div>
 
     </div>
 
     <!-- Description about page -->
-    <div class="d-flex pt-2 col-12 align-items-center align-self-end justify-content-between flex-column flex-md-row gap-2">
+    <div
+      class="d-flex pt-2 mb-5 col-12 align-items-center align-self-end justify-content-between flex-column flex-md-row gap-2">
       <div class="order-1 order-md-0">
         <div class="ms-3 p-2 font py-1 text-left text-bottom text-white">
           <p>Created your art digitally hand crafted masterpiece</p>
           <p>This platforms can help get your digital art noticed</p>
+          <p><a href="{{ url_for('register') }}">Register Account,</a> start sharing and discover the work of others</p>
         </div>
       </div>
-
+      <div class="outer">
       <div class="img-outer order-0 order-md-1">
         <img class="max_h" src="{{ digital_art[1].image }}" alt="Image name {{ digital_art[1].title }}" />
       </div>
-
+      <div class="img_adout"></div>
+      </div>
     </div>
 
     <!-- Description about page -->
-    <div class="d-flex pt-2 col-12 align-items-center align-self-end justify-content-between flex-column flex-md-row gap-2">
+    <div
+      class="d-flex pt-2 col-12 mb-4 align-items-center align-self-end justify-content-between flex-column flex-md-row gap-2">
+      <div class="outer">
       <div class="img-outer">
         <img class="max_h" src="{{ painting[0].image }}" alt="Image name {{ painting[0].title }}" />
       </div>
-     
+      <div class="img_adout"></div>
+    </div>
+
       <div>
         <div class="ms-3 p-2 font py-1 text-left text-bottom text-white">
-          <p>Acrylic, Colored pencils, and much more...</p>
-          <p>There are only a few steps to unleash your creativity</p>
-          <p>Create and share your own art or discover the work of others</p>
-          <p><a href="{{ url_for('register') }}">Register Account</a> And start sharing</p>
+          <p>Whether it is Acrylic or Colored pencils, and much more...</p>
+          <p>There are only a few steps to unleash your creativity
+            <p><a href="{{ url_for('register') }}">Register Account,</a> create and share your own art work</p>
         </div>
       </div>
 
     </div>
-  </div>
 
+  </div>
 </div>
 {% endblock %}
