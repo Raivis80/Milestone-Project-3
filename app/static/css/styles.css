@@ -4634,7 +4634,6 @@ fieldset:disabled .btn {
 @media screen and (max-width: 991px) {
   .navbar-nav {
     max-width: 150px;
-
   }
 
   .navbar-nav li {
@@ -4645,12 +4644,9 @@ fieldset:disabled .btn {
 }
 
 .navbar-toggler {
-  padding: 0.25rem 0.75rem;
-  font-size: 1.25rem;
-  line-height: 1;
   background-color: transparent;
   border: 0.125rem solid transparent;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
   transition: box-shadow 0.15s ease-in-out;
 }
 
@@ -4667,7 +4663,7 @@ fieldset:disabled .btn {
 .navbar-toggler:focus {
   text-decoration: none;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem;
+  box-shadow: #a5a58d 0 0 0 0.25rem;
 }
 
 .navbar-toggler-icon {

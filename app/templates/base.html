@@ -25,11 +25,11 @@
         <div class="container px-2 ">
             <a class="navbar-brand red rm-5" href="{{ url_for('index') }}">EmotiFy</a>
 
-            <div class="navbar-toggler text-uppercase text-white font-weight-bold rounded" type="button"
+            <button class="navbar-toggler btn-outnine-none text-uppercase text-white font-weight-bold rounded" role="button" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
-                <h2><i class="fas fa-bars"></i></h2>
-            </div>
+                <i class="h2 fas fa-bars"></i>
+            </button>
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav gap-1 ms-auto">
@@ -106,13 +106,13 @@
 
             <!-- Flashed messages -->
             {%  with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages%}
-                    {% for color, message in messages %}
+            {% if messages%}
+            {% for color, message in messages %}
 
-                    <h5 class="alert {{ color }} masthead-subheading text-uppercase text-center">{{ message }}</h5>
+            <h5 class="alert {{ color }} masthead-subheading text-uppercase text-center">{{ message }}</h5>
 
-                    {% endfor %}
-                {% endif %}
+            {% endfor %}
+            {% endif %}
             {% endwith %}
 
             <!-- Main Content -->
@@ -123,7 +123,7 @@
         </div>
     </section>
 
-   
+
 
     <!-- Footer-->
     <footer class="footer font text-center w-100">
@@ -140,13 +140,15 @@
                 </div>
                 <!-- Footer Social Icons-->
                 <div class="order-0 text-white order-md-1">
-                    <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://www.facebook.com/WtheGismo">
+                    <a class="btn btn-outline-light btn-social mx-1" target="_blank"
+                        href="https://www.facebook.com/WtheGismo">
                         <i class="fab fa-fw fa-facebook-f"></i>
                     </a>
                     <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://github.com/Raivis80">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://www.linkedin.com/in/raivis-petrovskis-524291205/">
+                    <a class="btn btn-outline-light btn-social mx-1" target="_blank"
+                        href="https://www.linkedin.com/in/raivis-petrovskis-524291205/">
                         <i class="fab fa-fw fa-linkedin-in"></i>
                     </a>
                 </div>

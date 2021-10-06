@@ -1,5 +1,5 @@
 # EmotiFy
-## [View the live project here.](https://raivis80.github.io)
+## [View the live project here.](https://emotify-ms-3.herokuapp.com/)
 
 # [&#8686;](#Introduction)
 ## ***Introduction***
@@ -37,8 +37,7 @@ Deployment: Deploy the final version of your code to a Heroku.
 As Registered user
 - I want to be able to create my own account.
 - I want to to be able to upload and share Interesting content with others.
-- I want to express my own emotions and to share them with others.
-- I want Find people with similar interests and mindsets that you can connect with.
+- I want Find people with similar interests and mindsets.
 - I want to be able to edit/delete my content if needed.
 - i Want to be able to edit/delete my account details.
 
@@ -78,7 +77,7 @@ As an Administrator
 # [&#8686;](#Introduction)
 ### **Scope**
 Features to implement in terms of viability/feasibility. Below is a Dot Plot chart consisting of data points plotted on a scale of 1 represents least and 5 the most.
-![Line-plots](project_files/wireframes/line-plots.png)
+[Line-plots](project_files/wireframes/line-plots.png)
 #### Functionality Requirements
 - Template.
    - Bootstrap starter template used to kick start the project
@@ -171,7 +170,7 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
 
 ### **Structure**
 ### Site layout structure
-![site-structure](project_files/wireframes/site-structure.png)
+[site-structure wireframe](project_files/wireframes/site-structure.png)
 
 ### Site structure broken into more detailed, structured view below
 - Landing Page
@@ -234,13 +233,11 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
      - FaceBook, LinkedIn, Instagram, About
 
 #### **Wireframes**
-- ### Landing Page wireframe
-![landing page](project_files/wireframes/landing-wireframe.png)
-- ### Gallery wireframe
+- ### [landing page wireframe](project_files/wireframes/landing-wireframe.png)
 
-![Gallery](project_files/wireframes/gallery.png)
+- ### [Gallery wireframe](project_files/wireframes/gallery.png)
 
-- ### User Interface Wireframe
+- ### [Profile wireframe](project_files/wireframes/profile.png)
 
    *Design change for finale project "Profile" User interface.*
 
@@ -249,29 +246,22 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
    Added Buttons for edit and delete options
    Original wireframe version for user interface can be found [Here](project_files/wireframes/interface.png)
 
-![Profile](project_files/wireframes/profile.png)
-
-- ### Add new post wireframe
+- ### [Add New Post wireframe](project_files/wireframes/add-post.png)
 
    *Add new post Dedicated interface was added later in the project to better suit project purpose*
 
-![Add New Post](project_files/wireframes/add-post.png)
-
-- ### User Account
+- ### [User Account wireframe](project_files/wireframes/account.png)
    *One more redesign feature was added later in the project*
 
    Added user account page to enable users to be able to delete their account if they wish so.
 
-![Account](project_files/wireframes/account.png)
 
-- ### DataBase structure below
+- ### [DB structure wireframe](project_files/wireframes/db-structure.png)
 
    *significant changes was made for elements in DB structure to meet site purpouse and needs.*
 
    Start project Original DB structure wireframe [db structure here](project_files/wireframes/mongoDB-wireframe1.png)
 
-New wireframe bellow
-![db structure](project_files/wireframes/db-structure.png)
 
 # [&#8686;](#Introduction)
 ## ***Design***
@@ -286,6 +276,7 @@ Thanks to [coolors.co](https://coolors.co)
 Bootstrap ["Freelancer"](https://startbootstrap.com/theme/freelancer) starter template used for site modified to suit current project.
 
 Template source code can be found by clicking following link > [GitHib](https://github.com/startbootstrap/startbootstrap-freelancer)
+
 # [&#8686;](#-)
 ## ***Features***
 The website built using a flask web framework and bootstrap framework. WTForms form librarie Integration with forms validation. The Website is fully responsive fixed navigation bar at the top. MongoDB Cloud data platform for databases cloud storage. Cloidinary API for Image assets management.
@@ -453,21 +444,15 @@ You can clone repository. When you clone repository, you copy repository to your
 
    | Collection Name |
    | ---------- |
-   | 1.  categories |
-   | 2.  Tags       |
+   | 1.  Categories |
+   | 2.  Posts     |
    | 3.  Users      |
 
 - Create env.py protect your passwords using environment variables while connecting to databases with Python. File should contain following.
 
-```python
-import os
+![image](project_files/images/env.png)
 
-os.environ["HOSTNAME"] = "0.0.0.0"
-os.environ["PORT"] = "5000"
-os.environ["SECRET_KEY"] = "YOUR_SECRET_KEY"
-os.environ["MONGO_URI"] = "YOUR_MONGODB_URI"
-os.environ["CLOUDINARY_URL"]= "YOUR_CLOUDINARY_URL" 
-```
+
 - Replace The SECRET_KEY with your own and MONGO_URI and CLOUDINARY_URL provided by mongoDB.
 Ensure to add env.py to a .gitignore file before pushing your code to your repository.
 
@@ -483,6 +468,9 @@ Ensure to add env.py to a .gitignore file before pushing your code to your repos
    ```
    pip freeze > requirements.txt
    ```
+
+   ![image](project_files/images/requirements.PNG)
+
     - Create a Procfile in same directory that is required for all Heroku applications. to start the app. Enter Following in procfile.
 
    ```
@@ -497,12 +485,15 @@ Ensure to add env.py to a .gitignore file before pushing your code to your repos
 - After you have deployed, go on top of the page and locate settings tab and select it
 - Select within settings page "Reveal Config Vars and add following
 
-| HOSTNAME |	0.0.0.0 |
+| Config|	Vars |
 | -- | -- |
+| IP | 0.0.0.0 |
 | PORT |	5000 |
-| SECRET_KEY |	YOUR_SECRET_KEY |
-| MONGO_URI |	YOUR_MONGO_URI |
-| CLOUDINARY_URL |	YOUR_CLOUDINARY_URL |
+| CLOUD_NAME | Cloudinary cloud name |
+| API_KEY | Your Cloudinary API key |
+| API_SECRET | Your Cloudinary secret key|
+| SECRET_KEY |	Your secret key |
+| MONGO_URI |	Your Mongo Uri |
 
 Make sure to enter your own SECRET_KEY, MONGO_URI and CLOUDINARY_URL variables.
 
@@ -517,7 +508,7 @@ Technical code instructions for some of the code sourced from following sources.
 ### **Images** 
   
 ### **Content**
-### **Starter Template**
+#### **Starter Template**
 Bootstrap ["Freelancer"](https://startbootstrap.com/theme/freelancer) starter template used for site modified to suit current project.
 
 Template source code can be found by clicking following link > [GitHib](https://github.com/startbootstrap/startbootstrap-freelancer)

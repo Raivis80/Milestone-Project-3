@@ -16,10 +16,37 @@
 
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
+## ***UX*** 
 ### **User Stories Testing**
+#### User goals
+- &#10003; The site is fully responsive and is accessable on various devices such us mobile, tablet or pc.
+- &#10003; Home Page and About page offers short but clear description for user to understand What is the main purpose of the site.
+- &#10003; Site navigation links enables user to easily navigate throughout the site to find desired content.
+- &#10003; Social media links are presented in the footer for user.
+- &#10003; User is able to get in contact on social media if any questions or bugs.
+
+#### As Registered user
+- &#10003; User is able to, create their own account.
+- &#10003; User is able to, upload and share Interesting content with others.
+- &#10003; User is able to, Find people with similar interests and mindsets.
+- &#10003; User is able to, edit post content and delete content if needed.
+- &#10003; User is able to, change password and delete user account.
+
+#### As an Administrator
+- &#10003; Administrator is able to, monitor and manage content.
+- &#10003; Administrator is able to, manage user access.
+
+#### Site owner goals
+- &#10003; The site provides users with online content sharing platform.
+- &#10003; The Site provides visitor/user with good user experience.
+- &#10003; The Site provides user with site navigation and content search options.
+- &#10003; The Site provides registered users to quickly and easily. share their content.
+- &#10003; The Site provides users with social media links.
+- &#10003; The Site provides users with contact options if any questions or bugs.
 
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
+
 ### **Future Testing**
 I have tested the game on a variety of browsers such as  Chrome, Opera, Microsoft Edge, and Firefox desktop version browsers and Huawei p30 Pro chrome and android browser.
 
