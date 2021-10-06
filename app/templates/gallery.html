@@ -76,13 +76,13 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content font modal_body_col">
                 <!-- Gallery Modal - Title-->
-                <div class="modal-header text-uppercase font-weight-bold text-white"
+                <div role="button" class="modal-header text-uppercase font-weight-bold text-white"
                     data-bs-dismiss="modal" aria-label="Close">
                     <h2 class="modal-title">
                         {{ post.title }}
                     </h2>
                     <div>
-                        <h2><i class="fas fa-times x_btn text-twite"></i></h2>
+                        <i class="h2 fas fa-times x_btn text-twite"></i>
                     </div>
                 </div>
                 <div class="modal-body ">
@@ -100,7 +100,7 @@
                     </div>
                     <!-- Modal Footer -->
                 </div>
-                <div class="modal-footer" data-bs-dismiss="modal" aria-label="Close">
+                <div role="button" class="modal-footer" data-bs-dismiss="modal" aria-label="Close">
                     <div class="col-12 text-left text-white text-capitalize"><em>Created by: {{post.created_by}}</em>
                     </div>
                 </div>

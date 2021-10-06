@@ -60,6 +60,8 @@ Friends and family members helped point out any bugs or issues.
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
 ### **Solved issues or bugs**
+![w3 error](../project_files/bugs/Capture.PNG)
+Index page navbar toggler as div gives an error. To solve this issue, I have changed "div" tag into "button" tag.
 
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)

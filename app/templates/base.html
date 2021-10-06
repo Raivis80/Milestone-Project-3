@@ -25,7 +25,7 @@
         <div class="container px-2 ">
             <a class="navbar-brand red rm-5" href="{{ url_for('index') }}">EmotiFy</a>
 
-            <button class="navbar-toggler btn-outnine-none text-uppercase text-white font-weight-bold rounded" role="button" type="button"
+            <button class="navbar-toggler btn-outnine-none text-uppercase text-white font-weight-bold rounded" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <i class="h2 fas fa-bars"></i>
@@ -96,13 +96,6 @@
 
                 {% endblock %}
             </h2>
-
-            <!-- Subheading -->
-            <h4 class="masthead-subheading text-center font-weight-light mb-0">
-                {% block sub %}
-
-                {% endblock %}
-            </h4>
 
             <!-- Flashed messages -->
             {%  with messages = get_flashed_messages(with_categories=true) %}
