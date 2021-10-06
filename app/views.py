@@ -45,7 +45,7 @@ def index():
 @app.route('/about')
 def about():
     """
-    About Page: 
+    About Page:
     In "posts collection" and limit to 1 items.
     For each of the 3 categories. And render
     about page with all required parameters.
@@ -60,7 +60,6 @@ def about():
     return render_template(
         'about.html', digital_art=digital_art,
         painting=painting, images=images, about="home")
-
 
 
 @app.route('/gallery', methods=["GET", "POST"])
@@ -92,7 +91,7 @@ def register():
 
         if existing_user:
             flash("Username already exists")
-            return redirect(request.url)   
+            return redirect(request.url)
         else:
             register = {
                 "username": form.username.data.lower(),
@@ -150,7 +149,7 @@ def profile(username):
     """
     Find user's username from db Check
     if user match session cookie and
-    render Profile page if verified Or 
+    render Profile page if verified Or
     Rediret unauthorized users page access
     """
 
@@ -276,7 +275,7 @@ def add_post():
     inserts a single document into a collection.
     Create url for 1920p size image URL.
     Create url for 300p image thumblail URL.
-    Render template with required parameters.              
+    Render template with required parameters.
     """
 
     form = UploadForm(CombinedMultiDict((request.files, request.form)))
@@ -479,7 +478,9 @@ def new_category():
                 try:
                     mongo.db.categories.insert_one(
                         {"category_name": add_category})
-                    flash(f"New Category {add_category} was created", "success")
+                    flash(
+                        f"New Category {add_category} was created",
+                        "success")
                     return redirect(request.referrer)
 
                 except Exception:
@@ -518,7 +519,9 @@ def delete_category():
                     return redirect(request.referrer)
 
                 except Exception:
-                    flash(f"Failed to remove category {delete_category}", "error")
+                    flash(
+                        f"Failed to remove category {delete_category}",
+                        "error")
                     return redirect(request.referrer)
 
             else:
@@ -534,7 +537,7 @@ def delete_category():
 def query():
     """
     Query function: Get "posts" collection
-    form DB, enables Search by keyword, 
+    form DB, enables Search by keyword,
     username Or Query posts by category name.
     """
 
@@ -594,7 +597,9 @@ def query():
                 return render_template(
                     url, posts=posts, categories=categories, title=title)
             else:
-                flash(f"{len(posts)} Results for category {category_name}", 'success')
+                flash(
+                    f"{len(posts)} Results for category {category_name}",
+                    'success')
                 return render_template(
                     url, posts=posts, categories=categories, title=title)
 
@@ -713,7 +718,7 @@ def admin_posts(post_id):
             if key == "created_by":
                 created_by = mongo.db.users.find_one({"username": value})
 
-        return render_template( 
+        return render_template(
             "admin_posts.html", categories=categories,
             post=post, form=form, form2=form2, created_by=created_by)
 

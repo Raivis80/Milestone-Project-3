@@ -8,7 +8,7 @@
 1. [Solved issues or bugs](#Solved-issues-or-bugs)
 1. [Back to Readme.md](../README.md)
 
-### **W3C Validation**
+### **Validation**
   The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
 
 - W3C Markup Validator
@@ -25,6 +25,11 @@
   - [Manage User Post Page](../project_files/validation/manage_post.PNG)
   - [Admin Page](../project_files/validation/mange.PNG)
 - [W3C CSS Validator](project_files/validation/W3C-CSS.PNG)
+
+- PEP8 requirements [pep8online.com](http://pep8online.com/checkresult)
+
+  PEP-8, check is Python's style for naming conventions and coding standards formatting.
+  - pep8online [result](project_files/validation/pep8-views.PNGG)
 
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
