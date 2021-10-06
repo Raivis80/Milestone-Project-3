@@ -66,6 +66,8 @@ Friends and family members helped point out any bugs or issues.
 ![w3 error](../project_files/bugs/Gallery-divPNG.PNG)
 1. About page "em" tag has no opening. To solve this issue, I have removed tag altogether.
 ![w3 error](../project_files/bugs/about-error.PNG)
+1. Register page "i" tag has extra closing tags. To solve this issue, I have removed extra tag.
+![w3 error](../project_files/bugs/register.PNG)
 
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
