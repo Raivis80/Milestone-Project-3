@@ -71,9 +71,12 @@ Friends and family members helped point out any bugs or issues.
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
 ### **Solved issues or bugs**
+1. Empty Flask block extension title "h2" tag for Index page. to solve issue, I have Added if stetement to not include heading in index Page.
+![w3 error](../project_files/bugs/index-h2.PNG)
+![w3 error](../project_files/bugs/index-h2-solve.PNG)
 1. Index page navbar toggler as div gives an error. To solve this issue, I have changed "div" tag into "button" tag.
 ![w3 error](../project_files/bugs/Capture.PNG)
-1. Gallery page button as div gives an warning. To solve this issue, I have addet "role=Button" attribute to the "div" element.
+1. Gallery page button as div gives a warning. To solve this issue, I have addet "role=Button" attribute to the "div" element.
 ![w3 error](../project_files/bugs/Gallery-divPNG.PNG)
 1. About page "em" tag has no opening. To solve this issue, I have removed tag altogether.
 ![w3 error](../project_files/bugs/about-error.PNG)

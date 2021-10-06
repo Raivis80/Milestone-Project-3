@@ -91,11 +91,13 @@
     <section class="page-section main_section d-flex justify-content-center align-items-center">
         <div class="container h-100 mt-5">
             <!-- Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-white mb-4">
-                {% block title %}
+            {% if title != "home" %}
+                <h2 class="page-section-heading text-center text-uppercase text-white mb-4">
+                    {% block title %}
 
-                {% endblock %}
-            </h2>
+                    {% endblock %}
+                </h2>
+            {% endif %}
 
             <!-- Flashed messages -->
             {%  with messages = get_flashed_messages(with_categories=true) %}
