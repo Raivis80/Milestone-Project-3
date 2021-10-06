@@ -13,12 +13,16 @@
 
 - W3C Markup Validator
   - [About Page](../project_files/validation/about.PNG)
+  - [Gallery Page](../project_files/validation/gallery.PNG)
   - [Register Page](../project_files/validation/register.PNG)
   - [Log In Page](../project_files/validation/login.PNG)
   - [Add Post Page](../project_files/validation/add_post.PNG)
   - [Edit Post Page](../project_files/validation/edit_post.PNG)
   - [My Posts Page](../project_files/validation/mu_posts.PNG)
   - [Account Page](../project_files/validation/account.PNG)
+  - [User Posts Admin Page](../project_files/validation/user_posts_admin.PNG)
+  - [Manage User Post Page](../project_files/validation/manage_post.PNG)
+  - [Admin Page](../project_files/validation/mange.PNG)
 - [W3C CSS Validator](project_files/validation/W3C-CSS.PNG)
 
 # [&#8686;](#Testing)
