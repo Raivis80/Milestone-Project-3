@@ -12,6 +12,7 @@
   The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
 
 - W3C Markup Validator
+  - [Index Page](../project_files/validation/index.PNG)
   - [About Page](../project_files/validation/about.PNG)
   - [Gallery Page](../project_files/validation/gallery.PNG)
   - [Register Page](../project_files/validation/register.PNG)
