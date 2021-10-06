@@ -24,12 +24,13 @@
   - [User Posts Admin Page](../project_files/validation/user_posts_admin.PNG)
   - [Manage User Post Page](../project_files/validation/manage_post.PNG)
   - [Admin Page](../project_files/validation/mange.PNG)
-- [W3C CSS Validator](project_files/validation/W3C-CSS.PNG)
+- W3C CSS Validation
+  - [W3C CSS Validator](../project_files/validation/css.PNG)
 
 - PEP8 requirements [pep8online.com](http://pep8online.com/checkresult)
 
   PEP-8, check is Python's style for naming conventions and coding standards formatting.
-  - pep8online [result](project_files/validation/pep8-views.PNGG)
+  - pep8online [result](../project_files/validation/pep8-views.PNGG)
 
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
@@ -88,6 +89,8 @@ Friends and family members helped point out any bugs or issues.
 ![w3 error](../project_files/bugs/about-error.PNG)
 1. Register page "i" tag has extra closing tags. To solve this issue, I have removed extra tag.
 ![w3 error](../project_files/bugs/register.PNG)
+1. Css errors. I was able to fih them by changing to correct values.
+![w3 css error](../project_files/bugs/errors-css.PNG)
 
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
