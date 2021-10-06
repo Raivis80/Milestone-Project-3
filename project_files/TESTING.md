@@ -32,6 +32,11 @@
   PEP-8, check is Python's style for naming conventions and coding standards formatting.
   - pep8online [result](../project_files/validation/pep8-views.PNGG)
 
+- Jshint [website](https://jshint.com/)
+
+  JSHint, tool that detects errors and potential problems in JavaScript code
+  - Result [here](../project_files/validation/jsHint.PNG)
+
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
 ## ***UX*** 
@@ -75,6 +80,8 @@ Friends and family members helped point out any bugs or issues.
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
 ### **Bugs**
+Bootstrap Starter Teplate static css file warnings are unsolved.
+![w3 error](../project_files/bugs/unsolved.PNG)
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
 ### **Solved issues or bugs**
@@ -89,7 +96,7 @@ Friends and family members helped point out any bugs or issues.
 ![w3 error](../project_files/bugs/about-error.PNG)
 1. Register page "i" tag has extra closing tags. To solve this issue, I have removed extra tag.
 ![w3 error](../project_files/bugs/register.PNG)
-1. Css errors. I was able to fih them by changing to correct values.
+1. CSS errors. I was able to fih them by changing to correct values.
 ![w3 css error](../project_files/bugs/errors-css.PNG)
 
 # [&#8686;](#Testing)

@@ -7,6 +7,7 @@
 // Scripts
 // 
 
+/*jshint esversion: 6 */
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
@@ -16,9 +17,9 @@ window.addEventListener('DOMContentLoaded', event => {
             return;
         }
         if (window.scrollY === 0) {
-            navbarCollapsible.classList.remove('navbar-shrink')
+            navbarCollapsible.classList.remove('navbar-shrink');
         } else {
-            navbarCollapsible.classList.add('navbar-shrink')
+            navbarCollapsible.classList.add('navbar-shrink');
         }
 
     };
@@ -32,11 +33,11 @@ window.addEventListener('DOMContentLoaded', event => {
     // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');
     if (mainNav) {
-        new bootstrap.ScrollSpy(document.body, {
+         bootstrap.ScrollSpy(document.body, {
             target: '#mainNav',
             offset: 72,
         });
-    };
+    }
 
     // Collapse responsive navbar when toggler is visible
     const navbarToggler = document.body.querySelector('.navbar-toggler');
@@ -54,14 +55,13 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 // Enale delete button
-
 const onCheck = document.getElementById('on_check');
-onCheck.classList.add('disabled')
+onCheck.classList.add('disabled');
 function myFunction() {
     let checkBox = document.getElementById("myCheck");
     if (checkBox.checked == true){
-        onCheck.classList.remove('disabled')
+        onCheck.classList.remove('disabled');
     } else {
-        onCheck.classList.add('disabled')
+        onCheck.classList.add('disabled');
     }
   }
