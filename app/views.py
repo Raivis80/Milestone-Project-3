@@ -320,14 +320,9 @@ def add_post():
                     return redirect(request.url)
 
                 else:
-                    if URL_status.status_code != 200:
-                        flash(f"Status code: {URL_status.status_code}")
-                        flash("Post did not upload Try again", 'error')
-                        return redirect(request.url)
-                    else:
-                        flash("Post failed upload", 'error')
-                        flash("Please try again later", 'error')
-                        return redirect(request.url)
+                    flash(f"Status code: {URL_status.status_code}")
+                    flash("Post did not upload Try again", 'error')
+                    return redirect(request.url)
 
             else:
                 flash('File is required', 'error')
@@ -747,22 +742,4 @@ def page_not_found(e):
     404 Page if user gets address wrong
     """
     flash("The page you’re looking for doesn’t exist", "error")
-    return render_template('error.html', error="Page Not Found"), 404
-
-
-@app.errorhandler(500)
-def internal_server_error(e):
-    """
-    Handle 500 internal server error
-    """
-    flash("Oops something went wrong", "error")
-    return render_template('error.html', error="Internal server error"), 500
-
-
-@app.errorhandler(405)
-def method_not_allowed(e):
-    """
-    Method Not Allowed return a generic site-wide 405 page
-    """
-    flash("Oops something went wrong", "error")
-    return render_template("error.html", error="Method not allowed"), 405
+    return render_template('404.html', error="Page Not Found"), 404
