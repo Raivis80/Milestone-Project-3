@@ -2,6 +2,31 @@
 ![site](project_files/images/site.PNG)
 ## [View the live project here.](https://emotify-ms-3.herokuapp.com/)
 
+### Table of contents
+
+1. [Introduction](#Introduction)
+1. [Ux](#UX)
+   - [User Stories](#User-Stories)
+   - [Site owner goals](#Site-owner-goals)
+1. [Development Planes](#Development-Planes)
+   - [Strategy](#Strategy)
+   - [Scope](#Scope)
+   - [Structure](#Structure)
+- [Wireframes](#Wireframes)
+1. [Design](#Design)
+1. [Features](#Features)
+1. [Testing](#project_files/TESTING.md)
+   - [TESTING.md](project_files/TESTING.md)
+   - [Bugs TESTING.md](project_files/TESTING.md#Bugs)
+   - [W3C-Validation TESTING.md](project_files/TESTING.md#Validation)   
+1. [Technologies and Frameworks](#Technologies-and-Frameworks)
+1. [Deployment](#Deployment)
+   - [Fork A repository](#Fork-A-repository)
+   - [Creating a Clone Deploy Locally](#Creating-a-Clone-Deploy-Locally)
+   - [Deploying on Heroku Pages](#Deploying-on-Heroku-Pages)
+
+1. [Credits](#Credits)
+
 # [&#8686;](#Introduction)
 ## ***Introduction***
 
@@ -511,10 +536,9 @@ Some of the code syntax help and code tips sourced from following sources.
 - [cloudinary.com](https://cloudinary.com/documentation/image_upload_api_reference) Cloudinar API uploading and managing media assets in the cloud.
 -  [stackoverflow.com](https://stackoverflow.com/): Useful website for code tips.
 -  [www.w3schools](https://www.w3schools.com/): Useful website for code tips.
-### **Content**
-#### **Starter Template**
-Bootstrap ["Freelancer"](https://startbootstrap.com/theme/freelancer) starter template used for site modified to suit current project.
 
+### **Content**
+Bootstrap ["Freelancer"](https://startbootstrap.com/theme/freelancer) starter template used for site      modified to suit current project.
 Template source code can be found by clicking following link > [GitHib](https://github.com/startbootstrap/startbootstrap-freelancer)
 
 Start Bootstrap was created by and is maintained by **[David Miller](https://davidmiller.io/)**.
