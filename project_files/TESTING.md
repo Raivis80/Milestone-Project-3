@@ -49,29 +49,44 @@
 - &#10003; User is able to get in contact on social media if any questions or bugs.
 
 #### As Registered user
-- &#10003; User is able to, create their own account.
-- &#10003; User is able to, upload and share Interesting content with others.
+- &#10003; User is able to, create their own account, Login and Logout.
+- &#10003; User is able to, Create, read, update and delete their content.
 - &#10003; User is able to, Find people with similar interests and mindsets.
 - &#10003; User is able to, edit post content and delete content if needed.
 - &#10003; User is able to, change password and delete user account.
 
 #### As an Administrator
-- &#10003; Administrator is able to, monitor and manage content.
-- &#10003; Administrator is able to, manage user access.
+- &#10003; Administrator is able to, monitor, update and delete user content if necessary.
+- &#10003; Administrator is able to, manage user access by deleteting user account if necessary.
 
 #### Site owner goals
 - &#10003; The site provides users with online content sharing platform.
 - &#10003; The Site provides visitor/user with good user experience.
 - &#10003; The Site provides user with site navigation and content search options.
-- &#10003; The Site provides registered users to quickly and easily. share their content.
-- &#10003; The Site provides users with social media links.
-- &#10003; The Site provides users with contact options if any questions or bugs.
+- &#10003; The Site provides registered users to quickly and easily share their content.
+- &#10003; The Site provides users with social media links for options if any questions or bugs.
+
+# [&#8686;](#Testing)
+[Back to Readme.md](../README.md)
+
+### Site Responsive design test
+The Website is fully responsive and only pushing out content bolow 330px that will cover most of the devices (screen sizes) and resolutions.
+Below i have attached testing gif video for each page tested.
+- Index [GIF](responsive/index.gif)
+- Gallery [GIF](responsive/gallery.gif)
+- About [GIF](responsive/about.gif)
+- User Interface
+  - My Posts [GIF](responsive/my-posts.gif)
+  - Account [GIF](responsive/account.gif)
+- Admin Interface
+  - Admin Manage user posts [GIF](responsive/manage-post.gif)
+  - Admin manage [GIF](responsive/manage.gif)
 
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
 
 ### **Future Testing**
-I have tested the game on a variety of browsers such as  Chrome, Opera, Microsoft Edge, and Firefox desktop version browsers and Huawei p30 Pro chrome and android browser.
+I have tested the app on a variety of browsers such as  Chrome, Opera, Microsoft Edge, and Firefox desktop version browsers and Huawei p30 Pro chrome and android browser.
 
 I have used Chrome DevTools to Test a variety of devices such as Desktop, Laptop, iPhone7, iPhone 8 & iPhone X for responsive design.
 

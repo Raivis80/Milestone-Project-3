@@ -1,4 +1,5 @@
 # EmotiFy
+![site](project_files/images/site.PNG)
 ## [View the live project here.](https://emotify-ms-3.herokuapp.com/)
 
 # [&#8686;](#Introduction)
