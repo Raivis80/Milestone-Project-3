@@ -4,7 +4,7 @@
 
 ### Table of contents
 
-1. [Introduction](#Introduction)
+1. [Introduction](#EmotiFy)
 1. [Ux](#UX)
    - [User Stories](#User-Stories)
    - [Site owner goals](#Site-owner-goals)
@@ -24,10 +24,9 @@
    - [Fork A repository](#Fork-A-repository)
    - [Creating a Clone Deploy Locally](#Creating-a-Clone-Deploy-Locally)
    - [Deploying on Heroku Pages](#Deploying-on-Heroku-Pages)
-
 1. [Credits](#Credits)
 
-# [&#8686;](#Introduction)
+# [&#8686;](#EmotiFy)
 ## ***Introduction***
 
 ### **Backend Development**
@@ -50,7 +49,7 @@ Version control: Use Git & GitHub for version control.
 Deployment: Deploy the final version of your code to a Heroku.
 
 
-# [&#8686;](#Introduction)
+# [&#8686;](#EmotiFy)
 ## ***UX*** 
 ### **User Stories**
  User goals
@@ -79,7 +78,7 @@ As an Administrator
 - As a Site owner, I want to to enable registered users to quickly and easily. share their content.
 - As a Site owner, I want to Build trust with customers - providing with social media links.
 - As a Site owner, I want to provide user with customer Support to Improve customer satisfaction through better service.
-# [&#8686;](#Introduction)
+# [&#8686;](#EmotiFy)
 ## ***Development Planes***
 ### **Strategy**
 #### The website needs to enable the User to:
@@ -100,7 +99,7 @@ As an Administrator
 - Stay connected with customers by providing social media links for any suggestions.
 - Implement review section for users to be able to rate artwork and leave text response or likes.
 
-# [&#8686;](#Introduction)
+# [&#8686;](#EmotiFy)
 ### **Scope**
 Features to implement in terms of viability/feasibility. Below is a Dot Plot chart consisting of data points plotted on a scale of 1 represents least and 5 the most.
 [Line-plots](project_files/wireframes/line-plots.png)
@@ -192,7 +191,7 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
    - Social Links
      - FaceBook, LinkedIn, Instagram
 
-# [&#8686;](#Introduction)
+# [&#8686;](#EmotiFy)
 
 ### **Structure**
 ### Site layout structure
@@ -288,7 +287,7 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
    Start project Original DB structure wireframe [db structure here](project_files/wireframes/mongoDB-wireframe1.png)
 
 
-# [&#8686;](#Introduction)
+# [&#8686;](#EmotiFy)
 ## ***Design***
 ### **Colour Scheme**
 Color sheme used through out the site.
@@ -402,13 +401,13 @@ The website built using a flask web framework and bootstrap framework. WTForms f
    - Social Links
      - FaceBook, LinkedIn, Instagram
 
-# [&#8686;](#Introduction)
+# [&#8686;](#EmotiFy)
 ## [TESTING](project_files/TESTING.md)
 - Testing information can be found in a separate testing file [TESTING.md](project_files/TESTING.md)
 - Bugs and Issues moved to the TESTING file here [TESTING.md](project_files/TESTING.md#Bugs)
 - W3C-Validation moved to the TESTING file here [TESTING.md](project_files/TESTING.md#Validation)  
 
-# [&#8686;](#Introduction)
+# [&#8686;](#EmotiFy)
 ## **Technologies and Frameworks**
 
 ### **Markup/Scripting/Programming languages**
@@ -430,7 +429,7 @@ The website built using a flask web framework and bootstrap framework. WTForms f
 - [Heroku](https://heroku.com/) Application hosting platform.
 - [cloudinary](https://cloudinary.com/) Image cloud storage and management API 
 
-# [&#8686;](#Introduction)
+# [&#8686;](#EmotiFy)
 ## ***Deployment***
 Sources:
 
@@ -523,7 +522,7 @@ Ensure to add env.py to a .gitignore file before pushing your code to your repos
 Make sure to enter your own SECRET_KEY, MONGO_URI and CLOUDINARY_URL variables.
 
 More Detailed information on GitHub Pages can be found here: [here](https://devcenter.heroku.com/categories/deployment) "Link to Heroku deployment docs"
-# [&#8686;](#tattoostudiokunst)
+# [&#8686;](#EmotiFy)
 ## ***Credits***
 ### **Code**
 
@@ -550,4 +549,4 @@ Start Bootstrap was created by and is maintained by **[David Miller](https://dav
 - Thanks to My Mentor Owonikoko Oluwaseun, for continuous support and inspire me to push myself beyond where I think I can go.
 - Tutor support at Code Institute for their support.
 
-# [&#8686;](#Introduction)
+# [&#8686;](#EmotiFy)
