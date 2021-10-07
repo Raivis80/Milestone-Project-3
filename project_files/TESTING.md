@@ -4,6 +4,7 @@
 1. [W3C Validation](#Validation)
 1. [User Stories Testing](#User-Stories-Testing)
 1. [Responsive Design Test](#Site-Responsive-design-test)
+1. [CRUD Test](#CRUD)
 1. [Future Testing](#Future-Testing)
 1. [Bugs](#Bugs)
 1. [Solved issues or bugs](#Solved-issues-or-bugs)
@@ -87,8 +88,8 @@ Below i have attached testing gif video for each page tested.
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
 
-### CRUD (create, read, update, and delete) Test
-
+### CRUD 
+(create, read, update, and delete) Test
 - Create
   - Create Post
     1. &#10003; Get user input title and descriptions from form fields.
@@ -141,6 +142,7 @@ Bootstrap Starter Teplate static css file warnings are unsolved.
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
 ### **Solved issues or bugs**
+1. Friend had an issue uploading image using iPhone, unsupported image file. I was able to fix this by adding 'HEIC', 'RAW', 'HEVC' file extenstions to supported list in WTForms validation.
 1. Empty Flask block extension title "h2" tag for Index page. to solve issue, I have Added if stetement to not include heading in index Page.
 ![w3 error](../project_files/bugs/index-h2.PNG)
 ![w3 error](../project_files/bugs/index-h2-solve.PNG)

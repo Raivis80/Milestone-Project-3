@@ -501,12 +501,16 @@ More Detailed information on GitHub Pages can be found here: [here](https://devc
 # [&#8686;](#tattoostudiokunst)
 ## ***Credits***
 ### **Code**
-Technical code instructions for some of the code sourced from following sources. The code snippets that was written inspired by the following sources, I have left comment with source above the code snippet.
--  [google.com](https://google.com/): Search for anything if stuck.
+
+At the beginning of this project I was referring back to code institute Mini Project | Putting It All Together videos series for general python technical code instructions.
+Some of the code syntax help and code tips sourced from following sources.
+-  [flask.palletsprojects.com](https://flask.palletsprojects.com/en/2.0.x/) Tutorials that shows how to create a small application with Flask
+-  [Validation with WTForms](https://flask.palletsprojects.com/en/2.0.x/patterns/wtforms/) Form Validation with WTForms
+-  [FileField provided by Flask-WTF](https://flask-wtf.readthedocs.io/en/0.15.x/form/#file-uploads) The FileField provided by Flask-WTF File Upload
+- [pymongo.readthedocs.io](https://pymongo.readthedocs.io/en/stable/tutorial.html) introductions to working with MongoDB and PyMongo.
+- [cloudinary.com](https://cloudinary.com/documentation/image_upload_api_reference) Cloudinar API uploading and managing media assets in the cloud.
 -  [stackoverflow.com](https://stackoverflow.com/): Useful website for code tips.
 -  [www.w3schools](https://www.w3schools.com/): Useful website for code tips.
-### **Images** 
-  
 ### **Content**
 #### **Starter Template**
 Bootstrap ["Freelancer"](https://startbootstrap.com/theme/freelancer) starter template used for site modified to suit current project.
@@ -519,7 +523,7 @@ Start Bootstrap was created by and is maintained by **[David Miller](https://dav
 - <https://twitter.com/davidmillerhere>
 - <https://github.com/davidtmiller>
 ### **Acknowledgements**
-- Thanks to My Mentor for continuous support and inspire me to push myself beyond where I think I can go.
+- Thanks to My Mentor Owonikoko Oluwaseun, for continuous support and inspire me to push myself beyond where I think I can go.
 - Tutor support at Code Institute for their support.
 
 # [&#8686;](#Introduction)
