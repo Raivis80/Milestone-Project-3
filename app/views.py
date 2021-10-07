@@ -157,7 +157,8 @@ def profile(username):
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
         categories = mongo.db.categories.find()
-        posts = list(mongo.db.posts.find({"created_by": session["user"]}))
+        posts = list(mongo.db.posts.find(
+            {"created_by": session["user"]}).sort('_id', -1))
         return render_template(
             "profile.html", username=username,
             isButton=True, categories=categories,

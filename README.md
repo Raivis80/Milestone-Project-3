@@ -243,8 +243,7 @@ Features to implement in terms of viability/feasibility. Below is a Dot Plot cha
    *Design change for finale project "Profile" User interface.*
 
    Added Individual post card grid arranged based on recent first
-   Added Individual post grid, arranged based on recent first.
-   Added Buttons for edit and delete options
+   And Added Buttons for edit and delete options
    Original wireframe version for user interface can be found [Here](project_files/wireframes/interface.png)
 
 - ### [Add New Post wireframe](project_files/wireframes/add-post.png)
