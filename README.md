@@ -382,7 +382,7 @@ The website built using a flask web framework and bootstrap framework. WTForms f
 ## [TESTING](project_files/TESTING.md)
 - Testing information can be found in a separate testing file [TESTING.md](project_files/TESTING.md)
 - Bugs and Issues moved to the TESTING file here [TESTING.md](project_files/TESTING.md#Bugs)
-- W3C-Validation moved to the TESTING file here [TESTING.md](project_files/TESTING.md#W3C-Validation)  
+- W3C-Validation moved to the TESTING file here [TESTING.md](project_files/TESTING.md#Validation)  
 
 # [&#8686;](#Introduction)
 ## **Technologies and Frameworks**

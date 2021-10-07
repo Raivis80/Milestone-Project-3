@@ -1,8 +1,9 @@
 ## **TESTING**
 
 ### Table of contents
-1. [W3C Validation](#W3C-Validation)
+1. [W3C Validation](#Validation)
 1. [User Stories Testing](#User-Stories-Testing)
+1. [Responsive Design Test](#Site-Responsive-design-test)
 1. [Future Testing](#Future-Testing)
 1. [Bugs](#Bugs)
 1. [Solved issues or bugs](#Solved-issues-or-bugs)
@@ -27,12 +28,12 @@
 - W3C CSS Validation
   - [W3C CSS Validator](../project_files/validation/css.PNG)
 
-- PEP8 requirements [pep8online.com](http://pep8online.com/checkresult)
+- PEP8 requirements
 
   PEP-8, check is Python's style for naming conventions and coding standards formatting.
-  - pep8online [result](../project_files/validation/pep8-views.PNGG)
+  - pep8online [result](../project_files/validation/pep8-views.PNG)
 
-- Jshint [website](https://jshint.com/)
+- Jshint
 
   JSHint, tool that detects errors and potential problems in JavaScript code
   - Result [here](../project_files/validation/jsHint.PNG)
@@ -70,20 +71,60 @@
 [Back to Readme.md](../README.md)
 
 ### Site Responsive design test
-The Website is fully responsive and only pushing out content bolow 330px that will cover most of the devices (screen sizes) and resolutions.
+The Website is fully responsive and will cover most of the devices (screen sizes) and resolutions with minimum width of 330px.
+
 Below i have attached testing gif video for each page tested.
-- Index [GIF](responsive/index.gif)
-- Gallery [GIF](responsive/gallery.gif)
-- About [GIF](responsive/about.gif)
+- Index Page [GIF](responsive/index.gif)
+- Gallery Page [GIF](responsive/gallery.gif)
+- About Page [GIF](responsive/about.gif)
 - User Interface
-  - My Posts [GIF](responsive/my-posts.gif)
-  - Account [GIF](responsive/account.gif)
+  - My Posts Page [GIF](responsive/my-posts.gif)
+  - Account Page [GIF](responsive/account.gif)
 - Admin Interface
-  - Admin Manage user posts [GIF](responsive/manage-post.gif)
-  - Admin manage [GIF](responsive/manage.gif)
+  - Admin Manage user posts Page[GIF](responsive/manage-post.gif)
+  - Admin manage Page [GIF](responsive/manage.gif)
 
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
+
+### CRUD (create, read, update, and delete) Test
+
+- Create
+  - Create Post
+    1. &#10003; Get user input title and descriptions from form fields.
+    1. &#10003; Get File input and upoad it to the Cloudinary API.
+    1. &#10003; Upload image file to the Cloudinary API.
+    1. &#10003; inserts a single document into a Mongo Db Posts collection.
+  - Create User
+    1. &#10003; Get user input from the username and password input fields.
+    1. &#10003; inserts a single document into a Mongo Db Users collection.
+- Read
+  - Read Post
+    1. &#10003; Get Data by Post id and extract all the post data.
+    1. &#10003; Get Cloudinary image URL and display in the galley.
+    1. &#10003; Display correct post title and description in the Gallery.
+    1. &#10003; We are able to Search using keyword, username or by category.
+  - Read User
+    1. &#10003; User is able to Log into the site by username and password.
+    1. &#10003; Compare username and password HASH match in the Mongo DB.
+    1. &#10003; Able to display users posts in the profile page finding data by username.
+- Update
+  - Update Post
+    1. &#10003; Find existing post by id and get category.
+    1. &#10003; Update mongo existing post's Title and description.
+    1. &#10003; Create DB object for Update Update a document into a posts collection.
+  - Update User Password
+    1. &#10003; User is able to change their Password by providing old passwodr and new password.
+    1. &#10003; Create new HASHed password and Update DB Users collection document.
+- Delete
+  - Delete Post
+    1. &#10003; Able to Find post in Mongo DB extract image id And delete the post.
+    1. &#10003; Delete a single asset From Cloudinary API dy image id.
+  - Delete User
+    1. &#10003; Get user input Username and password, find user in Mongo DB.
+    1. &#10003; Check if username exists in db and ensure hashed password matches and Delete.
+    1. &#10003; Admin is able to delete any existing user by Providing and confirming admin Password.
+
 
 ### **Future Testing**
 I have tested the app on a variety of browsers such as  Chrome, Opera, Microsoft Edge, and Firefox desktop version browsers and Huawei p30 Pro chrome and android browser.
