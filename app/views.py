@@ -49,8 +49,8 @@ def about():
     In "posts collection" and limit to 1 items.
     For each of the 3 categories. And render
     about page with all required parameters.
-
     """
+
     digital_art = mongo.db.posts.find(
         {"category_name": "digital_art"}).sort('_id', -1).limit(1)
     painting = mongo.db.posts.find(

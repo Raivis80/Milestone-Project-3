@@ -29,11 +29,18 @@
                         <!-- total numbers of users and posts -->
                         <div class="row font text-white text-left">
                             <p>Total Number of Users: <span class="text-primary">{{ users|length }}</span></p>
-                            <br>
+                            <div class="font text-capitalize text-primary p-2 h-25 border_col text-left max-height: 400px; overflow-y: scroll;"> 
+                                {% for user in users %}
+
+                                {{ user.username }},
+
+                                {% endfor %}
+                            </div>
+                                <hr class="mt-0">
+                            
                             <p> Total Number posts: <span class="text-primary">{{ posts|length }}</span></p>
                         </div>
-                        <hr class="mt-0">
-
+                      
                         <!-- users and posts -->
                         <div style="max-height: 400px; overflow-y: scroll;">
                             {% for user, items in posts|groupby("created_by") %}
