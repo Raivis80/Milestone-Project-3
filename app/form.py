@@ -8,7 +8,7 @@ from flask_wtf.file import (
     FileField, FileAllowed, FileRequired)
 
 # Regex help from here
-# https://stackoverflow.com/questions/15472764/regular-expression-to-allow-spaces-between-words
+# Regex Great source easy to understand https://www.youtube.com/watch?v=9RksQ5YT7FM
 
 
 # Regisrter form
