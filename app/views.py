@@ -124,7 +124,7 @@ def login():
         if existing_user:
 
             if check_password_hash(
-                    existing_user["password"], form.password.data.lower()):
+                    existing_user["password"], form.password.data):
                 session["user"] = form.username.data.lower()
                 flash("Welcome, {}".format(
                     form.username.data.capitalize()), 'success')
@@ -186,7 +186,7 @@ def change_password():
                 {"username": session["user"]})
 
             if check_password_hash(
-                    user["password"], form.old_password.data.lower()):
+                    user["password"], form.old_password.data):
                 update = {
                     "username": username.lower(),
                     "password": generate_password_hash(
@@ -231,7 +231,7 @@ def delete_profile():
                     {"username": form.username.data.lower()})
                 if delete_usr:
                     if check_password_hash(
-                            username["password"], form.password.data.lower()):
+                            username["password"], form.password.data):
                         mongo.db.users.remove(delete_usr)
                         flash("User was remover", 'success')
                         return redirect(request.referrer)
@@ -248,7 +248,7 @@ def delete_profile():
                     {"username": session["user"]})
                 if check_password_hash(
                         user["password"],
-                        form3.password.data.lower()):
+                        form3.password.data):
                     mongo.db.users.remove(user)
                     flash("Good Buy", 'success')
                     return redirect(url_for("logout"))
@@ -306,8 +306,8 @@ def add_post():
 
                 if URL_status.status_code == 200:
                     submit = {
-                        "category_name": request.form.get("category").lower(),
-                        "title": form.title.data.lower(),
+                        "category_name": request.form.get("category"),
+                        "title": form.title.data,
                         "description": form.description.data,
                         "img_origin": img_origin,
                         "image": image,
@@ -376,8 +376,8 @@ def edit_post(post_id):
 
         if request.method == "POST" and form.validate():
             submit = {
-                "category_name": request.form.get("category").lower(),
-                "title": form.title.data.lower(),
+                "category_name": request.form.get("category"),
+                "title": form.title.data,
                 "description": form.description.data,
                 "img_origin": img_origin,
                 "image": image,
@@ -467,7 +467,7 @@ def new_category():
     if session["user"] == "admin":
         form = AddCategory(request.form)
         if request.method == "POST":
-            add_category = form.category.data.lower()
+            add_category = form.category.data
 
             if not mongo.db.categories.find_one(
                     {"category_name": add_category}):
@@ -480,7 +480,7 @@ def new_category():
                     return redirect(request.referrer)
 
                 except Exception:
-                    add_category = form.category.data.lower()
+                    add_category = form.category.data
                     flash(f"Failed to create category {add_category}", "error")
                     return redirect(request.referrer)
             else:
@@ -504,7 +504,7 @@ def delete_category():
 
     if session["user"] == "admin":
         if request.method == "POST":
-            delete_category = request.form.get("category").lower()
+            delete_category = request.form.get("category")
 
             if mongo.db.categories.find_one(
                     {"category_name": delete_category}):
