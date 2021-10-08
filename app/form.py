@@ -42,7 +42,7 @@ class UploadForm(Form):
     title = StringField('Title', [
         validators.Regexp(r'^[\w\- ]*$', message="A-Z 0-9-_"),
         validators.InputRequired(), validators.Length(
-            min=3, max=10, message='Title Lenght between 3 to 10 charters')])
+            min=3, max=10, message='Title Lenght between 3 to 20 charters')])
     description = TextAreaField('Description', [
         InputRequired(), validators.length(
             min=20, max=200, message='Between 20 to 200 charters required')])
@@ -59,7 +59,7 @@ class EditForm(Form):
     title = StringField('Title', [
         validators.Regexp(r'^[\w\- ]*$', message="A-Z 0-9-_"),
         validators.InputRequired(), validators.Length(
-            min=3, max=10, message='Title Lenght between 3 to 10 charters')])
+            min=3, max=10, message='Title Lenght between 3 to 20 charters')])
     description = TextAreaField('Description', [
         InputRequired(), validators.length(
             min=20, max=200, message='Between 20 to 200 charters required')])
