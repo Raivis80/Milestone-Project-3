@@ -12,7 +12,7 @@
    - [Strategy](#Strategy)
    - [Scope](#Scope)
    - [Structure](#Structure)
-- [Wireframes](#Wireframes)
+1. [Wireframes](#Wireframes)
 1. [Design](#Design)
 1. [Features](#Features)
 1. [Testing](#project_files/TESTING.md)

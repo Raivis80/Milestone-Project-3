@@ -7,11 +7,14 @@ from wtforms.validators import (
 from flask_wtf.file import (
     FileField, FileAllowed, FileRequired)
 
+# Regex help from here
+# https://stackoverflow.com/questions/15472764/regular-expression-to-allow-spaces-between-words
+
 
 # Regisrter form
 class RegisterForm(Form):
     username = StringField('Username', [
-        validators.Regexp(r'^[\w.@-]+$', message="A-Z 0-9 @-_"),
+        validators.Regexp(r'^[\w]+$', message="A-Z 0-9_"),
         validators.InputRequired(),
         validators.Length(
             min=4, max=15, message="Lenght between 5 to 15 charters")])
@@ -25,7 +28,7 @@ class RegisterForm(Form):
 # Login Form
 class LoginForm(Form):
     username = StringField('Username', [
-        validators.Regexp(r'^[\w.@-]+$', message="A-Z 0-9 @-_"),
+        validators.Regexp(r'^[\w]+$', message="A-Z 0-9_"),
         validators.InputRequired(),
         validators.Length(
             min=5, max=15, message="Lenght between 5 to 15 charters")])
@@ -37,7 +40,7 @@ class LoginForm(Form):
 # Upload new post Form
 class UploadForm(Form):
     title = StringField('Title', [
-        validators.Regexp(r'^[\w.@-]+$', message="A-Z 0-9 @-_"),
+        validators.Regexp(r'^[\w\- ]*$', message="A-Z 0-9-_"),
         validators.InputRequired(), validators.Length(
             min=3, max=10, message='Title Lenght between 3 to 10 charters')])
     description = TextAreaField('Description', [
@@ -54,7 +57,7 @@ class UploadForm(Form):
 # Edit post Form
 class EditForm(Form):
     title = StringField('Title', [
-        validators.Regexp(r'^[\w.@-]+$', message="A-Z 0-9 @-_"),
+        validators.Regexp(r'^[\w\- ]*$', message="A-Z 0-9-_"),
         validators.InputRequired(), validators.Length(
             min=3, max=10, message='Title Lenght between 3 to 10 charters')])
     description = TextAreaField('Description', [
@@ -74,7 +77,7 @@ class DeleteUser(Form):
 # Delete User account admin form
 class DeleteUsersAdmin(Form):
     username = StringField('Username', [
-        validators.Regexp(r'^[\w.@-]+$', message="A-Z 0-9 @-_"),
+        validators.Regexp(r'^[\w]+$', message="A-Z 0-9_"),
         validators.InputRequired(),
         validators.Length(
             min=4, max=15, message="Lenght between 5 to 15 charters")])
@@ -88,7 +91,7 @@ class DeleteUsersAdmin(Form):
 # Add Category form
 class AddCategory(Form):
     category = StringField('Category', [
-        validators.Regexp(r'^[\w.@-]+$', message="A-Z 0-9 @-_"),
+        validators.Regexp(r'^[\w]+$', message="A-Z 0-9_"),
         validators.InputRequired(),
         validators.Length(
             min=4, max=15, message="Lenght between 5 to 15 charters")])
