@@ -45,7 +45,7 @@ class UploadForm(Form):
             min=3, max=20, message='Title Lenght between 3 to 20 charters')])
     description = TextAreaField('Description', [
         InputRequired(), validators.length(
-            min=20, max=200, message='Between 20 to 200 charters required')])
+            min=20, max=500, message='Between 20 to 500 charters required')])
     file = FileField('image', validators=[
         FileRequired(),
         FileAllowed(
@@ -62,7 +62,7 @@ class EditForm(Form):
             min=3, max=20, message='Title Lenght between 3 to 20 charters')])
     description = TextAreaField('Description', [
         InputRequired(), validators.length(
-            min=20, max=200, message='Between 20 to 200 charters required')])
+            min=20, max=500, message='Between 20 to 500 charters required')])
 
 
 # Delete Account user form
