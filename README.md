@@ -540,11 +540,27 @@ Some of the code syntax help and code tips sourced from following sources.
 Bootstrap ["Freelancer"](https://startbootstrap.com/theme/freelancer) starter template used for site      modified to suit current project.
 Template source code can be found by clicking following link > [GitHib](https://github.com/startbootstrap/startbootstrap-freelancer)
 
-Start Bootstrap was created by and is maintained by **[David Miller](https://davidmiller.io/)**.
+1. Start Bootstrap was created by and is maintained by **[David Miller](https://davidmiller.io/)**.
 
-- <https://davidmiller.io>
-- <https://twitter.com/davidmillerhere>
-- <https://github.com/davidtmiller>
+   - <https://davidmiller.io>
+   - <https://twitter.com/davidmillerhere>
+   - <https://github.com/davidtmiller>
+
+1. Ship description content 
+https://mycyprustravel.com/the-story-behind-the-paphos-shipwrecks/
+1. Forest image qote - Chris Maser.
+“What we are doing to the forests of the world is but a mirror reflection of what we are doing to ourselves and to one another.”
+1. The rock of Cahel description
+ https://castles.today/castles/castles/ireland/cashel/history/
+1. Deer image descripton quote -Paul Oxton..
+"No matter how few possessions you own or how little money you have, loving wildlife and nature will make you rich beyond measure." 
+1. Brightest stars image description - Sarah Williams, Poet
+"Though my soul may set in darkness, it will rise in perfect light; I have loved the stars too fondly to be fearful of the night."
+1. Daughter image description - Saquon Barkley
+Every day is Father’s Day to me when I’m with her: when I’ll be able to hold my daughter and see her grow and see her smile. That’s Father’s Day to me every day.
+
+
+
 ### **Acknowledgements**
 - Thanks to My Mentor Owonikoko Oluwaseun, for continuous support and inspire me to push myself beyond where I think I can go.
 - Tutor support at Code Institute for their support.
