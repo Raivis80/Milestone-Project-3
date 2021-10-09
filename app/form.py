@@ -8,7 +8,8 @@ from flask_wtf.file import (
     FileField, FileAllowed, FileRequired)
 
 # Regex help from here
-# Regex Great source easy to understand https://www.youtube.com/watch?v=9RksQ5YT7FM
+# Regex Great source easy to 
+# understand https://www.youtube.com/watch?v=9RksQ5YT7FM
 
 
 # Regisrter form

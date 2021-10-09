@@ -27,25 +27,28 @@
                     <!-- Users and Posts -->
                     <div class="accordion-body text-start bg-transparent" style="overflow: hidden;">
                         <!-- total numbers of users and posts -->
-                        <div class="row font text-white text-left">
+                        <div class="font text-white text-left">
                             <p>Total Number of Users: <span class="text-primary">{{ users|length }}</span></p>
-                            <div class="font text-capitalize text-primary p-2 h-25 border_col text-left max-height: 400px; overflow-y: scroll;"> 
+                            <div class="font mb-3 text-capitalize text-primary p-2 border_col text-left"
+                                style="max-height: 200px; overflow-y: scroll;">
+
+                                <!--  Users registered count -->
                                 {% for user in users %}
 
-                                {{ user.username }},
+                                <span class="text-primary">{{ user.username }} ,</span>
 
                                 {% endfor %}
+
                             </div>
-                                <hr class="mt-0">
-                            
-                            <p> Total Number posts: <span class="text-primary">{{ posts|length }}</span></p>
+                            <p> Total Number Posts: <span class="text-primary">{{ posts|length }}</span></p>
                         </div>
-                      
+
                         <!-- users and posts -->
-                        <div style="max-height: 400px; overflow-y: scroll;">
+                        <div style="max-height: 200px; overflow-y: scroll;">
                             {% for user, items in posts|groupby("created_by") %}
 
-                            <p class="text-white text-capitalize m-0">{{ user }} </p>
+                            <p class="text-white text-capitalize m-0">{{ user }}: <span
+                                    class="text-primary">{{ items|length }} </span>posts</p>
                             <div class="font p-2 h-25 border_col text-left">{% for post in items %}
 
                                 <a href="{{ url_for('admin_posts', post_id=post._id) }}">{{ post.title }} ,</a>

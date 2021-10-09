@@ -31,11 +31,12 @@
                         <div class="col-md-3 input-group-sm">
                             <select class="form-select text-capitalize input" name="category" id="category"
                                 aria-label="example">
+
                                 <option selected value="select category">select category</option>
                                 {% for category in categories %}
 
-                                <option value="{{ category.category_name }}">{{ category.category_name }}
-                                </option>
+                                    <option value="{{ category.category_name }}">{{ category.category_name }}
+                                    </option>
 
                                 {% endfor %}
 

@@ -142,6 +142,7 @@ Bootstrap Starter Teplate static css file warnings are unsolved.
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
 ### **Solved issues or bugs**
+1. Testing form validation revealed an issue with initially set Title max lenght of 10 charters and description max lenght of 200 charters, was not enough. I have adjusted title lenght to 20 charters and 500 charters for description.
 1. Friend had an issue uploading image using iPhone, unsupported image file. I was able to fix this by adding 'HEIC', 'RAW', 'HEVC' file extenstions to supported list in WTForms validation.
 1. Empty Flask block extension title "h2" tag for Index page. to solve issue, I have Added if stetement to not include heading in index Page.
 ![w3 error](../project_files/bugs/index-h2.PNG)

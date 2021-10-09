@@ -225,13 +225,16 @@ def delete_profile():
         form3 = DeleteUser(request.form)
         if request.method == "POST":
             username = session["user"]
+            user = mongo.db.users.find_one(
+                    {"username": session["user"]})
             # Admin User management Delete a user account
             if username == "admin":
                 delete_usr = mongo.db.users.find_one(
                     {"username": form.username.data.lower()})
                 if delete_usr:
                     if check_password_hash(
-                            username["password"], form.password.data):
+                            user["password"],
+                            form.password.data):
                         mongo.db.users.remove(delete_usr)
                         flash("User was remover", 'success')
                         return redirect(request.referrer)
@@ -244,8 +247,6 @@ def delete_profile():
 
             # Existing user delete own account
             elif username == session["user"]:
-                user = mongo.db.users.find_one(
-                    {"username": session["user"]})
                 if check_password_hash(
                         user["password"],
                         form3.password.data):
