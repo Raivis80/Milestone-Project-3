@@ -528,6 +528,7 @@ More Detailed information on GitHub Pages can be found here: [here](https://devc
 
 At the beginning of this project I was referring back to code institute Mini Project | Putting It All Together videos series for general python technical code instructions.
 Some of the code syntax help and code tips sourced from following sources.
+-  [Crack Concepts regex tutoral](https://www.youtube.com/watch?v=9RksQ5YT7FM) Watch one video and understand everything about REGEX with examples.
 -  [flask.palletsprojects.com](https://flask.palletsprojects.com/en/2.0.x/) Tutorials that shows how to create a small application with Flask
 -  [Validation with WTForms](https://flask.palletsprojects.com/en/2.0.x/patterns/wtforms/) Form Validation with WTForms
 -  [FileField provided by Flask-WTF](https://flask-wtf.readthedocs.io/en/0.15.x/form/#file-uploads) The FileField provided by Flask-WTF File Upload

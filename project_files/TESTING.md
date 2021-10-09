@@ -5,6 +5,7 @@
 1. [User Stories Testing](#User-Stories-Testing)
 1. [Responsive Design Test](#Site-Responsive-design-test)
 1. [CRUD Test](#CRUD)
+1. [Testing Forms and validation](Testing-Forms-and-validation)
 1. [Future Testing](#Future-Testing)
 1. [Bugs](#Bugs)
 1. [Solved issues or bugs](#Solved-issues-or-bugs)
@@ -91,40 +92,103 @@ Below i have attached testing gif video for each page tested.
 ### CRUD 
 (create, read, update, and delete) Test
 - Create
-  - Create Post
-    1. &#10003; Get user input title and descriptions from form fields.
-    1. &#10003; Get File input and upoad it to the Cloudinary API.
-    1. &#10003; Upload image file to the Cloudinary API.
-    1. &#10003; inserts a single document into a Mongo Db Posts collection.
-  - Create User
-    1. &#10003; Get user input from the username and password input fields.
-    1. &#10003; inserts a single document into a Mongo Db Users collection.
+  - &#10003; Create Post
+    1. Get user input title and descriptions from form fields.
+    1. Get File input and upoad it to the Cloudinary API.
+    1. Upload image file to the Cloudinary API.
+    1. inserts a single document into a Mongo Db Posts collection.
+  - &#10003; Create User
+    1. Get user input from the username and password input fields.
+    1. inserts a single document into a Mongo Db Users collection.
 - Read
-  - Read Post
-    1. &#10003; Get Data by Post id and extract all the post data.
-    1. &#10003; Get Cloudinary image URL and display in the galley.
-    1. &#10003; Display correct post title and description in the Gallery.
-    1. &#10003; We are able to Search using keyword, username or by category.
-  - Read User
-    1. &#10003; User is able to Log into the site by username and password.
-    1. &#10003; Compare username and password HASH match in the Mongo DB.
-    1. &#10003; Able to display users posts in the profile page finding data by username.
+  - &#10003; Read Post
+    1. Get Data by Post id and extract all the post data.
+    1. Get Cloudinary image URL and display in the galley.
+    1. Display correct post title and description in the Gallery.
+    1. We are able to Search using keyword, username or by category.
+  - &#10003; Read User
+    1. User is able to Log into the site by username and password.
+    1. Compare username and password HASH match in the Mongo DB.
+    1. Able to display users posts in the profile page finding data by username.
 - Update
-  - Update Post
-    1. &#10003; Find existing post by id and get category.
-    1. &#10003; Update mongo existing post's Title and description.
-    1. &#10003; Create DB object for Update Update a document into a posts collection.
-  - Update User Password
-    1. &#10003; User is able to change their Password by providing old passwodr and new password.
-    1. &#10003; Create new HASHed password and Update DB Users collection document.
+  - &#10003; Update Post
+    1. Find existing post by id and get category.
+    1. Update mongo existing post's Title and description.
+    1. Create DB object for Update Update a document into a posts collection.
+  - &#10003; Update User Password
+    1. User is able to change their Password by providing old passwodr and new password.
+    1. Create new HASHed password and Update DB Users collection document.
 - Delete
-  - Delete Post
-    1. &#10003; Able to Find post in Mongo DB extract image id And delete the post.
-    1. &#10003; Delete a single asset From Cloudinary API dy image id.
-  - Delete User
-    1. &#10003; Get user input Username and password, find user in Mongo DB.
-    1. &#10003; Check if username exists in db and ensure hashed password matches and Delete.
-    1. &#10003; Admin is able to delete any existing user by Providing and confirming admin Password.
+  - &#10003; Delete Post
+    1. Able to Find post in Mongo DB extract image id And delete the post.
+    1. Delete a single asset From Cloudinary API dy image id.
+  - &#10003;  Delete User
+    1. Get user input Username and password, find user in Mongo DB.
+    1. Check if username exists in db and ensure hashed password matches and Delete.
+    1. Admin is able to delete any existing user by Providing and confirming admin Password.
+
+### Testing Forms and validation
+- &#10003; Login form
+  - username field:
+    Validation regex allow all alphanumeric characters, underscore no spaces allowed.
+    Input required, and with length of minimum 4 and maximum 15 charters
+  paswword field:
+    All characters allowed, Input is required Minimum of 5 and maximum 10 charters.
+- &#10003; Register form
+  1. username field:
+    Validation regex allow all alphanumeric characters, underscore no spaces allowed.
+      Input required, and with length of minimum 4 and maximum 15 charters
+  1. paswword field:
+      All characters allowed, Input is required Minimum of 5 and maximum 10 charters
+  1. Confirm Password
+    Validation equal to confirm password required
+- &#10003; Upload post
+  1. Title field: 
+      Validation regex allow all alphanumeric characters, underscore, hyphen, multiple spaces allowed.
+      Input required, and with length of minimum 3 and maximum 20 charters
+  1. Text Area field: 
+      Validation all characters alowed, Input required,
+      With length of minimum 20 and maximum 500 charters
+  1. File upload field: 
+    	Validation File Required, files allowed 'png', 'jpg', 'jpeg', 'HEIC', 'RAW', 'HEVC', 'gif'.
+- &#10003; Update Post
+  1. Title field:
+      Validation regex allow all alphanumeric characters, underscore, hyphen, multiple spaces allowed.
+      Input required, and with length of minimum 3 and maximum 20 charters
+  1. Text Area field: 
+      Validation all characters alowed, Input required,
+      With length of minimum 20 and maximum 500 charters
+- &#10003; Update Password
+  1. Old paswword field:
+    All characters allowed, Input is required Minimum of 5 and maximum 10 charters
+  1. New paswword field:
+    All characters allowed, Input is required Minimum of 5 and maximum 10 charters
+  1. Confirm Password:
+    Validation equal to confirm password required
+- &#10003; Delete Account
+  1. paswword field:
+    All characters allowed, Input is required Minimum of 5 and maximum 10 charters
+  1. Confirm Password:
+    Validation equal to confirm password required
+- &#10003; Update Post Admn
+  1. Title field: 
+      Validation regex allow all alphanumeric characters, underscore, hyphen, multiple spaces allowed.
+      Input required, and with length of minimum 3 and maximum 20 charters
+  1. Text Area field: 
+      Validation all characters alowed, Input required,
+      With length of minimum 20 and maximum 500 charters
+- &#10003; Delete User Admin
+  1. Paswword field:
+    All characters allowed, Input is required Minimum of 5 and maximum 10 charters
+  1. Confirm Password:
+    Validation equal to confirm password required
+- &#10003; Update Admin Password
+  1. Old paswword field:
+    All characters allowed, Input is required Minimum of 5 and maximum 10 charters
+  1. New paswword field:
+    All characters allowed, Input is required Minimum of 5 and maximum 10 charters
+  1. Confirm Password:
+    Validation equal to confirm password required
 
 
 ### **Future Testing**
