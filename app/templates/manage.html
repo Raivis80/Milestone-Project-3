@@ -122,7 +122,7 @@
                         <div class="accordion-body bg-transparent">
 
                             <!-- Add New Category -->
-                            <form id="postForm" enctype="multipart/form-data" method="POST"
+                            <form id="Form" enctype="multipart/form-data" method="POST"
                                 action="{{ url_for('new_category') }}">
 
                                 <!-- Category select input-->
@@ -171,7 +171,7 @@
                             <form id="postForm" enctype="multipart/form-data" method="POST"
                                 action="{{ url_for('delete_category') }}">
 
-                                <select class="form-select form-select-lg mb-2" name="category" id="category"
+                                <select class="form-select form-select-lg mb-2" name="category"
                                     aria-label="example">
                                     <option> Sellect Categoy</option>
                                     {% for category in categories %}
@@ -210,7 +210,7 @@
                         <div class="accordion-body bg-transparent">
 
 
-                            <form clas=" needs-validation" method="POST" action="{{ url_for('delete_profile') }}">
+                            <form clas="needs-validation" method="POST" action="{{ url_for('delete_profile') }}">
                                 <!-- Username input -->
                                 <div class="form-floating  mb-2">
                                     {{ form2.username( class="form-control", placeholder="Username Name", autocomplete="on") }}
@@ -296,11 +296,11 @@
 
                                 <!-- Password -->
                                 <div class="form-floating  mb-2">
-                                    {{ form3.password( class="form-control", placeholder="Password", autocomplete="off") }}
+                                    {{ form3.password1( class="form-control", placeholder="Password", autocomplete="off") }}
                                     <label><i class="fas fa-user-lock"></i> New Password</label>
-                                    {% if form3.password.errors %}
+                                    {% if form3.password1.errors %}
                                     <ul class="errors text-danger">
-                                        {% for error in form3.password.errors %}
+                                        {% for error in form3.password1.errors %}
                                         <li>{{ error }}</li>
                                         {% endfor %}
                                     </ul>
@@ -308,12 +308,12 @@
                                 </div>
 
                                 <!-- Confirm Password -->
-                                <div class="form-floating  mb-2">
-                                    {{ form3.confirm( class="form-control", placeholder="Confirm Password", autocomplete="off") }}
+                                <div class="form-floating mb-2">
+                                    {{ form3.confirm1( class="form-control", placeholder="Confirm Password", autocomplete="off") }}
                                     <label><i class="fas fa-user-lock"></i> Confirm Password</label>
-                                    {% if form3.confirm.errors %}
+                                    {% if form3.confirm1.errors %}
                                     <ul class="errors text-danger">
-                                        {% for error in form3.confirm.errors %}
+                                        {% for error in form3.confirm1.errors %}
                                         <li>{{ error }}</li>
                                         {% endfor %}
                                     </ul>

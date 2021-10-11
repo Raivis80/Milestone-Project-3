@@ -206,6 +206,10 @@ Bootstrap Starter Teplate static css file warnings are unsolved. <br>
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
 ### **Solved issues or bugs**
+1. Crome DevTools console warnings: "Found elements with non-unique id" <br>
+![w3 error](../project_files/bugs/non-uniq-id.PNG) <br>
+Issue fix was to add "unique" variable tor each form in forms.py.<br>
+![w3 error](../project_files/bugs/fix-uniq-id.PNG) <br>
 1. Crome DevTools console warnings: "Input elements should have autocomplete attributes" <br>
 ![w3 error](../project_files/bugs/autocomplete-none.PNG) <br>
 Issue fix was to add "autocomplete=on" attribute to a Input fields.<br>
@@ -216,7 +220,6 @@ Issue fix was to add "Secure=True" to link request form cloudinary API and chang
 ![w3 error](../project_files/bugs/unsecure-fix.PNG) <br>
 1. An issue with JavaScript throwing an error on elements for pages that are not flask rendered. I mean elements does not exist until the page is rendered. <br>
 ![w3 error](../project_files/bugs/js-error.PNG) <br>
-
     To fix the issue I have added following function and call the function on element load, this solved the error. <br>
     ![w3 error](../project_files/bugs/js-fix.PNG)
     ![w3 error](../project_files/bugs/js-fix-2.PNG)

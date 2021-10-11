@@ -43,11 +43,11 @@
 
                         <!-- New Password -->
                         <div class="col-12 form-floating mb-2">
-                            {{ form.password( class="form-control", placeholder="Password", autocomplete="on") }}
+                            {{ form.password1( class="form-control", placeholder="Password", autocomplete="on") }}
                             <label for="password"><i class="fas fa-user-lock"></i>Password</label>
-                            {% if form.password.errors %}
+                            {% if form.password1.errors %}
                             <ul class="errors text-danger">
-                                {% for error in form.password.errors %}
+                                {% for error in form.password1.errors %}
                                 <li>{{ error }}</li>
                                 {% endfor %}
                             </ul>
@@ -56,11 +56,11 @@
 
                         <!-- Cofirm Password -->
                         <div class="col-12 form-floating mb-2">
-                            {{ form.confirm( class="form-control", placeholder="Confirm Password", autocomplete="off") }}
+                            {{ form.confirm1( class="form-control", placeholder="Confirm Password", autocomplete="off") }}
                             <label for="confirm"><i class="fas fa-user-lock"></i> Confirm Password</label>
-                            {% if form.confirm.errors %}
+                            {% if form.confirm1.errors %}
                             <ul class="errors text-danger">
-                                {% for error in form.confirm.errors %}
+                                {% for error in form.confirm1.errors %}
                                 <li>{{ error }}</li>
                                 {% endfor %}
                             </ul>

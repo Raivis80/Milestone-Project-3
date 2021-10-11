@@ -13,9 +13,9 @@
         </div>
 
         {% if session.user == "admin" %}
-            <div class="btn-danger ms-2 mb-2 btn btn-sm text-white" data-bs-toggle="modal" data-bs-target="#delete_user"><i
+        <div class="btn-danger ms-2 mb-2 btn btn-sm text-white" data-bs-toggle="modal" data-bs-target="#delete_user"><i
                 class="fas fa-user-slash"></i> Delete user:
-                {{ created_by.username }} </div>
+            {{ created_by.username }} </div>
         {% endif %}
         <!-- Edit or delete user posts -->
         <form id="postForm" class="mx-2" method="POST" action="{{ url_for('edit_post', post_id=post._id)}}">
@@ -25,12 +25,12 @@
 
                     {% for category in categories %}
 
-                        {% if category.category_name == post.category_name %}
-                            <option selected value="{{ category.category_name }}">{{ post.category_name }}</option>
-                        {% else %}
-                            <option value="{{ category.category_name }}">{{ category.category_name }}
-                            </option>
-                        {% endif %}
+                    {% if category.category_name == post.category_name %}
+                    <option selected value="{{ category.category_name }}">{{ post.category_name }}</option>
+                    {% else %}
+                    <option value="{{ category.category_name }}">{{ category.category_name }}
+                    </option>
+                    {% endif %}
 
                     {% endfor %}
 
@@ -84,6 +84,11 @@
                     <i class="fas fa-trash-alt"></i> Delete Post
                 </a>
 
+                <!-- Added this to fix JS error -->
+                <script type="text/javascript">
+                    document.getElementById('on_check').classList.add('disabled');
+                </script>
+
             </div>
         </form>
 
@@ -110,7 +115,7 @@
                             <!-- title input-->
 
                             <div class="col-12 form-floating mb-2">
-                                {{ form2.username( class="form-control", value=created_by.username ) }}
+                                {{ form2.username( class="form-control", value=created_by.username, autocomplete="on" ) }}
                                 <label for="username"><i class="fas fa-user-minus"></i> Username</label>
                                 {% if form2.username.errors %}
                                 <ul class="errors text-danger">
@@ -123,7 +128,7 @@
 
                             <!-- Password -->
                             <div class="col-12 form-floating mb-2">
-                                {{ form2.password( class="form-control") }}
+                                {{ form2.password( class="form-control", autocomplete="on") }}
                                 <label for="password"><i class="fas fa-user-lock"></i> Admin Password</label>
                                 {% if form2.password.errors %}
                                 <ul class="errors text-danger">
@@ -136,7 +141,7 @@
 
                             <!-- Password -->
                             <div class="col-12 form-floating mb-2">
-                                {{ form2.confirm( class="form-control") }}
+                                {{ form2.confirm( class="form-control", autocomplete="off") }}
                                 <label for="confirm"><i class="fas fa-user-lock"></i> Confirm Password</label>
                                 {% if form2.confirm.errors %}
                                 <ul class="errors text-danger">

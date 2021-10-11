@@ -57,11 +57,6 @@ window.addEventListener('DOMContentLoaded', event => {
 // Enale delete button
 const onCheck = document.getElementById('on_check');
 
-// Added function to fix JS onload error
-function onLoadCheckers() {
-    onCheck.classList.add('disabled');
-}
-
 // Checkbox funcrion with bootstrap disable class toggler
 function myFunction() {
     let checkBox = document.getElementById("myCheck");
