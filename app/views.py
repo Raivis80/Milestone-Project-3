@@ -296,10 +296,10 @@ def add_post():
 
                 img_origin = upload_result.get('secure_url')
                 image, options = cloudinary_url(
-                    upload_result['public_id'],
+                    upload_result['public_id'], secure=True,
                     format="jpg", crop="fill", width=1920)
                 image_small, options = cloudinary_url(
-                    upload_result['public_id'],
+                    upload_result['public_id'], secure=True,
                     format="jpg", crop="fill", width=300)
 
                 img_id = upload_result.get('public_id')

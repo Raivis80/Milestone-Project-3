@@ -206,6 +206,10 @@ Bootstrap Starter Teplate static css file warnings are unsolved. <br>
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
 ### **Solved issues or bugs**
+1. Crome DevTools console warnings: A mixed-content warning, unsecured elements being served. Images served via HTTP address. <br>
+![w3 error](../project_files/bugs/unsecure-link.PNG) <br>
+Issue fix was to add "Secure=True" to link request form cloudinary API and change existing links in mongo DB collection to use HTTPS instead.<br>
+![w3 error](../project_files/bugs/unsecure-fix.PNG) <br>
 1. An issue with JavaScript throwing an error on elements for pages that are not flask rendered. I mean elements does not exist until the page is rendered. <br>
 ![w3 error](../project_files/bugs/js-error.PNG) <br>
 
