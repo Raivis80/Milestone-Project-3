@@ -19,7 +19,7 @@
     <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="myFunction()">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav">
         <div class="container px-2 ">
@@ -118,8 +118,6 @@
         </div>
     </section>
 
-
-
     <!-- Footer-->
     <footer class="footer font text-center w-100">
         <hr>
@@ -130,20 +128,22 @@
                     <small class="">Copyright &copy; Emotify 2021</small>
                 </div>
 
+                <!-- Link to about -->
                 <div class="text-white m-4 order-0 order-md-0">
-                    <a href="{{ url_for('about') }}">About</a>
+                    <a href="{{ url_for('about') }}"><p class="text-uppercase">About</p></a>
                 </div>
+
                 <!-- Footer Social Icons-->
                 <div class="order-0 text-white order-md-1">
                     <a class="btn btn-outline-light btn-social mx-1" target="_blank"
-                        href="https://www.facebook.com/WtheGismo">
+                        href="https://www.facebook.com/WtheGismo" aria-label="Go to the Facebook">
                         <i class="fab fa-fw fa-facebook-f"></i>
                     </a>
-                    <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://github.com/Raivis80">
+                    <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://github.com/Raivis80" aria-label="Go to the Github">
                         <i class="fab fa-github"></i>
                     </a>
                     <a class="btn btn-outline-light btn-social mx-1" target="_blank"
-                        href="https://www.linkedin.com/in/raivis-petrovskis-524291205/">
+                        href="https://www.linkedin.com/in/raivis-petrovskis-524291205/" aria-label="Go to the Linkedin">
                         <i class="fab fa-fw fa-linkedin-in"></i>
                     </a>
                 </div>
@@ -155,7 +155,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
 </body>
 

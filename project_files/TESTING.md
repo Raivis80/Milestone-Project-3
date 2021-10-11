@@ -129,10 +129,10 @@ Below i have attached testing gif video for each page tested.
 
 ### Testing Forms and validation
 - &#10003; Login form
-  - username field:
+  1. username field:
     Validation regex allow all alphanumeric characters, underscore no spaces allowed.
     Input required, and with length of minimum 4 and maximum 15 charters
-  paswword field:
+  1. paswword field:
     All characters allowed, Input is required Minimum of 5 and maximum 10 charters.
 - &#10003; Register form
   1. username field:
@@ -201,25 +201,31 @@ Friends and family members helped point out any bugs or issues.
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
 ### **Bugs**
-Bootstrap Starter Teplate static css file warnings are unsolved.
+Bootstrap Starter Teplate static css file warnings are unsolved. <br>
 ![w3 error](../project_files/bugs/unsolved.PNG)
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
 ### **Solved issues or bugs**
+1. An issue with JavaScript throwing an error on elements for pages that are not flask rendered. I mean elements does not exist until the page is rendered. <br>
+![w3 error](../project_files/bugs/js-error.PNG) <br>
+
+    To fix the issue I have added following function and call the function on element load, this solved the error. <br>
+    ![w3 error](../project_files/bugs/js-fix.PNG)
+    ![w3 error](../project_files/bugs/js-fix-2.PNG)
 1. Testing form validation revealed an issue with initially set Title max lenght of 10 charters and description max lenght of 200 charters, was not enough. I have adjusted title lenght to 20 charters and 500 charters for description.
 1. Friend had an issue uploading image using iPhone, unsupported image file. I was able to fix this by adding 'HEIC', 'RAW', 'HEVC' file extenstions to supported list in WTForms validation.
-1. Empty Flask block extension title "h2" tag for Index page. to solve issue, I have Added if stetement to not include heading in index Page.
+1. Empty Flask block extension title "h2" tag for Index page. to solve issue, I have Added if stetement to not include heading in index Page. <br>
 ![w3 error](../project_files/bugs/index-h2.PNG)
 ![w3 error](../project_files/bugs/index-h2-solve.PNG)
-1. Index page navbar toggler as div gives an error. To solve this issue, I have changed "div" tag into "button" tag.
+1. Index page navbar toggler as div gives an error. To solve this issue, I have changed "div" tag into "button" tag. <br>
 ![w3 error](../project_files/bugs/Capture.PNG)
-1. Gallery page button as div gives a warning. To solve this issue, I have addet "role=Button" attribute to the "div" element.
+1. Gallery page button as div gives a warning. To solve this issue, I have addet "role=Button" attribute to the "div" element. <br>
 ![w3 error](../project_files/bugs/Gallery-divPNG.PNG)
-1. About page "em" tag has no opening. To solve this issue, I have removed tag altogether.
+1. About page "em" tag has no opening. To solve this issue, I have removed tag altogether. <br>
 ![w3 error](../project_files/bugs/about-error.PNG)
-1. Register page "i" tag has extra closing tags. To solve this issue, I have removed extra tag.
+1. Register page "i" tag has extra closing tags. To solve this issue, I have removed extra tag. <br>
 ![w3 error](../project_files/bugs/register.PNG)
-1. CSS errors. I was able to fih them by changing to correct values.
+1. CSS errors. I was able to fih them by changing to correct values. <br>
 ![w3 css error](../project_files/bugs/errors-css.PNG)
 
 # [&#8686;](#Testing)

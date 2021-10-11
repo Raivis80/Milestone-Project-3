@@ -1,8 +1,8 @@
 /*!
-* Start Bootstrap - Freelancer v7.0.4 (https://startbootstrap.com/theme/freelancer)
-* Copyright 2013-2021 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-freelancer/blob/master/LICENSE)
-*/
+ * Start Bootstrap - Freelancer v7.0.4 (https://startbootstrap.com/theme/freelancer)
+ * Copyright 2013-2021 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-freelancer/blob/master/LICENSE)
+ */
 //
 // Scripts
 // 
@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', event => {
     // Activate Bootstrap scrollspy on the main nav element
     const mainNav = document.body.querySelector('#mainNav');
     if (mainNav) {
-         bootstrap.ScrollSpy(document.body, {
+        new bootstrap.ScrollSpy(document.body, {
             target: '#mainNav',
             offset: 72,
         });
@@ -56,12 +56,18 @@ window.addEventListener('DOMContentLoaded', event => {
 
 // Enale delete button
 const onCheck = document.getElementById('on_check');
-onCheck.classList.add('disabled');
+
+// Added function to fix JS onload error
+function onLoadCheckers() {
+    onCheck.classList.add('disabled');
+}
+
+// Checkbox funcrion with bootstrap disable class toggler
 function myFunction() {
     let checkBox = document.getElementById("myCheck");
-    if (checkBox.checked == true){
+    if (checkBox.checked == true) {
         onCheck.classList.remove('disabled');
     } else {
         onCheck.classList.add('disabled');
     }
-  }
+}
