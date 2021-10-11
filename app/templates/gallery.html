@@ -67,8 +67,9 @@
 
     <div class="bg-secondary cont" data-bs-toggle="modal" data-bs-target="#a{{post._id}}">
         <img class="img-fluid-gall" src="{{ post.image }}" loading="lazy"
-            alt="Image title {{ post.title }} in category {{ post.categoty_name }}, Image description {{post.description}}" />
-        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+            alt="Image title {{ post.title }}, {{ post.description | truncate(100) }}" />
+        <div role="button" class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"
+            aria-label="Thumbnail">
             <div class="portfolio-item-caption-content text-center text-white">{{ post.title }}
             </div>
         </div>
@@ -91,14 +92,15 @@
                 <div class="modal-body ">
                     <!-- Gallery Modal - Image-->
                     <div class="d-flex flex-column pt-3 justify-content-center align-items-center">
-                        <div> <a href="{{ post.img_origin }}" target=”_blank”
-                                aria-label="Show full size image on click">
-                                <img src="{{ post.img_origin }}" class="modal_img" alt="Image title {{ post.title }}">
+                        <div>
+                            <a href="{{ post.img_origin }}" target=”_blank” aria-label="Click full size image">
+                                <img src="{{ post.img_origin }}" class="modal_img" alt="Image title {{ post.title }}"
+                                    aria-describedby="p1">
                             </a>
                         </div>
                         <!-- Gallery Modal - Text-->
                         <div class="text-white m-1 modal_text">
-                            <p class="p-2">{{post.description}}.</p>
+                            <p id="p1" class="p-2">{{ post.description }}.</p>
                         </div>
                     </div>
                     <!-- Modal Footer -->
