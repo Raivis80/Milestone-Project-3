@@ -213,7 +213,7 @@
                             <form clas=" needs-validation" method="POST" action="{{ url_for('delete_profile') }}">
                                 <!-- Username input -->
                                 <div class="form-floating  mb-2">
-                                    {{ form2.username( class="form-control", placeholder="Username Name") }}
+                                    {{ form2.username( class="form-control", placeholder="Username Name", autocomplete="on") }}
                                     <label><i class="fas fa-user-minus"></i> Username</label>
                                     {% if form2.username.errors %}
                                     <ul class="errors text-danger">
@@ -226,7 +226,7 @@
 
                                 <!-- Password -->
                                 <div class="form-floating  mb-2">
-                                    {{ form2.password( class="form-control", placeholder="Password") }}
+                                    {{ form2.password( class="form-control", placeholder="Password", autocomplete="on") }}
                                     <label><i class="fas fa-user-lock"></i> Admin Password</label>
                                     {% if form2.password.errors %}
                                     <ul class="errors text-danger">
@@ -239,7 +239,7 @@
 
                                 <!-- Confirm Password -->
                                 <div class="form-floating  mb-2">
-                                    {{ form2.confirm( class="form-control", placeholder="Confirm Password") }}
+                                    {{ form2.confirm( class="form-control", placeholder="Confirm Password", autocomplete="off") }}
                                     <label><i class="fas fa-user-lock"></i> Confirm Password</label>
                                     {% if form2.confirm.errors %}
                                     <ul class="errors text-danger">
@@ -283,7 +283,7 @@
 
                                 <!-- Old password input-->
                                 <div class="form-floating  mb-2">
-                                    {{ form3.old_password( class="form-control", placeholder="Old Passwodre") }}
+                                    {{ form3.old_password( class="form-control", placeholder="Old Passwodre", autocomplete="on") }}
                                     <label><i class="fas fa-user-lock"></i> Old Password</label>
                                     {% if form3.old_password.errors %}
                                     <ul class="errors text-danger">
@@ -296,7 +296,7 @@
 
                                 <!-- Password -->
                                 <div class="form-floating  mb-2">
-                                    {{ form3.password( class="form-control", placeholder="Password") }}
+                                    {{ form3.password( class="form-control", placeholder="Password", autocomplete="off") }}
                                     <label><i class="fas fa-user-lock"></i> New Password</label>
                                     {% if form3.password.errors %}
                                     <ul class="errors text-danger">
@@ -309,7 +309,7 @@
 
                                 <!-- Confirm Password -->
                                 <div class="form-floating  mb-2">
-                                    {{ form3.confirm( class="form-control", placeholder="Confirm Password") }}
+                                    {{ form3.confirm( class="form-control", placeholder="Confirm Password", autocomplete="off") }}
                                     <label><i class="fas fa-user-lock"></i> Confirm Password</label>
                                     {% if form3.confirm.errors %}
                                     <ul class="errors text-danger">

@@ -13,7 +13,7 @@
 
                 <!-- username -->
                 <div class="col-12 form-floating mb-2">
-                    {{ form.username( class="form-control", placeholder="Username Name") }}
+                    {{ form.username( class="form-control", placeholder="Username Name", autocomplete="on") }}
                     <label class="form-label" for="username"><i class="fas fa-user-cog form-floating"></i>
                         username</label>
                     {% if form.username.errors %}
@@ -27,7 +27,7 @@
 
                 <!-- Password -->
                 <div class="col-12 form-floating mb-2">
-                    {{ form.password( class="form-control", placeholder="Password") }}
+                    {{ form.password( class="form-control", placeholder="Password", autocomplete="on") }}
                     <label class="form-label" for="password"><i class="fas fa-user-lock"></i>
                         Password</label>
                     {% if form.password.errors %}

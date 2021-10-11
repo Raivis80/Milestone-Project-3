@@ -30,7 +30,7 @@
                     <form clas=" needs-validation" method="POST" action="{{ url_for('change_password') }}">
                         <!-- Old passwor Input -->
                         <div class="form-floating  mb-2">
-                            {{ form.old_password( class="form-control", placeholder="Old Password") }}
+                            {{ form.old_password( class="form-control", placeholder="Old Password", autocomplete="on") }}
                             <label><i class="fas fa-user-lock"></i> Old Password</label>
                             {% if form.old_password.errors %}
                             <ul class="errors text-danger">
@@ -43,7 +43,7 @@
 
                         <!-- New Password -->
                         <div class="col-12 form-floating mb-2">
-                            {{ form.password( class="form-control", placeholder="Password") }}
+                            {{ form.password( class="form-control", placeholder="Password", autocomplete="on") }}
                             <label for="password"><i class="fas fa-user-lock"></i>Password</label>
                             {% if form.password.errors %}
                             <ul class="errors text-danger">
@@ -56,7 +56,7 @@
 
                         <!-- Cofirm Password -->
                         <div class="col-12 form-floating mb-2">
-                            {{ form.confirm( class="form-control", placeholder="Confirm Password") }}
+                            {{ form.confirm( class="form-control", placeholder="Confirm Password", autocomplete="off") }}
                             <label for="confirm"><i class="fas fa-user-lock"></i> Confirm Password</label>
                             {% if form.confirm.errors %}
                             <ul class="errors text-danger">
@@ -76,8 +76,8 @@
         </div>
 
         <hr class="margin-0">
-        <!-- Delete Account Form -->
 
+        <!-- Delete Account Form -->
         <div class="accordion accordion-flush " id="accordionFlushExample">
             <div class="accordion-item bg-transparent">
 
@@ -104,7 +104,7 @@
 
                                 <!-- Password -->
                                 <div class="form-floating  mb-2">
-                                    {{ form3.password( class="form-control", placeholder="Password") }}
+                                    {{ form3.password( class="form-control", placeholder="Password", autocomplete="on") }}
                                     <label><i class="fas fa-user-lock"></i> Password</label>
                                     {% if form3.password.errors %}
                                     <ul class="errors text-danger">
@@ -117,7 +117,7 @@
 
                                 <!-- Confirm Password -->
                                 <div class="form-floating  mb-2">
-                                    {{ form3.confirm( class="form-control", placeholder="Confirm Password") }}
+                                    {{ form3.confirm( class="form-control", placeholder="Confirm Password", autocomplete="off") }}
                                     <label><i class="fas fa-user-lock"></i> Confirm Password</label>
                                     {% if form3.confirm.errors %}
                                     <ul class="errors text-danger">
