@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="description" content="Share your Paintings Digital Art Creative Images
+    Create and share your own art or discover the work of others
+    Post and publish your artwork online for free
+    " />
+    <meta name="author" content="Raivis" />
     <title>EmotiFy - Share your emotions</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="static/favicon.ico" />
+
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -25,9 +27,9 @@
         <div class="container px-2 ">
             <a class="navbar-brand red rm-5" href="{{ url_for('index') }}">EmotiFy</a>
 
-            <button class="navbar-toggler btn-outnine-none text-uppercase text-white font-weight-bold rounded" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler btn-outnine-none text-uppercase text-white font-weight-bold rounded"
+                type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="h2 fas fa-bars"></i>
             </button>
 
@@ -92,11 +94,11 @@
         <div class="container h-100 mt-5">
             <!-- Heading-->
             {% if title != "home" %}
-                <h2 class="page-section-heading text-center text-uppercase text-white mb-4">
-                    {% block title %}
+            <h2 class="page-section-heading text-center text-uppercase text-white mb-4">
+                {% block title %}
 
-                    {% endblock %}
-                </h2>
+                {% endblock %}
+            </h2>
             {% endif %}
 
             <!-- Flashed messages -->
@@ -130,7 +132,9 @@
 
                 <!-- Link to about -->
                 <div class="text-white m-4 order-0 order-md-0">
-                    <a href="{{ url_for('about') }}"><p class="text-uppercase">About</p></a>
+                    <a href="{{ url_for('about') }}">
+                        <p class="text-uppercase">About</p>
+                    </a>
                 </div>
 
                 <!-- Footer Social Icons-->
@@ -139,7 +143,8 @@
                         href="https://www.facebook.com/WtheGismo" aria-label="Go to the Facebook">
                         <i class="fab fa-fw fa-facebook-f"></i>
                     </a>
-                    <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://github.com/Raivis80" aria-label="Go to the Github">
+                    <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://github.com/Raivis80"
+                        aria-label="Go to the Github">
                         <i class="fab fa-github"></i>
                     </a>
                     <a class="btn btn-outline-light btn-social mx-1" target="_blank"

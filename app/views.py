@@ -190,7 +190,7 @@ def change_password():
                 update = {
                     "username": username.lower(),
                     "password": generate_password_hash(
-                        form.password.data)
+                        form.password1.data)
                     }
 
                 mongo.db.users.update({"username": username}, update)
@@ -745,3 +745,12 @@ def page_not_found(e):
     """
     flash("The page you’re looking for doesn’t exist", "error")
     return render_template('404.html', error="Page Not Found"), 404
+
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    """
+    500 Interal server error hanndler
+    """
+    flash("Oops Something Went wrong", "error")
+    return render_template('404.html', error="Page Not Found"), 500

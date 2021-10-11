@@ -106,7 +106,8 @@ class ChangePassword(Form):
         validators.InputRequired()
     ])
     password1 = PasswordField('Password', [
-        validators.InputRequired(),
-        validators.EqualTo('confirm', message='Passwords must match')
+        validators.InputRequired(), validators.Length(
+            min=5, max=10, message='Lenght between 5 to 10 charters'),
+        validators.EqualTo('confirm1', message='Passwords must match')
     ])
     confirm1 = PasswordField('Repeat Password')

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}<i class="fas fa-frown"></i> {{ error }}{% endblock %}
+{% block content %}
+ <div Class="text-white text-center">
+  <p><a href="{{ url_for('index') }}"><i class="fas fa-arrow-alt-circle-left"></i> go somewhere nice</a>
+</div>
+{% endblock %}
