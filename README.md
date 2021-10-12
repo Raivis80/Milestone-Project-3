@@ -316,7 +316,7 @@ The website built using a flask web framework and bootstrap framework. WTForms f
       - "title" is not unique but is used for search function to query all the posts with same title.
       - "Description"
       - "iamge_origin" Full size image stored in the Cloudinary API user can view once clicked.
-      - "image" 1920p image URL requested from Cloudinary API small thumbnails for site performance.
+      - "image" 1920p image URL requested from Cloudinary API medium size thumbnails for site performance.
       - "image_sm" 300p image URL requested from Cloudinary API small thumbnails for site performance.
       - "image_id" field is unique and purpose for this ID is ability to delete iamge along with post content.
       - "created_by" unique field is primary keys used to query user posts by username.

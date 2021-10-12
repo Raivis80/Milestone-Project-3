@@ -206,23 +206,27 @@ Bootstrap Starter Teplate static css file warnings are unsolved. <br>
 # [&#8686;](#Testing)
 [Back to Readme.md](../README.md)
 ### **Solved issues or bugs**
+1. Crome DevTools console warnings: "cant read property of null scroolspy JS" <br>
+![error](../project_files/bugs/schrool-error.PNG) <br>
+Issue fixed by removing the following code from scripts.js file<br>
+![error](../project_files/bugs/fix-schrool.PNG) <br>
 1. Crome DevTools console warnings: "Found elements with non-unique id" <br>
-![w3 error](../project_files/bugs/non-uniq-id.PNG) <br>
+![error](../project_files/bugs/non-uniq-id.PNG) <br>
 Issue fix was to add "unique" variable tor each form in forms.py.<br>
-![w3 error](../project_files/bugs/fix-uniq-id.PNG) <br>
+![error](../project_files/bugs/fix-uniq-id.PNG) <br>
 1. Crome DevTools console warnings: "Input elements should have autocomplete attributes" <br>
-![w3 error](../project_files/bugs/autocomplete-none.PNG) <br>
+![error](../project_files/bugs/autocomplete-none.PNG) <br>
 Issue fix was to add "autocomplete=on" attribute to a Input fields.<br>
-![w3 error](../project_files/bugs/autocomplete-fix.PNG) <br>
+![error](../project_files/bugs/autocomplete-fix.PNG) <br>
 1. Crome DevTools console warnings: A mixed-content warning, unsecured elements being served. Images served via HTTP address. <br>
-![w3 error](../project_files/bugs/unsecure-link.PNG) <br>
+![error](../project_files/bugs/unsecure-link.PNG) <br>
 Issue fix was to add "Secure=True" to link request form cloudinary API and change existing links in mongo DB collection to use HTTPS instead.<br>
-![w3 error](../project_files/bugs/unsecure-fix.PNG) <br>
+![error](../project_files/bugs/unsecure-fix.PNG) <br>
 1. An issue with JavaScript throwing an error on elements for pages that are not flask rendered. I mean elements does not exist until the page is rendered. <br>
-![w3 error](../project_files/bugs/js-error.PNG) <br>
+![error](../project_files/bugs/js-error.PNG) <br>
     To fix the issue I have added following function and call the function on element load, this solved the error. <br>
-    ![w3 error](../project_files/bugs/js-fix.PNG)
-    ![w3 error](../project_files/bugs/js-fix-2.PNG)
+    ![error](../project_files/bugs/js-fix.PNG)
+    ![error](../project_files/bugs/js-fix-2.PNG)
 1. Testing form validation revealed an issue with initially set Title max lenght of 10 charters and description max lenght of 200 charters, was not enough. I have adjusted title lenght to 20 charters and 500 charters for description.
 1. Friend had an issue uploading image using iPhone, unsupported image file. I was able to fix this by adding 'HEIC', 'RAW', 'HEVC' file extenstions to supported list in WTForms validation.
 1. Empty Flask block extension title "h2" tag for Index page. to solve issue, I have Added if stetement to not include heading in index Page. <br>
