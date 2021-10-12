@@ -303,8 +303,32 @@ Template source code can be found by clicking following link > [GitHib](https://
 
 # [&#8686;](#-)
 ## ***Features***
-The website built using a flask web framework and bootstrap framework. WTForms form librarie Integration with forms validation. The Website is fully responsive fixed navigation bar at the top. MongoDB Cloud data platform for databases cloud storage. Cloidinary API for Image assets management.
+The website built using a flask web framework and bootstrap framework. WTForms form librarie Integration with forms validation. The Website is fully responsive fixed navigation bar at the top. MongoDB Cloud data platform for databases cloud storage. Cloidinary API for Image assets management.### Mongo DB Features
+### Mongo DB Layout
+- In MongoDB, databases hold three collections of documents: "Categories", "posts" and "user" collection.<br>
+![Emotify DB](project_files/images/features/mongo-db.PNG) <br>
+   - In "Categories" collection we have Group of 2 fields:  <br>
+      - "_id: ObjectID"
+      - "category_name" this field is unique for this reason it is used to index posts collection in the DB<br>
+      ![Emotify DB](project_files/images/features/DB-categories.PNG)
+   - In "Categories" collection we have Group of 10 fields:
+      - "_id: ObjectID" for post management "_id_" field is used for indexes and queries.<br>
+      - "title" is not unique but is used for search function to query all the posts with same title.
+      - "Description"
+      - "iamge_origin" Full size image stored in the Cloudinary API user can view once clicked.
+      - "image" 1920p image URL requested from Cloudinary API small thumbnails for site performance.
+      - "image_sm" 300p image URL requested from Cloudinary API small thumbnails for site performance.
+      - "image_id" field is unique and purpose for this ID is ability to delete iamge along with post content.
+      - "created_by" unique field is primary keys used to query user posts by username.
+      - "time_created" Time created<br>
+   ![Emotify DB](project_files/images/features/DB-posts.PNG) <br>
+   - In "Categories" collection we have Group of 3 fields: 
+      - "_id: ObjectID"
+      - "username" field is unique for this reason it is used for user management<br>
+      - "password" is Hashed and unique, establishes a user's authorization to access user interface and secure resources<br>
+      ![Emotify DB](project_files/images/features/DB-users.PNG) <br>
 
+### Site Features
 - Sign In, Create account forms [Image](project_files/images/features/login.PNG)
    - Forms Features "Username", enter your password fields.
    - To help with form validation I.m using WTForms validation tools.
