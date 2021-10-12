@@ -15,6 +15,7 @@
 1. [Wireframes](#Wireframes)
 1. [Design](#Design)
 1. [Features](#Features)
+1. [Features to implement](#Features to implement)
 1. [Testing](#project_files/TESTING.md)
    - [TESTING.md](project_files/TESTING.md)
    - [Bugs TESTING.md](project_files/TESTING.md#Bugs)
@@ -424,6 +425,13 @@ The website built using a flask web framework and bootstrap framework. WTForms f
    - Link to About page
    - Social Links
      - FaceBook, LinkedIn, Instagram
+
+### Features to implement
+- Gallery optimization, image optimization
+- To icluding user review features, (Like and coment)
+- User access to the chat functionality
+- Controlling and managing user access security
+- Separate access methods for admin and users
 
 # [&#8686;](#EmotiFy)
 ## [TESTING](project_files/TESTING.md)
